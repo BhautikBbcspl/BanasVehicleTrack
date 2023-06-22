@@ -1,0 +1,26 @@
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackViewModel.dll.config
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackViewModel.dll
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackViewModel.pdb
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackDbClasses.dll
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\EntityFramework.dll
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackDbClasses.pdb
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackDbClasses.dll.config
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\EntityFramework.xml
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.csproj.AssemblyReference.cache
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.csproj.CoreCompileInputs.cache
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.csproj.CopyComplete
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.dll
+C:\Users\BBCSPL\source\repos\bluebellcspl\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.pdb
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackViewModel.dll.config
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackViewModel.dll
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackViewModel.pdb
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackDbClasses.dll
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\EntityFramework.dll
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackDbClasses.pdb
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackDbClasses.dll.config
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Release\EntityFramework.xml
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.csproj.AssemblyReference.cache
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.csproj.CoreCompileInputs.cache
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.csproj.CopyComplete
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.dll
+D:\Rochan Khristi\Rochan\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.pdb

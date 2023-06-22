@@ -1,0 +1,146 @@
+﻿@model BanasVehicleTrackViewModel.Master.VehicleMasterViewModel
+@{
+    ViewBag.Title = "Vehicle Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-wrapper">
+    <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-lg-12">
+                <div class="float-left">
+                    <h3><i class="ti-control-forward ForwardIcon"> </i>Vehicle Master</h3>
+                </div>
+                <div class="float-right">
+                    <a class="btn btn-outline-primary btn-round" href="@Url.Action("AddVehicleMaster","Master")">
+                        <i class="fa fa-plus mx-2"></i>Add Vehicle
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <div class="dt-responsive">
+                <table id="base-style" class="table table-striped table-responsive table-hover table-bordered nowrap">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayName("Action")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Vehicle Code")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Vehicle Reg Number")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Vehicle Reg Date")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Vehicle Type")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Vehicle Make")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Model")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Status")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Rate Per Km")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Rate Effective Date")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Insurance Commencement Date")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Insurance Expiry Date")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Contract Start Date")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Contract End Date")
+                            </th>
+                            <th>
+                                @Html.DisplayName("IsActive")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Create Date")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Create User")
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.VehicleMasterList)
+                        {
+                            <tr>
+                                <td>
+                                    @if (ViewBag.UpdateRight == 1)
+                                    {
+                                        @Html.ActionLink(" ", "EditVehicleMaster", new { id = item.VehicleId }, new { @class = " btn editbtn fa fa-pencil-square-o", title = "Edit" })
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleRegNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehRegdate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleMake)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Model)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RatePerKm)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RateEffeDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InsComDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InsExpDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ConStartDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ConEndDate)
+                                </td>
+                                <td>
+                                    <label class="toggle">
+                                        <input class="toggle-checkbox" type="checkbox" onclick='ActiveDeactiveStatusChange(this,"@item.VehicleId","VehicleMaster")' @(item.IsActive == true ? "checked" : "")>
+                                        <span class="toggle-switch"></span>
+                                    </label>
+                                </td>
+                                <td> @Html.DisplayFor(modelItem => item.cdate)</td>
+                                <td> @Html.DisplayFor(modelItem => item.CreateUser)</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

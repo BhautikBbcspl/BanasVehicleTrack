@@ -1,0 +1,303 @@
+﻿@model BanasVehicleTrackViewModel.Master.VehicleMasterViewModel
+@{
+    ViewBag.Title = "Vehicle Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .icon-input {
+        position: relative;
+    }
+
+        .icon-input input {
+            padding-right: 30px; /* Adjust the padding as needed */
+        }
+
+        .icon-input i {
+            position: absolute;
+            top: 50%;
+            right: 10px; /* Adjust the right position as needed */
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+</style>
+<div class="page-wrapper">
+    <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-lg-12">
+                <div class="float-left">
+                    <h3><i class="ti-control-forward ForwardIcon"> </i>Vehicle Master</h3>
+                </div>
+                <div class="float-right">
+                    <a class="btn btn-outline-primary btn-round" href="@Url.Action("ViewVehicleMaster","Master")">
+                        <i class="fa fa-eye mx-2"></i>View Vehicles
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-block">
+                        @using (Html.BeginForm("AddVehicleMaster", "Master", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken();
+
+                            @Html.HiddenFor(m => m.Action)
+                            @Html.HiddenFor(m => m.VehicleId, new { id = "txtVehicleId" })
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Vehicle Code</label>
+                                    @Html.ValidationMessageFor(m => m.VehicleCode, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.VehicleCode, new Dictionary<string, object>() {
+                                          {"id","txtVehicleCode"},
+                                          {"class","form-control"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Vehicle Code"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Vehicle Registration Number</label>
+                                    @Html.ValidationMessageFor(m => m.VehicleRegNumber, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.VehicleRegNumber, new Dictionary<string, object>() {
+                                          {"id","txtVehicleRegNumber"},
+                                          {"class","form-control"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Vehicle Reg. Number"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Vehicle Registration Date</label>
+                                    @Html.ValidationMessageFor(m => m.VehicleRegDate, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.VehicleRegDate, new Dictionary<string, object>() {
+                                          {"id","txtVehicleRegDate"},
+                                          {"class","form-control FutureDisabledatepicker"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Vehicle Reg. Date"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Vehicle Type</label>
+                                    @Html.ValidationMessageFor(m => m.VehicleType, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.VehicleType, new Dictionary<string, object>() {
+                                          {"id","txtVehicleType"},
+                                          {"class","form-control"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Vehicle Type"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Vehicle Make</label>
+                                    @Html.ValidationMessageFor(m => m.VehicleMake, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.VehicleMake, new Dictionary<string, object>() {
+                                          {"id","txtVehicleMake"},
+                                          {"class","form-control"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Vehicle Make"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Vehicle Model</label>
+                                    @Html.ValidationMessageFor(m => m.Model, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.Model, new Dictionary<string, object>() {
+                                          {"id","txtModel"},
+                                          {"class","form-control"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Vehicle Model"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Status</label>
+                                    @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.Status, new Dictionary<string, object>() {
+                                          {"id","txtStatus"},
+                                          {"class","form-control"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Status"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Rate Per Km</label>
+                                    @Html.ValidationMessageFor(m => m.RatePerKm, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.RatePerKm, new Dictionary<string, object>() {
+                                          {"id","txtRatePerKm"},
+                                          {"class","form-control numberdecimal"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Rate Per Km"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Rate Effective Date</label>
+                                    @Html.ValidationMessageFor(m => m.RateEffectiveDate, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.RateEffectiveDate, new Dictionary<string, object>() {
+                                          {"id","txtRateEffectiveDate"},
+                                          {"class","form-control datepicker"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Rate Effective Date"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                        <label class="col-form-label">Insurance Commencement Date</label>
+                                        @Html.ValidationMessageFor(m => m.InsuranceCommencementDate, "", new { @class = "text-danger" })
+                                        @Html.TextBoxFor(m => m.InsuranceCommencementDate, new Dictionary<string, object>() {
+                                              {"id","txtInsuranceCommencementDate"},
+                                              {"class","form-control datepicker"},
+                                                 {"autocomplete","off"},
+                                              {"required","required"},
+                                              {"placeholder","Enter Insurance Commencement Date"}
+                                              })
+
+                                    </div>
+                         
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Insurance Expiry Date</label>
+                                    @Html.ValidationMessageFor(m => m.InsuranceExpiryDate, "", new { @class = "text-danger" })
+                                    
+
+                                        @Html.TextBoxFor(m => m.InsuranceExpiryDate, new Dictionary<string, object>() {
+                                              {"id","txtInsuranceExpiryDate"},
+                                              {"class","form-control datepicker"},
+                                                 {"autocomplete","off"},
+                                              {"required","required"},
+                                              {"placeholder","Enter Insurance Expiry Date"}
+                                              })
+                                     
+
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Contract Start Date</label>
+                                    @Html.ValidationMessageFor(m => m.ContractStartDate, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.ContractStartDate, new Dictionary<string, object>() {
+                                          {"id","txtContractStartDate"},
+                                          {"class","form-control datepicker"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Contract Start Date"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Contract End Date</label>
+                                    @Html.ValidationMessageFor(m => m.ContractEndDate, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.ContractEndDate, new Dictionary<string, object>() {
+                                          {"id","txtContractEndDate"},
+                                          {"class","form-control datepicker"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Contract End Date"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">IsActive</label>
+
+                                    @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(x => x.IsActive, new List<SelectListItem>
+                                   {
+                                       new SelectListItem{ Text="Enable", Value = "true",Selected=true },
+                                       new SelectListItem{ Text="Disable", Value = "false" }
+                                    }, new { @class = "form-control form-select js-example-disabled-results", @id = "IsActive" })
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="mt-4">
+                                        <input type="submit" class="btn btn-round btn-inverse m-2" id="confirmok" value="@Model.Action" onclick="return confirm('Are You sure you want to save data?')" />
+
+                                        @if (Model.Action == "Save")
+                                        {
+                                            <input type="button" class="btn btn btn-round btn-inverse m-2" id="reload" value="Refresh" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#reload').click(function () {
+
+        window.location.href = "/Master/AddVehicleMaster";
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        debugger
+        var action = "@ViewBag.Action";
+
+        if (action === "Update") {
+            $("#txtVehicleCode").prop("readonly", true);
+        }
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var formattedCurrentDate = '31-12-2999';
+        var selectedDate = null;
+
+        $('#txtInsuranceCommencementDate').Zebra_DatePicker({
+            format: 'd-m-Y', show_select_today: false,
+            direction: false,
+            onSelect: function (date) {
+                selectedDate = date;
+
+            }
+        });
+        $('#txtInsuranceExpiryDate').Zebra_DatePicker({
+            format: 'd-m-Y',
+            onOpen: function () {
+                debugger
+                if (selectedDate != null) {
+                    var direction = [selectedDate, formattedCurrentDate];
+
+                }
+                $('#txtInsuranceExpiryDate').data('Zebra_DatePicker').update({
+                    direction: direction
+                });
+
+            }
+        });
+
+
+        $('#txtContractStartDate').Zebra_DatePicker({
+            format: 'd-m-Y', show_select_today: false,
+            direction: false,
+            onSelect: function (date) {
+                selectedDate = date;
+
+            }
+        });
+        $('#txtContractEndDate').Zebra_DatePicker({
+            format: 'd-m-Y',
+            onOpen: function () {
+                debugger
+                if (selectedDate != null) {
+                    var direction = [selectedDate, formattedCurrentDate];
+
+                }
+                $('#txtContractEndDate').data('Zebra_DatePicker').update({
+                    direction: direction
+                });
+
+            }
+        });
+
+        //$('#Zebra_DatePicker_Icon').on('click', function () {
+        //    $('#txtInsuranceExpiryDate').Zebra_DatePicker('show');
+        //});
+    });
+</script>

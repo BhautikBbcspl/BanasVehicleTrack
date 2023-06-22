@@ -1,0 +1,101 @@
+﻿@model BanasVehicleTrackViewModel.ModuleViewModel
+@{
+    ViewBag.Title = "Module Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="page-wrapper">
+    <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-lg-12">
+                <div class="float-left">
+                    <h3><i class="ti-control-forward ForwardIcon"> </i>Module Master</h3>
+                </div>
+                <div class="float-right">
+                    <a class="btn btn-outline-primary btn-round" href="@Url.Action("ViewModuleMaster","UserManagement")">
+                        <i class="fa fa-eye mx-2"></i>View Modules
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-block">
+                        @using (Html.BeginForm("AddModuleMaster", "UserManagement", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken();
+
+                            @Html.HiddenFor(m => m.Action)
+                            @Html.HiddenFor(m => m.ModuleId, new { id = "txtModuleId" })
+                        <div class="form-group row">
+
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Module Name</label>
+                                @Html.ValidationMessageFor(m => m.ModuleName, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.ModuleName, new Dictionary<string, object>() {
+                                      {"id","txtModuleName"},
+                                      {"class","form-control"},
+                                         {"autocomplete","off"},
+                                      {"required","required"},
+                                      {"placeholder","Enter Module Name"}
+                                      })
+
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Module Priority</label>
+                                @Html.ValidationMessageFor(m => m.ModulePriority, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.ModulePriority, new Dictionary<string, object>() {
+                                                         {"id","txtModulePriority"},
+                                                         {"class","form-control"},
+                                                         { "type","number"},
+                                                            {"autocomplete","off"},
+                                                         {"placeholder","Enter Module Priority"}
+                                                         })
+
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Module Icon</label>
+                                @Html.TextBoxFor(m => m.FaIcon, new Dictionary<string, object>() {
+                                                         {"id","txtModuleFaIcon"},
+                                                         {"class","form-control"},
+                                                            {"autocomplete","off"},
+                                                         {"placeholder","Enter Module Icon"}
+                                                         })
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">IsActive</label>
+
+                                @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(x => x.IsActive, new List<SelectListItem>
+                               {
+                                   new SelectListItem{ Text="Enable", Value = "true",Selected=true },
+                                   new SelectListItem{ Text="Disable", Value = "false" }
+                                }, new { @class = "form-control form-select js-example-disabled-results", @id = "IsActive" })
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mt-4">
+                                    <input type="submit" class="btn btn-round btn-inverse m-2" id="confirmok" value="@Model.Action" onclick="return confirm('Are You sure you want to save data?')" />
+                                    @if (ViewBag.Action == "Add")
+                                    {
+                                        <input type="button" class="btn btn btn-round btn-inverse m-2" id="reload" value="Clear" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#reload').click(function () {
+        window.location.href = "/UserManagement/AddModuleMaster";
+});
+</script>

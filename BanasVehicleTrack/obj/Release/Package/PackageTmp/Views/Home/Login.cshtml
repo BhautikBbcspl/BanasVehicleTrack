@@ -1,0 +1,137 @@
+﻿@model BanasVehicleTrackViewModel.EmployeeViewModel
+@{ Layout = null; }
+<!DOCTYPE html>
+
+<html lang="en-us" class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>Banas Vehicle Track - Login</title>
+    <meta name="description" content="Comming soon page - flat able">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Codedthemes">
+    <!-- Favicon -->
+    @*<link rel="shortcut icon" href="img\favicon.ico">*@
+
+    <link rel="stylesheet" href="~/Content/AdminTemplateAssets/login_content/css/style-minimal-flat.css">
+    <link href="~/Content/AdminTemplateAssets/login_content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminTemplateAssets/login_content/style.css" rel="stylesheet" />
+    <script src="~/Content/AdminTemplateAssets/login_content/js/modernizr.custom.js"></script>
+
+    <link href="~/Content/AdminTemplateAssets/css/font-awesome.min.css" rel="stylesheet" />
+    <style>
+
+        .field-icon {
+            float: right;
+            margin-top: -24px;
+            position: relative;
+            right: 15px;
+            z-index: 2;
+        }
+
+        html {
+            font-size: unset !important;
+        }
+    </style>
+</head>
+
+<body>
+    @using (Html.BeginForm())
+    {
+@Html.AntiForgeryToken() @*<div id="particles-js"></div>*@
+                <div id="slider" class="sl-slider-wrapper">
+                    <section class="login-block">
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <form class="md-float-material form-material">
+                                        <div class="text-center">
+                                            @*<img src="~/Content/AdminTemplateAssets/images/logo.png" />*@
+                                            @*<img src="~/Content/AdminTemplateAssets/images/logo_banasvehicle.png" style="width: 30%;"/>*@
+                                        </div>
+                                        <div class="auth-box card">
+                                            <div class="card-block">
+                                                <div class="row m-b-20">
+                                                    <div class="col-md-12">
+                                                        <img src="~/Content/AdminTemplateAssets/images/logo_4.png" class="w-100" />
+                                                        <h3 class="text-center txt-primary mt-3" style="color: #01a9ac; font-weight: bolder;">Login</h3>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-primary">
+                                                    <label class="h6 font-weight-bold mt-2">Employee Code</label>
+                                                    @Html.TextBoxFor(m => m.EmployeeCode, new Dictionary<string, object>() {
+                                                                    {"id","txtUsername"},
+                                                                    {"class","form-control"},
+                                                                    {"placeholder","Enter Employee Code" },
+                                                                    {"autocomplete","off"},
+                                                                     {"type","text"}
+
+                                     })
+                                                    @Html.ValidationMessageFor(m => m.EmployeeCode, "", new { @class = "text-danger h6" })
+                                                </div>
+                                                <div class="form-group form-primary mt-3">
+                                                    <label class="h6 font-weight-bold">Password</label>
+                                                    @Html.TextBoxFor(m => m.Password, new Dictionary<string, object>() {
+                                                                    {"id","txtUserpwd"},
+                                                                    {"class","form-control"},
+                                                                    {"placeholder","Password" },
+                                                                    {"autocomplete","off"},
+                                                                    {"type","password" }
+                                     })
+                                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger h6" })
+                                                </div>
+
+                                                <div class="row m-t-30">
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row align-center">
+                                                    <div class="col-md-12 ">
+
+                                                        <h5><b class="f-w-600">@Html.ValidationSummary(true, "", new { @class = "text-danger mt-4" })</b></h5>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        @*<img src="..\files\assets\images\auth\Logo-small-bottom.png" alt="small-logo.png">*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                </div>}
+    <script src="~/Content/AdminTemplateAssets/js/jquery.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/js/jquery-ui.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/js/popper.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/js/bootstrap.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/login_content/js/particles.js"></script>
+
+    <script>
+        $(".toggle-password").click(function () {
+            debugger
+            $(this).toggleClass("fas fa-eye-slash");
+            input = $(this).parent().find("input");
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    </script>
+</body>
+
+</html>

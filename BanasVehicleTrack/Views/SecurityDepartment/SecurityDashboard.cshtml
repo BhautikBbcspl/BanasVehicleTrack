@@ -1,0 +1,75 @@
+﻿@model BanasVehicleTrackViewModel.SecurityDepartment.SecurityVisitMgmtViewModel
+
+@{
+    ViewBag.Title = "Security Department Visit Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-wrapper">
+    <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                @*<a href="@Url.Action("SecurityVisitMgmtDashboard")">*@
+                    <div class="d-inline">
+                        <h3><i class="ti-control-forward ForwardIcon"> </i>Security Dashboard</h3>
+                    </div>
+                    @*</a>*@
+            </div>
+
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <div class="dt-responsive ">
+                <table id="datable-security" class="table table-striped table-responsive table-hover table-bordered nowrap">
+                    <thead>
+                        <tr>
+                          
+                            <th>@Html.DisplayName("Sr No")</th>
+                            <th>@Html.DisplayName("Trip Code")</th>
+                            <th>@Html.DisplayName("Gate Pass ID")</th>
+                            <th>@Html.DisplayName("Department")</th>
+                            <th>@Html.DisplayName("User")</th>
+                            <th>@Html.DisplayName("Other User 1")</th>
+                            <th>@Html.DisplayName("Other User 2")</th>
+                            <th>@Html.DisplayName("Other User 3")</th>
+                            <th>@Html.DisplayName("Information Mode")</th>
+                            <th>@Html.DisplayName("Visit Date & Time")</th>
+                            <th>@Html.DisplayName("Visit Purpose")</th>
+                            <th>@Html.DisplayName("Remarks")</th>
+                            <th>@Html.DisplayName("Vehicle Department")</th>
+                            <th>@Html.DisplayName("Driver")</th>
+                            <th>@Html.DisplayName("Vehicle Number")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int serialNumber = 1; 
+                        }
+                        @foreach (var item in Model.GatePassList)
+                        {
+                        <tr>
+                            <td>@serialNumber</td> 
+
+                            <td>@Html.DisplayFor(modelItem => item.GatePassId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.GatePassId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DepartmentName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.UserCode)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OtherUser1)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OtherUser2)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OtherUser3)</td>
+                            <td>@Html.DisplayFor(modelItem => item.InformationMode)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VisitDateTime)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VisitPurpose)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Remarks)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VehicleDepartment)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Driver)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VehicleRegNumber)</td>
+                        </tr>
+                            serialNumber++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

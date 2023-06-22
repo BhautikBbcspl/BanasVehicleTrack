@@ -1,0 +1,2027 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="banasVehicleTrackingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EmployeeMaster">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="DepartmentId" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateUser" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LoginMaster">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="Activestatus" Type="bit" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="Createuser" Type="nvarchar" MaxLength="50" />
+          <Property Name="Companycode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="BanasAdminDashboardCountRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasAdminDashboardListRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasAuditorDepartmentDashboardRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FromDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="ToDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
+          <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
+          <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasAuditorFinalApproveRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasAuditorFinalApproveUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+          <Parameter Name="FinalApprDifference" Type="nvarchar" Mode="In" />
+          <Parameter Name="Type" Type="nvarchar" Mode="In" />
+          <Parameter Name="FinalApproverCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="UpdateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasAuditorFinalOperateVisitMasterIns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MidwayDeparture" Type="nvarchar" Mode="In" />
+          <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastOdometer" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastOdometerImage" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Latitude" Type="nvarchar" Mode="In" />
+          <Parameter Name="Longitude" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasAuditorMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AuditorId" Type="nvarchar" Mode="In" />
+          <Parameter Name="AuditorName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AuditorSignature" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="activestatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="createdate" Type="nvarchar" Mode="In" />
+          <Parameter Name="updatedate" Type="nvarchar" Mode="In" />
+          <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="AuditorCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasAuditorMasterRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="companycode" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasAuditorOperateVisitMasterIns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Latitude" Type="nvarchar" Mode="In" />
+          <Parameter Name="Longitude" Type="nvarchar" Mode="In" />
+          <Parameter Name="Odometer" Type="nvarchar" Mode="In" />
+          <Parameter Name="OdometerImage" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasAuditorVisitGatepassRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="AuditorCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmployeeOldpassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmployeeNewpassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasDepartmentMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartmentCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Departmentname" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="activestatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="createdate" Type="nvarchar" Mode="In" />
+          <Parameter Name="updatedate" Type="nvarchar" Mode="In" />
+          <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasDepartmentMasterRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="companycode" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasEmployeeMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmployeeCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmployeeName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Contact" Type="nvarchar" Mode="In" />
+          <Parameter Name="Gender" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleId" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Isactive" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="Updatedate" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasEmployeeMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasFetchLastCosingOdometer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vehicleid" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasIntePageModuleInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InteId" Type="nvarchar" Mode="In" />
+          <Parameter Name="ModuleId" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageId" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActiveStatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="ModuleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasIntePageModuleRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="moduleid" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasInteRoleModuleInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+          <Parameter Name="roleid" Type="nvarchar" Mode="In" />
+          <Parameter Name="modid" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsActive" Type="nvarchar" Mode="In" />
+          <Parameter Name="createdate" Type="nvarchar" Mode="In" />
+          <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="MPInteId" Type="nvarchar" Mode="In" />
+          <Parameter Name="viewright" Type="nvarchar" Mode="In" />
+          <Parameter Name="insertright" Type="nvarchar" Mode="In" />
+          <Parameter Name="updateright" Type="nvarchar" Mode="In" />
+          <Parameter Name="deleteright" Type="nvarchar" Mode="In" />
+          <Parameter Name="updatedate" Type="nvarchar" Mode="In" />
+          <Parameter Name="updateuser" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasInteRoleModulePageUserRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usercode" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasInteRoleModuleRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="BanasLoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employeecode" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmployeePassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasLoginRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Employeecode" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmployeePassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasMenuRightsRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Roleid" Type="nvarchar" Mode="In" />
+          <Parameter Name="pagename" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasMenuRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Roleid" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasModuleMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ModuleId" Type="nvarchar" Mode="In" />
+          <Parameter Name="ModuleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ModulePriority" Type="nvarchar" Mode="In" />
+          <Parameter Name="FaIcon" Type="nvarchar" Mode="In" />
+          <Parameter Name="Isactive" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="Updatedate" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasModuleMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="moduleid" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasPageMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageId" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PageUrl" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsActive" Type="nvarchar" Mode="In" />
+          <Parameter Name="PagePriority" Type="nvarchar" Mode="In" />
+          <Parameter Name="Updatedate" Type="nvarchar" Mode="In" />
+          <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasPageMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="pageid" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasRoleMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Rolename" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="activestatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="createdate" Type="nvarchar" Mode="In" />
+          <Parameter Name="updatedate" Type="nvarchar" Mode="In" />
+          <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasRoleMasterRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="companycode" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasSecurityMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SecurityId" Type="nvarchar" Mode="In" />
+          <Parameter Name="SecurityName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SecuritySignature" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="activestatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="createdate" Type="nvarchar" Mode="In" />
+          <Parameter Name="updatedate" Type="nvarchar" Mode="In" />
+          <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="SecurityCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasSecurityMasterRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="companycode" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasSecurityVehicleGatepassRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasVehicleGatepassInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherUser1" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherUser2" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherUser3" Type="nvarchar" Mode="In" />
+          <Parameter Name="InformationMode" Type="nvarchar" Mode="In" />
+          <Parameter Name="VisitDateTime" Type="nvarchar" Mode="In" />
+          <Parameter Name="VisitPurpose" Type="nvarchar" Mode="In" />
+          <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+          <Parameter Name="VehicleDepartment" Type="nvarchar" Mode="In" />
+          <Parameter Name="Driver" Type="nvarchar" Mode="In" />
+          <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
+          <Parameter Name="StartOdometer" Type="nvarchar" Mode="In" />
+          <Parameter Name="CloseOdometer" Type="nvarchar" Mode="In" />
+          <Parameter Name="CloseDateTime" Type="nvarchar" Mode="In" />
+          <Parameter Name="CloseRemark" Type="nvarchar" Mode="In" />
+          <Parameter Name="Netkm" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="CloseUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="CloseDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="EditUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="EditDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="Difference" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartureDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="StartKm" Type="decimal" Mode="In" />
+          <Parameter Name="DepartureVerifyStatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartureSecurityId" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartureSecurityRemark" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ArrivalDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="EndKm" Type="decimal" Mode="In" />
+          <Parameter Name="ArrivalVerifyStatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="ArrivalSecurityId" Type="nvarchar" Mode="In" />
+          <Parameter Name="ArrivalSecurityRemark" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="BanasVehicleGatepassRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="from" Type="nvarchar" Mode="In" />
+          <Parameter Name="to" Type="nvarchar" Mode="In" />
+          <Parameter Name="department" Type="nvarchar" Mode="In" />
+          <Parameter Name="vehicle" Type="nvarchar" Mode="In" />
+          <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasVehicleMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
+          <Parameter Name="VehicleCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="VehicleRegNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="VehicleRegDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="VehicleType" Type="nvarchar" Mode="In" />
+          <Parameter Name="VehicleMake" Type="nvarchar" Mode="In" />
+          <Parameter Name="Model" Type="nvarchar" Mode="In" />
+          <Parameter Name="Status" Type="nvarchar" Mode="In" />
+          <Parameter Name="RatePerKm" Type="nvarchar" Mode="In" />
+          <Parameter Name="RateEffectiveDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="InsuranceCommencementDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="InsuranceExpiryDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContractStartDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContractEndDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsActive" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="Updatedate" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasVehicleMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasVisitManagementRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="from" Type="nvarchar" Mode="In" />
+          <Parameter Name="to" Type="nvarchar" Mode="In" />
+          <Parameter Name="department" Type="nvarchar" Mode="In" />
+          <Parameter Name="vehicle" Type="nvarchar" Mode="In" />
+          <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasVisitPurposeMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VisitId" Type="nvarchar" Mode="In" />
+          <Parameter Name="VisitPurpose" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IsActive" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="UpdateDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BanasVisitPurposeMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="banasVehicleTrackingModelStoreContainer">
+          <EntitySet Name="EmployeeMaster" EntityType="Self.EmployeeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginMaster" EntityType="Self.LoginMaster" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="banasVehicleTrackingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="banasVehicleTrackingEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="EmployeeMasters" EntityType="banasVehicleTrackingModel.EmployeeMaster" />
+          <FunctionImport Name="BanasDepartmentMasterInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+            <Parameter Name="DepartmentCode" Mode="In" Type="String" />
+            <Parameter Name="Departmentname" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="activestatus" Mode="In" Type="String" />
+            <Parameter Name="createdate" Mode="In" Type="String" />
+            <Parameter Name="updatedate" Mode="In" Type="String" />
+            <Parameter Name="createuser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasDepartmentMasterRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasDepartmentMasterRetrieve_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="companycode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasEmployeeMasterInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="EmployeeId" Mode="In" Type="String" />
+            <Parameter Name="EmployeeCode" Mode="In" Type="String" />
+            <Parameter Name="EmployeeName" Mode="In" Type="String" />
+            <Parameter Name="Contact" Mode="In" Type="String" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="RoleId" Mode="In" Type="String" />
+            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+            <Parameter Name="Isactive" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="Updatedate" Mode="In" Type="String" />
+            <Parameter Name="CreateUser" Mode="In" Type="String" />
+            <Parameter Name="UpdateUser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasEmployeeMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasEmployeeMasterRtr_Result)">
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasFetchLastCosingOdometer" ReturnType="Collection(Decimal)">
+          <Parameter Name="vehicleid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasIntePageModuleInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="InteId" Mode="In" Type="String" />
+            <Parameter Name="ModuleId" Mode="In" Type="String" />
+            <Parameter Name="PageId" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="CreateUser" Mode="In" Type="String" />
+            <Parameter Name="ActiveStatus" Mode="In" Type="String" />
+            <Parameter Name="ModuleName" Mode="In" Type="String" />
+            <Parameter Name="PageName" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasIntePageModuleRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasIntePageModuleRtr_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="moduleid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasInteRoleModuleInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="roleid" Mode="In" Type="String" />
+            <Parameter Name="modid" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="String" />
+            <Parameter Name="createdate" Mode="In" Type="String" />
+            <Parameter Name="createuser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="MPInteId" Mode="In" Type="String" />
+            <Parameter Name="viewright" Mode="In" Type="String" />
+            <Parameter Name="insertright" Mode="In" Type="String" />
+            <Parameter Name="updateright" Mode="In" Type="String" />
+            <Parameter Name="deleteright" Mode="In" Type="String" />
+            <Parameter Name="updatedate" Mode="In" Type="String" />
+            <Parameter Name="updateuser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasInteRoleModulePageUserRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasInteRoleModulePageUserRtr_Result)">
+          <Parameter Name="usercode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasInteRoleModuleRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasInteRoleModuleRtr_Result)" />
+          <FunctionImport Name="BanasLoginCheck" ReturnType="Collection(String)">
+            <Parameter Name="Employeecode" Mode="In" Type="String" />
+            <Parameter Name="EmployeePassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasPageMasterInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="pageId" Mode="In" Type="String" />
+            <Parameter Name="PageName" Mode="In" Type="String" />
+            <Parameter Name="PageUrl" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="CreateUser" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="String" />
+            <Parameter Name="PagePriority" Mode="In" Type="String" />
+            <Parameter Name="Updatedate" Mode="In" Type="String" />
+            <Parameter Name="UpdateUser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasPageMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasPageMasterRtr_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="pageid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasRoleMasterInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="RoleId" Mode="In" Type="String" />
+            <Parameter Name="Rolename" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="activestatus" Mode="In" Type="String" />
+            <Parameter Name="createdate" Mode="In" Type="String" />
+            <Parameter Name="updatedate" Mode="In" Type="String" />
+            <Parameter Name="createuser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasRoleMasterRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasRoleMasterRetrieve_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="companycode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasSecurityVehicleGatepassRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasSecurityVehicleGatepassRetrieve_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="GatepassId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVehicleGatepassRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasVehicleGatepassRetrieve_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="from" Mode="In" Type="String" />
+            <Parameter Name="to" Mode="In" Type="String" />
+            <Parameter Name="department" Mode="In" Type="String" />
+            <Parameter Name="vehicle" Mode="In" Type="String" />
+            <Parameter Name="GatepassId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVehicleMasterInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="VehicleId" Mode="In" Type="String" />
+            <Parameter Name="VehicleCode" Mode="In" Type="String" />
+            <Parameter Name="VehicleRegNumber" Mode="In" Type="String" />
+            <Parameter Name="VehicleRegDate" Mode="In" Type="String" />
+            <Parameter Name="VehicleType" Mode="In" Type="String" />
+            <Parameter Name="VehicleMake" Mode="In" Type="String" />
+            <Parameter Name="Model" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+            <Parameter Name="RatePerKm" Mode="In" Type="String" />
+            <Parameter Name="RateEffectiveDate" Mode="In" Type="String" />
+            <Parameter Name="InsuranceCommencementDate" Mode="In" Type="String" />
+            <Parameter Name="InsuranceExpiryDate" Mode="In" Type="String" />
+            <Parameter Name="ContractStartDate" Mode="In" Type="String" />
+            <Parameter Name="ContractEndDate" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="Updatedate" Mode="In" Type="String" />
+            <Parameter Name="CreateUser" Mode="In" Type="String" />
+            <Parameter Name="UpdateUser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVehicleMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVehicleMasterRtr_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVisitPurposeMasterInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="VisitId" Mode="In" Type="String" />
+            <Parameter Name="VisitPurpose" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="String" />
+            <Parameter Name="CreateUser" Mode="In" Type="String" />
+            <Parameter Name="UpdateUser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVisitPurposeMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVisitPurposeMasterRtr_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasSecurityMasterInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="SecurityId" Mode="In" Type="String" />
+            <Parameter Name="SecurityName" Mode="In" Type="String" />
+            <Parameter Name="SecuritySignature" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="activestatus" Mode="In" Type="String" />
+            <Parameter Name="createdate" Mode="In" Type="String" />
+            <Parameter Name="updatedate" Mode="In" Type="String" />
+            <Parameter Name="createuser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="SecurityCode" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasSecurityMasterRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasSecurityMasterRetrieve_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="companycode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVehicleGatepassInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="GatePassId" Mode="In" Type="String" />
+            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+            <Parameter Name="UserCode" Mode="In" Type="String" />
+            <Parameter Name="OtherUser1" Mode="In" Type="String" />
+            <Parameter Name="OtherUser2" Mode="In" Type="String" />
+            <Parameter Name="OtherUser3" Mode="In" Type="String" />
+            <Parameter Name="InformationMode" Mode="In" Type="String" />
+            <Parameter Name="VisitDateTime" Mode="In" Type="String" />
+            <Parameter Name="VisitPurpose" Mode="In" Type="String" />
+            <Parameter Name="Remarks" Mode="In" Type="String" />
+            <Parameter Name="VehicleDepartment" Mode="In" Type="String" />
+            <Parameter Name="Driver" Mode="In" Type="String" />
+            <Parameter Name="VehicleId" Mode="In" Type="String" />
+            <Parameter Name="StartOdometer" Mode="In" Type="String" />
+            <Parameter Name="CloseOdometer" Mode="In" Type="String" />
+            <Parameter Name="CloseDateTime" Mode="In" Type="String" />
+            <Parameter Name="CloseRemark" Mode="In" Type="String" />
+            <Parameter Name="Netkm" Mode="In" Type="String" />
+            <Parameter Name="CreateUser" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="CloseUser" Mode="In" Type="String" />
+            <Parameter Name="CloseDate" Mode="In" Type="String" />
+            <Parameter Name="EditUser" Mode="In" Type="String" />
+            <Parameter Name="EditDate" Mode="In" Type="String" />
+            <Parameter Name="Difference" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="DepartureDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="StartKm" Mode="In" Type="Decimal" />
+            <Parameter Name="DepartureVerifyStatus" Mode="In" Type="String" />
+            <Parameter Name="DepartureSecurityId" Mode="In" Type="String" />
+            <Parameter Name="DepartureSecurityRemark" Mode="In" Type="String" />
+            <Parameter Name="ArrivalDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="EndKm" Mode="In" Type="Decimal" />
+            <Parameter Name="ArrivalVerifyStatus" Mode="In" Type="String" />
+            <Parameter Name="ArrivalSecurityId" Mode="In" Type="String" />
+            <Parameter Name="ArrivalSecurityRemark" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVisitManagementRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVisitManagementRtr_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="from" Mode="In" Type="String" />
+            <Parameter Name="to" Mode="In" Type="String" />
+            <Parameter Name="department" Mode="In" Type="String" />
+            <Parameter Name="vehicle" Mode="In" Type="String" />
+            <Parameter Name="GatepassId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAuditorMasterInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="AuditorId" Mode="In" Type="String" />
+            <Parameter Name="AuditorName" Mode="In" Type="String" />
+            <Parameter Name="AuditorSignature" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="activestatus" Mode="In" Type="String" />
+            <Parameter Name="createdate" Mode="In" Type="String" />
+            <Parameter Name="updatedate" Mode="In" Type="String" />
+            <Parameter Name="createuser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="AuditorCode" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAuditorMasterRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorMasterRetrieve_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="companycode" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="LoginMasters" EntityType="banasVehicleTrackingModel.LoginMaster" />
+          <FunctionImport Name="BanasMenuRightsRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasMenuRightsRtr_Result)">
+            <Parameter Name="Roleid" Mode="In" Type="String" />
+            <Parameter Name="pagename" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasChangePassword" ReturnType="Collection(String)">
+            <Parameter Name="EmployeeCode" Mode="In" Type="String" />
+            <Parameter Name="EmployeeOldpassword" Mode="In" Type="String" />
+            <Parameter Name="EmployeeNewpassword" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="createuser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAdminDashboardCountRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasAdminDashboardCountRtr_Result)">
+          <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAdminDashboardListRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasAdminDashboardListRtr_Result)">
+          <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasModuleMasterInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="ModuleId" Mode="In" Type="String" />
+            <Parameter Name="ModuleName" Mode="In" Type="String" />
+            <Parameter Name="ModulePriority" Mode="In" Type="String" />
+            <Parameter Name="FaIcon" Mode="In" Type="String" />
+            <Parameter Name="Isactive" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="Updatedate" Mode="In" Type="String" />
+            <Parameter Name="CreateUser" Mode="In" Type="String" />
+            <Parameter Name="UpdateUser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasModuleMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasModuleMasterRtr_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="moduleid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasMenuRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasMenuRtr_Result)">
+          <Parameter Name="Roleid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasLoginRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasLoginRtr_Result)">
+            <Parameter Name="Employeecode" Mode="In" Type="String" />
+            <Parameter Name="EmployeePassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAuditorVisitGatepassRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorVisitGatepassRetrieve_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="AuditorCode" Mode="In" Type="String" />
+            <Parameter Name="GatePassId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAuditorOperateVisitMasterIns" ReturnType="Collection(String)">
+            <Parameter Name="GatePassId" Mode="In" Type="String" />
+            <Parameter Name="Latitude" Mode="In" Type="String" />
+            <Parameter Name="Longitude" Mode="In" Type="String" />
+            <Parameter Name="Odometer" Mode="In" Type="String" />
+            <Parameter Name="OdometerImage" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="CreateUser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAuditorFinalOperateVisitMasterIns" ReturnType="Collection(String)">
+            <Parameter Name="MidwayDeparture" Mode="In" Type="String" />
+            <Parameter Name="GatePassId" Mode="In" Type="String" />
+            <Parameter Name="LastOdometer" Mode="In" Type="String" />
+            <Parameter Name="LastOdometerImage" Mode="In" Type="String" />
+            <Parameter Name="UserCode" Mode="In" Type="String" />
+            <Parameter Name="Latitude" Mode="In" Type="String" />
+            <Parameter Name="Longitude" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="CreateUser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAuditorFinalApproveUpd" ReturnType="Collection(String)">
+            <Parameter Name="GatePassId" Mode="In" Type="String" />
+            <Parameter Name="FinalApprDifference" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="FinalApproverCode" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="String" />
+            <Parameter Name="UpdateUser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAuditorFinalApproveRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorFinalApproveRetrieve_Result)">
+          <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAuditorDepartmentDashboardRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorDepartmentDashboardRetrieve_Result)">
+            <Parameter Name="FromDate" Mode="In" Type="String" />
+            <Parameter Name="ToDate" Mode="In" Type="String" />
+            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+            <Parameter Name="VehicleId" Mode="In" Type="String" />
+            <Parameter Name="GatepassId" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="EmployeeMaster">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="DepartmentId" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="BanasDepartmentMasterRetrieve_Result">
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="String" Name="DepartmentCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdateUser" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="udate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="activeStatus1" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="BanasEmployeeMasterRtr_Result">
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="EmployeeCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmployeeName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Contact" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="actstatus" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="udate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="UpdateUser" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="BanasIntePageModuleRtr_Result">
+          <Property Type="Int32" Name="InteId" Nullable="false" />
+          <Property Type="Int32" Name="ModuleId" Nullable="true" />
+          <Property Type="Int32" Name="PageId" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PageName" Nullable="true" />
+          <Property Type="String" Name="PageUrl" Nullable="true" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="BanasInteRoleModulePageUserRtr_Result">
+          <Property Type="Int32" Name="RMPUId" Nullable="false" />
+          <Property Type="Int32" Name="roleID" Nullable="true" />
+          <Property Type="Int32" Name="moduleID" Nullable="true" />
+          <Property Type="Int32" Name="pageID" Nullable="true" />
+          <Property Type="String" Name="Usercode" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="ViewRight" Nullable="true" />
+          <Property Type="Int32" Name="InsertRight" Nullable="true" />
+          <Property Type="Int32" Name="UpdateRight" Nullable="true" />
+          <Property Type="Int32" Name="DeleteRight" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PageName" Nullable="true" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="BanasInteRoleModuleRtr_Result">
+          <Property Type="Int32" Name="InteId" Nullable="false" />
+          <Property Type="Int32" Name="RoleId" Nullable="true" />
+          <Property Type="Int32" Name="ModuleId" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="ViewRight" Nullable="true" />
+          <Property Type="Int32" Name="InsertRight" Nullable="true" />
+          <Property Type="Int32" Name="UpdateRight" Nullable="true" />
+          <Property Type="Int32" Name="DeleteRight" Nullable="true" />
+          <Property Type="Int32" Name="PageId" Nullable="true" />
+          <Property Type="String" Name="PageName" Nullable="true" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="MPInteId" Nullable="true" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="BanasPageMasterRtr_Result">
+          <Property Type="Int32" Name="PageId" Nullable="false" />
+          <Property Type="String" Name="PageName" Nullable="true" />
+          <Property Type="String" Name="PageUrl" Nullable="true" />
+          <Property Type="Int32" Name="PagePriority" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="actStatus" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="BanasRoleMasterRetrieve_Result">
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdateUser" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="udate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="activeStatus1" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="BanasSecurityVehicleGatepassRetrieve_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="VehicleDepartment" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasVehicleGatepassRetrieve_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="VehicleDepartment" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasVehicleMasterRtr_Result">
+          <Property Type="Int32" Name="VehicleId" Nullable="false" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="VehicleRegDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="VehicleType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleMake" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Model" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="RatePerKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="RateEffectiveDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="InsuranceCommencementDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="InsuranceExpiryDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ContractStartDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ContractEndDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="VehRegdate" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="RateEffeDate" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ConStartDate" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ConEndDate" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsComDate" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsExpDate" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="BanasVisitPurposeMasterRtr_Result">
+          <Property Type="Int32" Name="VisitId" Nullable="false" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="BanasSecurityMasterRetrieve_Result">
+          <Property Type="Int32" Name="SecurityId" Nullable="false" />
+          <Property Type="String" Name="SecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SecuritySignature" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdateUser" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SecurityCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="udate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="activeStatus1" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="BanasVisitManagementRtr_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="VehicleDepartment" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasAuditorMasterRetrieve_Result">
+          <Property Type="Int32" Name="AuditorId" Nullable="false" />
+          <Property Type="String" Name="AuditorName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AuditorSignature" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdateUser" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AuditorCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="udate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="activeStatus1" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <EntityType Name="LoginMaster">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Activestatus" Type="Boolean" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="Createuser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Companycode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="BanasMenuRightsRtr_Result">
+          <Property Type="String" Name="PageName" Nullable="true" />
+          <Property Type="String" Name="PageUrl" Nullable="true" />
+          <Property Type="Int32" Name="ModuleId" Nullable="true" />
+          <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ModulePriority" Nullable="true" />
+          <Property Type="Int32" Name="PagePriority" Nullable="true" />
+          <Property Type="Int32" Name="InsertRight" Nullable="true" />
+          <Property Type="Int32" Name="ViewRight" Nullable="true" />
+          <Property Type="Int32" Name="DeleteRight" Nullable="true" />
+          <Property Type="Int32" Name="UpdateRight" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasAdminDashboardCountRtr_Result">
+          <Property Type="Int32" Name="EmployeeCount" Nullable="true" />
+          <Property Type="Int32" Name="SecurityCount" Nullable="true" />
+          <Property Type="Int32" Name="AuditorCount" Nullable="true" />
+          <Property Type="Int32" Name="OpenGatePass" Nullable="true" />
+          <Property Type="Int32" Name="CloseGatePass" Nullable="true" />
+          <Property Type="Int32" Name="TotalGatePass" Nullable="true" />
+          <Property Type="Int32" Name="TotalVehicle" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasAdminDashboardListRtr_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="VehicleDepartment" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasModuleMasterRtr_Result">
+          <Property Type="Int32" Name="ModuleId" Nullable="false" />
+          <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FaIcon" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ModulePriority" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="actStatus" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="BanasMenuRtr_Result">
+          <Property Type="String" Name="PageName" Nullable="true" />
+          <Property Type="String" Name="PageUrl" Nullable="true" />
+          <Property Type="Int32" Name="ModuleId" Nullable="true" />
+          <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FaIcon" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ModulePriority" Nullable="true" />
+          <Property Type="Int32" Name="PagePriority" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasLoginRtr_Result">
+          <Property Type="Int32" Name="Userid" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserPassword" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="Activestatus" Nullable="true" />
+          <Property Type="Int32" Name="RoleId" Nullable="true" />
+          <Property Type="DateTime" Name="Createdate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Createuser" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Companycode" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="BanasAuditorVisitGatepassRetrieve_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="VehicleDepartment" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="AuditorSignature" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasAuditorFinalApproveRetrieve_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="VehicleDepartment" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="RatePerKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
+          <Property Type="Decimal" Name="DepArrDifference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="FinalApprGatepassVisitStatus" Nullable="true" />
+          <Property Type="Int32" Name="FinalApprSecurityVisitStatus" Nullable="true" />
+          <Property Type="Int32" Name="FinalApprAuditVisitStatus" Nullable="true" />
+          <Property Type="Decimal" Name="FinalApprDifference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FinalAmount" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="BanasAuditorDepartmentDashboardRetrieve_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="VehicleDepartment" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="RatePerKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
+          <Property Type="Decimal" Name="DepArrDifference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="FinalApprGatepassVisitStatus" Nullable="true" />
+          <Property Type="Int32" Name="FinalApprSecurityVisitStatus" Nullable="true" />
+          <Property Type="Int32" Name="FinalApprAuditVisitStatus" Nullable="true" />
+          <Property Type="Decimal" Name="FinalApprDifference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FinalAmount" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="banasVehicleTrackingModelStoreContainer" CdmEntityContainer="banasVehicleTrackingEntities" >
+          <EntitySetMapping Name="EmployeeMasters">
+            <EntityTypeMapping TypeName="banasVehicleTrackingModel.EmployeeMaster">
+              <MappingFragment StoreEntitySet="EmployeeMaster">
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="BanasDepartmentMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasDepartmentMasterInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasDepartmentMasterRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasDepartmentMasterRetrieve">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasDepartmentMasterRetrieve_Result">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="activeStatus1" ColumnName="activeStatus1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasEmployeeMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasEmployeeMasterInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasEmployeeMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasEmployeeMasterRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasEmployeeMasterRtr_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="actstatus" ColumnName="actstatus" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasFetchLastCosingOdometer" FunctionName="banasVehicleTrackingModel.Store.BanasFetchLastCosingOdometer" />
+          <FunctionImportMapping FunctionImportName="BanasIntePageModuleInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasIntePageModuleInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasIntePageModuleRtr" FunctionName="banasVehicleTrackingModel.Store.BanasIntePageModuleRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasIntePageModuleRtr_Result">
+                <ScalarProperty Name="InteId" ColumnName="InteId" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasInteRoleModuleInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasInteRoleModuleInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasInteRoleModulePageUserRtr" FunctionName="banasVehicleTrackingModel.Store.BanasInteRoleModulePageUserRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasInteRoleModulePageUserRtr_Result">
+                <ScalarProperty Name="RMPUId" ColumnName="RMPUId" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="moduleID" ColumnName="moduleID" />
+                <ScalarProperty Name="pageID" ColumnName="pageID" />
+                <ScalarProperty Name="Usercode" ColumnName="Usercode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ViewRight" ColumnName="ViewRight" />
+                <ScalarProperty Name="InsertRight" ColumnName="InsertRight" />
+                <ScalarProperty Name="UpdateRight" ColumnName="UpdateRight" />
+                <ScalarProperty Name="DeleteRight" ColumnName="DeleteRight" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasInteRoleModuleRtr" FunctionName="banasVehicleTrackingModel.Store.BanasInteRoleModuleRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasInteRoleModuleRtr_Result">
+                <ScalarProperty Name="InteId" ColumnName="InteId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ViewRight" ColumnName="ViewRight" />
+                <ScalarProperty Name="InsertRight" ColumnName="InsertRight" />
+                <ScalarProperty Name="UpdateRight" ColumnName="UpdateRight" />
+                <ScalarProperty Name="DeleteRight" ColumnName="DeleteRight" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="MPInteId" ColumnName="MPInteId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasLoginCheck" FunctionName="banasVehicleTrackingModel.Store.BanasLoginCheck" />
+          <FunctionImportMapping FunctionImportName="BanasPageMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasPageMasterInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasPageMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasPageMasterRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasPageMasterRtr_Result">
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="PagePriority" ColumnName="PagePriority" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="actStatus" ColumnName="actStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasRoleMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasRoleMasterInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasRoleMasterRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasRoleMasterRetrieve">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasRoleMasterRetrieve_Result">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="activeStatus1" ColumnName="activeStatus1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasSecurityVehicleGatepassRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasSecurityVehicleGatepassRetrieve">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasSecurityVehicleGatepassRetrieve_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VehicleDepartment" ColumnName="VehicleDepartment" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasVehicleGatepassRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleGatepassRetrieve">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVehicleGatepassRetrieve_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VehicleDepartment" ColumnName="VehicleDepartment" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasVehicleMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleMasterInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasVehicleMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleMasterRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVehicleMasterRtr_Result">
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="VehicleRegDate" ColumnName="VehicleRegDate" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RatePerKm" ColumnName="RatePerKm" />
+                <ScalarProperty Name="RateEffectiveDate" ColumnName="RateEffectiveDate" />
+                <ScalarProperty Name="InsuranceCommencementDate" ColumnName="InsuranceCommencementDate" />
+                <ScalarProperty Name="InsuranceExpiryDate" ColumnName="InsuranceExpiryDate" />
+                <ScalarProperty Name="ContractStartDate" ColumnName="ContractStartDate" />
+                <ScalarProperty Name="ContractEndDate" ColumnName="ContractEndDate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="VehRegdate" ColumnName="VehRegdate" />
+                <ScalarProperty Name="RateEffeDate" ColumnName="RateEffeDate" />
+                <ScalarProperty Name="ConStartDate" ColumnName="ConStartDate" />
+                <ScalarProperty Name="ConEndDate" ColumnName="ConEndDate" />
+                <ScalarProperty Name="InsComDate" ColumnName="InsComDate" />
+                <ScalarProperty Name="InsExpDate" ColumnName="InsExpDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasVisitPurposeMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasVisitPurposeMasterInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasVisitPurposeMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVisitPurposeMasterRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVisitPurposeMasterRtr_Result">
+                <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasSecurityMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasSecurityMasterInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasSecurityMasterRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasSecurityMasterRetrieve">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasSecurityMasterRetrieve_Result">
+                <ScalarProperty Name="SecurityId" ColumnName="SecurityId" />
+                <ScalarProperty Name="SecurityName" ColumnName="SecurityName" />
+                <ScalarProperty Name="SecuritySignature" ColumnName="SecuritySignature" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="SecurityCode" ColumnName="SecurityCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="activeStatus1" ColumnName="activeStatus1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasVehicleGatepassInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleGatepassInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasVisitManagementRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVisitManagementRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVisitManagementRtr_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VehicleDepartment" ColumnName="VehicleDepartment" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasAuditorMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasAuditorMasterInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasAuditorMasterRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasAuditorMasterRetrieve">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAuditorMasterRetrieve_Result">
+                <ScalarProperty Name="AuditorId" ColumnName="AuditorId" />
+                <ScalarProperty Name="AuditorName" ColumnName="AuditorName" />
+                <ScalarProperty Name="AuditorSignature" ColumnName="AuditorSignature" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="AuditorCode" ColumnName="AuditorCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="activeStatus1" ColumnName="activeStatus1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="LoginMasters">
+            <EntityTypeMapping TypeName="banasVehicleTrackingModel.LoginMaster">
+              <MappingFragment StoreEntitySet="LoginMaster">
+                <ScalarProperty Name="Companycode" ColumnName="Companycode" />
+                <ScalarProperty Name="Createuser" ColumnName="Createuser" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Activestatus" ColumnName="Activestatus" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="BanasMenuRightsRtr" FunctionName="banasVehicleTrackingModel.Store.BanasMenuRightsRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasMenuRightsRtr_Result">
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="ModulePriority" ColumnName="ModulePriority" />
+                <ScalarProperty Name="PagePriority" ColumnName="PagePriority" />
+                <ScalarProperty Name="InsertRight" ColumnName="InsertRight" />
+                <ScalarProperty Name="ViewRight" ColumnName="ViewRight" />
+                <ScalarProperty Name="DeleteRight" ColumnName="DeleteRight" />
+                <ScalarProperty Name="UpdateRight" ColumnName="UpdateRight" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasChangePassword" FunctionName="banasVehicleTrackingModel.Store.BanasChangePassword" />
+          <FunctionImportMapping FunctionImportName="BanasAdminDashboardCountRtr" FunctionName="banasVehicleTrackingModel.Store.BanasAdminDashboardCountRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAdminDashboardCountRtr_Result">
+                <ScalarProperty Name="EmployeeCount" ColumnName="EmployeeCount" />
+                <ScalarProperty Name="SecurityCount" ColumnName="SecurityCount" />
+                <ScalarProperty Name="AuditorCount" ColumnName="AuditorCount" />
+                <ScalarProperty Name="OpenGatePass" ColumnName="OpenGatePass" />
+                <ScalarProperty Name="CloseGatePass" ColumnName="CloseGatePass" />
+                <ScalarProperty Name="TotalGatePass" ColumnName="TotalGatePass" />
+                <ScalarProperty Name="TotalVehicle" ColumnName="TotalVehicle" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasAdminDashboardListRtr" FunctionName="banasVehicleTrackingModel.Store.BanasAdminDashboardListRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAdminDashboardListRtr_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VehicleDepartment" ColumnName="VehicleDepartment" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasModuleMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasModuleMasterInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasModuleMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasModuleMasterRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasModuleMasterRtr_Result">
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="FaIcon" ColumnName="FaIcon" />
+                <ScalarProperty Name="ModulePriority" ColumnName="ModulePriority" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="actStatus" ColumnName="actStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasMenuRtr" FunctionName="banasVehicleTrackingModel.Store.BanasMenuRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasMenuRtr_Result">
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="FaIcon" ColumnName="FaIcon" />
+                <ScalarProperty Name="ModulePriority" ColumnName="ModulePriority" />
+                <ScalarProperty Name="PagePriority" ColumnName="PagePriority" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasLoginRtr" FunctionName="banasVehicleTrackingModel.Store.BanasLoginRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasLoginRtr_Result">
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="Activestatus" ColumnName="Activestatus" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="Createuser" ColumnName="Createuser" />
+                <ScalarProperty Name="Companycode" ColumnName="Companycode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasAuditorVisitGatepassRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasAuditorVisitGatepassRetrieve">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAuditorVisitGatepassRetrieve_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VehicleDepartment" ColumnName="VehicleDepartment" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+                <ScalarProperty Name="AuditorSignature" ColumnName="AuditorSignature" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasAuditorOperateVisitMasterIns" FunctionName="banasVehicleTrackingModel.Store.BanasAuditorOperateVisitMasterIns" />
+          <FunctionImportMapping FunctionImportName="BanasAuditorFinalOperateVisitMasterIns" FunctionName="banasVehicleTrackingModel.Store.BanasAuditorFinalOperateVisitMasterIns" />
+          <FunctionImportMapping FunctionImportName="BanasAuditorFinalApproveUpd" FunctionName="banasVehicleTrackingModel.Store.BanasAuditorFinalApproveUpd" />
+          <FunctionImportMapping FunctionImportName="BanasAuditorFinalApproveRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasAuditorFinalApproveRetrieve">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAuditorFinalApproveRetrieve_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VehicleDepartment" ColumnName="VehicleDepartment" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="RatePerKm" ColumnName="RatePerKm" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+                <ScalarProperty Name="DepArrDifference" ColumnName="DepArrDifference" />
+                <ScalarProperty Name="FinalApprGatepassVisitStatus" ColumnName="FinalApprGatepassVisitStatus" />
+                <ScalarProperty Name="FinalApprSecurityVisitStatus" ColumnName="FinalApprSecurityVisitStatus" />
+                <ScalarProperty Name="FinalApprAuditVisitStatus" ColumnName="FinalApprAuditVisitStatus" />
+                <ScalarProperty Name="FinalApprDifference" ColumnName="FinalApprDifference" />
+                <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasAuditorDepartmentDashboardRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasAuditorDepartmentDashboardRetrieve">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAuditorDepartmentDashboardRetrieve_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VehicleDepartment" ColumnName="VehicleDepartment" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="RatePerKm" ColumnName="RatePerKm" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+                <ScalarProperty Name="DepArrDifference" ColumnName="DepArrDifference" />
+                <ScalarProperty Name="FinalApprGatepassVisitStatus" ColumnName="FinalApprGatepassVisitStatus" />
+                <ScalarProperty Name="FinalApprSecurityVisitStatus" ColumnName="FinalApprSecurityVisitStatus" />
+                <ScalarProperty Name="FinalApprAuditVisitStatus" ColumnName="FinalApprAuditVisitStatus" />
+                <ScalarProperty Name="FinalApprDifference" ColumnName="FinalApprDifference" />
+                <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

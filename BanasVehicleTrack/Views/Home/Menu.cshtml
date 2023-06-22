@@ -1,0 +1,67 @@
+﻿@model IEnumerable<BanasVehicleTrackDbClasses.BanasMenuRtr_Result>
+@{
+    Layout = "";
+}
+
+<nav class="pcoded-navbar">
+    <div class="pcoded-inner-navbar main-menu">
+        <ul class="pcoded-item pcoded-left-item">
+            @{ string User_Rolename = string.Empty;
+                HttpCookie reqCookies = Request.Cookies["EmployeeMaster"];
+                if (reqCookies != null)
+                {
+                    User_Rolename = reqCookies["RoleName"].ToString();
+
+                    if (User_Rolename == "admin" || User_Rolename == "Admin")
+                    {
+                        <li class="pcoded-trigger">
+                            <a href="~/Home/Dashboard" class="linkDashboard"><span class="pcoded-micon"> <i class='fa fa-tachometer'></i> </span> <span class="pcoded-mtext">Dashboard</span> </a>
+                        </li>
+                    }
+                }
+                foreach (var item in Model.GroupBy(Obj => new { Obj.ModuleName }).OrderBy(group => group.FirstOrDefault().ModulePriority).Distinct().ToList())
+                {
+                    <li class="pcoded-hasmenu">
+                        <a href="#">
+                            @*@{ if (item.FirstOrDefault().ModulePriority == 1)
+            { <span class="pcoded-micon"><i class="fa fa-database"></i></span>}
+            else if (item.FirstOrDefault().ModulePriority == 2)
+            { <span class="pcoded-micon"><i class="fa fa-users"></i></span>}
+            else if (item.FirstOrDefault().ModulePriority == 3)
+            {<span class="pcoded-micon"><i class="fa fa-tasks"></i></span>}
+            else if (item.FirstOrDefault().ModulePriority == 4)
+            { <span class="pcoded-micon"><i class="fa fa-file"></i></span>}
+            else if (item.FirstOrDefault().ModulePriority == 5)
+            { <span class="pcoded-micon"><i class="fa fa-book"></i></span>}
+            else if (item.FirstOrDefault().ModulePriority == 6)
+            { <span class="pcoded-micon"><i class="fa fa-users"></i></span>}
+            else
+            { <span class="pcoded-micon"><i class="fa fa-edit"></i></span>}
+
+        }*@
+                            <span class="pcoded-micon"><i class="@item.FirstOrDefault().FaIcon"></i></span>
+                            <span class="pcoded-mtext">
+                                @item.FirstOrDefault().ModuleName
+                            </span>
+                        </a>
+                        <ul class="pcoded-submenu">
+                            @{
+                                foreach (var secondItem in (Model.Where(s => s.ModuleId == item.FirstOrDefault().ModuleId).ToList()))
+                                {
+                                    <li>
+                                        <a href="~/@secondItem.PageUrl">
+                                            <span class="pcoded-mtext"> @secondItem.PageName</span>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</nav>
+
+
+

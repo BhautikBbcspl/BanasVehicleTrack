@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="banasVehicleTrackingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EmployeeMaster">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="DepartmentId" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateUser" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LoginMaster">
+    <Key>
+      <PropertyRef Name="Userid" />
+    </Key>
+    <Property Name="Userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="Activestatus" Type="bit" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="Createdate" Type="datetime" />
+    <Property Name="Createuser" Type="nvarchar" MaxLength="50" />
+    <Property Name="Companycode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="BanasAdminDashboardCountRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasAdminDashboardListRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasAuditorDepartmentDashboardRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FromDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="ToDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
+    <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasAuditorFinalApproveRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasAuditorFinalApproveUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+    <Parameter Name="FinalApprDifference" Type="nvarchar" Mode="In" />
+    <Parameter Name="Type" Type="nvarchar" Mode="In" />
+    <Parameter Name="FinalApproverCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasAuditorFinalOperateVisitMasterIns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MidwayDeparture" Type="nvarchar" Mode="In" />
+    <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastOdometer" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastOdometerImage" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Latitude" Type="nvarchar" Mode="In" />
+    <Parameter Name="Longitude" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasAuditorMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AuditorId" Type="nvarchar" Mode="In" />
+    <Parameter Name="AuditorName" Type="nvarchar" Mode="In" />
+    <Parameter Name="AuditorSignature" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="activestatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="createdate" Type="nvarchar" Mode="In" />
+    <Parameter Name="updatedate" Type="nvarchar" Mode="In" />
+    <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="AuditorCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasAuditorMasterRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="companycode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasAuditorOperateVisitMasterIns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+    <Parameter Name="Latitude" Type="nvarchar" Mode="In" />
+    <Parameter Name="Longitude" Type="nvarchar" Mode="In" />
+    <Parameter Name="Odometer" Type="nvarchar" Mode="In" />
+    <Parameter Name="OdometerImage" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasAuditorVisitGatepassRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="AuditorCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="EmployeeOldpassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="EmployeeNewpassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasDepartmentMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartmentCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Departmentname" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="activestatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="createdate" Type="nvarchar" Mode="In" />
+    <Parameter Name="updatedate" Type="nvarchar" Mode="In" />
+    <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasDepartmentMasterRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="companycode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasEmployeeMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeId" Type="nvarchar" Mode="In" />
+    <Parameter Name="EmployeeCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="EmployeeName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Contact" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gender" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="RoleId" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="Isactive" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="Updatedate" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasEmployeeMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasFetchLastCosingOdometer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vehicleid" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasIntePageModuleInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InteId" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModuleId" Type="nvarchar" Mode="In" />
+    <Parameter Name="PageId" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="ActiveStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModuleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="PageName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasIntePageModuleRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="moduleid" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasInteRoleModuleInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="nvarchar" Mode="In" />
+    <Parameter Name="roleid" Type="nvarchar" Mode="In" />
+    <Parameter Name="modid" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsActive" Type="nvarchar" Mode="In" />
+    <Parameter Name="createdate" Type="nvarchar" Mode="In" />
+    <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="MPInteId" Type="nvarchar" Mode="In" />
+    <Parameter Name="viewright" Type="nvarchar" Mode="In" />
+    <Parameter Name="insertright" Type="nvarchar" Mode="In" />
+    <Parameter Name="updateright" Type="nvarchar" Mode="In" />
+    <Parameter Name="deleteright" Type="nvarchar" Mode="In" />
+    <Parameter Name="updatedate" Type="nvarchar" Mode="In" />
+    <Parameter Name="updateuser" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasInteRoleModulePageUserRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usercode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasInteRoleModuleRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="BanasLoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Employeecode" Type="nvarchar" Mode="In" />
+    <Parameter Name="EmployeePassword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasLoginRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Employeecode" Type="nvarchar" Mode="In" />
+    <Parameter Name="EmployeePassword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasMenuRightsRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Roleid" Type="nvarchar" Mode="In" />
+    <Parameter Name="pagename" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasMenuRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Roleid" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasModuleMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ModuleId" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModuleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModulePriority" Type="nvarchar" Mode="In" />
+    <Parameter Name="FaIcon" Type="nvarchar" Mode="In" />
+    <Parameter Name="Isactive" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="Updatedate" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasModuleMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="moduleid" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasPageMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pageId" Type="nvarchar" Mode="In" />
+    <Parameter Name="PageName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PageUrl" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsActive" Type="nvarchar" Mode="In" />
+    <Parameter Name="PagePriority" Type="nvarchar" Mode="In" />
+    <Parameter Name="Updatedate" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasPageMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="pageid" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasRoleMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleId" Type="nvarchar" Mode="In" />
+    <Parameter Name="Rolename" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="activestatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="createdate" Type="nvarchar" Mode="In" />
+    <Parameter Name="updatedate" Type="nvarchar" Mode="In" />
+    <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasRoleMasterRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="companycode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasSecurityMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SecurityId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SecurityName" Type="nvarchar" Mode="In" />
+    <Parameter Name="SecuritySignature" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="activestatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="createdate" Type="nvarchar" Mode="In" />
+    <Parameter Name="updatedate" Type="nvarchar" Mode="In" />
+    <Parameter Name="createuser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="SecurityCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasSecurityMasterRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="companycode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasSecurityVehicleGatepassRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasVehicleGatepassInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="OtherUser1" Type="nvarchar" Mode="In" />
+    <Parameter Name="OtherUser2" Type="nvarchar" Mode="In" />
+    <Parameter Name="OtherUser3" Type="nvarchar" Mode="In" />
+    <Parameter Name="InformationMode" Type="nvarchar" Mode="In" />
+    <Parameter Name="VisitDateTime" Type="nvarchar" Mode="In" />
+    <Parameter Name="VisitPurpose" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleDepartment" Type="nvarchar" Mode="In" />
+    <Parameter Name="Driver" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
+    <Parameter Name="StartOdometer" Type="nvarchar" Mode="In" />
+    <Parameter Name="CloseOdometer" Type="nvarchar" Mode="In" />
+    <Parameter Name="CloseDateTime" Type="nvarchar" Mode="In" />
+    <Parameter Name="CloseRemark" Type="nvarchar" Mode="In" />
+    <Parameter Name="Netkm" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="CloseUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="CloseDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="EditUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="EditDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="Difference" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartureDateTime" Type="datetime" Mode="In" />
+    <Parameter Name="StartKm" Type="decimal" Mode="In" />
+    <Parameter Name="DepartureVerifyStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartureSecurityId" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartureSecurityRemark" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="ArrivalDateTime" Type="datetime" Mode="In" />
+    <Parameter Name="EndKm" Type="decimal" Mode="In" />
+    <Parameter Name="ArrivalVerifyStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="ArrivalSecurityId" Type="nvarchar" Mode="In" />
+    <Parameter Name="ArrivalSecurityRemark" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="BanasVehicleGatepassRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="from" Type="nvarchar" Mode="In" />
+    <Parameter Name="to" Type="nvarchar" Mode="In" />
+    <Parameter Name="department" Type="nvarchar" Mode="In" />
+    <Parameter Name="vehicle" Type="nvarchar" Mode="In" />
+    <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasVehicleMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleRegNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleRegDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleType" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleMake" Type="nvarchar" Mode="In" />
+    <Parameter Name="Model" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="nvarchar" Mode="In" />
+    <Parameter Name="RatePerKm" Type="nvarchar" Mode="In" />
+    <Parameter Name="RateEffectiveDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="InsuranceCommencementDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="InsuranceExpiryDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="ContractStartDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="ContractEndDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsActive" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="Updatedate" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasVehicleMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasVisitManagementRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="from" Type="nvarchar" Mode="In" />
+    <Parameter Name="to" Type="nvarchar" Mode="In" />
+    <Parameter Name="department" Type="nvarchar" Mode="In" />
+    <Parameter Name="vehicle" Type="nvarchar" Mode="In" />
+    <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasVisitPurposeMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VisitId" Type="nvarchar" Mode="In" />
+    <Parameter Name="VisitPurpose" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IsActive" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BanasVisitPurposeMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="banasVehicleTrackingModelStoreContainer">
+    <EntitySet Name="EmployeeMaster" EntityType="Self.EmployeeMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginMaster" EntityType="Self.LoginMaster" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

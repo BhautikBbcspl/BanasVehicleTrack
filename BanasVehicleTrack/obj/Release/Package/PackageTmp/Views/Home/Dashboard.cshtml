@@ -1,0 +1,209 @@
+﻿@model BanasVehicleTrackViewModel.DashboardViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .mytooltip .tooltip-item {
+        background: none !important;
+</style>
+<div class="page-wrapper">
+
+    <div class="page-body">
+        <div class="row">
+            <h2>Dashboard</h2>
+        </div>
+    </div>
+</div>
+
+<div class="page-wrapper">
+
+    <div class="page-body">
+        <div class="row">
+
+            @foreach (var item in Model.DashboardCounts)
+            {
+
+                <!-- Total Counts Start -->
+                <!--<div class="col-xl-3 col-md-6">
+                    <span class="mytooltip tooltip-effect-5">
+                        <span class="tooltip-item">
+                            <div class="card bg-c-yellow update-card">
+                                <div class="card-block">
+                                    <div class="row align-items-end">
+                                        <div class="col-8">
+                                            <h4 class="text-white">@item.EmployeeCount</h4>
+                                            <h6 class="text-white m-b-0">Total Employees</h6>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <canvas id="update-chart-1" height="50"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="@Url.Action("ViewEmployeeMaster","Master")"><p class="text-white m-b-0">-->@*<i class="feather icon-clock text-white f-14 m-r-10"></i>*@
+                                    <!--<i class="fa fa-external-link text-white f-14 m-r-10"></i>Click here</p></a>
+                                                  </div>
+                                                </div>
+                                            </span>
+                                            <span class="tooltip-content clearfix">
+                                                <span class="tooltip-text">
+                                                    Security Officers : @item.SecurityCount <br />
+                                                    Auditors : @item.AuditorCount
+                                                </span>
+                                            </span>
+                                        </span>
+
+                                    </div>-->
+                                    <div class="col-xl-3 col-md-6">
+                                        <span class="mytooltip tooltip-effect-5">
+                                            
+                                                <div class="card bg-c-yellow update-card">
+                                                    <div class="card-block">
+                                                        <span class="tooltip-item">
+                                                            <div class="row align-items-end">
+                                                                <div class="col-12">
+                                                                    <h4 class="text-white">@item.EmployeeCount</h4>
+                                                                    <h6 class="text-white m-b-0">Total Employees</h6>
+                                                                </div>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <a href="@Url.Action("ViewEmployeeMaster","Master")"><p class="text-white m-b-0">@*<i class="feather icon-clock text-white f-14 m-r-10"></i>*@<i class="fa fa-external-link text-white f-14 m-r-10"></i>Click here</p></a>
+                                                    </div>
+                                                </div>
+                                            
+                                            <span class="tooltip-content clearfix">
+                                                <span class="tooltip-text">
+                                                    Security Officers : @item.SecurityCount <br />
+                                                    Auditors : @item.AuditorCount
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+
+
+
+
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-c-lite-green  update-card">
+                                            <div class="card-block">
+                                                <div class="row align-items-end">
+                                                    <div class="col-8">
+                                                        <h4 class="text-white">@item.TotalVehicle</h4>
+                                                        <h6 class="text-white m-b-0">Total Vehicles</h6>
+                                                    </div>
+                                                 
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <a href="@Url.Action("ViewVehicleMaster","Master")">  <p class="text-white m-b-0"><i class="fa fa-external-link text-white f-14 m-r-10"></i>Click here</p></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-c-green update-card">
+                                            <div class="card-block">
+                                                <div class="row align-items-end">
+                                                    <div class="col-8">
+                                                        <h4 class="text-white">@item.OpenGatePass</h4>
+                                                        <h6 class="text-white m-b-0">Open GatePasses</h6>
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <a href="@Url.Action("ViewGatePass", "GatePass", new { filterValue = 1 })"> <p class="text-white m-b-0"><i class="fa fa-external-link text-white f-14 m-r-10"></i>Click here</p></a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-c-pink  update-card">
+                                            <div class="card-block">
+                                                <div class="row align-items-end">
+                                                    <div class="col-8">
+                                                        <h4 class="text-white">@item.CloseGatePass</h4>
+                                                        <h6 class="text-white m-b-0">Close GatePasses</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <a href="@Url.Action("ViewGatePass", "GatePass", new { filterValue = 0 })"> <p class="text-white m-b-0"><i class="fa fa-external-link text-white f-14 m-r-10"></i>Click here</p></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Total Counts End -->
+                                }
+
+            <!-- List -->
+            <div class="col-xl-12 col-md-12">
+                <div class="card table-card">
+                    <div class="card-header">
+                        <h5>Gate Pass List</h5>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="feather icon-maximize full-card"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
+                                <li><i class="feather icon-trash-2 close-card"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-hover  table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No</th>
+                                        <th>GatePass Status</th>
+                                        <th>GatePass Id</th>
+                                        <th>Visit Date Time</th>
+                                        <th>Close Date Time</th>
+                                        <th>Start Odometer</th>
+                                        <th>Close Odometer</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int serialNumber = 1;
+                                    }
+                                    @foreach (var item in Model.DashboardList)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @serialNumber
+                                            </td>
+                                            <td>
+                                                @if (item.GatePassStatus == 1)
+                                                {
+                                                    <label class="text-success">Open</label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="text-danger">Close</label>
+                                                }
+                                            </td>
+                                            <td class="text-c-blue">@item.GatePassId</td>
+                                            <td>@item.VisitDateTime</td>
+                                            <td>@item.CloseDateTime</td>
+                                            <td>@item.StartOdometer</td>
+                                            <td>@item.CloseOdometer</td>
+                                        </tr>
+                                        serialNumber++;
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="text-center">
+                                <a href="@Url.Action("ViewGatePass","GatePass")" class=" b-b-primary text-primary">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
