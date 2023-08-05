@@ -14,6 +14,7 @@ namespace BanasVehicleTrackViewModel.Master
         [Required(ErrorMessage = "*")]
         public string VehicleCode { get; set; }
         [Required(ErrorMessage = "*")]
+        [RegularExpression(@"^GJ-\d{2}-[A-Z]{2}-\d{4}$", ErrorMessage = "Invalid Gujarat Vehicle Number e.g GJ-00-AA-0000")]
         public string VehicleRegNumber { get; set; }
         [Required(ErrorMessage = "*")]
         public string VehicleRegDate { get; set; }
@@ -44,7 +45,18 @@ namespace BanasVehicleTrackViewModel.Master
         public string UpdateDate { get; set; }
         public string CreateUser { get; set; }
         public string UpdateUser { get; set; }
+        public string ContractorId { get; set; }
+        [Required(ErrorMessage = "*")]
+        public string DepartmentId { get; set; }
+        [Required(ErrorMessage = "*")]
+        public string CenterId { get; set; }
+        public string ContractorName { get; set; }
+        public string ContractorCode { get; set; }
+        public string ContractorContactNo { get; set; }
         public List<BanasVehicleMasterRtr_Result> VehicleMasterList { get; set; }
+        public List<BanasDepartmentMasterRetrieve_Result> DepartmentList { get; set; }
+        public List<BanasCenterMasterRetrieve_Result> CenterList { get; set; }
+        public List<BanasContractorMasterRetrieve_Result> ContractorMasterList { get; set; }
         public string Action { get; set; }
     }
 }

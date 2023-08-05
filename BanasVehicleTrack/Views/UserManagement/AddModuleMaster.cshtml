@@ -31,61 +31,67 @@
 
                             @Html.HiddenFor(m => m.Action)
                             @Html.HiddenFor(m => m.ModuleId, new { id = "txtModuleId" })
-                        <div class="form-group row">
+                            <div class="form-group row">
 
-                            <div class="col-sm-3">
-                                <label class="col-form-label">Module Name</label>
-                                @Html.ValidationMessageFor(m => m.ModuleName, "", new { @class = "text-danger" })
-                                @Html.TextBoxFor(m => m.ModuleName, new Dictionary<string, object>() {
-                                      {"id","txtModuleName"},
-                                      {"class","form-control"},
-                                         {"autocomplete","off"},
-                                      {"required","required"},
-                                      {"placeholder","Enter Module Name"}
-                                      })
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Module Name</label>
+                                    @Html.ValidationMessageFor(m => m.ModuleName, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.ModuleName, new Dictionary<string, object>() {
+                                          {"id","txtModuleName"},
+                                          {"class","form-control"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Module Name"}
+                                          })
 
-                            </div>
-                            <div class="col-sm-3">
-                                <label class="col-form-label">Module Priority</label>
-                                @Html.ValidationMessageFor(m => m.ModulePriority, "", new { @class = "text-danger" })
-                                @Html.TextBoxFor(m => m.ModulePriority, new Dictionary<string, object>() {
-                                                         {"id","txtModulePriority"},
-                                                         {"class","form-control"},
-                                                         { "type","number"},
-                                                            {"autocomplete","off"},
-                                                         {"placeholder","Enter Module Priority"}
-                                                         })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Module Priority</label>
+                                    @Html.ValidationMessageFor(m => m.ModulePriority, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.ModulePriority, new Dictionary<string, object>() {
+                                                             {"id","txtModulePriority"},
+                                                             {"class","form-control"},
+                                                             { "type","number"},
+                                                                {"autocomplete","off"},
+                                                             {"placeholder","Enter Module Priority"}
+                                                             })
 
-                            </div>
-                            <div class="col-sm-3">
-                                <label class="col-form-label">Module Icon</label>
-                                @Html.TextBoxFor(m => m.FaIcon, new Dictionary<string, object>() {
-                                                         {"id","txtModuleFaIcon"},
-                                                         {"class","form-control"},
-                                                            {"autocomplete","off"},
-                                                         {"placeholder","Enter Module Icon"}
-                                                         })
-                            </div>
-                            <div class="col-sm-3">
-                                <label class="col-form-label">IsActive</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Module Icon</label>
+                                    @Html.TextBoxFor(m => m.FaIcon, new Dictionary<string, object>() {
+                                                             {"id","txtModuleFaIcon"},
+                                                             {"class","form-control"},
+                                                                {"autocomplete","off"},
+                                                             {"placeholder","Enter Module Icon"}
+                                                             })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">IsActive</label>
 
-                                @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
-                                @Html.DropDownListFor(x => x.IsActive, new List<SelectListItem>
-                               {
-                                   new SelectListItem{ Text="Enable", Value = "true",Selected=true },
-                                   new SelectListItem{ Text="Disable", Value = "false" }
-                                }, new { @class = "form-control form-select js-example-disabled-results", @id = "IsActive" })
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="mt-4">
-                                    <input type="submit" class="btn btn-round btn-inverse m-2" id="confirmok" value="@Model.Action" onclick="return confirm('Are You sure you want to save data?')" />
-                                    @if (ViewBag.Action == "Add")
-                                    {
-                                        <input type="button" class="btn btn btn-round btn-inverse m-2" id="reload" value="Clear" />
-                                    }
+                                    @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(x => x.IsActive, new List<SelectListItem>
+                                   {
+                                       new SelectListItem{ Text="Enable", Value = "true",Selected=true },
+                                       new SelectListItem{ Text="Disable", Value = "false" }
+                                    }, new { @class = "form-control form-select js-example-disabled-results", @id = "IsActive" })
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="mt-4">
+                                        <input type="submit" class="btn btn-round btn-inverse m-2" id="confirmok" value="@Model.Action" onclick="return confirm('Are You sure you want to save data?')" />
+                                        @if (ViewBag.Action == "Add")
+                                        {
+                                            <input type="button" class="btn btn btn-round btn-inverse m-2" id="reload" value="Clear" />
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 mt-2">
+                                    <label class="col-form-label">
+                                        Self Page
+                                        @Html.CheckBoxFor(model => model.SelfPage)
+                                    </label>
                                 </div>
                             </div>
-                        </div>
                         }
                     </div>
                 </div>
@@ -97,5 +103,5 @@
 <script>
     $('#reload').click(function () {
         window.location.href = "/UserManagement/AddModuleMaster";
-});
+    });
 </script>

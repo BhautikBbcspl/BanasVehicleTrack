@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>Z:\BanasVehicleTracking\BanasVehicleTracking Publish Code (16-06-2023)</_PublishTargetUrl>
-    <History>True|2023-06-16T11:54:25.4257946Z;True|2023-06-14T09:34:42.8228336+05:30;</History>
+    <_PublishTargetUrl>Y:\BanasVehicleTracking\BanasVehicleTracking Publish code(01-07-2023)</_PublishTargetUrl>
+    <History>True|2023-07-01T12:28:03.4955145Z;True|2023-06-30T18:31:47.9318449+05:30;True|2023-06-30T16:29:46.1028545+05:30;True|2023-06-29T17:04:10.9778846+05:30;True|2023-06-16T17:24:25.4257946+05:30;True|2023-06-14T09:34:42.8228336+05:30;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -15,28 +15,28 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 21:59:20</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrack.dll">
-      <publishTime>06/16/2023 17:24:13</publishTime>
+      <publishTime>07/01/2023 17:57:57</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrack.pdb">
-      <publishTime>06/16/2023 17:24:13</publishTime>
+      <publishTime>07/01/2023 17:57:57</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackDbClasses.dll">
-      <publishTime>06/15/2023 11:21:16</publishTime>
+      <publishTime>07/01/2023 17:57:56</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackDbClasses.dll.config">
       <publishTime>05/30/2023 17:40:09</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackDbClasses.pdb">
-      <publishTime>06/15/2023 11:21:16</publishTime>
+      <publishTime>07/01/2023 17:57:56</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackViewModel.dll">
-      <publishTime>06/16/2023 17:24:10</publishTime>
+      <publishTime>07/01/2023 17:57:56</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackViewModel.dll.config">
       <publishTime>05/30/2023 17:40:09</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackViewModel.pdb">
-      <publishTime>06/16/2023 17:24:10</publishTime>
+      <publishTime>07/01/2023 17:57:56</publishTime>
     </File>
     <File Include="bin/ClosedXML.dll">
       <publishTime>06/22/2018 19:45:50</publishTime>
@@ -51,10 +51,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/17/2020 02:08:56</publishTime>
     </File>
     <File Include="bin/EnvDTE.dll">
-      <publishTime>10/07/2022 16:40:16</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/EnvDTE80.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/ExcelNumberFormat.dll">
       <publishTime>11/23/2017 14:51:44</publishTime>
@@ -63,16 +63,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/06/2018 10:58:04</publishTime>
     </File>
     <File Include="bin/Microsoft.Build.Utilities.v3.5.dll">
-      <publishTime>05/27/2021 17:48:00</publishTime>
+      <publishTime>04/12/2023 14:26:02</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 21:40:50</publishTime>
     </File>
     <File Include="bin/Microsoft.MSXML.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
-      <publishTime>11/17/2022 12:36:47</publishTime>
+      <publishTime>11/17/2022 12:41:21</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.DataVisualization.dll">
       <publishTime>05/22/2023 18:15:26</publishTime>
@@ -81,70 +81,70 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/22/2023 18:15:26</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.ProcessingObjectModel.dll">
-      <publishTime>11/17/2022 12:36:47</publishTime>
+      <publishTime>11/17/2022 12:41:21</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.WebDesign.dll">
       <publishTime>05/22/2023 18:15:26</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.WebForms.dll">
-      <publishTime>11/17/2022 12:36:47</publishTime>
+      <publishTime>11/17/2022 12:41:21</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.WinForms.dll">
-      <publishTime>03/19/2010 02:57:40</publishTime>
+      <publishTime>03/19/2010 10:57:40</publishTime>
     </File>
     <File Include="bin/Microsoft.SqlServer.Types.dll">
-      <publishTime>11/17/2022 12:36:47</publishTime>
+      <publishTime>11/17/2022 12:41:21</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Data.Core.dll">
-      <publishTime>10/07/2022 16:42:58</publishTime>
+      <publishTime>08/04/2022 15:13:09</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Data.Services.dll">
-      <publishTime>10/07/2022 16:42:58</publishTime>
+      <publishTime>08/04/2022 15:13:09</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Debugger.InteropA.dll">
-      <publishTime>06/08/2023 16:12:38</publishTime>
+      <publishTime>08/04/2022 15:12:30</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Designer.Interfaces.dll">
-      <publishTime>06/08/2023 16:16:57</publishTime>
+      <publishTime>08/04/2022 15:39:53</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.ManagedInterfaces.dll">
-      <publishTime>06/08/2023 16:12:30</publishTime>
+      <publishTime>08/04/2022 15:12:26</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.ManagedInterfaces.WCF.dll">
-      <publishTime>06/08/2023 16:12:30</publishTime>
+      <publishTime>08/04/2022 15:12:26</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.OLE.Interop.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.ProjectAggregator.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Immutable.10.0.dll">
-      <publishTime>06/08/2023 16:16:58</publishTime>
+      <publishTime>08/04/2022 15:39:54</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.8.0.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.9.0.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.Shell.Interop.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TemplateWizardInterface.dll">
       <publishTime>07/23/2013 03:40:06</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.8.0.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.TextManager.Interop.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.VSHelp.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.WCFReference.Interop.dll">
-      <publishTime>06/08/2023 16:16:58</publishTime>
+      <publishTime>08/04/2022 15:39:53</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 17:18:56</publishTime>
@@ -153,10 +153,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/22/2019 06:36:16</publishTime>
     </File>
     <File Include="bin/Report/rdlc/ViewStartGatePassReport.rdlc">
-      <publishTime>06/14/2023 09:46:33</publishTime>
+      <publishTime>06/30/2023 16:22:56</publishTime>
     </File>
     <File Include="bin/Report/rdlc/ViewTripReport.rdlc">
-      <publishTime>06/14/2023 09:46:36</publishTime>
+      <publishTime>06/30/2023 16:00:45</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>08/08/2018 11:08:48</publishTime>
@@ -306,10 +306,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/08/2018 17:48:16</publishTime>
     </File>
     <File Include="bin/stdole.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/System.Data.SqlServerCe.dll">
-      <publishTime>02/12/2010 08:48:28</publishTime>
+      <publishTime>02/12/2010 16:48:28</publishTime>
     </File>
     <File Include="bin/System.IO.Packaging.dll">
       <publishTime>06/12/2016 04:43:48</publishTime>
@@ -336,16 +336,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/28/2018 18:34:24</publishTime>
     </File>
     <File Include="bin/VSLangProj.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/VSLangProj2.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/VSLangProj80.dll">
-      <publishTime>10/07/2022 16:40:17</publishTime>
+      <publishTime>08/04/2022 14:56:46</publishTime>
     </File>
     <File Include="bin/VsWebSite.Interop.dll">
-      <publishTime>06/08/2023 16:12:29</publishTime>
+      <publishTime>08/04/2022 15:12:25</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 19:27:34</publishTime>
@@ -366,7 +366,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/29/2023 10:28:22</publishTime>
     </File>
     <File Include="Content/AdminTemplateAssets/css/style.css">
-      <publishTime>06/16/2023 15:59:27</publishTime>
+      <publishTime>07/01/2023 16:36:21</publishTime>
     </File>
     <File Include="Content/AdminTemplateAssets/css/themify-icons.css">
       <publishTime>05/29/2023 10:28:22</publishTime>
@@ -503,6 +503,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/AdminTemplateAssets/images/icons.png">
       <publishTime>05/30/2023 11:39:11</publishTime>
     </File>
+    <File Include="Content/AdminTemplateAssets/images/image_2023_06_29T04_26_30_261Z.png">
+      <publishTime>06/29/2023 10:00:03</publishTime>
+    </File>
     <File Include="Content/AdminTemplateAssets/images/logo-blue.png">
       <publishTime>05/29/2023 10:28:22</publishTime>
     </File>
@@ -527,6 +530,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/AdminTemplateAssets/images/select-arrow.png">
       <publishTime>05/29/2023 10:28:22</publishTime>
     </File>
+    <File Include="Content/AdminTemplateAssets/images/Untitled-1.png">
+      <publishTime>06/29/2023 10:21:45</publishTime>
+    </File>
+    <File Include="Content/AdminTemplateAssets/images/Untitled-1_2.png">
+      <publishTime>06/29/2023 10:21:45</publishTime>
+    </File>
     <File Include="Content/AdminTemplateAssets/images/user.png">
       <publishTime>05/29/2023 10:28:22</publishTime>
     </File>
@@ -546,7 +555,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/29/2023 10:28:22</publishTime>
     </File>
     <File Include="Content/AdminTemplateAssets/js/Custom.js">
-      <publishTime>06/10/2023 09:49:16</publishTime>
+      <publishTime>06/29/2023 16:22:41</publishTime>
     </File>
     <File Include="Content/AdminTemplateAssets/js/jquery-ui.min.js">
       <publishTime>05/29/2023 10:28:22</publishTime>
@@ -732,10 +741,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/30/2023 17:40:09</publishTime>
     </File>
     <File Include="Report/rdlc/ViewStartGatePassReport.rdlc">
-      <publishTime>06/14/2023 09:46:33</publishTime>
+      <publishTime>06/30/2023 16:22:56</publishTime>
     </File>
     <File Include="Report/rdlc/ViewTripReport.rdlc">
-      <publishTime>06/14/2023 09:46:36</publishTime>
+      <publishTime>06/30/2023 16:00:45</publishTime>
     </File>
     <File Include="Report/ViewStartGatePassReport.aspx">
       <publishTime>06/02/2023 10:43:50</publishTime>
@@ -768,7 +777,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/30/2023 17:40:09</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>05/30/2023 17:40:09</publishTime>
+      <publishTime>06/16/2023 18:30:23</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
       <publishTime>06/16/2023 17:14:31</publishTime>
@@ -783,67 +792,79 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/30/2023 17:40:09</publishTime>
     </File>
     <File Include="Uploads/AuditorSign_Img/AD001.png">
-      <publishTime>06/16/2023 17:18:27</publishTime>
+      <publishTime>06/09/2023 17:37:49</publishTime>
     </File>
     <File Include="Views/AuditorDepartment/AuditorDashboard.cshtml">
-      <publishTime>06/10/2023 09:41:31</publishTime>
+      <publishTime>07/01/2023 17:56:22</publishTime>
+    </File>
+    <File Include="Views/AuditorDepartment/AuditorFinalApprove.cshtml">
+      <publishTime>07/01/2023 16:59:37</publishTime>
     </File>
     <File Include="Views/AuditorDepartment/AuditorMgmtDashboard.cshtml">
-      <publishTime>06/13/2023 16:12:59</publishTime>
+      <publishTime>07/01/2023 17:15:53</publishTime>
+    </File>
+    <File Include="Views/AuditorDepartment/ContractorPayment.cshtml">
+      <publishTime>07/01/2023 10:19:24</publishTime>
     </File>
     <File Include="Views/GatePass/AddGatePass.cshtml">
-      <publishTime>06/13/2023 15:58:32</publishTime>
+      <publishTime>06/30/2023 14:56:13</publishTime>
     </File>
     <File Include="Views/GatePass/ClosedGatePass.cshtml">
-      <publishTime>06/15/2023 17:55:18</publishTime>
+      <publishTime>06/30/2023 14:55:59</publishTime>
     </File>
     <File Include="Views/GatePass/ViewGatepass.cshtml">
-      <publishTime>06/13/2023 15:59:46</publishTime>
+      <publishTime>07/01/2023 17:53:55</publishTime>
     </File>
     <File Include="Views/GatePass/ViewStartGatePass.cshtml">
-      <publishTime>06/13/2023 17:33:55</publishTime>
+      <publishTime>07/01/2023 17:50:31</publishTime>
     </File>
     <File Include="Views/GatePass/ViewTrip.cshtml">
-      <publishTime>06/13/2023 17:35:02</publishTime>
+      <publishTime>07/01/2023 17:48:57</publishTime>
     </File>
     <File Include="Views/GatePass/VisitMgmt.cshtml">
-      <publishTime>06/14/2023 12:15:24</publishTime>
+      <publishTime>07/01/2023 15:29:02</publishTime>
     </File>
     <File Include="Views/Home/ChangePassword.cshtml">
       <publishTime>05/30/2023 18:08:13</publishTime>
     </File>
     <File Include="Views/Home/Dashboard.cshtml">
-      <publishTime>06/15/2023 17:25:17</publishTime>
+      <publishTime>07/01/2023 16:33:25</publishTime>
     </File>
     <File Include="Views/Home/Login.cshtml">
-      <publishTime>06/02/2023 11:30:51</publishTime>
+      <publishTime>06/29/2023 10:00:15</publishTime>
     </File>
     <File Include="Views/Home/Menu.cshtml">
-      <publishTime>06/13/2023 16:52:37</publishTime>
+      <publishTime>07/01/2023 16:34:09</publishTime>
     </File>
     <File Include="Views/Master/AddAuditorMaster.cshtml">
-      <publishTime>06/16/2023 17:10:42</publishTime>
+      <publishTime>06/30/2023 17:16:39</publishTime>
+    </File>
+    <File Include="Views/Master/AddContractorMaster.cshtml">
+      <publishTime>07/01/2023 14:59:03</publishTime>
     </File>
     <File Include="Views/Master/AddDepartmentMaster.cshtml">
       <publishTime>06/16/2023 11:12:13</publishTime>
     </File>
     <File Include="Views/Master/AddEmployeeMaster.cshtml">
-      <publishTime>06/16/2023 11:13:02</publishTime>
+      <publishTime>07/01/2023 16:04:29</publishTime>
     </File>
     <File Include="Views/Master/AddRoleMaster.cshtml">
       <publishTime>06/13/2023 15:03:19</publishTime>
     </File>
     <File Include="Views/Master/AddSecurityMaster.cshtml">
-      <publishTime>06/16/2023 17:09:03</publishTime>
+      <publishTime>06/27/2023 16:59:42</publishTime>
     </File>
     <File Include="Views/Master/AddVehicleMaster.cshtml">
-      <publishTime>06/16/2023 16:18:17</publishTime>
+      <publishTime>07/01/2023 16:01:58</publishTime>
     </File>
     <File Include="Views/Master/AddVisitPurposeMaster.cshtml">
       <publishTime>06/16/2023 11:11:22</publishTime>
     </File>
     <File Include="Views/Master/ViewAuditorMaster.cshtml">
       <publishTime>06/13/2023 14:41:31</publishTime>
+    </File>
+    <File Include="Views/Master/ViewContractorMaster.cshtml">
+      <publishTime>07/01/2023 15:00:00</publishTime>
     </File>
     <File Include="Views/Master/ViewDepartmentMaster.cshtml">
       <publishTime>06/13/2023 14:56:22</publishTime>
@@ -858,19 +879,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/16/2023 10:10:14</publishTime>
     </File>
     <File Include="Views/Master/ViewVehicleMaster.cshtml">
-      <publishTime>06/13/2023 15:16:09</publishTime>
+      <publishTime>07/01/2023 17:12:56</publishTime>
     </File>
     <File Include="Views/Master/ViewVisitPurposeMaster.cshtml">
       <publishTime>06/13/2023 15:16:53</publishTime>
     </File>
     <File Include="Views/SecurityDepartment/SecurityDashboard.cshtml">
-      <publishTime>06/13/2023 17:12:10</publishTime>
+      <publishTime>06/30/2023 14:49:38</publishTime>
     </File>
     <File Include="Views/SecurityDepartment/SecurityVisitMgmtDashboard.cshtml">
-      <publishTime>06/13/2023 17:13:43</publishTime>
+      <publishTime>06/30/2023 14:49:16</publishTime>
     </File>
     <File Include="Views/SecurityDepartment/ViewSecurityGatePass.cshtml">
-      <publishTime>06/13/2023 17:38:41</publishTime>
+      <publishTime>07/01/2023 17:46:48</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>05/30/2023 17:40:09</publishTime>
@@ -879,13 +900,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/30/2023 17:56:44</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/16/2023 17:13:22</publishTime>
+      <publishTime>07/01/2023 16:00:39</publishTime>
     </File>
     <File Include="Views/UserManagement/AddIntePageModule.cshtml">
       <publishTime>06/13/2023 15:25:41</publishTime>
     </File>
     <File Include="Views/UserManagement/AddInteRoleModule.cshtml">
-      <publishTime>06/16/2023 14:20:52</publishTime>
+      <publishTime>06/30/2023 09:51:51</publishTime>
     </File>
     <File Include="Views/UserManagement/AddModuleMaster.cshtml">
       <publishTime>06/16/2023 14:20:12</publishTime>
@@ -912,7 +933,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/30/2023 17:40:09</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/14/2023 09:34:30</publishTime>
+      <publishTime>07/01/2023 10:54:11</publishTime>
     </File>
   </ItemGroup>
 </Project>

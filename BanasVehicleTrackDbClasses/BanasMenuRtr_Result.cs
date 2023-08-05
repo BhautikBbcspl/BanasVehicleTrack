@@ -14,6 +14,7 @@ namespace BanasVehicleTrackDbClasses
     public partial class BanasMenuRtr_Result
     {
         public string PageName { get; set; }
+        public bool IsSelfURL { get; set; }
         public string PageUrl { get; set; }
         public Nullable<int> ModuleId { get; set; }
         public string ModuleName { get; set; }

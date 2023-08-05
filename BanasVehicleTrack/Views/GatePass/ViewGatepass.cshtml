@@ -10,7 +10,7 @@
         <div class="row align-items-end">
             <div class="col-lg-12">
                 <div class="float-left">
-                    <h3><i class="ti-control-forward ForwardIcon"> </i>View Gate Pass</h3>
+                    <h3><i class="ti-control-forward ForwardIcon"> </i>View/Create Gate Pass</h3>
                 </div>
                 <div class="float-right">
                     <a class="btn btn-outline-primary btn-round" href="@Url.Action("AddGatePass","GatePass")">
@@ -29,36 +29,39 @@
                         <tr>
                             <th class="text-center">@Html.DisplayName("Action")</th>
                             <th>@Html.DisplayName("Gatepass Status")</th>
-                            <th>@Html.DisplayName("Sr No")</th>
-                            <th>@Html.DisplayName("Trip Code")</th>
-                            <th>@Html.DisplayName("Gate Pass ID")</th>
+                            <th>@Html.DisplayName("User Code")</th>
+                            <th>@Html.DisplayName("User Name")</th>
                             <th>@Html.DisplayName("Department")</th>
-                            <th>@Html.DisplayName("Users")</th>
-                            <th>@Html.DisplayName("Other User 1")</th>
-                            <th>@Html.DisplayName("Other User 2")</th>
-                            <th>@Html.DisplayName("Other User 3")</th>
-                            <th>@Html.DisplayName("Information Mode")</th>
-                            <th>@Html.DisplayName("Visit Date & Time")</th>
-                            <th>@Html.DisplayName("Visit Purpose")</th>
-                            <th>@Html.DisplayName("Remarks")</th>
-                            <th>@Html.DisplayName("Vehicle Department")</th>
-                            <th>@Html.DisplayName("Driver")</th>
+                            <th>@Html.DisplayName("Center")</th>
                             <th>@Html.DisplayName("Vehicle Number")</th>
+                            <th>@Html.DisplayName("Visit Purpose")</th>
                             <th>@Html.DisplayName("Start Odometer")</th>
-                           
+                            <th>@Html.DisplayName("End Odometer")</th>
+                            <th>@Html.DisplayName("Driver")</th>
+                            <th>@Html.DisplayName("Visit Date & Time")</th>
+                            <th>@Html.DisplayName("Information Mode")</th>
+                            @*<th>@Html.DisplayName("Sr No")</th>
+        <th>@Html.DisplayName("Trip Code")</th>
+        <th>@Html.DisplayName("Gate Pass ID")</th>
+        <th>@Html.DisplayName("Department")</th>
+        <th>@Html.DisplayName("Users")</th>
+        <th>@Html.DisplayName("Other User 1")</th>
+        <th>@Html.DisplayName("Other User 2")</th>
+        <th>@Html.DisplayName("Other User 3")</th>
+        <th>@Html.DisplayName("Remarks")</th>*@
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.ActionLink("View Start Gate Pass", "ViewStartGatePass", new { id = item.GatePassId }, new { @class = "btn btn-success", })
-                                    @Html.ActionLink("View Trip", "ViewTrip", new { id = item.GatePassId }, new { @class = "btn btn-warning", })
+                        <tr>
+                            <td>
+                                @Html.ActionLink("View Start Gate Pass", "ViewStartGatePass", new { id = item.GatePassId }, new { @class = "btn btn-success", })
+                                @Html.ActionLink("View Trip", "ViewTrip", new { id = item.GatePassId }, new { @class = "btn btn-warning", })
 
-                                    @if (item.GatePassStatus == 0)
-                                    {
-                                        //disabled
+                                @if (item.GatePassStatus == 0)
+                                {
+                                    //disabled
                                     <div class="dropdown-inverse dropdown open">
                                         <button class="btn dropdown-toggle waves-effect waves-light btn-disabled" type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" disabled>ClosingGatePass</button>
                                         <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -66,53 +69,56 @@
                                             @Html.ActionLink("Net Odometer", "ClosedGatePass", new { id = item.GatePassId, type = "Net GatePass" }, new { @class = "dropdown-item waves-light waves-effect", })
                                         </div>
                                     </div>
-                                           
-                                           
-                                        <button class="btn btn-disabled" type="button">Edit Trip</button>
-                                    }
-                                    else
-                                    {
-                                        <div class="dropdown-inverse dropdown open">
-                                            <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">ClosingGatePass</button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                @Html.ActionLink("Closed Odometer", "ClosedGatePass", new { id = item.GatePassId, type = "Closed GatePass" }, new { @class = "dropdown-item waves-light waves-effect", })
-                                                @Html.ActionLink("Net Odometer", "ClosedGatePass", new { id = item.GatePassId, type = "Net GatePass" }, new { @class = "dropdown-item waves-light waves-effect", })
-                                            </div>
+
+                                    <button class="btn btn-disabled" type="button">Edit Trip</button>
+                                }
+                                else
+                                {
+                                    <div class="dropdown-inverse dropdown open">
+                                        <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">ClosingGatePass</button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            @Html.ActionLink("Closed Odometer", "ClosedGatePass", new { id = item.GatePassId, type = "Closed GatePass" }, new { @class = "dropdown-item waves-light waves-effect", })
+                                            @Html.ActionLink("Net Odometer", "ClosedGatePass", new { id = item.GatePassId, type = "Net GatePass" }, new { @class = "dropdown-item waves-light waves-effect", })
                                         </div>
+                                    </div>
 
-                                        @Html.ActionLink("Edit Trip", "EditGatepass", new { id = item.GatePassId }, new { @class = "btn btn-info" })
+                                    @Html.ActionLink("Edit Trip", "EditGatepass", new { id = item.GatePassId }, new { @class = "btn btn-info" })
 
-                                    }
+                                }
 
 
-                                </td>
-                                <td>
-                                    @if (item.GatePassStatus == 1)
-                                    {
-                                        <label class="text-success">Open</label> }
-                                    else
-                                    {
-                                        <label class="text-danger">Close</label>}
+                            </td>
+                            <td>
+                                @if (item.GatePassStatus == 1)
+                                {
+                                    <label class="text-success">Open</label> }
+                                else
+                                {
+                                    <label class="text-danger">Close</label>}
 
-                                </td>
-                                <td>@Html.DisplayFor(modelItem => item.GatePassId)</td>
-                                <td>@Html.DisplayFor(modelItem => item.GatePassId)</td>
-                                <td>@Html.DisplayFor(modelItem => item.GatePassId)</td>
-                                <td>@Html.DisplayFor(modelItem => item.DepartmentName)</td>
-                                <td>@Html.DisplayFor(modelItem => item.UserCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.OtherUser1)</td>
-                                <td>@Html.DisplayFor(modelItem => item.OtherUser2)</td>
-                                <td>@Html.DisplayFor(modelItem => item.OtherUser3)</td>
-                                <td>@Html.DisplayFor(modelItem => item.InformationMode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.VisitDateTime)</td>
-                                <td>@Html.DisplayFor(modelItem => item.VisitPurpose)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Remarks)</td>
-                                <td>@Html.DisplayFor(modelItem => item.VehicleDepartment)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Driver)</td>
-                                <td>@Html.DisplayFor(modelItem => item.VehicleRegNumber)</td>
-                                <td>@Html.DisplayFor(modelItem => item.StartOdometer)</td>
-                               
-                            </tr>
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.UserCode)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DepartmentName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Center)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VehicleRegNumber)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VisitPurpose)</td>
+                            <td>@Html.DisplayFor(modelItem => item.StartOdometer)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CloseOdometer)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Driver)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VisitDateTime)</td>
+                            <td>@Html.DisplayFor(modelItem => item.InformationMode)</td>
+                            @*<td>@Html.DisplayFor(modelItem => item.GatePassId)</td>
+        <td>@Html.DisplayFor(modelItem => item.GatePassId)</td>
+        <td>@Html.DisplayFor(modelItem => item.GatePassId)</td>
+        <td>@Html.DisplayFor(modelItem => item.DepartmentName)</td>
+        <td>@Html.DisplayFor(modelItem => item.UserCode)</td>
+        <td>@Html.DisplayFor(modelItem => item.OtherUser1)</td>
+        <td>@Html.DisplayFor(modelItem => item.OtherUser2)</td>
+        <td>@Html.DisplayFor(modelItem => item.OtherUser3)</td>
+        <td>@Html.DisplayFor(modelItem => item.Remarks)</td>
+        <td>@Html.DisplayFor(modelItem => item.Driver)</td>*@
+                        </tr>
                         }
                     </tbody>
                 </table>

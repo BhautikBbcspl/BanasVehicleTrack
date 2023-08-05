@@ -15,6 +15,7 @@ namespace BanasVehicleTrackDbClasses
     {
         public int ModuleId { get; set; }
         public string ModuleName { get; set; }
+        public Nullable<bool> IsSelfURL { get; set; }
         public string FaIcon { get; set; }
         public Nullable<int> ModulePriority { get; set; }
         public Nullable<bool> IsActive { get; set; }

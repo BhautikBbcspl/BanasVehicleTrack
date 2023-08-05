@@ -10,7 +10,7 @@
     <div class="row align-items-end">
         <div class="col-lg-12">
             <div class="float-left">
-                <h3><i class="ti-control-forward ForwardIcon"> </i>Visit Management</h3>
+                <h3><i class="ti-control-forward ForwardIcon"> </i>Trip Report</h3>
             </div>
             <div class="float-right">
             </div>
@@ -30,55 +30,64 @@
 
                     <div class="form-group row">
                         <div class="col-sm-3">
+                            <label class="col-form-label">From Date</label><br />
+                            @Html.ValidationMessageFor(m => m.VisitDateTime, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.VisitDateTime, new Dictionary<string, object>() {
+                                                               {"id","txtVisitDateTime"},
+                                                               {"class","form-control"},
+                                                                  {"autocomplete","off"},
+                                                               })
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="col-form-label">To Date</label><br />
+                            @Html.ValidationMessageFor(m => m.CloseDateTime, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.CloseDateTime, new Dictionary<string, object>() {
+                                                               {"id","txtCloseDateTime"},
+                                                               {"class","form-control"},
+                                                                  {"autocomplete","off"},
+                                                               })
+                        </div>
+                        <div class="col-sm-3">
                             <label class="col-form-label">Department</label><br />
-                            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
-                                        new Dictionary<string, object>() {
-                                            {"id","ddlDepartmentId"},
-                                            { "class","form-control form-select js-example-disabled-results"}
-                                            })
 
-                            @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @class = "text-danger" })
+                            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
+                                   new Dictionary<string, object>() {
+                                       {"id","ddlDepartmentId"},
+                                     {"onchange", "javascript:GetCenter(this.value)"},
+                                       { "class","form-control form-select js-example-disabled-results"}
+                                   }) 
+
+                            @*@Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department", new Dictionary<string, object>() { { "id", "ddlDepartmentId" }, { "class", "form-control form-select js-example-disabled-results" }, { "disabled", Model.DepartmentId == "admin" ? null : "disabled" } })*@
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="col-form-label">Center</label><br />
+                            @Html.DropDownListFor(x => x.Center, new SelectList(Model.CenterList, "CenterId", "CenterName"), "Select Center",
+                                 new Dictionary<string, object>() {
+                                     {"id","ddlCenter"},
+                                     {"onchange", "javascript:GetVehicle(this.value)"},
+                                     { "class","form-control form-select js-example-disabled-results" } })
                         </div>
                         <div class="col-sm-3">
                             <label class="col-form-label">Vehicle Reg Number</label><br />
                             @Html.DropDownListFor(m => m.VehicleId, new SelectList(Model.VehicleMasterList, "VehicleId", "VehicleRegNumber"), "Select Vehicle",
                                         new Dictionary<string, object>() {
-                                            {"id","ddlVehicleId"},
+                                            {"id","ddlVehicle"},
                                             { "class","form-control form-select js-example-disabled-results"}
                                             })
 
-                            @Html.ValidationMessageFor(m => m.VehicleId, "", new { @class = "text-danger" })
                         </div>
+                        <div class="col-sm-3">
+                            <label class="col-form-label">User</label><br />
+                            @Html.DropDownListFor(x => x.UserCode, new SelectList(Model.EmployeeList, "EmployeeCode", "EmployeeName"), "Select User",
+                                 new Dictionary<string, object>() {
+                                     {"id","ddlEmployee"},
+                                     { "class","form-control form-select js-example-disabled-results" } })
 
-                        <div class="col-sm-3">
-                            <label class="col-form-label">From Date</label><br />
-                            @Html.DropDownListFor(m => m.VisitDateTime, new SelectList(Model.visitDateTimeList, "VisitDateTime", "VisitDateTime"), "Select Date and Time",
-                                        new Dictionary<string, object>() {
-                                            {"id","ddlVisitDateTime"},
-                                            { "class","form-control form-select js-example-disabled-results"}
-                                            })
                         </div>
-                        <div class="col-sm-3">
-                            <label class="col-form-label">To Date</label><br />
-                            @Html.DropDownListFor(m => m.CloseDateTime, new SelectList(Model.visitDateTimeList, "VisitDateTime", "VisitDateTime"), "Select Date and Time",
-                                        new Dictionary<string, object>() {
-                                            {"id","ddlCloseDateTime"},
-                                            { "class","form-control form-select js-example-disabled-results"}
-                                            })
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Gatepass Id</label><br />
-                            @Html.DropDownListFor(m => m.GatepassId, new SelectList(Model.GatePassIdList, "GatePassId", "GatePassId"), "Select Gate Pass Id",
-                                        new Dictionary<string, object>() {
-                                            {"id","ddlGatePassId"},
-                                            { "class","form-control form-select js-example-disabled-results"}
-                                            })
-                        </div>
-
 
                         <div class="col-lg-3">
                             <div class="mt-4">
-                                <input type="submit" class="btn btn-round btn-inverse m-2"  onclick="changeFormAction('VisitMgmt')"  value="View" />
+                                <input type="submit" class="btn btn-round btn-inverse m-2" onclick="changeFormAction('VisitMgmt')" value="View" />
                                 @*<input type="button" class="btn btn-primary" onclick="sendAjaxRequest('Excel')" value="Export Excel" />*@
                                 <input type="button" class="btn btn-primary" value="Export Excel" onclick="changeFormAction('ExportReport')" />
                             </div>
@@ -103,25 +112,31 @@
                                 @Html.DisplayName("Gatepass ID")
                             </th>
                             <th>
+                                @Html.DisplayName("User Code")
+                            </th>
+                            <th>
+                                @Html.DisplayName("User Name")
+                            </th>
+                            <th>
                                 @Html.DisplayName("Department")
                             </th>
                             <th>
-                                @Html.DisplayName("User")
+                                @Html.DisplayName("Center")
                             </th>
                             <th>
-                                @Html.DisplayName("OtherUser1")
+                                @Html.DisplayName("Vehicle Number")
                             </th>
-                            <th>
-                                @Html.DisplayName("OtherUser2")
-                            </th>
-                            <th>
-                                @Html.DisplayName("OtherUser3")
-                            </th>
+                            @*<th>
+                                    @Html.DisplayName("OtherUser1")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("OtherUser2")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("OtherUser3")
+                                </th>*@
                             <th>
                                 @Html.DisplayName("Information Mode")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Visit Date&Time")
                             </th>
                             <th>
                                 @Html.DisplayName("Visit Purpose")
@@ -130,26 +145,28 @@
                                 @Html.DisplayName("Remarks")
                             </th>
                             <th>
-                                @Html.DisplayName("Visit Department")
-                            </th>
-
-                            <th>
-                                @Html.DisplayName("Vehicle Number")
-                            </th>
-                            <th>
                                 @Html.DisplayName("Driver Name")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Start Odometer")
                             </th>
                             <th>
                                 @Html.DisplayName("GatePass Generated Date & Time")
                             </th>
                             <th>
+                                @Html.DisplayName("GatePass Closing Date & Time")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Start Odometer")
+                            </th>
+                            <th>
+                                @Html.DisplayName("End Odometer")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Difference")
+                            </th>
+                            <th>
                                 @Html.DisplayName("Security Name Departure")
                             </th>
                             <th>
-                                @Html.DisplayName("Security Verification Date & Time")
+                                @Html.DisplayName("Security Verification Date & Time Departure")
                             </th>
                             <th>
                                 @Html.DisplayName("Security Name Arrival")
@@ -158,11 +175,15 @@
                                 @Html.DisplayName("Security Verification Date & Time Arrival")
                             </th>
                             <th>
-                                @Html.DisplayName("End Odometer")
+                                @Html.DisplayName("Security Start Odeometer")
                             </th>
                             <th>
-                                @Html.DisplayName("GatePassClosing Date & Time")
+                                @Html.DisplayName("Security End Odeometer")
                             </th>
+                            <th>
+                                @Html.DisplayName("Security Difference Odeometer")
+                            </th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -174,25 +195,31 @@
                                     @Html.DisplayFor(modelItem => item.GatePassId)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.DepartmentName)
-                                </td>
-                                <td>
                                     @Html.DisplayFor(modelItem => item.UserCode)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.OtherUser1)
+                                    @Html.DisplayFor(modelItem => item.EmployeeName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.OtherUser2)
+                                    @Html.DisplayFor(modelItem => item.DepartmentName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.OtherUser3)
+                                    @Html.DisplayFor(modelItem => item.Center)
                                 </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleRegNumber)
+                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.OtherUser1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OtherUser2)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OtherUser3)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.InformationMode)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VisitDateTime)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.VisitPurpose)
@@ -201,24 +228,26 @@
                                     @Html.DisplayFor(modelItem => item.Remarks)
                                 </td>
                                 <td>
-                                    ---
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VehicleRegNumber)
-                                </td>
-                                <td>
                                     @Html.DisplayFor(modelItem => item.Driver)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.StartOdometer)
-                                </td>
-
                                 <td>
                                     @Html.DisplayFor(modelItem => item.VisitDateTime)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.DepartureSecurityName)
+                                    @Html.DisplayFor(modelItem => item.CloseDateTime)
                                 </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StartOdometer)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CloseOdometer)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Difference)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepartureSecurityName)
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DepartureDateTime)
                                 </td>
@@ -229,11 +258,16 @@
                                     @Html.DisplayFor(modelItem => item.ArrivalDateTime)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.CloseOdometer)
+                                    @Html.DisplayFor(modelItem => item.StartKm)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.CloseDateTime)
+                                    @Html.DisplayFor(modelItem => item.EndKm)
                                 </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepArrDifference)
+                                </td>
+
+
                             </tr>
                         }
 
@@ -244,7 +278,131 @@
     </div>
 </div>
 <script>
-    @*function sendAjaxRequest(ExportType) {
+    $(document).ready(function () {        var currentDate = new Date(); // Get the current date        var formattedCurrentDate = currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();        var selectedDate = null;        $('#txtVisitDateTime').Zebra_DatePicker({            format: 'd-m-Y',            direction: false,            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],            onSelect: function (date) {                selectedDate = date;            }        });        $('#txtCloseDateTime').Zebra_DatePicker({            format: 'd-m-Y',            direction: false,            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],            onOpen: function () {                debugger                if (selectedDate != null) {                    var direction = [selectedDate, formattedCurrentDate];                }                $('#txtCloseDateTime').data('Zebra_DatePicker').update({                    direction: direction                });            }        });        $('#Zebra_DatePicker_Icon').on('click', function () {            $('#txtCloseDateTime').Zebra_DatePicker('show');            //$('#fromDate').Zebra_DatePicker('show');        });    });
+</script>
+<script>
+
+    function changeFormAction(action) {
+        debugger
+        var form = document.getElementById("VisitMgmtDashboardForm");
+        var DepartmentId = $('#ddlDepartmentId').val();
+        var VehicleId = $('#ddlVehicleId').val();
+        var UserCode = $('#ddlEmployee').val();
+
+        if (action == "ExportReport") {
+
+            form.action = action;
+            form.submit();
+
+        }
+        else {
+            form.action = action;
+            form.submit();
+        }
+    }
+     function GetCenter(_DepartmentId) {
+         $("#ddlCenter option").remove();
+         $("#ddlEmployee option").remove();
+        if (_DepartmentId == "") {
+            _DepartmentId = 0;
+        }
+        if (_DepartmentId != 0 ) {
+            var url = "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" + "/GatePass/SelectDepartmentWiseUser_CenterJson";
+
+            $.ajax({
+                url: url,
+                data: { ddlDepartmentId: _DepartmentId  } ,
+                cache: false,
+                type: "POST",
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    var page = "<select id='ddlCenter'>";
+                    page = page + '<option value="">Select Center</option>';
+                    for (var i = 0; i < data.CenterList.length; i++) {
+                        page = page + '<option value=' + data.CenterList[i].CenterId + '>' + data.CenterList[i].CenterName + '</option>';
+                    }
+                    page = page + '</select>';
+
+                    var page2 = "<select id='ddlEmployee'>";
+                    page2 = page2 + '<option value="">Select User</option>';
+                    for (var i = 0; i < data.EmployeeList.length; i++) {
+                        page2 = page2 + '<option value=' + data.EmployeeList[i].EmployeeCode + '>' + data.EmployeeList[i].EmployeeName + '</option>';
+                    }
+                    page2 = page2 + '</select>';
+
+                    $('#ddlCenter').html(page);
+                    $('#ddlEmployee').html(page2);
+                },
+                error: function (reponse) {
+                    var page = "<select id='ddlCenter'>";
+                    page = page + '<option value="">Select Center</option>';
+                    page = page + '</select>';
+
+                    var page2 = "<select id='ddlEmployee'>";
+                    page2 = page2 + '<option value="">Select User</option>';
+                    page2 = page2 + '</select>';
+
+                    $('#ddlCenter').html(page);
+                    $('#ddlEmployee').html(page2);
+                }
+            });
+        }
+        else {
+            var page = "<select id='ddlCenter'>";
+            page = page + '<option value="">Select Center</option>';
+            page = page + '</select>';
+
+            var page2 = "<select id='ddlEmployee'>";
+            page2 = page2 + '<option value="">Select User</option>';
+            page2 = page2 + '</select>';
+
+            $('#ddlCenter').html(page);
+            $('#ddlEmployee').html(page2);
+        }
+    }
+    function GetVehicle(_CenterId) {
+        debugger
+        $("#ddlVehicle option").remove();
+        if (_CenterId == "") {
+            _CenterId = 0;
+        }
+        if (_CenterId != 0 ) {
+            var url = "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" + "/GatePass/SelectCenterWiseVehicleJson";
+
+            $.ajax({
+                url: url,
+                data: { ddlCenter: _CenterId  } ,
+                cache: false,
+                type: "POST",
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    debugger
+                    var page = "<select id='ddlVehicle'>";
+                    page = page + '<option value="">Select Vehicle</option>';
+                    for (var i = 0; i < data.VehicleList.length; i++) {
+                        page = page + '<option value=' + data.VehicleList[i].VehicleId + '>' + data.VehicleList[i].VehicleRegNumber + '</option>';
+                    }
+                    page = page + '</select>';
+                    $('#ddlVehicle').html(page);
+                },
+                error: function (reponse) {
+                    var page = "<select id='ddlVehicle'>";
+                    page = page + '<option value="">Select Vehicle</option>';
+                    page = page + '</select>';
+                    $('#ddlVehicle').html(page);
+                }
+            });
+        }
+        else {
+            var page = "<select id='ddlVehicle'>";
+            page = page + '<option value="">Select Vehicle</option>';
+            page = page + '</select>';
+            $('#ddlVehicle').html(page);
+        }
+    }
+@*function sendAjaxRequest(ExportType) {
         var DepartmentId = $('#ddlDepartmentId').val();
         var VehicleId = $('#ddlVehicleId').val();
         var VisitDateTime = $('#ddlVisitDateTime option:selected').text();
@@ -290,30 +448,5 @@
         });
     }*@
 
-    function changeFormAction(action) {
-        debugger
-        var form = document.getElementById("VisitMgmtDashboardForm");
-        var DepartmentId = $('#ddlDepartmentId').val();
-        var VehicleId = $('#ddlVehicleId').val();
 
-        if (action == "ExportReport") {
-            if (DepartmentId == "" || DepartmentId == null || VehicleId == "" || VehicleId == null) {
-                var result = "<div class='alert alert-danger background-danger'>Please Select Department and Vehicle</div>"
-                $(".msg").html(result);
-                window.setTimeout(function () {
-                    $(".alert").fadeTo(2000, 0).slideUp(2000, function () {
-                        $(this).remove();
-                    });
-                }, 2000);
-            }
-            else {
-                form.action = action;
-                form.submit();
-            }
-        }
-        else {
-            form.action = action;
-            form.submit();
-        }
-    }
 </script>

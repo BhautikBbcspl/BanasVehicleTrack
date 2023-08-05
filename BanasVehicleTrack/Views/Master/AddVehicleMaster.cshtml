@@ -3,6 +3,7 @@
     ViewBag.Title = "Vehicle Master";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <style>
     .icon-input {
         position: relative;
@@ -20,6 +21,24 @@
             pointer-events: none;
             z-index: 1;
         }
+
+    .Capalphanumber {
+        font-size: 14px !important;
+        border-radius: 2px !important;
+        border: 1px solid #ccc !important;
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.25;
+        color: #495057;
+        background-color: #fff;
+        background-image: none;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: 0.25rem;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
 </style>
 <div class="page-wrapper">
     <div class="page-header">
@@ -65,11 +84,11 @@
                                     @Html.ValidationMessageFor(m => m.VehicleRegNumber, "", new { @class = "text-danger" })
                                     @Html.TextBoxFor(m => m.VehicleRegNumber, new Dictionary<string, object>() {
                                           {"id","txtVehicleRegNumber"},
-                                          {"class","form-control"},
+                                          {"class"," Capalphanumber VehicleNumber"},
                                              {"autocomplete","off"},
                                           {"required","required"},
                                           {"placeholder","Enter Vehicle Reg. Number"}
-                                          })
+                                    })
                                 </div>
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Vehicle Registration Date</label>
@@ -94,36 +113,36 @@
                                           })
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Vehicle Make</label>
+                                    <label class="col-form-label">Vehicle Company Name</label>
                                     @Html.ValidationMessageFor(m => m.VehicleMake, "", new { @class = "text-danger" })
                                     @Html.TextBoxFor(m => m.VehicleMake, new Dictionary<string, object>() {
                                           {"id","txtVehicleMake"},
                                           {"class","form-control"},
                                              {"autocomplete","off"},
                                           {"required","required"},
-                                          {"placeholder","Enter Vehicle Make"}
+                                          {"placeholder","Enter Company Name"}
                                           })
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Vehicle Model</label>
+                                    <label class="col-form-label">Vehicle Model Year</label>
                                     @Html.ValidationMessageFor(m => m.Model, "", new { @class = "text-danger" })
                                     @Html.TextBoxFor(m => m.Model, new Dictionary<string, object>() {
                                           {"id","txtModel"},
-                                          {"class","form-control"},
+                                          {"class","form-control yearerror"},
                                              {"autocomplete","off"},
                                           {"required","required"},
-                                          {"placeholder","Enter Vehicle Model"}
+                                          {"placeholder","Enter Vehicle Model Year"}
                                           })
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Status</label>
+                                    <label class="col-form-label">Vehicle Status</label>
                                     @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
                                     @Html.TextBoxFor(m => m.Status, new Dictionary<string, object>() {
                                           {"id","txtStatus"},
                                           {"class","form-control"},
                                              {"autocomplete","off"},
                                           {"required","required"},
-                                          {"placeholder","Enter Status"}
+                                          {"placeholder","Enter Vehicle Status"}
                                           })
                                 </div>
                                 <div class="col-sm-3">
@@ -137,43 +156,65 @@
                                           {"placeholder","Enter Rate Per Km"}
                                           })
                                 </div>
+                                @*<div class="col-sm-3">
+                                        <label class="col-form-label">Rate Effective Date</label>
+                                        @Html.ValidationMessageFor(m => m.RateEffectiveDate, "", new { @class = "text-danger" })
+                                        @Html.TextBoxFor(m => m.RateEffectiveDate, new Dictionary<string, object>() {
+                                              {"id","txtRateEffectiveDate"},
+                                              {"class","form-control datepicker"},
+                                                 {"autocomplete","off"},
+                                              {"required","required"},
+                                              {"placeholder","Enter Rate Effective Date"}
+                                              })
+                                    </div>*@
+                             
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label">Department</label>
+                                        @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @class = "text-danger" })
+                                        @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentList, "DepartmentId", "DepartmentName"), "Select Department",
+                                                       new Dictionary<string, object>() {
+                                                           {"id","ddlDepartmentId"},
+                                                 {"onchange", "javascript:GetCenter(this.value)"},
+                                                 { "class","form-control form-select js-example-disabled-results" } })
+                                    </div>
+                               
+                                  
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Rate Effective Date</label>
-                                    @Html.ValidationMessageFor(m => m.RateEffectiveDate, "", new { @class = "text-danger" })
-                                    @Html.TextBoxFor(m => m.RateEffectiveDate, new Dictionary<string, object>() {
-                                          {"id","txtRateEffectiveDate"},
+                                    <label class="col-form-label">Center</label>
+                                    @Html.ValidationMessageFor(m => m.CenterId, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(x => x.CenterId, new SelectList(Model.CenterList, "CenterId", "CenterName"), "Select Center",
+                                         new Dictionary<string, object>() {
+                                             {"id","ddlCenter"},
+                                             { "class","form-control form-select js-example-disabled-results" } })
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Insurance Commencement Date</label>
+                                    @Html.ValidationMessageFor(m => m.InsuranceCommencementDate, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.InsuranceCommencementDate, new Dictionary<string, object>() {
+                                          {"id","txtInsuranceCommencementDate"},
                                           {"class","form-control datepicker"},
                                              {"autocomplete","off"},
                                           {"required","required"},
-                                          {"placeholder","Enter Rate Effective Date"}
+                                          {"placeholder","Enter Insurance Commencement Date"}
                                           })
-                                </div>
-                                <div class="col-sm-3">
-                                        <label class="col-form-label">Insurance Commencement Date</label>
-                                        @Html.ValidationMessageFor(m => m.InsuranceCommencementDate, "", new { @class = "text-danger" })
-                                        @Html.TextBoxFor(m => m.InsuranceCommencementDate, new Dictionary<string, object>() {
-                                              {"id","txtInsuranceCommencementDate"},
-                                              {"class","form-control datepicker"},
-                                                 {"autocomplete","off"},
-                                              {"required","required"},
-                                              {"placeholder","Enter Insurance Commencement Date"}
-                                              })
 
-                                    </div>
-                         
+                                </div>
+
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Insurance Expiry Date</label>
                                     @Html.ValidationMessageFor(m => m.InsuranceExpiryDate, "", new { @class = "text-danger" })
-                                    
 
-                                        @Html.TextBoxFor(m => m.InsuranceExpiryDate, new Dictionary<string, object>() {
-                                              {"id","txtInsuranceExpiryDate"},
-                                              {"class","form-control datepicker"},
-                                                 {"autocomplete","off"},
-                                              {"required","required"},
-                                              {"placeholder","Enter Insurance Expiry Date"}
-                                              })
-                                     
+
+                                    @Html.TextBoxFor(m => m.InsuranceExpiryDate, new Dictionary<string, object>() {
+                                          {"id","txtInsuranceExpiryDate"},
+                                          {"class","form-control datepicker"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Insurance Expiry Date"}
+                                          })
+
 
                                 </div>
                                 <div class="col-sm-3">
@@ -185,6 +226,54 @@
                                              {"autocomplete","off"},
                                           {"required","required"},
                                           {"placeholder","Enter Contract Start Date"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Contract End Date</label>
+                                    @Html.ValidationMessageFor(m => m.ContractEndDate, "", new { @class = "text-danger" })
+                                    @Html.TextBoxFor(m => m.ContractEndDate, new Dictionary<string, object>() {
+                                          {"id","txtContractEndDate"},
+                                          {"class","form-control datepicker"},
+                                             {"autocomplete","off"},
+                                          {"required","required"},
+                                          {"placeholder","Enter Contract End Date"}
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Contractor Company List</label>
+                                    @Html.ValidationMessageFor(m => m.ContractorId, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(m => m.ContractorId, new SelectList(Model.ContractorMasterList.OrderBy(m => m.ContractorCompanyName), "ContractorId", "ContractorCompanyName"), "Select Contractor Company",
+                                             new Dictionary<string, object>() {
+                                                 {"id","ddlContractorid"},
+                                                {"onchange", "javascript:GetContCompWiseConName(this.value)"},
+                                                 { "class","form-control form-select js-example-disabled-results"}
+                                                 })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Contractor Name</label>
+                                    @Html.TextBoxFor(m => m.ContractorName, new Dictionary<string, object>() {
+                                          {"id","txtContractorName"},
+                                          {"class","form-control"},
+                                             {"autocomplete","off"},
+                                             {"readonly","readonly"},
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Contractor Code</label>
+                                    @Html.TextBoxFor(m => m.ContractorCode, new Dictionary<string, object>() {
+                                          {"id","txtContractorCode"},
+                                          {"class","form-control"},
+                                             {"autocomplete","off"},
+                                             {"readonly","readonly"},
+                                          })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Contractor Contact No</label>
+                                    @Html.TextBoxFor(m => m.ContractorContactNo, new Dictionary<string, object>() {
+                                          {"id","txtContractorContactNo"},
+                                          {"class","form-control"},
+                                             {"autocomplete","off"},
+                                             {"readonly","readonly"},
                                           })
                                 </div>
                                 <div class="col-sm-3">
@@ -236,12 +325,40 @@
 
 <script>
     $(document).ready(function () {
-        debugger
         var action = "@ViewBag.Action";
 
         if (action === "Update") {
             $("#txtVehicleCode").prop("readonly", true);
         }
+        var inputElement = $(".VehicleNumber");
+
+        $(".VehicleNumber").inputmask({
+            mask: "AA-99-AA-9999",
+            greedy: false,
+            definitions: {
+                "A": {
+                    validator: "[A-Za-z]",
+                },
+                "9": {
+                    validator: "[0-9]",
+                },
+            },
+        });
+
+        inputElement.on("input", function (event) {
+            var value = inputElement.val().toUpperCase();
+            var position = inputElement[0].selectionStart;
+
+            if (position === 3 && value.length >= 2) {
+                position = 6; // Move cursor to the sixth position
+            } else if (position === 6 && value.length >= 5) {
+                position = 9; // Move cursor to the ninth position
+            }
+
+            // Update the input value and cursor position
+            inputElement.val(value);
+            inputElement[0].setSelectionRange(position, position);
+        });
     });
 </script>
 <script>
@@ -300,4 +417,80 @@
         //    $('#txtInsuranceExpiryDate').Zebra_DatePicker('show');
         //});
     });
+     function GetContCompWiseConName(_ContractorId) {
+        if (_ContractorId != 0 ) {
+            var url = "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" + "/Master/SelectContCompWiseConNameJson";
+
+            $.ajax({
+                url: url,
+                data: { ddlContractorId: _ContractorId  } ,
+                cache: false,
+                type: "POST",
+                datatype: "json",
+                traditional: true,
+
+                success: function (data) {
+                    var contractor = data.Contractorlist[0]; // Assuming there is only one contractor in the list
+
+                    // Set the values to the textboxes
+                    $("#txtContractorName").val(contractor.ContractorName);
+                    $("#txtContractorCode").val(contractor.ContractorCode);
+                    $("#txtContractorContactNo").val(contractor.Contactno);
+                },
+                error: function (reponse) {
+                    // Set the values to the textboxes
+                    $("#txtContractorName").val("");
+                    $("#txtContractorCode").val("");
+                    $("#txtContractorContactNo").val("");
+                }
+            });
+        }
+        else {
+            // Set the values to the textboxes
+            $("#txtContractorName").val("");
+            $("#txtContractorCode").val("");
+            $("#txtContractorContactNo").val("");
+        }
+    }
+</script>
+<script>
+       function GetCenter(_DepartmentId) {
+        $("#ddlCenter option").remove();
+        if (_DepartmentId == "") {
+            _DepartmentId = 0;
+        }
+        if (_DepartmentId != 0 ) {
+            var url = "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" + "/Master/SelectDepartmentWiseCenterJson";
+
+            $.ajax({
+                url: url,
+                data: { ddlDepartmentId: _DepartmentId  } ,
+                cache: false,
+                type: "POST",
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    var page = "<select id='ddlCenter'>";
+                    page = page + '<option value="">Select Center</option>';
+                    for (var i = 0; i < data.CenterList.length; i++) {
+                        page = page + '<option value=' + data.CenterList[i].CenterId + '>' + data.CenterList[i].CenterName + '</option>';
+                    }
+                    page = page + '</select>';
+                    $('#ddlCenter').html(page);
+                },
+                error: function (reponse) {
+                    var page = "<select id='ddlCenter'>";
+                    page = page + '<option value="">Select Center</option>';
+                    page = page + '</select>';
+                    $('#ddlCenter').html(page);
+                }
+            });
+        }
+        else {
+            var page = "<select id='ddlCenter'>";
+            page = page + '<option value="">Select Center</option>';
+            page = page + '</select>';
+            $('#ddlCenter').html(page);
+        }
+    }
 </script>

@@ -67,13 +67,40 @@
     <Compile Include="BanasAuditorFinalApproveRetrieve_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BanasAuditorFinalOperateVisitMasterRtr_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BanasAuditorMasterRetrieve_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanasAuditorOperateVisitMasterRtr_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanasAuditorVisitGatepassRetrieve_NEW_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BanasAuditorVisitGatepassRetrieve_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BanasCenterMasterRetrieve_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanasContractorAmountRpt_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanasContractorMasterRetrieve_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanasContractorPaymentRtr_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanasContractorTotalAmountMonthwiseRtr_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BanasDepartmentMasterRetrieve_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanasEmailTemplateMasterRtr_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BanasEmployeeMasterRtr_Result.cs">
@@ -112,10 +139,19 @@
     <Compile Include="BanasSecurityVehicleGatepassRetrieve_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BanasUserCenterIntegrationRtr_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanasUserDepartmentIntegrationRtr_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BanasVehicleGatepassRetrieve_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BanasVehicleMasterRtr_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanasVisitCenterReportRtr_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BanasVisitManagementRtr_Result.cs">

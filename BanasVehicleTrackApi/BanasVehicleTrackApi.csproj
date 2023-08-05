@@ -213,6 +213,38 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\OdometerImage\04c2710f-08c0-4666-a253-33b2bd9afc50.jpg" />
+    <Content Include="Uploads\OdometerImage\1002fc2f-0397-4bd0-b1b3-934710672682.jpg" />
+    <Content Include="Uploads\OdometerImage\112af2c1-7313-4687-9808-6ef6bb4d2dc9.jpg" />
+    <Content Include="Uploads\OdometerImage\14edbd87-c3bd-4854-aa21-25087626db1b.jpg" />
+    <Content Include="Uploads\OdometerImage\15395c7d-9e06-43e8-96d7-ae2bcee2f4b4.jpg" />
+    <Content Include="Uploads\OdometerImage\18fee20c-807e-4321-9f26-0b8d0ac0b38c.jpg" />
+    <Content Include="Uploads\OdometerImage\257d8856-00e8-4f30-94af-2e3f1ce5644a.jpg" />
+    <Content Include="Uploads\OdometerImage\48203bd5-4281-496d-89a7-ba183c0d972c.jpg" />
+    <Content Include="Uploads\OdometerImage\4d3cf3ba-37f6-4058-a416-171b232d03c3.jpg" />
+    <Content Include="Uploads\OdometerImage\5d777b36-289c-4910-9eec-01399d876bd9.jpg" />
+    <Content Include="Uploads\OdometerImage\5d80edb9-9fa0-474e-a61d-bb24d775217e.jpg" />
+    <Content Include="Uploads\OdometerImage\5e3c501e-cb3c-44dc-8a88-8efa721fbf43.jpg" />
+    <Content Include="Uploads\OdometerImage\62706578-5d87-4d7a-9651-4ae6ee16fee9.jpg" />
+    <Content Include="Uploads\OdometerImage\6d87520d-c70a-49e7-a460-489eeafab8c6.jpg" />
+    <Content Include="Uploads\OdometerImage\79d99112-e32b-48da-abea-3f79eeae8e6d.jpg" />
+    <Content Include="Uploads\OdometerImage\7b456ef0-7961-455b-a493-cee0d3de7ea4.jpg" />
+    <Content Include="Uploads\OdometerImage\a2c3fc52-14f1-4a20-a1f1-ea94bfd58800.jpg" />
+    <Content Include="Uploads\OdometerImage\a699f117-b689-4966-b734-806b7ed913e1.jpg" />
+    <Content Include="Uploads\OdometerImage\aa82744d-f2b7-4d50-85d0-7a0c6a731706.jpg" />
+    <Content Include="Uploads\OdometerImage\abec768e-746e-43a0-af7c-82defb0f47b8.jpg" />
+    <Content Include="Uploads\OdometerImage\c48e8eb2-e079-45d6-9e20-d39cad9ef395.jpg" />
+    <Content Include="Uploads\OdometerImage\c7d3f58c-dae4-4d0d-8589-04d89e150095.jpg" />
+    <Content Include="Uploads\OdometerImage\d0905b83-cb5a-4bdd-8045-da520de9ad0c.jpg" />
+    <Content Include="Uploads\OdometerImage\d54eeef5-c807-4665-88f2-2cfc5b9a9a3e.jpg" />
+    <Content Include="Uploads\OdometerImage\e20ec1cf-6315-4fa9-bea9-d3c1cc7b8a07.jpg" />
+    <Content Include="Uploads\OdometerImage\e5e7c88d-ab38-4d66-81b5-88dcae3df041.jpg" />
+    <Content Include="Uploads\OdometerImage\e736b55f-ff60-495a-ae8e-11b2803dba66.jpg" />
+    <Content Include="Uploads\OdometerImage\ea295779-1ea8-4594-a65c-af6312be8813.jpg" />
+    <Content Include="Uploads\OdometerImage\ea7d5211-e483-450e-8be7-5553b835bbe0.jpg" />
+    <Content Include="Uploads\OdometerImage\ebb1fbe5-b7ec-4525-b7fd-9f7c68893686.jpg" />
+    <Content Include="Uploads\OdometerImage\f13e8f21-a85f-4523-9c56-dd20723e2843.jpg" />
+    <Content Include="Uploads\OdometerImage\fbff5140-fa09-4bd9-aec9-f3c0ff9517dc.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -229,7 +261,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Uploads\OdometerImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

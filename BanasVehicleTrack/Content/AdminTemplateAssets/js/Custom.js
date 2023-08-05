@@ -142,7 +142,8 @@ $(document).ready(function () {
     //custome datable JS
     // Styling js start
     $('#base-style').DataTable({
-
+        /* "dom": '<"top"lfB><"tabs"t><"bottom"ip>',*/
+        //'dom': '<"top d-flex"flB>rt<"bottom d-flex"ip>',
         "bJQueryUI": true,
 
         buttons: [
@@ -152,6 +153,26 @@ $(document).ready(function () {
                 footer: true,
                 exportOptions: {
                     columns: ':not(:first-child)',
+                },
+                 customizeData: function (data) {
+                     var table = $('#base-style').DataTable();
+                    var rows = table.rows({ search: 'applied' }).nodes().to$();
+
+                    for (var i = 0; i < rows.length; i++) {
+                        var rowData = data.body[i];
+                        var checkboxElement = $(rows[i]).find('input[type="checkbox"]');
+                        var toggleValues = [];
+
+                        checkboxElement.each(function () {
+                            var isChecked = $(this).prop('checked');
+                            toggleValues.push(isChecked.toString());
+                        });
+
+                        for (var j = 0; j < toggleValues.length; j++) {
+                            var columnIndex = $(checkboxElement[j]).closest('td').index()-1;
+                            rowData[columnIndex] = toggleValues[j];
+                        }
+                    }
                 }
             }],
 
@@ -194,4 +215,22 @@ $(document).ready(function () {
         'columnDefs': [{ 'orderable': false, 'targets': 0 }],
 
     });
+
+    $('#contractordatatable').DataTable({
+        "bJQueryUI": true,
+
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: '<span class="fa fa-file-excel-o"></span>',
+                footer: true,
+                exportOptions: {
+                    columns: ':not(:first-child)',
+                }
+            }],
+
+        'columnDefs': [{ 'orderable': false, 'targets': 0 }],
+        'aaSorting': [[0]]
+    });
+
 });

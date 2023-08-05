@@ -37,7 +37,7 @@ namespace BanasVehicleTrack.Controllers
                 if (ViewBag.ViewRight == 1)
                 {
                     mv.ModuleViewList = db.BanasModuleMasterRtr(mv.Action, mv.ModuleId).ToList();
-                return View(mv);
+                    return View(mv);
                 }
                 else
                 {
@@ -80,7 +80,7 @@ namespace BanasVehicleTrack.Controllers
                     sm.CreateDate = generalFunctions.getTimeZoneDatetimedb();
                     sm.Action = "Save";
                     sm.CreateUser = User.Identity.Name;
-                    string msg = db.BanasModuleMasterInsUpd(sm.ModuleId, sm.ModuleName.Trim(), sm.ModulePriority,sm.FaIcon, sm.IsActive, sm.CreateDate, sm.UpdateDate, sm.CreateUser, sm.UpdateUser, sm.Action).FirstOrDefault();
+                    string msg = db.BanasModuleMasterInsUpd(sm.ModuleId, sm.ModuleName.Trim(), sm.SelfPage == true ? "1" : "0", sm.ModulePriority, sm.FaIcon, sm.IsActive, sm.CreateDate, sm.UpdateDate, sm.CreateUser, sm.UpdateUser, sm.Action).FirstOrDefault();
                     if (msg.Contains("successfully"))
                     {
                         ViewBag.Message = msg.ToUpper();
@@ -103,7 +103,7 @@ namespace BanasVehicleTrack.Controllers
                     sm.CreateUser = User.Identity.Name;
                     sm.UpdateDate = generalFunctions.getTimeZoneDatetimedb();
                     sm.UpdateUser = User.Identity.Name;
-                    string msg = db.BanasModuleMasterInsUpd(sm.ModuleId, sm.ModuleName.Trim(), sm.ModulePriority, sm.FaIcon, sm.IsActive, sm.CreateDate, sm.UpdateDate, sm.CreateUser, sm.UpdateUser, sm.Action).FirstOrDefault();
+                    string msg = db.BanasModuleMasterInsUpd(sm.ModuleId, sm.ModuleName.Trim(), sm.SelfPage == true ? "1" : "0", sm.ModulePriority, sm.FaIcon, sm.IsActive, sm.CreateDate, sm.UpdateDate, sm.CreateUser, sm.UpdateUser, sm.Action).FirstOrDefault();
                     if (msg.Contains("successfully"))
                     {
                         ViewBag.Message = msg.ToUpper();
@@ -142,6 +142,7 @@ namespace BanasVehicleTrack.Controllers
                 sb.ModulePriority = mm.ModulePriority.ToString();
                 sb.FaIcon = mm.FaIcon;
                 sb.IsActive = mm.IsActive.ToString();
+                sb.SelfPage = (bool)mm.IsSelfURL;
                 ViewBag.action = "Update";
                 sb.Action = "Update";
                 return View("AddModuleMaster", sb);

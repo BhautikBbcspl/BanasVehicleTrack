@@ -1,7 +1,9 @@
 ﻿using BanasVehicleTrackViewModel;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -211,6 +213,69 @@ namespace BanasVehicleTrack.GeneralClasses
 
         }
 
+        public static void SendMail_Message(string strSubject, string strBodyMessage, string strTo, string strcc, string strBCC, string strAttachment = "")
+        {
+            string MailFrom = ConfigurationManager.AppSettings["UserName"];
+            string MailUid = ConfigurationManager.AppSettings["Userid"];
+            string MailPwd = ConfigurationManager.AppSettings["Password"];
+            string host = ConfigurationManager.AppSettings["smtpAddress"];
+            int Port = Convert.ToInt32(ConfigurationManager.AppSettings["Port"]);
+
+            MailMessage mail = new MailMessage();
+
+
+            mail.From = new MailAddress(MailFrom);
+
+
+            mail.To.Add(strTo);
+
+            if (strcc != null || strcc.Length > 0 || strcc == "")
+            {
+                mail.CC.Add(strcc);
+            }
+
+            if (strBCC != null && strBCC.Length > 0 || strBCC == "")
+            {
+                mail.Bcc.Add(strBCC);
+            }
+
+            // Attachment part is added on 09-01-2021
+            if (!string.IsNullOrEmpty(strAttachment))
+            {
+                foreach (var attach in strAttachment.Split(';'))
+                {
+                    mail.Attachments.Add(new Attachment(attach));
+                }
+            }
+
+            mail.Subject = strSubject;
+            mail.SubjectEncoding = System.Text.Encoding.UTF8;
+            mail.Body = strBodyMessage;
+            mail.BodyEncoding = System.Text.Encoding.GetEncoding("utf-8");
+            mail.IsBodyHtml = true;
+            ///// imt
+            System.Net.Mail.AlternateView plainView = System.Net.Mail.AlternateView.CreateAlternateViewFromString(System.Text.RegularExpressions.Regex.Replace(strBodyMessage, @"<(.|\n)*?>", string.Empty), null, "text/plain");
+            System.Net.Mail.AlternateView htmlView = System.Net.Mail.AlternateView.CreateAlternateViewFromString(strBodyMessage, null, "text/html");
+            mail.AlternateViews.Add(plainView);
+            mail.AlternateViews.Add(htmlView);
+            SmtpClient smtp = new SmtpClient(host);
+            System.Net.NetworkCredential netcred = new System.Net.NetworkCredential(MailUid, MailPwd);
+
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = netcred;
+            smtp.Port = Port;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                //return;
+                throw ex;
+            }
+        }
         public EmployeeViewModel LoggedUserDetails
         {
             get
@@ -224,6 +289,11 @@ namespace BanasVehicleTrack.GeneralClasses
                     em.EmployeeCode = reqCookies["EmployeeCode"].ToString();
                     em.RoleId = reqCookies["RoleId"].ToString();
                     em.RoleName = reqCookies["RoleName"].ToString();
+
+                    if(em.RoleId!="2")
+                    {
+                        em.DepartmentId = reqCookies["DepartmentId"].ToString();
+                    }
                     return em;
                 }
                 else

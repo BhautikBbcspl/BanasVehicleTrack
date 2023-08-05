@@ -38,5 +38,11 @@ namespace BanasVehicleTrackDbClasses
         public string ConEndDate { get; set; }
         public string InsComDate { get; set; }
         public string InsExpDate { get; set; }
+        public Nullable<int> ContractorId { get; set; }
+        public Nullable<int> CenterId { get; set; }
+        public string CenterName { get; set; }
+        public string ContractorName { get; set; }
+        public string DepartmentName { get; set; }
+        public Nullable<int> DepartmentId { get; set; }
     }
 }

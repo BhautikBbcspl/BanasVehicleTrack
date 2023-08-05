@@ -39,6 +39,9 @@
                                 @Html.DisplayName("Employee Name")
                             </th>
                             <th>
+                                @Html.DisplayName("Signature")
+                            </th>
+                            <th>
                                 @Html.DisplayName("Contact")
                             </th>
                             <th>
@@ -65,45 +68,48 @@
                     <tbody>
                         @foreach (var item in Model.EmployeeMasterList)
                         {
-                        <tr>
-                            <td>
-                                @if (ViewBag.UpdateRight == 1)
-                                {
-                                    @Html.ActionLink(" ", "EditEmployeeMaster", new { id = item.EmployeeId }, new { @class = " btn editbtn fa fa-pencil-square-o", title = "Edit" })
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EmployeeCode)
-                            </td>
-                            <td>
-                                @*@Html.DisplayFor(modelItem => item.Password)*@
-                                **********
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EmployeeName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Contact)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Gender)
-                            </td>
+                            <tr>
+                                <td>
+                                    @if (ViewBag.UpdateRight == 1)
+                                    {
+                                        @Html.ActionLink(" ", "EditEmployeeMaster", new { id = item.EmployeeId }, new { @class = " btn editbtn fa fa-pencil-square-o", title = "Edit" })
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeCode)
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.Password)*@
+                                    **********
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                                </td>
+                                <td>
+                                    <img src="../@item.EmployeeSignature" alt="Employee Signature" width="150" height="50">
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contact)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gender)
+                                </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RoleName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DepartmentName)
-                            </td>
-                            <td>
-                                <label class="toggle">
-                                    <input class="toggle-checkbox" type="checkbox" onclick='ActiveDeactiveStatusChange(this,"@item.EmployeeId","EmployeeMaster")' @(item.IsActive == true ? "checked" : "")>
-                                    <span class="toggle-switch"></span>
-                                </label>
-                            </td>
-                            <td> @Html.DisplayFor(modelItem => item.cdate)</td>
-                            <td> @Html.DisplayFor(modelItem => item.CreateUser)</td>
-                        </tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RoleName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                                </td>
+                                <td>
+                                    <label class="toggle">
+                                        <input class="toggle-checkbox" type="checkbox" onclick='ActiveDeactiveStatusChange(this,"@item.EmployeeId","EmployeeMaster")' @(item.IsActive == true ? "checked" : "")>
+                                        <span class="toggle-switch"></span>
+                                    </label>
+                                </td>
+                                <td> @Html.DisplayFor(modelItem => item.cdate)</td>
+                                <td> @Html.DisplayFor(modelItem => item.CreateUser)</td>
+                            </tr>
                         }
 
                     </tbody>

@@ -1,6 +1,8 @@
 ﻿using BanasVehicleTrackDbClasses;
 using BanasVehicleTrackViewModel;
 using BanasVehicleTrackViewModel.AuditorDepartmentApp;
+using BanasVehicleTrackViewModel.Master;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,42 @@ namespace BanasVehicleTrackApi.Controllers
         #region==> Login
         [Route("api/BanasVehicleTracking/LoginRtr")]
         [HttpPost]
+        //public HttpResponseMessage LoginRtr(EmployeeViewModel empp)
+        //{
+        //    try
+        //    {
+        //        empp.Password = generalFunctions.Encrypt(empp.Password, true).ToString().Trim();
+        //        string re = db.BanasLoginRtr(empp.EmployeeCode, empp.Password).ToString();
+        //        if (re != null)
+        //        {
+        //            var uc = db.BanasLoginRtr(empp.EmployeeCode, empp.Password);
+        //            var response2 = Request.CreateResponse(HttpStatusCode.OK, uc);
+        //            return response2;
+        //        }
+        //        else
+        //        {
+        //            string query3 = "{ \"LoginResult\":\"Invalid Contact No or Password\"}";
+        //            var jObject = JObject.Parse(query3);
+        //            var response = Request.CreateResponse(HttpStatusCode.OK);
+        //            response.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
+        //            return response;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
+        //        FetchErrorclass error = new FetchErrorclass
+        //        {
+        //            FetchResult = Convert.ToString("Invalid Contact No or Password"),
+        //        };
+        //        ERROR.Add(error);
+
+        //        var response = Request.CreateResponse(HttpStatusCode.BadRequest, ERROR);
+        //        return response;
+        //    }
+        //    finally
+        //    { db.Dispose(); }
+        //}
         public HttpResponseMessage LoginRtr(EmployeeViewModel empp)
         {
             try
@@ -32,9 +70,16 @@ namespace BanasVehicleTrackApi.Controllers
                 string re = db.BanasLoginRtr(empp.EmployeeCode, empp.Password).ToString();
                 if (re != null)
                 {
-                    var uc = db.BanasLoginRtr(empp.EmployeeCode, empp.Password).ToList();
+                    var uc = db.BanasLoginRtr(empp.EmployeeCode, empp.Password).FirstOrDefault();
+
+
+                    //string Createdate = uc.Createdate != null ? generalFunctions.dateconvert(uc.Createdate.ToString()) : null;
+                    //uc.Createdate = Createdate;
+                    //uc.Createuser = uc.Createuser ?? "";
                     var response2 = Request.CreateResponse(HttpStatusCode.OK, uc);
+                    response2.Content = new StringContent(JsonConvert.SerializeObject(uc), Encoding.UTF8, "application/json");
                     return response2;
+
                 }
                 else
                 {
@@ -43,9 +88,10 @@ namespace BanasVehicleTrackApi.Controllers
                     var response = Request.CreateResponse(HttpStatusCode.OK);
                     response.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
                     return response;
+
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
                 FetchErrorclass error = new FetchErrorclass
@@ -55,10 +101,13 @@ namespace BanasVehicleTrackApi.Controllers
                 ERROR.Add(error);
 
                 var response = Request.CreateResponse(HttpStatusCode.BadRequest, ERROR);
+                response.Content = new StringContent(JsonConvert.SerializeObject(ERROR), Encoding.UTF8, "application/json");
                 return response;
             }
             finally
-            { db.Dispose(); }
+            {
+                db.Dispose();
+            }
         }
         #endregion
 
@@ -69,7 +118,6 @@ namespace BanasVehicleTrackApi.Controllers
         {
             try
             {
-
                 string re = db.BanasAuditorVisitGatepassRetrieve("auditorGPOpen", pnd.UserCode, "").ToString();
                 if (re != null)
                 {
@@ -79,14 +127,14 @@ namespace BanasVehicleTrackApi.Controllers
                 }
                 else
                 {
-                    string query3 = "{ \"LoginResult\":\"Invalid Contact No or Password\"}";
+                    string query3 = "{ \"LoginResult\":\"Invalid User\"}";
                     var jObject = JObject.Parse(query3);
                     var response = Request.CreateResponse(HttpStatusCode.OK);
                     response.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
                     return response;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
                 FetchErrorclass error = new FetchErrorclass
@@ -114,7 +162,7 @@ namespace BanasVehicleTrackApi.Controllers
 
                 string fileName = Guid.NewGuid().ToString() + ".jpg";
 
-                string folderPath = HttpContext.Current.Server.MapPath("~/Uploads/OdometerImages");
+                string folderPath = HttpContext.Current.Server.MapPath("~/Uploads/OdometerImage");
                 if (!System.IO.Directory.Exists(folderPath))
                 {
                     System.IO.Directory.CreateDirectory(folderPath);
@@ -123,15 +171,15 @@ namespace BanasVehicleTrackApi.Controllers
 
                 File.WriteAllBytes(filePath, imageBytes);
 
-                //aov.OdometerImage = "~/Uploads/OdometerImage/" + fileName;
-                aov.OdometerImage = filePath;
+                aov.OdometerImage = "/Uploads/OdometerImage/" + fileName;
+                //aov.OdometerImage = filePath;
 
-                string re = db.BanasAuditorOperateVisitMasterIns(aov.GatePassId, aov.Latitude, aov.Longitude, aov.Odometer, aov.OdometerImage, aov.CreateDate, aov.CreateUser, "insert").FirstOrDefault();
+                string re = db.BanasAuditorOperateVisitMasterIns(aov.GatePassId, aov.Latitude, aov.Longitude, aov.Odometer, aov.OdometerImage, aov.CreateDate, aov.CreateUser,aov.CenterId, "insert", aov.Remark,aov.LocationName,aov.UserGivenLocation).FirstOrDefault();
 
                 var response = Request.CreateResponse(HttpStatusCode.OK, re);
                 return response;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
                 FetchErrorclass error = new FetchErrorclass
@@ -161,7 +209,7 @@ namespace BanasVehicleTrackApi.Controllers
 
                 string fileName = Guid.NewGuid().ToString() + ".jpg";
 
-                string folderPath = HttpContext.Current.Server.MapPath("~/Uploads/OdometerImages");
+                string folderPath = HttpContext.Current.Server.MapPath("~/Uploads/OdometerImage");
                 if (!System.IO.Directory.Exists(folderPath))
                 {
                     System.IO.Directory.CreateDirectory(folderPath);
@@ -170,14 +218,14 @@ namespace BanasVehicleTrackApi.Controllers
 
                 File.WriteAllBytes(filePath, imageBytes);
 
-                //aov.LastOdometerImage = "~/Uploads/OdometerImage/" + fileName;
-                aov.LastOdometerImage = filePath;
+                aov.LastOdometerImage = "/Uploads/OdometerImage/" + fileName;
+                //aov.LastOdometerImage = filePath;
 
-                string re = db.BanasAuditorFinalOperateVisitMasterIns(aov.MidwayDeparture, aov.GatePassId, aov.LastOdometer, aov.LastOdometerImage, aov.UserCode,  aov.Latitude, aov.Longitude, aov.CreateDate, aov.CreateUser, "insert").FirstOrDefault();
+                string re = db.BanasAuditorFinalOperateVisitMasterIns(aov.MidwayDeparture, aov.GatePassId, aov.LastOdometer, aov.LastOdometerImage, aov.UserCode,  aov.Latitude, aov.Longitude, aov.CreateDate, aov.CreateUser,aov.CenterId, "insert", aov.Remark).FirstOrDefault();
                 var response = Request.CreateResponse(HttpStatusCode.OK, re);
                 return response;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
                 FetchErrorclass error = new FetchErrorclass
@@ -195,10 +243,139 @@ namespace BanasVehicleTrackApi.Controllers
         }
         #endregion
 
+        #region ==> Retrive Auditor Visits
+        [Route("api/BanasVehicleTracking/RetrieveOperateVisit")]
+        [HttpPost]
+        public HttpResponseMessage RetrieveOperateVisit(AuditorOperateVisitViewModel aov)
+        {
+            try
+            {
+
+                string re = db.BanasAuditorOperateVisitMasterRtr(aov.GatePassId, aov.Action).ToString();
+                if (re != null)
+                {
+                    var AudVisits = db.BanasAuditorOperateVisitMasterRtr(aov.GatePassId, aov.Action).ToList();
+                    var response2 = Request.CreateResponse(HttpStatusCode.OK, AudVisits);
+                    return response2;
+                }
+                else
+                {
+                    string query3 = "{ \"Result\":\"Invalid User\"}";
+                    var jObject = JObject.Parse(query3);
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
+                    return response;
+                }
+            }
+            catch (Exception)
+            {
+                List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
+                FetchErrorclass error = new FetchErrorclass
+                {
+                    FetchResult = Convert.ToString("Invalid"),
+                };
+                ERROR.Add(error);
+
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, ERROR);
+                return response;
+            }
+            finally
+            { db.Dispose(); }
+        }
+        #endregion
+
+        #region ==> Retrive Auditor Final Visits
+        [Route("api/BanasVehicleTracking/RetrieveFinalOperateVisit")]
+        [HttpPost]
+        public HttpResponseMessage RetrieveFinalOperateVisit(AuditorOperateVisitViewModel aov)
+        {
+            try
+            {
+
+                string re = db.BanasAuditorFinalOperateVisitMasterRtr(aov.GatePassId, aov.Action).ToString();
+                if (re != null)
+                {
+                    var AudVisits = db.BanasAuditorFinalOperateVisitMasterRtr(aov.GatePassId, aov.Action).ToList();
+                    var response2 = Request.CreateResponse(HttpStatusCode.OK, AudVisits);
+                    return response2;
+                }
+                else
+                {
+                    string query3 = "{ \"Result\":\"Invalid User\"}";
+                    var jObject = JObject.Parse(query3);
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
+                    return response;
+                }
+            }
+            catch (Exception)
+            {
+                List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
+                FetchErrorclass error = new FetchErrorclass
+                {
+                    FetchResult = Convert.ToString("Invalid"),
+                };
+                ERROR.Add(error);
+
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, ERROR);
+                return response;
+            }
+            finally
+            { db.Dispose(); }
+        }
+        #endregion
+
+        #region ==> Retrive Centers
+        //44377
+        [Route("api/BanasVehicleTracking/RetrieveCenters")]
+        [HttpPost]
+        public HttpResponseMessage RetrieveCenters(CenterMasterViewModel aov)
+        {
+            try
+            {
+
+                string re = db.BanasCenterMasterRetrieve(aov.Action).ToString();
+                if (re != null)
+                {
+                    var CenterList = db.BanasCenterMasterRetrieve(aov.Action).ToList();
+                    var response2 = Request.CreateResponse(HttpStatusCode.OK, CenterList);
+                    return response2;
+                }
+                else
+                {
+                    string query3 = "{ \"Result\":\"Invalid\"}";
+                    var jObject = JObject.Parse(query3);
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
+                    return response;
+                }
+            }
+            catch (Exception)
+            {
+                List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
+                FetchErrorclass error = new FetchErrorclass
+                {
+                    FetchResult = Convert.ToString("Invalid"),
+                };
+                ERROR.Add(error);
+
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, ERROR);
+                return response;
+            }
+            finally
+            { db.Dispose(); }
+        }
+        #endregion
+
         #region ==> Encryption/Decryption
         public class generalFunctions
         {
-
+            public static string dateconvert(string strdate)
+            {
+                string str = "";
+                str = strdate.Split('-').ElementAt(2) + "-" + strdate.Split('-').ElementAt(1) + "-" + strdate.Split('-').ElementAt(0);
+                return str;
+            }
             public static string Encrypt(string toEncrypt, bool useHashing)
             {
                 byte[] keyArray;

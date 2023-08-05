@@ -20,13 +20,22 @@ namespace BanasVehicleTrack.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-
-            DashboardViewModel model = new DashboardViewModel();
-            model.DashboardCounts = db.BanasAdminDashboardCountRtr("Count").ToList();
-            //model.DashboardList = db.BanasAdminDashboardListRtr("List").ToList();
-            model.DashboardList = db.BanasAdminDashboardListRtr("List").OrderByDescending(item => item.CreateDate).Take(10).ToList();
-            return View(model);
+            else
+            {
+                HttpCookie reqCookies = Request.Cookies["EmployeeMaster"];
+                if (reqCookies == null)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                DashboardViewModel model = new DashboardViewModel();
+                model.EmployeeCode = LoggedUserDetails.EmployeeCode;
+                model.DashboardCounts = db.BanasAdminDashboardCountRtr("Count", model.EmployeeCode).ToList();
+                //model.DashboardList = db.BanasAdminDashboardListRtr("List").ToList();
+                model.DashboardList = db.BanasAdminDashboardListRtr("List",LoggedUserDetails.EmployeeCode).OrderByDescending(item => item.CreateDate).Take(10).ToList();
+                return View(model);
+            }
         }
+
         #region ==> Login / LogOut / ChangePassword
         public ActionResult Login()
         {
@@ -53,6 +62,7 @@ namespace BanasVehicleTrack.Controllers
                     FormsAuthentication.RedirectFromLoginPage(emp.EmployeeCode, true);
 
                     LoginMaster LoginMaster = db.LoginMasters.Where(x => x.Username == emp.EmployeeCode && x.UserPassword == passmatch).FirstOrDefault();
+                    EmployeeMaster employeeMaster = db.EmployeeMasters.Where(u => u.EmployeeCode == LoginMaster.Username).FirstOrDefault();
 
                     BanasRoleMasterRetrieve_Result Role = db.BanasRoleMasterRetrieve("all", "").Where(x => x.RoleId == LoginMaster.RoleId).FirstOrDefault();
                     HttpCookie EmployeeMaster = new HttpCookie("EmployeeMaster");
@@ -81,6 +91,8 @@ namespace BanasVehicleTrack.Controllers
                             EmployeeMaster["CompanyCode"] = LoginMaster.Companycode;
                             EmployeeMaster["RoleName"] = Convert.ToString(Role.RoleName);
                             EmployeeMaster["RoleId"] = Convert.ToString(LoginMaster.RoleId);
+
+                            EmployeeMaster["DepartmentId"] = Convert.ToString(employeeMaster.DepartmentId);
                         }
                         Response.Cookies.Add(EmployeeMaster);
                         return RedirectToAction("AuditorDashboard", "AuditorDepartment");
@@ -96,6 +108,16 @@ namespace BanasVehicleTrack.Controllers
                             EmployeeMaster["CompanyCode"] = LoginMaster.Companycode;
                             EmployeeMaster["RoleName"] = Convert.ToString(Role.RoleName);
                             EmployeeMaster["RoleId"] = Convert.ToString(LoginMaster.RoleId);
+                            //EmployeeMaster["DepartmentId"] = Convert.ToString(employeeMaster.DepartmentId);
+
+                            if(employeeMaster.DepartmentId==null)
+                            {
+                                EmployeeMaster["DepartmentId"] = "admin";
+                            }
+                            else
+                            {
+                                EmployeeMaster["DepartmentId"] = Convert.ToString(employeeMaster.DepartmentId);
+                            }
                         }
                         Response.Cookies.Add(EmployeeMaster);
                         return RedirectToAction("Dashboard", "Home");
@@ -166,7 +188,7 @@ namespace BanasVehicleTrack.Controllers
                         return RedirectToAction("Dashboard", "Home");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //Danger(ex.Message.ToString(), true);
                     return RedirectToAction("Dashboard", "Home");

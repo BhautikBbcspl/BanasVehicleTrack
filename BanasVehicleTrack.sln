@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BanasVehicleTrackViewModel"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BanasVehicleTrackApi", "BanasVehicleTrackApi\BanasVehicleTrackApi.csproj", "{4C1BFA75-B4A1-4121-8595-95A312D76121}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BanasVehicleTrackerWebApi", "BanasVehicleTrackApiNew\BanasVehicleTrackerWebApi.csproj", "{307AA868-B7AE-4A79-95DC-0EE2B53BBA6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4C1BFA75-B4A1-4121-8595-95A312D76121}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C1BFA75-B4A1-4121-8595-95A312D76121}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C1BFA75-B4A1-4121-8595-95A312D76121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{307AA868-B7AE-4A79-95DC-0EE2B53BBA6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{307AA868-B7AE-4A79-95DC-0EE2B53BBA6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{307AA868-B7AE-4A79-95DC-0EE2B53BBA6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{307AA868-B7AE-4A79-95DC-0EE2B53BBA6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

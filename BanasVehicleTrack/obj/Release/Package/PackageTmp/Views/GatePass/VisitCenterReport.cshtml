@@ -1,0 +1,338 @@
+﻿@model BanasVehicleTrackViewModel.GatePass.VisitCenterReportViewModel
+
+@{
+    ViewBag.Title = "Visit Center Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .toggle-button {
+        cursor: pointer;
+        background-color: #fb7667;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+        .toggle-button:hover {
+            background-color: #983a30;
+        }
+    .toggle-button:focus{
+        outline:none !important;
+    }
+</style>
+<div class="page-header">
+    <div class="row align-items-end">
+        <div class="col-lg-12">
+            <div class="float-left">
+                <h3><i class="ti-control-forward ForwardIcon"> </i>Center Visit Report</h3>
+            </div>
+            <div class="float-right">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="page-wrapper">
+    <div class="card">
+        <div class="card-block">
+            <div class="dt-responsive">
+                @using (Html.BeginForm("VisitCenterReport", "GatePass", FormMethod.Post, new { id = "VisitMgmtDashboardForm" }))
+                {
+                    @Html.AntiForgeryToken();
+
+
+                <div class="form-group row">
+
+                    <div class="col-sm-3">
+                        <label class="col-form-label">From Date</label><br />
+                        @Html.TextBoxFor(m => m.VisitDateTime, new Dictionary<string, object>() {
+                                                           {"id","txtVisitDateTime"},
+                                                           {"class","form-control datepicker"},
+                                                              {"autocomplete","off"},
+                                                           })
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-form-label">To Date</label><br />
+                        @Html.TextBoxFor(m => m.CloseDateTime, new Dictionary<string, object>() {
+                                                           {"id","txtCloseDateTime"},
+                                                           {"class","form-control datepicker"},
+                                                              {"autocomplete","off"},
+                                                           })
+                    </div>
+                    @*@if (Model.DepartmentId == "admin")
+                    {*@
+                        <div class="col-sm-3">
+                            <label class="col-form-label">Department</label><br />
+                            @Html.DropDownListFor(x => x.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
+                                 new Dictionary<string, object>() {
+                                     {"id","ddlDepartment"},        
+                                     {"onchange", "javascript:GetCenter(this.value)"},
+                                     { "class","form-control form-select js-example-disabled-results" } })
+                        </div>
+                    @*}
+                    else
+                    {
+                        <div class="col-sm-3">
+                            <label class="col-form-label">Department</label><br />
+                            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
+                                           new Dictionary<string, object>() {
+                                               {"id","ddlDepartmentId"},
+                                               { "class","form-control form-select js-example-disabled-results"},
+                                               {"disabled","disabled" }
+                                   })
+                            @Html.HiddenFor(m => m.DepartmentId)
+                        </div>
+                    }*@
+                    <div class="col-sm-3">
+                        <label class="col-form-label">Center</label><br />
+                        @Html.DropDownListFor(x => x.Center, new SelectList(Model.CenterList, "CenterId", "CenterName"), "Select Center",
+                             new Dictionary<string, object>() {
+                                 {"id","ddlCenter"},
+                                 { "class","form-control form-select js-example-disabled-results" } })
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-form-label">Employee</label><br />
+                        @Html.DropDownListFor(m => m.EmployeeCode, new SelectList(Model.EmployeeMasterList, "EmployeeCode", "EmployeeName"), "Select Employee",
+                                    new Dictionary<string, object>() {
+                                        {"id","ddlEmployeeCode"},
+                                        { "class","form-control form-select js-example-disabled-results"}
+                                        })
+
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="mt-4">
+                            <input type="submit" class="btn btn-round btn-inverse m-2" onclick="changeFormAction('VisitCenterReport')" value="View" />
+
+                            <input type="button" class="btn btn-primary" value="Export Excel" onclick="changeFormAction('ExportVisitCenterReport')" />
+                        </div>
+                    </div>
+                </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="page-wrapper">
+
+    <div class="card">
+        <div class="card-block">
+            <div class="dt-responsive table-responsive">
+                <table id="Mybase-style" class="table table-striped table-bordered nowrap ">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Gatepass ID</th>
+                            <th>Usercode</th>
+                            <th>Username</th>
+                            <th>Department</th>
+                            <th>Center</th>
+                            <th>Visit Date-Time</th>
+                            <th>Close Date-Time</th>
+                            <th>Total km</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.VisitCenterReportList)
+                        {
+                        <tr>
+                            <td>
+                                <button class="toggle-button" data-gatepass-id="@item.GatePassId">View Details</button>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GatePassId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartmentName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CenterName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CloseDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotKm)
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var currentDate = new Date(); // Get the current date        var formattedCurrentDate = currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();        var selectedDate = null;        $('#txtVisitDateTime').Zebra_DatePicker({            format: 'd-m-Y',            direction: false,            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],            onSelect: function (date) {                selectedDate = date;            }        });        $('#txtCloseDateTime').Zebra_DatePicker({            format: 'd-m-Y',            direction: false,            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],            onOpen: function () {                debugger                if (selectedDate != null) {                    var direction = [selectedDate, formattedCurrentDate];                }                $('#txtCloseDateTime').data('Zebra_DatePicker').update({                    direction: direction                });            }        });        $('#Zebra_DatePicker_Icon').on('click', function () {            $('#txtCloseDateTime').Zebra_DatePicker('show');            //$('#fromDate').Zebra_DatePicker('show');        });
+
+        var table = $('#Mybase-style').DataTable({
+
+            "bJQueryUI": true,
+            "columnDefs": [{ "orderable": false, "targets": 0 }],
+            "aaSorting": [[0]]
+        });
+         
+        function format(data) {
+            var additionalRows = ''
+            var rowDataList = data.AuditorOperateVisitList;
+
+            // Loop through the list of objects in 'data'
+            rowDataList.forEach(function (rowData) {
+                additionalRows += '<tr>';
+                additionalRows += '<td>' + rowData.GatePassId + '</td>';
+                additionalRows += '<td>' + rowData.centername + '</td>';
+                additionalRows += '<td>' + rowData.LocationName + '</td>';
+                additionalRows += '<td>' + rowData.UserGivenLocation + '</td>';
+                additionalRows += '<td><a href="https://www.google.com/maps?q=' + rowData.Latitude + ',' + rowData.Longitude + '" target="_blank"><img style="width: 37px;" src="../Content/AdminTemplateAssets/images/loca_arrow.png" /></a></td>';
+                additionalRows += '<td>' + rowData.Odometer + '</td>';
+                additionalRows += '<td><img src="~/' + rowData.OdometerImage + '"></td>';
+                additionalRows += '<td>' + rowData.cdate + '</td>';
+                additionalRows += '<td>' + rowData.CreateUser + '</td>';
+                additionalRows += '</tr>';
+            });
+            var tableHtml = '<table class="table table-hover table-bordered nowrap">' +
+                '<thead>' +
+                '<tr>' +
+                '<th>Gatepass ID</th>' +
+                '<th>Centername</th>' +
+                '<th>Google Location</th>' +
+                '<th>User Location</th>' +
+                '<th>Location Map</th>' +
+                '<th>Odometer</th>' +
+                '<th>OdometerImage</th>' +
+                '<th>CreateDate</th>' +
+                '<th>CreateUser</th>' +
+                '</tr>' +
+                '</thead><tbody>' +
+                additionalRows +
+                '</tbody></table>';
+
+            return tableHtml;
+        }
+        $('#Mybase-style tbody').on('click', '.toggle-button', function () {
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+            var gatepassId = $(this).data("gatepass-id");
+
+            var url = "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" + "/GatePass/SelectGatepassIdwiseDetailsJson";
+            $.ajax({
+                url: url,
+                data: { gatepassId: gatepassId },
+                cache: false,
+                type: "POST",
+                datatype: "json",
+                traditional: true,
+
+                success: function (response) {
+                    if (row.child.isShown()) {
+                        row.child.hide();
+                        tr.removeClass('shown');
+                        tr.removeClass('bg-info'); // Remove the 'bg-info' class when collapse is closed
+                    } else {
+                        // Call the format function and get the HTML content
+                        var tableContent = format(response);
+
+                        row.child(tableContent).show();
+                        tr.addClass('shown');
+                        tr.addClass('bg-info'); // Add the 'bg-info' class when collapse is opened
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+        function GetCenter(_DepartmentId) {
+        $("#ddlCenter option").remove();
+        if (_DepartmentId == "") {
+            _DepartmentId = 0;
+        }
+        if (_DepartmentId != 0 ) {
+            var url = "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" + "/GatePass/SelectDepartmentWiseUser_CenterJson";
+
+            $.ajax({
+                url: url,
+                data: { ddlDepartmentId: _DepartmentId },
+                cache: false,
+                type: "POST",
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    var page = "<select id='ddlCenter'>";
+                    page = page + '<option value="">Select Center</option>';
+                    for (var i = 0; i < data.CenterList.length; i++) {
+                        page = page + '<option value=' + data.CenterList[i].CenterId + '>' + data.CenterList[i].CenterName + '</option>';
+                    }
+                    page = page + '</select>';
+
+                    var page2 = "<select id='ddlEmployeeCode'>";
+                    page2 = page2 + '<option value="">Select Employee</option>';
+                    for (var i = 0; i < data.EmployeeList.length; i++) {
+                        page2 = page2 + '<option value=' + data.EmployeeList[i].EmployeeCode + '>' + data.EmployeeList[i].EmployeeName + '</option>';
+                    }
+                    page2 = page2 + '</select>';
+
+                    $('#ddlCenter').html(page);
+                    $('#ddlEmployeeCode').html(page2);
+                },
+                error: function (reponse) {
+                    var page = "<select id='ddlCenter'>";
+                    page = page + '<option value="">Select Center</option>';
+                    page = page + '</select>';
+
+                    var page2 = "<select id='ddlEmployeeCode'>";
+                    page2 = page2 + '<option value="">Select Employee</option>';
+                    page2 = page2 + '</select>';
+
+                    $('#ddlCenter').html(page);
+                    $('#ddlEmployeeCode').html(page2);
+                }
+            });
+        }
+        else {
+            var page = "<select id='ddlCenter'>";
+            page = page + '<option value="">Select Center</option>';
+            page = page + '</select>';
+
+            var page2 = "<select id='ddlEmployeeCode'>";
+            page2 = page2 + '<option value="">Select Employee</option>';
+            page2 = page2 + '</select>';
+
+            $('#ddlCenter').html(page);
+            $('#ddlEmployeeCode').html(page2);
+        }
+    }
+    function changeFormAction(action) {
+        debugger
+        var form = document.getElementById("VisitMgmtDashboardForm");
+        if (action == "ExportVisitCenterReport") {
+            form.action = action;
+            form.submit();
+        }
+        else {
+            form.action = action;
+            form.submit();
+        }
+    }
+</script>

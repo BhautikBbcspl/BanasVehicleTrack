@@ -71,97 +71,6 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasDepartmentMasterInsUpd", departmentIdParameter, departmentCodeParameter, departmentnameParameter, companyCodeParameter, activestatusParameter, createdateParameter, updatedateParameter, createuserParameter, actionParameter);
         }
     
-        public virtual ObjectResult<BanasDepartmentMasterRetrieve_Result> BanasDepartmentMasterRetrieve(string action, string companycode)
-        {
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            var companycodeParameter = companycode != null ?
-                new ObjectParameter("companycode", companycode) :
-                new ObjectParameter("companycode", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasDepartmentMasterRetrieve_Result>("BanasDepartmentMasterRetrieve", actionParameter, companycodeParameter);
-        }
-    
-        public virtual ObjectResult<string> BanasEmployeeMasterInsUpd(string employeeId, string employeeCode, string employeeName, string contact, string gender, string password, string roleId, string departmentId, string isactive, string companyCode, string createDate, string updatedate, string createUser, string updateUser, string action)
-        {
-            var employeeIdParameter = employeeId != null ?
-                new ObjectParameter("EmployeeId", employeeId) :
-                new ObjectParameter("EmployeeId", typeof(string));
-    
-            var employeeCodeParameter = employeeCode != null ?
-                new ObjectParameter("EmployeeCode", employeeCode) :
-                new ObjectParameter("EmployeeCode", typeof(string));
-    
-            var employeeNameParameter = employeeName != null ?
-                new ObjectParameter("EmployeeName", employeeName) :
-                new ObjectParameter("EmployeeName", typeof(string));
-    
-            var contactParameter = contact != null ?
-                new ObjectParameter("Contact", contact) :
-                new ObjectParameter("Contact", typeof(string));
-    
-            var genderParameter = gender != null ?
-                new ObjectParameter("Gender", gender) :
-                new ObjectParameter("Gender", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("Password", password) :
-                new ObjectParameter("Password", typeof(string));
-    
-            var roleIdParameter = roleId != null ?
-                new ObjectParameter("RoleId", roleId) :
-                new ObjectParameter("RoleId", typeof(string));
-    
-            var departmentIdParameter = departmentId != null ?
-                new ObjectParameter("DepartmentId", departmentId) :
-                new ObjectParameter("DepartmentId", typeof(string));
-    
-            var isactiveParameter = isactive != null ?
-                new ObjectParameter("Isactive", isactive) :
-                new ObjectParameter("Isactive", typeof(string));
-    
-            var companyCodeParameter = companyCode != null ?
-                new ObjectParameter("CompanyCode", companyCode) :
-                new ObjectParameter("CompanyCode", typeof(string));
-    
-            var createDateParameter = createDate != null ?
-                new ObjectParameter("CreateDate", createDate) :
-                new ObjectParameter("CreateDate", typeof(string));
-    
-            var updatedateParameter = updatedate != null ?
-                new ObjectParameter("Updatedate", updatedate) :
-                new ObjectParameter("Updatedate", typeof(string));
-    
-            var createUserParameter = createUser != null ?
-                new ObjectParameter("CreateUser", createUser) :
-                new ObjectParameter("CreateUser", typeof(string));
-    
-            var updateUserParameter = updateUser != null ?
-                new ObjectParameter("UpdateUser", updateUser) :
-                new ObjectParameter("UpdateUser", typeof(string));
-    
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasEmployeeMasterInsUpd", employeeIdParameter, employeeCodeParameter, employeeNameParameter, contactParameter, genderParameter, passwordParameter, roleIdParameter, departmentIdParameter, isactiveParameter, companyCodeParameter, createDateParameter, updatedateParameter, createUserParameter, updateUserParameter, actionParameter);
-        }
-    
-        public virtual ObjectResult<BanasEmployeeMasterRtr_Result> BanasEmployeeMasterRtr(string companyCode, string action)
-        {
-            var companyCodeParameter = companyCode != null ?
-                new ObjectParameter("CompanyCode", companyCode) :
-                new ObjectParameter("CompanyCode", typeof(string));
-    
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasEmployeeMasterRtr_Result>("BanasEmployeeMasterRtr", companyCodeParameter, actionParameter);
-        }
-    
         public virtual ObjectResult<Nullable<decimal>> BanasFetchLastCosingOdometer(string vehicleid)
         {
             var vehicleidParameter = vehicleid != null ?
@@ -421,150 +330,6 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasRoleMasterRetrieve_Result>("BanasRoleMasterRetrieve", actionParameter, companycodeParameter);
         }
     
-        public virtual ObjectResult<BanasSecurityVehicleGatepassRetrieve_Result> BanasSecurityVehicleGatepassRetrieve(string action, string gatepassId)
-        {
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            var gatepassIdParameter = gatepassId != null ?
-                new ObjectParameter("GatepassId", gatepassId) :
-                new ObjectParameter("GatepassId", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasSecurityVehicleGatepassRetrieve_Result>("BanasSecurityVehicleGatepassRetrieve", actionParameter, gatepassIdParameter);
-        }
-    
-        public virtual ObjectResult<BanasVehicleGatepassRetrieve_Result> BanasVehicleGatepassRetrieve(string action, string from, string to, string department, string vehicle, string gatepassId)
-        {
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            var fromParameter = from != null ?
-                new ObjectParameter("from", from) :
-                new ObjectParameter("from", typeof(string));
-    
-            var toParameter = to != null ?
-                new ObjectParameter("to", to) :
-                new ObjectParameter("to", typeof(string));
-    
-            var departmentParameter = department != null ?
-                new ObjectParameter("department", department) :
-                new ObjectParameter("department", typeof(string));
-    
-            var vehicleParameter = vehicle != null ?
-                new ObjectParameter("vehicle", vehicle) :
-                new ObjectParameter("vehicle", typeof(string));
-    
-            var gatepassIdParameter = gatepassId != null ?
-                new ObjectParameter("GatepassId", gatepassId) :
-                new ObjectParameter("GatepassId", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasVehicleGatepassRetrieve_Result>("BanasVehicleGatepassRetrieve", actionParameter, fromParameter, toParameter, departmentParameter, vehicleParameter, gatepassIdParameter);
-        }
-    
-        public virtual ObjectResult<string> BanasVehicleMasterInsUpd(string vehicleId, string vehicleCode, string vehicleRegNumber, string vehicleRegDate, string vehicleType, string vehicleMake, string model, string status, string ratePerKm, string rateEffectiveDate, string insuranceCommencementDate, string insuranceExpiryDate, string contractStartDate, string contractEndDate, string companyCode, string isActive, string createDate, string updatedate, string createUser, string updateUser, string action)
-        {
-            var vehicleIdParameter = vehicleId != null ?
-                new ObjectParameter("VehicleId", vehicleId) :
-                new ObjectParameter("VehicleId", typeof(string));
-    
-            var vehicleCodeParameter = vehicleCode != null ?
-                new ObjectParameter("VehicleCode", vehicleCode) :
-                new ObjectParameter("VehicleCode", typeof(string));
-    
-            var vehicleRegNumberParameter = vehicleRegNumber != null ?
-                new ObjectParameter("VehicleRegNumber", vehicleRegNumber) :
-                new ObjectParameter("VehicleRegNumber", typeof(string));
-    
-            var vehicleRegDateParameter = vehicleRegDate != null ?
-                new ObjectParameter("VehicleRegDate", vehicleRegDate) :
-                new ObjectParameter("VehicleRegDate", typeof(string));
-    
-            var vehicleTypeParameter = vehicleType != null ?
-                new ObjectParameter("VehicleType", vehicleType) :
-                new ObjectParameter("VehicleType", typeof(string));
-    
-            var vehicleMakeParameter = vehicleMake != null ?
-                new ObjectParameter("VehicleMake", vehicleMake) :
-                new ObjectParameter("VehicleMake", typeof(string));
-    
-            var modelParameter = model != null ?
-                new ObjectParameter("Model", model) :
-                new ObjectParameter("Model", typeof(string));
-    
-            var statusParameter = status != null ?
-                new ObjectParameter("Status", status) :
-                new ObjectParameter("Status", typeof(string));
-    
-            var ratePerKmParameter = ratePerKm != null ?
-                new ObjectParameter("RatePerKm", ratePerKm) :
-                new ObjectParameter("RatePerKm", typeof(string));
-    
-            var rateEffectiveDateParameter = rateEffectiveDate != null ?
-                new ObjectParameter("RateEffectiveDate", rateEffectiveDate) :
-                new ObjectParameter("RateEffectiveDate", typeof(string));
-    
-            var insuranceCommencementDateParameter = insuranceCommencementDate != null ?
-                new ObjectParameter("InsuranceCommencementDate", insuranceCommencementDate) :
-                new ObjectParameter("InsuranceCommencementDate", typeof(string));
-    
-            var insuranceExpiryDateParameter = insuranceExpiryDate != null ?
-                new ObjectParameter("InsuranceExpiryDate", insuranceExpiryDate) :
-                new ObjectParameter("InsuranceExpiryDate", typeof(string));
-    
-            var contractStartDateParameter = contractStartDate != null ?
-                new ObjectParameter("ContractStartDate", contractStartDate) :
-                new ObjectParameter("ContractStartDate", typeof(string));
-    
-            var contractEndDateParameter = contractEndDate != null ?
-                new ObjectParameter("ContractEndDate", contractEndDate) :
-                new ObjectParameter("ContractEndDate", typeof(string));
-    
-            var companyCodeParameter = companyCode != null ?
-                new ObjectParameter("CompanyCode", companyCode) :
-                new ObjectParameter("CompanyCode", typeof(string));
-    
-            var isActiveParameter = isActive != null ?
-                new ObjectParameter("IsActive", isActive) :
-                new ObjectParameter("IsActive", typeof(string));
-    
-            var createDateParameter = createDate != null ?
-                new ObjectParameter("CreateDate", createDate) :
-                new ObjectParameter("CreateDate", typeof(string));
-    
-            var updatedateParameter = updatedate != null ?
-                new ObjectParameter("Updatedate", updatedate) :
-                new ObjectParameter("Updatedate", typeof(string));
-    
-            var createUserParameter = createUser != null ?
-                new ObjectParameter("CreateUser", createUser) :
-                new ObjectParameter("CreateUser", typeof(string));
-    
-            var updateUserParameter = updateUser != null ?
-                new ObjectParameter("UpdateUser", updateUser) :
-                new ObjectParameter("UpdateUser", typeof(string));
-    
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasVehicleMasterInsUpd", vehicleIdParameter, vehicleCodeParameter, vehicleRegNumberParameter, vehicleRegDateParameter, vehicleTypeParameter, vehicleMakeParameter, modelParameter, statusParameter, ratePerKmParameter, rateEffectiveDateParameter, insuranceCommencementDateParameter, insuranceExpiryDateParameter, contractStartDateParameter, contractEndDateParameter, companyCodeParameter, isActiveParameter, createDateParameter, updatedateParameter, createUserParameter, updateUserParameter, actionParameter);
-        }
-    
-        public virtual ObjectResult<BanasVehicleMasterRtr_Result> BanasVehicleMasterRtr(string action, string companyCode)
-        {
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            var companyCodeParameter = companyCode != null ?
-                new ObjectParameter("CompanyCode", companyCode) :
-                new ObjectParameter("CompanyCode", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasVehicleMasterRtr_Result>("BanasVehicleMasterRtr", actionParameter, companyCodeParameter);
-        }
-    
         public virtual ObjectResult<string> BanasVisitPurposeMasterInsUpd(string visitId, string visitPurpose, string isActive, string companyCode, string createDate, string updateDate, string createUser, string updateUser, string action)
         {
             var visitIdParameter = visitId != null ?
@@ -681,184 +446,6 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasSecurityMasterRetrieve_Result>("BanasSecurityMasterRetrieve", actionParameter, companycodeParameter);
         }
     
-        public virtual ObjectResult<string> BanasVehicleGatepassInsUpd(string gatePassId, string departmentId, string userCode, string otherUser1, string otherUser2, string otherUser3, string informationMode, string visitDateTime, string visitPurpose, string remarks, string vehicleDepartment, string driver, string vehicleId, string startOdometer, string closeOdometer, string closeDateTime, string closeRemark, string netkm, string createUser, string createDate, string closeUser, string closeDate, string editUser, string editDate, string difference, string action, Nullable<System.DateTime> departureDateTime, Nullable<decimal> startKm, string departureVerifyStatus, string departureSecurityId, string departureSecurityRemark, Nullable<System.DateTime> arrivalDateTime, Nullable<decimal> endKm, string arrivalVerifyStatus, string arrivalSecurityId, string arrivalSecurityRemark)
-        {
-            var gatePassIdParameter = gatePassId != null ?
-                new ObjectParameter("GatePassId", gatePassId) :
-                new ObjectParameter("GatePassId", typeof(string));
-    
-            var departmentIdParameter = departmentId != null ?
-                new ObjectParameter("DepartmentId", departmentId) :
-                new ObjectParameter("DepartmentId", typeof(string));
-    
-            var userCodeParameter = userCode != null ?
-                new ObjectParameter("UserCode", userCode) :
-                new ObjectParameter("UserCode", typeof(string));
-    
-            var otherUser1Parameter = otherUser1 != null ?
-                new ObjectParameter("OtherUser1", otherUser1) :
-                new ObjectParameter("OtherUser1", typeof(string));
-    
-            var otherUser2Parameter = otherUser2 != null ?
-                new ObjectParameter("OtherUser2", otherUser2) :
-                new ObjectParameter("OtherUser2", typeof(string));
-    
-            var otherUser3Parameter = otherUser3 != null ?
-                new ObjectParameter("OtherUser3", otherUser3) :
-                new ObjectParameter("OtherUser3", typeof(string));
-    
-            var informationModeParameter = informationMode != null ?
-                new ObjectParameter("InformationMode", informationMode) :
-                new ObjectParameter("InformationMode", typeof(string));
-    
-            var visitDateTimeParameter = visitDateTime != null ?
-                new ObjectParameter("VisitDateTime", visitDateTime) :
-                new ObjectParameter("VisitDateTime", typeof(string));
-    
-            var visitPurposeParameter = visitPurpose != null ?
-                new ObjectParameter("VisitPurpose", visitPurpose) :
-                new ObjectParameter("VisitPurpose", typeof(string));
-    
-            var remarksParameter = remarks != null ?
-                new ObjectParameter("Remarks", remarks) :
-                new ObjectParameter("Remarks", typeof(string));
-    
-            var vehicleDepartmentParameter = vehicleDepartment != null ?
-                new ObjectParameter("VehicleDepartment", vehicleDepartment) :
-                new ObjectParameter("VehicleDepartment", typeof(string));
-    
-            var driverParameter = driver != null ?
-                new ObjectParameter("Driver", driver) :
-                new ObjectParameter("Driver", typeof(string));
-    
-            var vehicleIdParameter = vehicleId != null ?
-                new ObjectParameter("VehicleId", vehicleId) :
-                new ObjectParameter("VehicleId", typeof(string));
-    
-            var startOdometerParameter = startOdometer != null ?
-                new ObjectParameter("StartOdometer", startOdometer) :
-                new ObjectParameter("StartOdometer", typeof(string));
-    
-            var closeOdometerParameter = closeOdometer != null ?
-                new ObjectParameter("CloseOdometer", closeOdometer) :
-                new ObjectParameter("CloseOdometer", typeof(string));
-    
-            var closeDateTimeParameter = closeDateTime != null ?
-                new ObjectParameter("CloseDateTime", closeDateTime) :
-                new ObjectParameter("CloseDateTime", typeof(string));
-    
-            var closeRemarkParameter = closeRemark != null ?
-                new ObjectParameter("CloseRemark", closeRemark) :
-                new ObjectParameter("CloseRemark", typeof(string));
-    
-            var netkmParameter = netkm != null ?
-                new ObjectParameter("Netkm", netkm) :
-                new ObjectParameter("Netkm", typeof(string));
-    
-            var createUserParameter = createUser != null ?
-                new ObjectParameter("CreateUser", createUser) :
-                new ObjectParameter("CreateUser", typeof(string));
-    
-            var createDateParameter = createDate != null ?
-                new ObjectParameter("CreateDate", createDate) :
-                new ObjectParameter("CreateDate", typeof(string));
-    
-            var closeUserParameter = closeUser != null ?
-                new ObjectParameter("CloseUser", closeUser) :
-                new ObjectParameter("CloseUser", typeof(string));
-    
-            var closeDateParameter = closeDate != null ?
-                new ObjectParameter("CloseDate", closeDate) :
-                new ObjectParameter("CloseDate", typeof(string));
-    
-            var editUserParameter = editUser != null ?
-                new ObjectParameter("EditUser", editUser) :
-                new ObjectParameter("EditUser", typeof(string));
-    
-            var editDateParameter = editDate != null ?
-                new ObjectParameter("EditDate", editDate) :
-                new ObjectParameter("EditDate", typeof(string));
-    
-            var differenceParameter = difference != null ?
-                new ObjectParameter("Difference", difference) :
-                new ObjectParameter("Difference", typeof(string));
-    
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            var departureDateTimeParameter = departureDateTime.HasValue ?
-                new ObjectParameter("DepartureDateTime", departureDateTime) :
-                new ObjectParameter("DepartureDateTime", typeof(System.DateTime));
-    
-            var startKmParameter = startKm.HasValue ?
-                new ObjectParameter("StartKm", startKm) :
-                new ObjectParameter("StartKm", typeof(decimal));
-    
-            var departureVerifyStatusParameter = departureVerifyStatus != null ?
-                new ObjectParameter("DepartureVerifyStatus", departureVerifyStatus) :
-                new ObjectParameter("DepartureVerifyStatus", typeof(string));
-    
-            var departureSecurityIdParameter = departureSecurityId != null ?
-                new ObjectParameter("DepartureSecurityId", departureSecurityId) :
-                new ObjectParameter("DepartureSecurityId", typeof(string));
-    
-            var departureSecurityRemarkParameter = departureSecurityRemark != null ?
-                new ObjectParameter("DepartureSecurityRemark", departureSecurityRemark) :
-                new ObjectParameter("DepartureSecurityRemark", typeof(string));
-    
-            var arrivalDateTimeParameter = arrivalDateTime.HasValue ?
-                new ObjectParameter("ArrivalDateTime", arrivalDateTime) :
-                new ObjectParameter("ArrivalDateTime", typeof(System.DateTime));
-    
-            var endKmParameter = endKm.HasValue ?
-                new ObjectParameter("EndKm", endKm) :
-                new ObjectParameter("EndKm", typeof(decimal));
-    
-            var arrivalVerifyStatusParameter = arrivalVerifyStatus != null ?
-                new ObjectParameter("ArrivalVerifyStatus", arrivalVerifyStatus) :
-                new ObjectParameter("ArrivalVerifyStatus", typeof(string));
-    
-            var arrivalSecurityIdParameter = arrivalSecurityId != null ?
-                new ObjectParameter("ArrivalSecurityId", arrivalSecurityId) :
-                new ObjectParameter("ArrivalSecurityId", typeof(string));
-    
-            var arrivalSecurityRemarkParameter = arrivalSecurityRemark != null ?
-                new ObjectParameter("ArrivalSecurityRemark", arrivalSecurityRemark) :
-                new ObjectParameter("ArrivalSecurityRemark", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasVehicleGatepassInsUpd", gatePassIdParameter, departmentIdParameter, userCodeParameter, otherUser1Parameter, otherUser2Parameter, otherUser3Parameter, informationModeParameter, visitDateTimeParameter, visitPurposeParameter, remarksParameter, vehicleDepartmentParameter, driverParameter, vehicleIdParameter, startOdometerParameter, closeOdometerParameter, closeDateTimeParameter, closeRemarkParameter, netkmParameter, createUserParameter, createDateParameter, closeUserParameter, closeDateParameter, editUserParameter, editDateParameter, differenceParameter, actionParameter, departureDateTimeParameter, startKmParameter, departureVerifyStatusParameter, departureSecurityIdParameter, departureSecurityRemarkParameter, arrivalDateTimeParameter, endKmParameter, arrivalVerifyStatusParameter, arrivalSecurityIdParameter, arrivalSecurityRemarkParameter);
-        }
-    
-        public virtual ObjectResult<BanasVisitManagementRtr_Result> BanasVisitManagementRtr(string action, string from, string to, string department, string vehicle, string gatepassId)
-        {
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            var fromParameter = from != null ?
-                new ObjectParameter("from", from) :
-                new ObjectParameter("from", typeof(string));
-    
-            var toParameter = to != null ?
-                new ObjectParameter("to", to) :
-                new ObjectParameter("to", typeof(string));
-    
-            var departmentParameter = department != null ?
-                new ObjectParameter("department", department) :
-                new ObjectParameter("department", typeof(string));
-    
-            var vehicleParameter = vehicle != null ?
-                new ObjectParameter("vehicle", vehicle) :
-                new ObjectParameter("vehicle", typeof(string));
-    
-            var gatepassIdParameter = gatepassId != null ?
-                new ObjectParameter("GatepassId", gatepassId) :
-                new ObjectParameter("GatepassId", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasVisitManagementRtr_Result>("BanasVisitManagementRtr", actionParameter, fromParameter, toParameter, departmentParameter, vehicleParameter, gatepassIdParameter);
-        }
-    
         public virtual ObjectResult<string> BanasAuditorMasterInsUpd(string auditorId, string auditorName, string auditorSignature, string companyCode, string activestatus, string createdate, string updatedate, string createuser, string action, string auditorCode, string password)
         {
             var auditorIdParameter = auditorId != null ?
@@ -963,25 +550,132 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasChangePassword", employeeCodeParameter, employeeOldpasswordParameter, employeeNewpasswordParameter, companyCodeParameter, createDateParameter, createuserParameter);
         }
     
-        public virtual ObjectResult<BanasAdminDashboardCountRtr_Result> BanasAdminDashboardCountRtr(string action)
+        public virtual ObjectResult<string> BanasAuditorFinalApproveUpd(string gatePassId, string finalApprDifference, string type, string finalApproverCode, string updateDate, string updateUser, string action)
+        {
+            var gatePassIdParameter = gatePassId != null ?
+                new ObjectParameter("GatePassId", gatePassId) :
+                new ObjectParameter("GatePassId", typeof(string));
+    
+            var finalApprDifferenceParameter = finalApprDifference != null ?
+                new ObjectParameter("FinalApprDifference", finalApprDifference) :
+                new ObjectParameter("FinalApprDifference", typeof(string));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("Type", type) :
+                new ObjectParameter("Type", typeof(string));
+    
+            var finalApproverCodeParameter = finalApproverCode != null ?
+                new ObjectParameter("FinalApproverCode", finalApproverCode) :
+                new ObjectParameter("FinalApproverCode", typeof(string));
+    
+            var updateDateParameter = updateDate != null ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(string));
+    
+            var updateUserParameter = updateUser != null ?
+                new ObjectParameter("UpdateUser", updateUser) :
+                new ObjectParameter("UpdateUser", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasAuditorFinalApproveUpd", gatePassIdParameter, finalApprDifferenceParameter, typeParameter, finalApproverCodeParameter, updateDateParameter, updateUserParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<BanasContractorPaymentRtr_Result> BanasContractorPaymentRtr(string action)
         {
             var actionParameter = action != null ?
                 new ObjectParameter("action", action) :
                 new ObjectParameter("action", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAdminDashboardCountRtr_Result>("BanasAdminDashboardCountRtr", actionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasContractorPaymentRtr_Result>("BanasContractorPaymentRtr", actionParameter);
         }
     
-        public virtual ObjectResult<BanasAdminDashboardListRtr_Result> BanasAdminDashboardListRtr(string action)
+        public virtual ObjectResult<BanasContractorAmountRpt_Result> BanasContractorAmountRpt(string contractorId, string startDate, string endDate)
         {
+            var contractorIdParameter = contractorId != null ?
+                new ObjectParameter("ContractorId", contractorId) :
+                new ObjectParameter("ContractorId", typeof(string));
+    
+            var startDateParameter = startDate != null ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(string));
+    
+            var endDateParameter = endDate != null ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasContractorAmountRpt_Result>("BanasContractorAmountRpt", contractorIdParameter, startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasContractorMasterInsUpd(string contractorId, string contractorCompanyName, string contractorCode, string contractorName, string contactno, string companyCode, string activestatus, string createdate, string updatedate, string createuser, string action)
+        {
+            var contractorIdParameter = contractorId != null ?
+                new ObjectParameter("ContractorId", contractorId) :
+                new ObjectParameter("ContractorId", typeof(string));
+    
+            var contractorCompanyNameParameter = contractorCompanyName != null ?
+                new ObjectParameter("ContractorCompanyName", contractorCompanyName) :
+                new ObjectParameter("ContractorCompanyName", typeof(string));
+    
+            var contractorCodeParameter = contractorCode != null ?
+                new ObjectParameter("ContractorCode", contractorCode) :
+                new ObjectParameter("ContractorCode", typeof(string));
+    
+            var contractorNameParameter = contractorName != null ?
+                new ObjectParameter("ContractorName", contractorName) :
+                new ObjectParameter("ContractorName", typeof(string));
+    
+            var contactnoParameter = contactno != null ?
+                new ObjectParameter("Contactno", contactno) :
+                new ObjectParameter("Contactno", typeof(string));
+    
+            var companyCodeParameter = companyCode != null ?
+                new ObjectParameter("CompanyCode", companyCode) :
+                new ObjectParameter("CompanyCode", typeof(string));
+    
+            var activestatusParameter = activestatus != null ?
+                new ObjectParameter("activestatus", activestatus) :
+                new ObjectParameter("activestatus", typeof(string));
+    
+            var createdateParameter = createdate != null ?
+                new ObjectParameter("createdate", createdate) :
+                new ObjectParameter("createdate", typeof(string));
+    
+            var updatedateParameter = updatedate != null ?
+                new ObjectParameter("updatedate", updatedate) :
+                new ObjectParameter("updatedate", typeof(string));
+    
+            var createuserParameter = createuser != null ?
+                new ObjectParameter("createuser", createuser) :
+                new ObjectParameter("createuser", typeof(string));
+    
             var actionParameter = action != null ?
                 new ObjectParameter("action", action) :
                 new ObjectParameter("action", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAdminDashboardListRtr_Result>("BanasAdminDashboardListRtr", actionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasContractorMasterInsUpd", contractorIdParameter, contractorCompanyNameParameter, contractorCodeParameter, contractorNameParameter, contactnoParameter, companyCodeParameter, activestatusParameter, createdateParameter, updatedateParameter, createuserParameter, actionParameter);
         }
     
-        public virtual ObjectResult<string> BanasModuleMasterInsUpd(string moduleId, string moduleName, string modulePriority, string faIcon, string isactive, string createDate, string updatedate, string createUser, string updateUser, string action)
+        public virtual ObjectResult<BanasContractorTotalAmountMonthwiseRtr_Result> BanasContractorTotalAmountMonthwiseRtr(string month, string year, string action)
+        {
+            var monthParameter = month != null ?
+                new ObjectParameter("month", month) :
+                new ObjectParameter("month", typeof(string));
+    
+            var yearParameter = year != null ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasContractorTotalAmountMonthwiseRtr_Result>("BanasContractorTotalAmountMonthwiseRtr", monthParameter, yearParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasModuleMasterInsUpd(string moduleId, string moduleName, string selfPage, string modulePriority, string faIcon, string isactive, string createDate, string updatedate, string createUser, string updateUser, string action)
         {
             var moduleIdParameter = moduleId != null ?
                 new ObjectParameter("ModuleId", moduleId) :
@@ -990,6 +684,10 @@ namespace BanasVehicleTrackDbClasses
             var moduleNameParameter = moduleName != null ?
                 new ObjectParameter("ModuleName", moduleName) :
                 new ObjectParameter("ModuleName", typeof(string));
+    
+            var selfPageParameter = selfPage != null ?
+                new ObjectParameter("SelfPage", selfPage) :
+                new ObjectParameter("SelfPage", typeof(string));
     
             var modulePriorityParameter = modulePriority != null ?
                 new ObjectParameter("ModulePriority", modulePriority) :
@@ -1023,7 +721,7 @@ namespace BanasVehicleTrackDbClasses
                 new ObjectParameter("action", action) :
                 new ObjectParameter("action", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasModuleMasterInsUpd", moduleIdParameter, moduleNameParameter, modulePriorityParameter, faIconParameter, isactiveParameter, createDateParameter, updatedateParameter, createUserParameter, updateUserParameter, actionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasModuleMasterInsUpd", moduleIdParameter, moduleNameParameter, selfPageParameter, modulePriorityParameter, faIconParameter, isactiveParameter, createDateParameter, updatedateParameter, createUserParameter, updateUserParameter, actionParameter);
         }
     
         public virtual ObjectResult<BanasModuleMasterRtr_Result> BanasModuleMasterRtr(string action, string moduleid)
@@ -1048,19 +746,6 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasMenuRtr_Result>("BanasMenuRtr", roleidParameter);
         }
     
-        public virtual ObjectResult<BanasLoginRtr_Result> BanasLoginRtr(string employeecode, string employeePassword)
-        {
-            var employeecodeParameter = employeecode != null ?
-                new ObjectParameter("Employeecode", employeecode) :
-                new ObjectParameter("Employeecode", typeof(string));
-    
-            var employeePasswordParameter = employeePassword != null ?
-                new ObjectParameter("EmployeePassword", employeePassword) :
-                new ObjectParameter("EmployeePassword", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasLoginRtr_Result>("BanasLoginRtr", employeecodeParameter, employeePasswordParameter);
-        }
-    
         public virtual ObjectResult<BanasAuditorVisitGatepassRetrieve_Result> BanasAuditorVisitGatepassRetrieve(string action, string auditorCode, string gatePassId)
         {
             var actionParameter = action != null ?
@@ -1078,44 +763,174 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorVisitGatepassRetrieve_Result>("BanasAuditorVisitGatepassRetrieve", actionParameter, auditorCodeParameter, gatePassIdParameter);
         }
     
-        public virtual ObjectResult<string> BanasAuditorOperateVisitMasterIns(string gatePassId, string latitude, string longitude, string odometer, string odometerImage, string createDate, string createUser, string action)
+        public virtual ObjectResult<BanasAuditorVisitGatepassRetrieve_NEW_Result> BanasAuditorVisitGatepassRetrieve_NEW(string action, string userCode, string gatePassId)
         {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var userCodeParameter = userCode != null ?
+                new ObjectParameter("UserCode", userCode) :
+                new ObjectParameter("UserCode", typeof(string));
+    
             var gatePassIdParameter = gatePassId != null ?
                 new ObjectParameter("GatePassId", gatePassId) :
                 new ObjectParameter("GatePassId", typeof(string));
     
-            var latitudeParameter = latitude != null ?
-                new ObjectParameter("Latitude", latitude) :
-                new ObjectParameter("Latitude", typeof(string));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorVisitGatepassRetrieve_NEW_Result>("BanasAuditorVisitGatepassRetrieve_NEW", actionParameter, userCodeParameter, gatePassIdParameter);
+        }
     
-            var longitudeParameter = longitude != null ?
-                new ObjectParameter("Longitude", longitude) :
-                new ObjectParameter("Longitude", typeof(string));
+        public virtual ObjectResult<BanasLoginRtr_Result> BanasLoginRtr(string employeecode, string employeePassword)
+        {
+            var employeecodeParameter = employeecode != null ?
+                new ObjectParameter("Employeecode", employeecode) :
+                new ObjectParameter("Employeecode", typeof(string));
     
-            var odometerParameter = odometer != null ?
-                new ObjectParameter("Odometer", odometer) :
-                new ObjectParameter("Odometer", typeof(string));
+            var employeePasswordParameter = employeePassword != null ?
+                new ObjectParameter("EmployeePassword", employeePassword) :
+                new ObjectParameter("EmployeePassword", typeof(string));
     
-            var odometerImageParameter = odometerImage != null ?
-                new ObjectParameter("OdometerImage", odometerImage) :
-                new ObjectParameter("OdometerImage", typeof(string));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasLoginRtr_Result>("BanasLoginRtr", employeecodeParameter, employeePasswordParameter);
+        }
     
-            var createDateParameter = createDate != null ?
-                new ObjectParameter("CreateDate", createDate) :
-                new ObjectParameter("CreateDate", typeof(string));
+        public virtual ObjectResult<string> BanasLoginRtr_NEW(string employeecode)
+        {
+            var employeecodeParameter = employeecode != null ?
+                new ObjectParameter("Employeecode", employeecode) :
+                new ObjectParameter("Employeecode", typeof(string));
     
-            var createUserParameter = createUser != null ?
-                new ObjectParameter("CreateUser", createUser) :
-                new ObjectParameter("CreateUser", typeof(string));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasLoginRtr_NEW", employeecodeParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasExceptionLoggerIns(string exceptionMessage, string controllerName, string actionName, string lineNumber, string exceptionStackTrace, string innerException, string logTime, string action)
+        {
+            var exceptionMessageParameter = exceptionMessage != null ?
+                new ObjectParameter("ExceptionMessage", exceptionMessage) :
+                new ObjectParameter("ExceptionMessage", typeof(string));
+    
+            var controllerNameParameter = controllerName != null ?
+                new ObjectParameter("ControllerName", controllerName) :
+                new ObjectParameter("ControllerName", typeof(string));
+    
+            var actionNameParameter = actionName != null ?
+                new ObjectParameter("ActionName", actionName) :
+                new ObjectParameter("ActionName", typeof(string));
+    
+            var lineNumberParameter = lineNumber != null ?
+                new ObjectParameter("LineNumber", lineNumber) :
+                new ObjectParameter("LineNumber", typeof(string));
+    
+            var exceptionStackTraceParameter = exceptionStackTrace != null ?
+                new ObjectParameter("ExceptionStackTrace", exceptionStackTrace) :
+                new ObjectParameter("ExceptionStackTrace", typeof(string));
+    
+            var innerExceptionParameter = innerException != null ?
+                new ObjectParameter("InnerException", innerException) :
+                new ObjectParameter("InnerException", typeof(string));
+    
+            var logTimeParameter = logTime != null ?
+                new ObjectParameter("LogTime", logTime) :
+                new ObjectParameter("LogTime", typeof(string));
     
             var actionParameter = action != null ?
                 new ObjectParameter("action", action) :
                 new ObjectParameter("action", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasAuditorOperateVisitMasterIns", gatePassIdParameter, latitudeParameter, longitudeParameter, odometerParameter, odometerImageParameter, createDateParameter, createUserParameter, actionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasExceptionLoggerIns", exceptionMessageParameter, controllerNameParameter, actionNameParameter, lineNumberParameter, exceptionStackTraceParameter, innerExceptionParameter, logTimeParameter, actionParameter);
         }
     
-        public virtual ObjectResult<string> BanasAuditorFinalOperateVisitMasterIns(string midwayDeparture, string gatePassId, string lastOdometer, string lastOdometerImage, string userCode, string latitude, string longitude, string createDate, string createUser, string action)
+        public virtual ObjectResult<BanasEmailTemplateMasterRtr_Result> BanasEmailTemplateMasterRtr(string action)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasEmailTemplateMasterRtr_Result>("BanasEmailTemplateMasterRtr", actionParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasEmployeeMasterInsUpd(string employeeId, string employeeCode, string employeeName, string employeeSignature, string contact, string gender, string password, string roleId, string departmentId, string isactive, string companyCode, string createDate, string updatedate, string createUser, string updateUser, string action)
+        {
+            var employeeIdParameter = employeeId != null ?
+                new ObjectParameter("EmployeeId", employeeId) :
+                new ObjectParameter("EmployeeId", typeof(string));
+    
+            var employeeCodeParameter = employeeCode != null ?
+                new ObjectParameter("EmployeeCode", employeeCode) :
+                new ObjectParameter("EmployeeCode", typeof(string));
+    
+            var employeeNameParameter = employeeName != null ?
+                new ObjectParameter("EmployeeName", employeeName) :
+                new ObjectParameter("EmployeeName", typeof(string));
+    
+            var employeeSignatureParameter = employeeSignature != null ?
+                new ObjectParameter("EmployeeSignature", employeeSignature) :
+                new ObjectParameter("EmployeeSignature", typeof(string));
+    
+            var contactParameter = contact != null ?
+                new ObjectParameter("Contact", contact) :
+                new ObjectParameter("Contact", typeof(string));
+    
+            var genderParameter = gender != null ?
+                new ObjectParameter("Gender", gender) :
+                new ObjectParameter("Gender", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var roleIdParameter = roleId != null ?
+                new ObjectParameter("RoleId", roleId) :
+                new ObjectParameter("RoleId", typeof(string));
+    
+            var departmentIdParameter = departmentId != null ?
+                new ObjectParameter("DepartmentId", departmentId) :
+                new ObjectParameter("DepartmentId", typeof(string));
+    
+            var isactiveParameter = isactive != null ?
+                new ObjectParameter("Isactive", isactive) :
+                new ObjectParameter("Isactive", typeof(string));
+    
+            var companyCodeParameter = companyCode != null ?
+                new ObjectParameter("CompanyCode", companyCode) :
+                new ObjectParameter("CompanyCode", typeof(string));
+    
+            var createDateParameter = createDate != null ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(string));
+    
+            var updatedateParameter = updatedate != null ?
+                new ObjectParameter("Updatedate", updatedate) :
+                new ObjectParameter("Updatedate", typeof(string));
+    
+            var createUserParameter = createUser != null ?
+                new ObjectParameter("CreateUser", createUser) :
+                new ObjectParameter("CreateUser", typeof(string));
+    
+            var updateUserParameter = updateUser != null ?
+                new ObjectParameter("UpdateUser", updateUser) :
+                new ObjectParameter("UpdateUser", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasEmployeeMasterInsUpd", employeeIdParameter, employeeCodeParameter, employeeNameParameter, employeeSignatureParameter, contactParameter, genderParameter, passwordParameter, roleIdParameter, departmentIdParameter, isactiveParameter, companyCodeParameter, createDateParameter, updatedateParameter, createUserParameter, updateUserParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<BanasEmployeeMasterRtr_Result> BanasEmployeeMasterRtr(string companyCode, string action)
+        {
+            var companyCodeParameter = companyCode != null ?
+                new ObjectParameter("CompanyCode", companyCode) :
+                new ObjectParameter("CompanyCode", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasEmployeeMasterRtr_Result>("BanasEmployeeMasterRtr", companyCodeParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasAuditorFinalOperateVisitMasterIns(string midwayDeparture, string gatePassId, string lastOdometer, string lastOdometerImage, string userCode, string latitude, string longitude, string createDate, string createUser, string centerId, string action, string remarks)
         {
             var midwayDepartureParameter = midwayDeparture != null ?
                 new ObjectParameter("MidwayDeparture", midwayDeparture) :
@@ -1153,30 +968,471 @@ namespace BanasVehicleTrackDbClasses
                 new ObjectParameter("CreateUser", createUser) :
                 new ObjectParameter("CreateUser", typeof(string));
     
+            var centerIdParameter = centerId != null ?
+                new ObjectParameter("CenterId", centerId) :
+                new ObjectParameter("CenterId", typeof(string));
+    
             var actionParameter = action != null ?
                 new ObjectParameter("action", action) :
                 new ObjectParameter("action", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasAuditorFinalOperateVisitMasterIns", midwayDepartureParameter, gatePassIdParameter, lastOdometerParameter, lastOdometerImageParameter, userCodeParameter, latitudeParameter, longitudeParameter, createDateParameter, createUserParameter, actionParameter);
+            var remarksParameter = remarks != null ?
+                new ObjectParameter("Remarks", remarks) :
+                new ObjectParameter("Remarks", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasAuditorFinalOperateVisitMasterIns", midwayDepartureParameter, gatePassIdParameter, lastOdometerParameter, lastOdometerImageParameter, userCodeParameter, latitudeParameter, longitudeParameter, createDateParameter, createUserParameter, centerIdParameter, actionParameter, remarksParameter);
         }
     
-        public virtual ObjectResult<string> BanasAuditorFinalApproveUpd(string gatePassId, string finalApprDifference, string type, string finalApproverCode, string updateDate, string updateUser, string action)
+        public virtual ObjectResult<BanasAuditorFinalOperateVisitMasterRtr_Result> BanasAuditorFinalOperateVisitMasterRtr(string gatePassId, string action)
         {
             var gatePassIdParameter = gatePassId != null ?
                 new ObjectParameter("GatePassId", gatePassId) :
                 new ObjectParameter("GatePassId", typeof(string));
     
-            var finalApprDifferenceParameter = finalApprDifference != null ?
-                new ObjectParameter("FinalApprDifference", finalApprDifference) :
-                new ObjectParameter("FinalApprDifference", typeof(string));
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
     
-            var typeParameter = type != null ?
-                new ObjectParameter("Type", type) :
-                new ObjectParameter("Type", typeof(string));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorFinalOperateVisitMasterRtr_Result>("BanasAuditorFinalOperateVisitMasterRtr", gatePassIdParameter, actionParameter);
+        }
     
-            var finalApproverCodeParameter = finalApproverCode != null ?
-                new ObjectParameter("FinalApproverCode", finalApproverCode) :
-                new ObjectParameter("FinalApproverCode", typeof(string));
+        public virtual ObjectResult<string> BanasAuditorOperateVisitMasterIns(string gatePassId, string latitude, string longitude, string odometer, string odometerImage, string createDate, string createUser, string centerId, string action, string remarks, string locationName, string userGivenLocation)
+        {
+            var gatePassIdParameter = gatePassId != null ?
+                new ObjectParameter("GatePassId", gatePassId) :
+                new ObjectParameter("GatePassId", typeof(string));
+    
+            var latitudeParameter = latitude != null ?
+                new ObjectParameter("Latitude", latitude) :
+                new ObjectParameter("Latitude", typeof(string));
+    
+            var longitudeParameter = longitude != null ?
+                new ObjectParameter("Longitude", longitude) :
+                new ObjectParameter("Longitude", typeof(string));
+    
+            var odometerParameter = odometer != null ?
+                new ObjectParameter("Odometer", odometer) :
+                new ObjectParameter("Odometer", typeof(string));
+    
+            var odometerImageParameter = odometerImage != null ?
+                new ObjectParameter("OdometerImage", odometerImage) :
+                new ObjectParameter("OdometerImage", typeof(string));
+    
+            var createDateParameter = createDate != null ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(string));
+    
+            var createUserParameter = createUser != null ?
+                new ObjectParameter("CreateUser", createUser) :
+                new ObjectParameter("CreateUser", typeof(string));
+    
+            var centerIdParameter = centerId != null ?
+                new ObjectParameter("CenterId", centerId) :
+                new ObjectParameter("CenterId", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var remarksParameter = remarks != null ?
+                new ObjectParameter("Remarks", remarks) :
+                new ObjectParameter("Remarks", typeof(string));
+    
+            var locationNameParameter = locationName != null ?
+                new ObjectParameter("LocationName", locationName) :
+                new ObjectParameter("LocationName", typeof(string));
+    
+            var userGivenLocationParameter = userGivenLocation != null ?
+                new ObjectParameter("UserGivenLocation", userGivenLocation) :
+                new ObjectParameter("UserGivenLocation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasAuditorOperateVisitMasterIns", gatePassIdParameter, latitudeParameter, longitudeParameter, odometerParameter, odometerImageParameter, createDateParameter, createUserParameter, centerIdParameter, actionParameter, remarksParameter, locationNameParameter, userGivenLocationParameter);
+        }
+    
+        public virtual ObjectResult<BanasDepartmentMasterRetrieve_Result> BanasDepartmentMasterRetrieve(string action, string companycode, string department)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var companycodeParameter = companycode != null ?
+                new ObjectParameter("companycode", companycode) :
+                new ObjectParameter("companycode", typeof(string));
+    
+            var departmentParameter = department != null ?
+                new ObjectParameter("department", department) :
+                new ObjectParameter("department", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasDepartmentMasterRetrieve_Result>("BanasDepartmentMasterRetrieve", actionParameter, companycodeParameter, departmentParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasCenterMasterInsUpd(string centerId, string departmentId, string centername, string companyCode, string activestatus, string createdate, string updatedate, string createuser, string action)
+        {
+            var centerIdParameter = centerId != null ?
+                new ObjectParameter("CenterId", centerId) :
+                new ObjectParameter("CenterId", typeof(string));
+    
+            var departmentIdParameter = departmentId != null ?
+                new ObjectParameter("DepartmentId", departmentId) :
+                new ObjectParameter("DepartmentId", typeof(string));
+    
+            var centernameParameter = centername != null ?
+                new ObjectParameter("Centername", centername) :
+                new ObjectParameter("Centername", typeof(string));
+    
+            var companyCodeParameter = companyCode != null ?
+                new ObjectParameter("CompanyCode", companyCode) :
+                new ObjectParameter("CompanyCode", typeof(string));
+    
+            var activestatusParameter = activestatus != null ?
+                new ObjectParameter("activestatus", activestatus) :
+                new ObjectParameter("activestatus", typeof(string));
+    
+            var createdateParameter = createdate != null ?
+                new ObjectParameter("createdate", createdate) :
+                new ObjectParameter("createdate", typeof(string));
+    
+            var updatedateParameter = updatedate != null ?
+                new ObjectParameter("updatedate", updatedate) :
+                new ObjectParameter("updatedate", typeof(string));
+    
+            var createuserParameter = createuser != null ?
+                new ObjectParameter("createuser", createuser) :
+                new ObjectParameter("createuser", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasCenterMasterInsUpd", centerIdParameter, departmentIdParameter, centernameParameter, companyCodeParameter, activestatusParameter, createdateParameter, updatedateParameter, createuserParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasVehicleGatepassInsUpd(string gatePassId, string departmentId, string userCode, string otherUser1, string otherUser2, string otherUser3, string informationMode, string visitDateTime, string visitPurpose, string remarks, string center, string driver, string vehicleId, string startOdometer, string closeOdometer, string closeDateTime, string closeRemark, string netkm, string createUser, string createDate, string closeUser, string closeDate, string editUser, string editDate, string difference, string action, Nullable<System.DateTime> departureDateTime, Nullable<decimal> startKm, string departureVerifyStatus, string departureSecurityId, string departureSecurityRemark, Nullable<System.DateTime> arrivalDateTime, Nullable<decimal> endKm, string arrivalVerifyStatus, string arrivalSecurityId, string arrivalSecurityRemark)
+        {
+            var gatePassIdParameter = gatePassId != null ?
+                new ObjectParameter("GatePassId", gatePassId) :
+                new ObjectParameter("GatePassId", typeof(string));
+    
+            var departmentIdParameter = departmentId != null ?
+                new ObjectParameter("DepartmentId", departmentId) :
+                new ObjectParameter("DepartmentId", typeof(string));
+    
+            var userCodeParameter = userCode != null ?
+                new ObjectParameter("UserCode", userCode) :
+                new ObjectParameter("UserCode", typeof(string));
+    
+            var otherUser1Parameter = otherUser1 != null ?
+                new ObjectParameter("OtherUser1", otherUser1) :
+                new ObjectParameter("OtherUser1", typeof(string));
+    
+            var otherUser2Parameter = otherUser2 != null ?
+                new ObjectParameter("OtherUser2", otherUser2) :
+                new ObjectParameter("OtherUser2", typeof(string));
+    
+            var otherUser3Parameter = otherUser3 != null ?
+                new ObjectParameter("OtherUser3", otherUser3) :
+                new ObjectParameter("OtherUser3", typeof(string));
+    
+            var informationModeParameter = informationMode != null ?
+                new ObjectParameter("InformationMode", informationMode) :
+                new ObjectParameter("InformationMode", typeof(string));
+    
+            var visitDateTimeParameter = visitDateTime != null ?
+                new ObjectParameter("VisitDateTime", visitDateTime) :
+                new ObjectParameter("VisitDateTime", typeof(string));
+    
+            var visitPurposeParameter = visitPurpose != null ?
+                new ObjectParameter("VisitPurpose", visitPurpose) :
+                new ObjectParameter("VisitPurpose", typeof(string));
+    
+            var remarksParameter = remarks != null ?
+                new ObjectParameter("Remarks", remarks) :
+                new ObjectParameter("Remarks", typeof(string));
+    
+            var centerParameter = center != null ?
+                new ObjectParameter("Center", center) :
+                new ObjectParameter("Center", typeof(string));
+    
+            var driverParameter = driver != null ?
+                new ObjectParameter("Driver", driver) :
+                new ObjectParameter("Driver", typeof(string));
+    
+            var vehicleIdParameter = vehicleId != null ?
+                new ObjectParameter("VehicleId", vehicleId) :
+                new ObjectParameter("VehicleId", typeof(string));
+    
+            var startOdometerParameter = startOdometer != null ?
+                new ObjectParameter("StartOdometer", startOdometer) :
+                new ObjectParameter("StartOdometer", typeof(string));
+    
+            var closeOdometerParameter = closeOdometer != null ?
+                new ObjectParameter("CloseOdometer", closeOdometer) :
+                new ObjectParameter("CloseOdometer", typeof(string));
+    
+            var closeDateTimeParameter = closeDateTime != null ?
+                new ObjectParameter("CloseDateTime", closeDateTime) :
+                new ObjectParameter("CloseDateTime", typeof(string));
+    
+            var closeRemarkParameter = closeRemark != null ?
+                new ObjectParameter("CloseRemark", closeRemark) :
+                new ObjectParameter("CloseRemark", typeof(string));
+    
+            var netkmParameter = netkm != null ?
+                new ObjectParameter("Netkm", netkm) :
+                new ObjectParameter("Netkm", typeof(string));
+    
+            var createUserParameter = createUser != null ?
+                new ObjectParameter("CreateUser", createUser) :
+                new ObjectParameter("CreateUser", typeof(string));
+    
+            var createDateParameter = createDate != null ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(string));
+    
+            var closeUserParameter = closeUser != null ?
+                new ObjectParameter("CloseUser", closeUser) :
+                new ObjectParameter("CloseUser", typeof(string));
+    
+            var closeDateParameter = closeDate != null ?
+                new ObjectParameter("CloseDate", closeDate) :
+                new ObjectParameter("CloseDate", typeof(string));
+    
+            var editUserParameter = editUser != null ?
+                new ObjectParameter("EditUser", editUser) :
+                new ObjectParameter("EditUser", typeof(string));
+    
+            var editDateParameter = editDate != null ?
+                new ObjectParameter("EditDate", editDate) :
+                new ObjectParameter("EditDate", typeof(string));
+    
+            var differenceParameter = difference != null ?
+                new ObjectParameter("Difference", difference) :
+                new ObjectParameter("Difference", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var departureDateTimeParameter = departureDateTime.HasValue ?
+                new ObjectParameter("DepartureDateTime", departureDateTime) :
+                new ObjectParameter("DepartureDateTime", typeof(System.DateTime));
+    
+            var startKmParameter = startKm.HasValue ?
+                new ObjectParameter("StartKm", startKm) :
+                new ObjectParameter("StartKm", typeof(decimal));
+    
+            var departureVerifyStatusParameter = departureVerifyStatus != null ?
+                new ObjectParameter("DepartureVerifyStatus", departureVerifyStatus) :
+                new ObjectParameter("DepartureVerifyStatus", typeof(string));
+    
+            var departureSecurityIdParameter = departureSecurityId != null ?
+                new ObjectParameter("DepartureSecurityId", departureSecurityId) :
+                new ObjectParameter("DepartureSecurityId", typeof(string));
+    
+            var departureSecurityRemarkParameter = departureSecurityRemark != null ?
+                new ObjectParameter("DepartureSecurityRemark", departureSecurityRemark) :
+                new ObjectParameter("DepartureSecurityRemark", typeof(string));
+    
+            var arrivalDateTimeParameter = arrivalDateTime.HasValue ?
+                new ObjectParameter("ArrivalDateTime", arrivalDateTime) :
+                new ObjectParameter("ArrivalDateTime", typeof(System.DateTime));
+    
+            var endKmParameter = endKm.HasValue ?
+                new ObjectParameter("EndKm", endKm) :
+                new ObjectParameter("EndKm", typeof(decimal));
+    
+            var arrivalVerifyStatusParameter = arrivalVerifyStatus != null ?
+                new ObjectParameter("ArrivalVerifyStatus", arrivalVerifyStatus) :
+                new ObjectParameter("ArrivalVerifyStatus", typeof(string));
+    
+            var arrivalSecurityIdParameter = arrivalSecurityId != null ?
+                new ObjectParameter("ArrivalSecurityId", arrivalSecurityId) :
+                new ObjectParameter("ArrivalSecurityId", typeof(string));
+    
+            var arrivalSecurityRemarkParameter = arrivalSecurityRemark != null ?
+                new ObjectParameter("ArrivalSecurityRemark", arrivalSecurityRemark) :
+                new ObjectParameter("ArrivalSecurityRemark", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasVehicleGatepassInsUpd", gatePassIdParameter, departmentIdParameter, userCodeParameter, otherUser1Parameter, otherUser2Parameter, otherUser3Parameter, informationModeParameter, visitDateTimeParameter, visitPurposeParameter, remarksParameter, centerParameter, driverParameter, vehicleIdParameter, startOdometerParameter, closeOdometerParameter, closeDateTimeParameter, closeRemarkParameter, netkmParameter, createUserParameter, createDateParameter, closeUserParameter, closeDateParameter, editUserParameter, editDateParameter, differenceParameter, actionParameter, departureDateTimeParameter, startKmParameter, departureVerifyStatusParameter, departureSecurityIdParameter, departureSecurityRemarkParameter, arrivalDateTimeParameter, endKmParameter, arrivalVerifyStatusParameter, arrivalSecurityIdParameter, arrivalSecurityRemarkParameter);
+        }
+    
+        public virtual ObjectResult<BanasVehicleGatepassRetrieve_Result> BanasVehicleGatepassRetrieve(string action, string from, string to, string department, string vehicle, string gatepassId)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var fromParameter = from != null ?
+                new ObjectParameter("from", from) :
+                new ObjectParameter("from", typeof(string));
+    
+            var toParameter = to != null ?
+                new ObjectParameter("to", to) :
+                new ObjectParameter("to", typeof(string));
+    
+            var departmentParameter = department != null ?
+                new ObjectParameter("department", department) :
+                new ObjectParameter("department", typeof(string));
+    
+            var vehicleParameter = vehicle != null ?
+                new ObjectParameter("vehicle", vehicle) :
+                new ObjectParameter("vehicle", typeof(string));
+    
+            var gatepassIdParameter = gatepassId != null ?
+                new ObjectParameter("GatepassId", gatepassId) :
+                new ObjectParameter("GatepassId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasVehicleGatepassRetrieve_Result>("BanasVehicleGatepassRetrieve", actionParameter, fromParameter, toParameter, departmentParameter, vehicleParameter, gatepassIdParameter);
+        }
+    
+        public virtual ObjectResult<BanasAuditorOperateVisitMasterRtr_Result> BanasAuditorOperateVisitMasterRtr(string gatePassId, string action)
+        {
+            var gatePassIdParameter = gatePassId != null ?
+                new ObjectParameter("GatePassId", gatePassId) :
+                new ObjectParameter("GatePassId", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorOperateVisitMasterRtr_Result>("BanasAuditorOperateVisitMasterRtr", gatePassIdParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasVehicleMasterInsUpd(string vehicleId, string vehicleCode, string vehicleRegNumber, string vehicleRegDate, string vehicleType, string vehicleMake, string model, string status, string ratePerKm, string rateEffectiveDate, string insuranceCommencementDate, string insuranceExpiryDate, string contractStartDate, string contractEndDate, string companyCode, string isActive, string createDate, string updatedate, string createUser, string updateUser, string contractorId, string departmentId, string centerId, string action)
+        {
+            var vehicleIdParameter = vehicleId != null ?
+                new ObjectParameter("VehicleId", vehicleId) :
+                new ObjectParameter("VehicleId", typeof(string));
+    
+            var vehicleCodeParameter = vehicleCode != null ?
+                new ObjectParameter("VehicleCode", vehicleCode) :
+                new ObjectParameter("VehicleCode", typeof(string));
+    
+            var vehicleRegNumberParameter = vehicleRegNumber != null ?
+                new ObjectParameter("VehicleRegNumber", vehicleRegNumber) :
+                new ObjectParameter("VehicleRegNumber", typeof(string));
+    
+            var vehicleRegDateParameter = vehicleRegDate != null ?
+                new ObjectParameter("VehicleRegDate", vehicleRegDate) :
+                new ObjectParameter("VehicleRegDate", typeof(string));
+    
+            var vehicleTypeParameter = vehicleType != null ?
+                new ObjectParameter("VehicleType", vehicleType) :
+                new ObjectParameter("VehicleType", typeof(string));
+    
+            var vehicleMakeParameter = vehicleMake != null ?
+                new ObjectParameter("VehicleMake", vehicleMake) :
+                new ObjectParameter("VehicleMake", typeof(string));
+    
+            var modelParameter = model != null ?
+                new ObjectParameter("Model", model) :
+                new ObjectParameter("Model", typeof(string));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            var ratePerKmParameter = ratePerKm != null ?
+                new ObjectParameter("RatePerKm", ratePerKm) :
+                new ObjectParameter("RatePerKm", typeof(string));
+    
+            var rateEffectiveDateParameter = rateEffectiveDate != null ?
+                new ObjectParameter("RateEffectiveDate", rateEffectiveDate) :
+                new ObjectParameter("RateEffectiveDate", typeof(string));
+    
+            var insuranceCommencementDateParameter = insuranceCommencementDate != null ?
+                new ObjectParameter("InsuranceCommencementDate", insuranceCommencementDate) :
+                new ObjectParameter("InsuranceCommencementDate", typeof(string));
+    
+            var insuranceExpiryDateParameter = insuranceExpiryDate != null ?
+                new ObjectParameter("InsuranceExpiryDate", insuranceExpiryDate) :
+                new ObjectParameter("InsuranceExpiryDate", typeof(string));
+    
+            var contractStartDateParameter = contractStartDate != null ?
+                new ObjectParameter("ContractStartDate", contractStartDate) :
+                new ObjectParameter("ContractStartDate", typeof(string));
+    
+            var contractEndDateParameter = contractEndDate != null ?
+                new ObjectParameter("ContractEndDate", contractEndDate) :
+                new ObjectParameter("ContractEndDate", typeof(string));
+    
+            var companyCodeParameter = companyCode != null ?
+                new ObjectParameter("CompanyCode", companyCode) :
+                new ObjectParameter("CompanyCode", typeof(string));
+    
+            var isActiveParameter = isActive != null ?
+                new ObjectParameter("IsActive", isActive) :
+                new ObjectParameter("IsActive", typeof(string));
+    
+            var createDateParameter = createDate != null ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(string));
+    
+            var updatedateParameter = updatedate != null ?
+                new ObjectParameter("Updatedate", updatedate) :
+                new ObjectParameter("Updatedate", typeof(string));
+    
+            var createUserParameter = createUser != null ?
+                new ObjectParameter("CreateUser", createUser) :
+                new ObjectParameter("CreateUser", typeof(string));
+    
+            var updateUserParameter = updateUser != null ?
+                new ObjectParameter("UpdateUser", updateUser) :
+                new ObjectParameter("UpdateUser", typeof(string));
+    
+            var contractorIdParameter = contractorId != null ?
+                new ObjectParameter("ContractorId", contractorId) :
+                new ObjectParameter("ContractorId", typeof(string));
+    
+            var departmentIdParameter = departmentId != null ?
+                new ObjectParameter("DepartmentId", departmentId) :
+                new ObjectParameter("DepartmentId", typeof(string));
+    
+            var centerIdParameter = centerId != null ?
+                new ObjectParameter("CenterId", centerId) :
+                new ObjectParameter("CenterId", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasVehicleMasterInsUpd", vehicleIdParameter, vehicleCodeParameter, vehicleRegNumberParameter, vehicleRegDateParameter, vehicleTypeParameter, vehicleMakeParameter, modelParameter, statusParameter, ratePerKmParameter, rateEffectiveDateParameter, insuranceCommencementDateParameter, insuranceExpiryDateParameter, contractStartDateParameter, contractEndDateParameter, companyCodeParameter, isActiveParameter, createDateParameter, updatedateParameter, createUserParameter, updateUserParameter, contractorIdParameter, departmentIdParameter, centerIdParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<BanasVehicleMasterRtr_Result> BanasVehicleMasterRtr(string action, string companyCode)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var companyCodeParameter = companyCode != null ?
+                new ObjectParameter("CompanyCode", companyCode) :
+                new ObjectParameter("CompanyCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasVehicleMasterRtr_Result>("BanasVehicleMasterRtr", actionParameter, companyCodeParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasUserCenterIntegrationInsUpd(string inteId, string usercode, string centerId, string createDate, string createUser, string updateDate, string updateUser, string activeStatus, string action)
+        {
+            var inteIdParameter = inteId != null ?
+                new ObjectParameter("InteId", inteId) :
+                new ObjectParameter("InteId", typeof(string));
+    
+            var usercodeParameter = usercode != null ?
+                new ObjectParameter("Usercode", usercode) :
+                new ObjectParameter("Usercode", typeof(string));
+    
+            var centerIdParameter = centerId != null ?
+                new ObjectParameter("CenterId", centerId) :
+                new ObjectParameter("CenterId", typeof(string));
+    
+            var createDateParameter = createDate != null ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(string));
+    
+            var createUserParameter = createUser != null ?
+                new ObjectParameter("CreateUser", createUser) :
+                new ObjectParameter("CreateUser", typeof(string));
     
             var updateDateParameter = updateDate != null ?
                 new ObjectParameter("UpdateDate", updateDate) :
@@ -1186,20 +1442,125 @@ namespace BanasVehicleTrackDbClasses
                 new ObjectParameter("UpdateUser", updateUser) :
                 new ObjectParameter("UpdateUser", typeof(string));
     
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
+            var activeStatusParameter = activeStatus != null ?
+                new ObjectParameter("ActiveStatus", activeStatus) :
+                new ObjectParameter("ActiveStatus", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasAuditorFinalApproveUpd", gatePassIdParameter, finalApprDifferenceParameter, typeParameter, finalApproverCodeParameter, updateDateParameter, updateUserParameter, actionParameter);
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasUserCenterIntegrationInsUpd", inteIdParameter, usercodeParameter, centerIdParameter, createDateParameter, createUserParameter, updateDateParameter, updateUserParameter, activeStatusParameter, actionParameter);
         }
     
-        public virtual ObjectResult<BanasAuditorFinalApproveRetrieve_Result> BanasAuditorFinalApproveRetrieve(string action)
+        public virtual ObjectResult<BanasUserCenterIntegrationRtr_Result> BanasUserCenterIntegrationRtr(string action, string userCenterID)
         {
             var actionParameter = action != null ?
                 new ObjectParameter("action", action) :
                 new ObjectParameter("action", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorFinalApproveRetrieve_Result>("BanasAuditorFinalApproveRetrieve", actionParameter);
+            var userCenterIDParameter = userCenterID != null ?
+                new ObjectParameter("UserCenterID", userCenterID) :
+                new ObjectParameter("UserCenterID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasUserCenterIntegrationRtr_Result>("BanasUserCenterIntegrationRtr", actionParameter, userCenterIDParameter);
+        }
+    
+        public virtual ObjectResult<BanasVisitManagementRtr_Result> BanasVisitManagementRtr(string action, string from, string to, string department, string vehicle, string center, string usercode)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var fromParameter = from != null ?
+                new ObjectParameter("from", from) :
+                new ObjectParameter("from", typeof(string));
+    
+            var toParameter = to != null ?
+                new ObjectParameter("to", to) :
+                new ObjectParameter("to", typeof(string));
+    
+            var departmentParameter = department != null ?
+                new ObjectParameter("department", department) :
+                new ObjectParameter("department", typeof(string));
+    
+            var vehicleParameter = vehicle != null ?
+                new ObjectParameter("vehicle", vehicle) :
+                new ObjectParameter("vehicle", typeof(string));
+    
+            var centerParameter = center != null ?
+                new ObjectParameter("Center", center) :
+                new ObjectParameter("Center", typeof(string));
+    
+            var usercodeParameter = usercode != null ?
+                new ObjectParameter("usercode", usercode) :
+                new ObjectParameter("usercode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasVisitManagementRtr_Result>("BanasVisitManagementRtr", actionParameter, fromParameter, toParameter, departmentParameter, vehicleParameter, centerParameter, usercodeParameter);
+        }
+    
+        public virtual ObjectResult<BanasCenterMasterRetrieve_Result> BanasCenterMasterRetrieve(string action)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasCenterMasterRetrieve_Result>("BanasCenterMasterRetrieve", actionParameter);
+        }
+    
+        public virtual ObjectResult<BanasVisitCenterReportRtr_Result> BanasVisitCenterReportRtr(string action, string from, string to, string department, string center, string employeeCode)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var fromParameter = from != null ?
+                new ObjectParameter("from", from) :
+                new ObjectParameter("from", typeof(string));
+    
+            var toParameter = to != null ?
+                new ObjectParameter("to", to) :
+                new ObjectParameter("to", typeof(string));
+    
+            var departmentParameter = department != null ?
+                new ObjectParameter("department", department) :
+                new ObjectParameter("department", typeof(string));
+    
+            var centerParameter = center != null ?
+                new ObjectParameter("Center", center) :
+                new ObjectParameter("Center", typeof(string));
+    
+            var employeeCodeParameter = employeeCode != null ?
+                new ObjectParameter("EmployeeCode", employeeCode) :
+                new ObjectParameter("EmployeeCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasVisitCenterReportRtr_Result>("BanasVisitCenterReportRtr", actionParameter, fromParameter, toParameter, departmentParameter, centerParameter, employeeCodeParameter);
+        }
+    
+        public virtual ObjectResult<BanasSecurityVehicleGatepassRetrieve_Result> BanasSecurityVehicleGatepassRetrieve(string action, string gatepassId)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var gatepassIdParameter = gatepassId != null ?
+                new ObjectParameter("GatepassId", gatepassId) :
+                new ObjectParameter("GatepassId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasSecurityVehicleGatepassRetrieve_Result>("BanasSecurityVehicleGatepassRetrieve", actionParameter, gatepassIdParameter);
+        }
+    
+        public virtual ObjectResult<BanasContractorMasterRetrieve_Result> BanasContractorMasterRetrieve(string action, string companycode)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var companycodeParameter = companycode != null ?
+                new ObjectParameter("companycode", companycode) :
+                new ObjectParameter("companycode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasContractorMasterRetrieve_Result>("BanasContractorMasterRetrieve", actionParameter, companycodeParameter);
         }
     
         public virtual ObjectResult<BanasAuditorDepartmentDashboardRetrieve_Result> BanasAuditorDepartmentDashboardRetrieve(string fromDate, string toDate, string departmentId, string vehicleId, string gatepassId, string action)
@@ -1229,6 +1590,99 @@ namespace BanasVehicleTrackDbClasses
                 new ObjectParameter("action", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorDepartmentDashboardRetrieve_Result>("BanasAuditorDepartmentDashboardRetrieve", fromDateParameter, toDateParameter, departmentIdParameter, vehicleIdParameter, gatepassIdParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<BanasAuditorFinalApproveRetrieve_Result> BanasAuditorFinalApproveRetrieve(string action)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorFinalApproveRetrieve_Result>("BanasAuditorFinalApproveRetrieve", actionParameter);
+        }
+    
+        public virtual ObjectResult<BanasAdminDashboardCountRtr_Result> BanasAdminDashboardCountRtr(string action, string usercode)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var usercodeParameter = usercode != null ?
+                new ObjectParameter("Usercode", usercode) :
+                new ObjectParameter("Usercode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAdminDashboardCountRtr_Result>("BanasAdminDashboardCountRtr", actionParameter, usercodeParameter);
+        }
+    
+        public virtual ObjectResult<BanasAdminDashboardListRtr_Result> BanasAdminDashboardListRtr(string action, string usercode)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var usercodeParameter = usercode != null ?
+                new ObjectParameter("Usercode", usercode) :
+                new ObjectParameter("Usercode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAdminDashboardListRtr_Result>("BanasAdminDashboardListRtr", actionParameter, usercodeParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasUserDepartmentIntegrationInsUpd(string inteId, string usercode, string departmentId, string createDate, string createUser, string updateDate, string updateUser, string activeStatus, string action)
+        {
+            var inteIdParameter = inteId != null ?
+                new ObjectParameter("InteId", inteId) :
+                new ObjectParameter("InteId", typeof(string));
+    
+            var usercodeParameter = usercode != null ?
+                new ObjectParameter("Usercode", usercode) :
+                new ObjectParameter("Usercode", typeof(string));
+    
+            var departmentIdParameter = departmentId != null ?
+                new ObjectParameter("DepartmentId", departmentId) :
+                new ObjectParameter("DepartmentId", typeof(string));
+    
+            var createDateParameter = createDate != null ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(string));
+    
+            var createUserParameter = createUser != null ?
+                new ObjectParameter("CreateUser", createUser) :
+                new ObjectParameter("CreateUser", typeof(string));
+    
+            var updateDateParameter = updateDate != null ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(string));
+    
+            var updateUserParameter = updateUser != null ?
+                new ObjectParameter("UpdateUser", updateUser) :
+                new ObjectParameter("UpdateUser", typeof(string));
+    
+            var activeStatusParameter = activeStatus != null ?
+                new ObjectParameter("ActiveStatus", activeStatus) :
+                new ObjectParameter("ActiveStatus", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasUserDepartmentIntegrationInsUpd", inteIdParameter, usercodeParameter, departmentIdParameter, createDateParameter, createUserParameter, updateDateParameter, updateUserParameter, activeStatusParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<BanasUserDepartmentIntegrationRtr_Result> BanasUserDepartmentIntegrationRtr(string action, string userCode, string userDepartmentId)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var userCodeParameter = userCode != null ?
+                new ObjectParameter("UserCode", userCode) :
+                new ObjectParameter("UserCode", typeof(string));
+    
+            var userDepartmentIdParameter = userDepartmentId != null ?
+                new ObjectParameter("UserDepartmentId", userDepartmentId) :
+                new ObjectParameter("UserDepartmentId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasUserDepartmentIntegrationRtr_Result>("BanasUserDepartmentIntegrationRtr", actionParameter, userCodeParameter, userDepartmentIdParameter);
         }
     }
 }

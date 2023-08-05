@@ -18,7 +18,7 @@ namespace BanasVehicleTrackDbClasses
         public string UserPassword { get; set; }
         public Nullable<bool> Activestatus { get; set; }
         public Nullable<int> RoleId { get; set; }
-        public Nullable<System.DateTime> Createdate { get; set; }
+        public string Createdate { get; set; }
         public string Createuser { get; set; }
         public string Companycode { get; set; }
     }

@@ -30,7 +30,7 @@ namespace BanasVehicleTrackViewModel
         [StringLength(150, ErrorMessage = "The Module Name cannot exceed 150 characters.")]
         public string Remarks { get; set; }
         [Required(ErrorMessage = "*")]
-        public string VehicleDepartment { get; set; }
+        public string Center { get; set; }
         [StringLength(50, ErrorMessage = "The Module Name cannot exceed 50 characters.")]
         [Required(ErrorMessage = "*")]
         public string Driver { get; set; }
@@ -50,9 +50,11 @@ namespace BanasVehicleTrackViewModel
         public string EditDate { get; set; }
         public string action { get; set; }
      public string difference { get; set; }
+        public List<BanasCenterMasterRetrieve_Result> CenterList { get; set; }
         public List<BanasDepartmentMasterRetrieve_Result> DepartmentList { get; set; }
         public List<BanasEmployeeMasterRtr_Result> EmployeeList { get; set; }
         public List<BanasVisitPurposeMasterRtr_Result> VisitPurposeList { get; set; }
         public List<BanasVehicleMasterRtr_Result> VehicleList { get; set; }
+        public List<BanasEmployeeMasterRtr_Result> AuditorList { get; set; }
     }
 }

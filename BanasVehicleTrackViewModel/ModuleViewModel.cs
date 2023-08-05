@@ -20,9 +20,11 @@ namespace BanasVehicleTrackViewModel
         [Required(ErrorMessage = "*")]
         public string ModulePriority { get; set; }
         public string IsActive { get; set; }
-        public string CreateUser { get; set; }  
+        public string CreateUser { get; set; }
         public string CreateDate { get; set; }
         public string UpdateDate { get; set; }
+        public bool SelfPage { get; set; }
+
         public string UpdateUser { get; set; }
         public List<BanasModuleMasterRtr_Result> ModuleViewList { get; set; }
     }

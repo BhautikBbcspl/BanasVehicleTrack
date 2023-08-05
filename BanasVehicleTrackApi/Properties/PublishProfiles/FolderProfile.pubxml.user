@@ -4,7 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>Z:\BanasVehicleTracking\BanasVehicleTrackingAPIPublishCode</_PublishTargetUrl>
+    <_PublishTargetUrl>Z:\BanasVehicleTracking\BanasVehicleTrackApi Pub 28-07-2023</_PublishTargetUrl>
+    <History>True|2023-07-28T03:47:55.9714847Z;True|2023-07-27T18:26:38.5168593+05:30;True|2023-07-07T16:25:38.1993576+05:30;True|2023-07-07T11:26:58.2628656+05:30;True|2023-07-07T11:12:34.8734964+05:30;True|2023-06-29T15:56:13.6876435+05:30;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/HelpPage/HelpPage.css">
@@ -77,28 +78,28 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 21:59:20</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackApi.dll">
-      <publishTime>06/15/2023 11:21:17</publishTime>
+      <publishTime>07/28/2023 09:17:53</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackApi.pdb">
-      <publishTime>06/15/2023 11:21:17</publishTime>
+      <publishTime>07/28/2023 09:17:53</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackDbClasses.dll">
-      <publishTime>06/15/2023 11:21:16</publishTime>
+      <publishTime>07/27/2023 18:26:35</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackDbClasses.dll.config">
-      <publishTime>05/30/2023 17:40:09</publishTime>
+      <publishTime>07/25/2023 18:11:01</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackDbClasses.pdb">
-      <publishTime>06/15/2023 11:21:16</publishTime>
+      <publishTime>07/27/2023 18:26:35</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackViewModel.dll">
-      <publishTime>06/15/2023 11:21:16</publishTime>
+      <publishTime>07/27/2023 18:26:35</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackViewModel.dll.config">
       <publishTime>05/30/2023 17:40:09</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackViewModel.pdb">
-      <publishTime>06/15/2023 11:21:16</publishTime>
+      <publishTime>07/27/2023 18:26:35</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/17/2020 02:08:42</publishTime>
@@ -382,6 +383,102 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Scripts/modernizr-2.8.3.js">
       <publishTime>05/30/2023 17:40:09</publishTime>
     </File>
+    <File Include="Uploads/OdometerImage/04c2710f-08c0-4666-a253-33b2bd9afc50.jpg">
+      <publishTime>07/26/2023 15:09:39</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/1002fc2f-0397-4bd0-b1b3-934710672682.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/112af2c1-7313-4687-9808-6ef6bb4d2dc9.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/14edbd87-c3bd-4854-aa21-25087626db1b.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/15395c7d-9e06-43e8-96d7-ae2bcee2f4b4.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/18fee20c-807e-4321-9f26-0b8d0ac0b38c.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/257d8856-00e8-4f30-94af-2e3f1ce5644a.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/48203bd5-4281-496d-89a7-ba183c0d972c.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/4d3cf3ba-37f6-4058-a416-171b232d03c3.jpg">
+      <publishTime>07/26/2023 15:09:39</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/5d777b36-289c-4910-9eec-01399d876bd9.jpg">
+      <publishTime>07/26/2023 15:09:39</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/5d80edb9-9fa0-474e-a61d-bb24d775217e.jpg">
+      <publishTime>07/26/2023 15:09:39</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/5e3c501e-cb3c-44dc-8a88-8efa721fbf43.jpg">
+      <publishTime>07/26/2023 15:09:39</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/62706578-5d87-4d7a-9651-4ae6ee16fee9.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/6d87520d-c70a-49e7-a460-489eeafab8c6.jpg">
+      <publishTime>07/26/2023 15:09:39</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/79d99112-e32b-48da-abea-3f79eeae8e6d.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/7b456ef0-7961-455b-a493-cee0d3de7ea4.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/a2c3fc52-14f1-4a20-a1f1-ea94bfd58800.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/a699f117-b689-4966-b734-806b7ed913e1.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/aa82744d-f2b7-4d50-85d0-7a0c6a731706.jpg">
+      <publishTime>07/26/2023 15:09:40</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/abec768e-746e-43a0-af7c-82defb0f47b8.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/c48e8eb2-e079-45d6-9e20-d39cad9ef395.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/c7d3f58c-dae4-4d0d-8589-04d89e150095.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/d0905b83-cb5a-4bdd-8045-da520de9ad0c.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/d54eeef5-c807-4665-88f2-2cfc5b9a9a3e.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/e20ec1cf-6315-4fa9-bea9-d3c1cc7b8a07.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/e5e7c88d-ab38-4d66-81b5-88dcae3df041.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/e736b55f-ff60-495a-ae8e-11b2803dba66.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/ea295779-1ea8-4594-a65c-af6312be8813.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/ea7d5211-e483-450e-8be7-5553b835bbe0.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/ebb1fbe5-b7ec-4525-b7fd-9f7c68893686.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/f13e8f21-a85f-4523-9c56-dd20723e2843.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
+    <File Include="Uploads/OdometerImage/fbff5140-fa09-4bd9-aec9-f3c0ff9517dc.jpg">
+      <publishTime>07/26/2023 15:09:41</publishTime>
+    </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>05/30/2023 17:40:09</publishTime>
     </File>
@@ -398,7 +495,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/30/2023 17:40:09</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/15/2023 09:21:22</publishTime>
+      <publishTime>07/27/2023 18:26:35</publishTime>
     </File>
   </ItemGroup>
 </Project>

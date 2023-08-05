@@ -15,10 +15,11 @@ namespace BanasVehicleTrackDbClasses
     {
         public Nullable<int> EmployeeCount { get; set; }
         public Nullable<int> SecurityCount { get; set; }
-        public Nullable<int> AuditorCount { get; set; }
+        public Nullable<int> TodayGatePass { get; set; }
         public Nullable<int> OpenGatePass { get; set; }
         public Nullable<int> CloseGatePass { get; set; }
         public Nullable<int> TotalGatePass { get; set; }
         public Nullable<int> TotalVehicle { get; set; }
+        public Nullable<int> TotalContractor { get; set; }
     }
 }

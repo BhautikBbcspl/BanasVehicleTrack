@@ -55,23 +55,29 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Other User 1</label>
+                                    <label class="col-sm-4 col-form-label">User Name</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="@item.OtherUser1" readonly="">
+                                        <input type="text" class="form-control" value="@item.Username" readonly="">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Other User 2</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="@item.OtherUser2" readonly="">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Other User 3</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="@item.OtherUser3" readonly="">
-                                    </div>
-                                </div>
+                                @*<div class="form-group row">
+            <label class="col-sm-4 col-form-label">Other User 1</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" value="@item.OtherUser1" readonly="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Other User 2</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" value="@item.OtherUser2" readonly="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Other User 3</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" value="@item.OtherUser3" readonly="">
+            </div>
+        </div>*@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Information Mode</label>
                                     <div class="col-sm-8">
@@ -116,10 +122,10 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">
-                                        Vehicle Department
+                                        Center
                                     </label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="@item.VehicleDepartment" readonly="">
+                                        <input type="text" class="form-control" value="@item.Center" readonly="">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -143,7 +149,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Start Odometer</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="@item.StartOdometer" readonly="">
+                                        <input type="text" class="form-control" value="@decimal.Parse(item.StartOdometer.ToString()).ToString("0.0")" readonly="">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -194,6 +200,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">
                                                 Departure Date and Time
+                                                @Html.ValidationMessageFor(m => m.DepartureDateTime, "", new { @class = "text-danger" })
                                             </label>
                                             <div class="col-sm-8">
                                                 @Html.TextBoxFor(m => m.DepartureDateTime, new Dictionary<string, object>() {
@@ -206,7 +213,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Start KM</label>
+                                            <label class="col-sm-4 col-form-label">Start KM @Html.ValidationMessageFor(m => m.StartKm, "", new { @class = "text-danger" })</label>
+                                     
                                             <div class="col-sm-8">
                                                 @Html.TextBoxFor(m => m.StartKm, new Dictionary<string, object>() {
                                              {"id","txtStartKm"},
@@ -285,7 +293,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Start KM</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" value="@item.StartKm" readonly="">
+                                            <input type="text" class="form-control" value="@decimal.Parse(item.StartKm.ToString()).ToString("0.0")" readonly="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -335,7 +343,10 @@
                                         @Html.HiddenFor(m => m.GatePassId)
                                         <h4 class="sub-title">Arrival Details</h4>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Arrival Date and Time</label>
+                                            <label class="col-sm-4 col-form-label">
+                                                Arrival Date and Time
+                                                @Html.ValidationMessageFor(m => m.ArrivalDateTime, "", new { @class = "text-danger" })
+                                            </label>
                                             <div class="col-sm-8">
                                                 @Html.TextBoxFor(m => m.ArrivalDateTime, new Dictionary<string, object>() {
                                             {"id","txtArrivalDateTime"},
@@ -348,7 +359,10 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">End km</label>
+                                            <label class="col-sm-4 col-form-label">
+                                                End km
+                                                @Html.ValidationMessageFor(m => m.EndKm, "", new { @class = "text-danger" })
+                                            </label>
                                             <div class="col-sm-8">
                                                 @Html.TextBoxFor(m => m.EndKm, new Dictionary<string, object>() {
                                             {"id","txtEndKm"},

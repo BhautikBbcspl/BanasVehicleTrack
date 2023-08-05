@@ -16,6 +16,7 @@ namespace BanasVehicleTrackDbClasses
         public int EmployeeId { get; set; }
         public string EmployeeCode { get; set; }
         public string EmployeeName { get; set; }
+        public string EmployeeSignature { get; set; }
         public string CompanyCode { get; set; }
         public string Contact { get; set; }
         public string Gender { get; set; }

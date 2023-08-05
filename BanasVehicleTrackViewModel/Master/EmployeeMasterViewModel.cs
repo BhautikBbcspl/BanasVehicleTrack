@@ -27,11 +27,14 @@ namespace BanasVehicleTrackViewModel.Master
         public string DepartmentId { get; set; }
         [Required(ErrorMessage = "*")]
         public string IsActive { get; set; }
+        public string EmployeeSignature { get; set; }
+        public string SignatureName { get; set; }
         public string CompanyCode { get; set; }
         public string CreateDate { get; set; }
         public string CreateUser { get; set; }
         public string UpdateDate { get; set; }
         public string UpdateUser { get; set; }
+        public string Path { get; set; }
         public List<BanasEmployeeMasterRtr_Result> EmployeeMasterList { get; set; }
         public List<BanasDepartmentMasterRetrieve_Result> DepartmentMasterList { get; set; }
         public List<BanasRoleMasterRetrieve_Result> RoleMasterList { get; set; }

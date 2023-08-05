@@ -6946,8 +6946,8 @@ a {
                 }
 
     .pcoded .pcoded-navbar .pcoded-item > li > a > .pcoded-micon {
-        font-size: 16px;
-        padding: 4px;
+        font-size: 20px;
+   /*     padding: 4px;*/
         margin-right: 10px;
         width: 23px;
         display: inline-block;
@@ -14095,6 +14095,11 @@ a.bg-danger:hover {
 
 .table-responsive {
     display: inline-block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-responsive1 {
     width: 100%;
     overflow-x: auto;
 }
@@ -28037,6 +28042,18 @@ span.value {
     color: #0ac282;
 }
 
+.bg-c-sky {
+    background: -webkit-gradient( linear, left top, right top, from(#278bd9), to(#8dc6f2) );
+    background: linear-gradient(to right, #278bd9, #8dc6f2);
+}
+
+.bg-simple-c-sky {
+    background: #fe9365;
+}
+
+.text-c-sky {
+    color: #fe9365;
+}
 .bg-c-yellow {
     background: -webkit-gradient( linear, left top, right top, from(#fe9365), to(#feb798) );
     background: linear-gradient(to right, #fe9365, #feb798);
@@ -29213,8 +29230,11 @@ span.value {
     visibility: hidden;
 }
 
-.Zebra_DatePicker_Icon_Wrapper{
+/*.Zebra_DatePicker_Icon_Wrapper{
     width:370px !important;
+}*/
+.Zebra_DatePicker_Icon_Wrapper {
+    width: 100% !important;
 }
 .linkDashboard .pcoded-mtext:hover {
     color: #fe8a7d !important;

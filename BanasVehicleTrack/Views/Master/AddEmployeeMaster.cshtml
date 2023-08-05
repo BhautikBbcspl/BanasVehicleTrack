@@ -34,107 +34,120 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-block">
-                        @using (Html.BeginForm("AddEmployeeMaster", "Master", FormMethod.Post))
+                        @using (Html.BeginForm("AddEmployeeMaster", "Master", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             @Html.AntiForgeryToken();
 
                             @Html.HiddenFor(m => m.Action)
                             @Html.HiddenFor(m => m.EmployeeId, new { id = "txtEmployeeId" })
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Employee Code</label>
-                                    @Html.ValidationMessageFor(m => m.EmployeeCode, "", new { @class = "text-danger" })
-                                    @Html.TextBoxFor(m => m.EmployeeCode, new Dictionary<string, object>() {
-                                          {"id","txtEmployeeCode"},
-                                          {"class","form-control"},
-                                             {"autocomplete","off"},
-                                          {"required","required"},
-                                          {"placeholder","Enter User Code"}
-                                          })
-                                </div>
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Employee Name</label>
-                                    @Html.ValidationMessageFor(m => m.EmployeeName, "", new { @class = "text-danger" })
-                                    @Html.TextBoxFor(m => m.EmployeeName, new Dictionary<string, object>() {
-                                          {"id","txtEmployeeName"},
-                                          {"class","form-control"},
-                                             {"autocomplete","off"},
-                                          {"required","required"},
-                                          {"placeholder","Enter Employee Name"}
-                                          })
-                                </div>
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Password</label>
-                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                                    @Html.TextBoxFor(m => m.Password, new Dictionary<string, object>() {
-                                          {"id","txtPassword"},
-                                          {"class","form-control"},
-                                             {"autocomplete","off"},
-                                          {"required","required"},
-                                          {"placeholder","Enter Password"}
-                                          })
-                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Contact</label>
-                                    @Html.ValidationMessageFor(m => m.Contact, "", new { @class = "text-danger" })
-                                    @Html.TextBoxFor(m => m.Contact, new Dictionary<string, object>() {
-                                          {"id","txtContact"},
-                                          {"class","form-control contacterror"},
-                                             {"autocomplete","off"},
-                                          {"required","required"},
-                                          {"placeholder","Enter Contact Details"}
-                                          })
-                                </div>
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Gender</label>
-                                    @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
-                                    <div class="form-check">
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Employee Code</label>
+                                @Html.ValidationMessageFor(m => m.EmployeeCode, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.EmployeeCode, new Dictionary<string, object>() {
+                                      {"id","txtEmployeeCode"},
+                                      {"class","form-control"},
+                                         {"autocomplete","off"},
+                                      {"required","required"},
+                                      {"placeholder","Enter User Code"}
+                                      })
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Employee Name</label>
+                                @Html.ValidationMessageFor(m => m.EmployeeName, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.EmployeeName, new Dictionary<string, object>() {
+                                      {"id","txtEmployeeName"},
+                                      {"class","form-control"},
+                                         {"autocomplete","off"},
+                                      {"required","required"},
+                                      {"placeholder","Enter Employee Name"}
+                                      })
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Employee Signature</label>
 
-                                        @Html.RadioButtonFor(model => model.Gender, "Male")
-                                        Male
-                                        @Html.RadioButtonFor(model => model.Gender, "Female")
-                                        Female
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">IsActive</label>
+                                @if (!string.IsNullOrEmpty(Model.EmployeeSignature))
+                                {
+                                    <input type="file" name="EditSignature" id="filer_input_single" accept=".jpg, .jpeg, .png">
+                                    <h6 class="font-weight-bold">@Model.SignatureName</h6>
+                                    @Html.HiddenFor(m => m.EmployeeSignature) }
+                                else
+                                {
+                                    <input type="file" name="EmployeeSignature" id="filer_input_single" accept=".jpg, .jpeg, .png" required>}
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Password</label>
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.Password, new Dictionary<string, object>() {
+                                      {"id","txtPassword"},
+                                      {"class","form-control"},
+                                         {"autocomplete","off"},
+                                      {"required","required"},
+                                      {"type","password"},
+                                      {"placeholder","Enter Password"}
+                                      })
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Contact</label>
+                                @Html.ValidationMessageFor(m => m.Contact, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.Contact, new Dictionary<string, object>() {
+                                      {"id","txtContact"},
+                                      {"class","form-control contacterror"},
+                                         {"autocomplete","off"},
+                                      {"required","required"},
+                                      {"placeholder","Enter Contact Details"}
+                                      })
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Gender</label>
+                                @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                                <div class="form-check">
 
-                                    @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
-                                    @Html.DropDownListFor(x => x.IsActive, new List<SelectListItem>
-                                   {
-                                       new SelectListItem{ Text="Enable", Value = "true",Selected=true },
-                                       new SelectListItem{ Text="Disable", Value = "false" }
-                                    }, new { @class = "form-control form-select js-example-disabled-results", @id = "IsActive" })
-                                </div>
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Role</label>
-                                    @Html.ValidationMessageFor(m => m.RoleId, "", new { @class = "text-danger" })
-                                    @Html.DropDownListFor(m => m.RoleId, new SelectList(Model.RoleMasterList.OrderBy(m => m.RoleName), "RoleId", "RoleName"), "Select Role",
-                                             new Dictionary<string, object>() {
-                                                 {"id","ddlRoleid"},
-                                                 { "class","form-control form-select js-example-disabled-results"}
-                                                 })
-                                </div>
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Department</label>
-                                    @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @class = "text-danger" })
-                                    @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList.OrderBy(m => m.DepartmentName), "DepartmentId", "DepartmentName"), "Select Department",
-                                                new Dictionary<string, object>() {
-                                                    {"id","ddlDepartmentId"},
-                                                    { "class","form-control form-select js-example-disabled-results"}
-                                                    })
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="mt-4">
-                                        <input type="submit" class="btn btn-round btn-inverse m-2" id="confirmok" value="@Model.Action" onclick="return confirm('Are You sure you want to save data?')" />
-                                        @if (Model.Action == "Save")
-                                        {
-                                            <input type="button" class="btn btn btn-round btn-inverse m-2" id="reload" value="Refresh" />
-                                        }
-                                    </div>
+                                    @Html.RadioButtonFor(model => model.Gender, "Male")
+                                    Male
+                                    @Html.RadioButtonFor(model => model.Gender, "Female")
+                                    Female
                                 </div>
                             </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">IsActive</label>
+
+                                @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(x => x.IsActive, new List<SelectListItem>
+                               {
+                                   new SelectListItem{ Text="Enable", Value = "true",Selected=true },
+                                   new SelectListItem{ Text="Disable", Value = "false" }
+                                }, new { @class = "form-control form-select js-example-disabled-results", @id = "IsActive" })
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Role</label>
+                                @Html.ValidationMessageFor(m => m.RoleId, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(m => m.RoleId, new SelectList(Model.RoleMasterList.OrderBy(m => m.RoleName), "RoleId", "RoleName"), "Select Role",
+                                         new Dictionary<string, object>() {
+                                             {"id","ddlRoleid"},
+                                             { "class","form-control form-select js-example-disabled-results"}
+                                             })
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Department</label>
+                                @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList.OrderBy(m => m.DepartmentName), "DepartmentId", "DepartmentName"), "Select Department",
+                                            new Dictionary<string, object>() {
+                                                {"id","ddlDepartmentId"},
+                                                { "class","form-control form-select js-example-disabled-results"}
+                                                })
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mt-4">
+                                    <input type="submit" class="btn btn-round btn-inverse m-2" id="confirmok" value="@Model.Action" onclick="return confirm('Are You sure you want to save data?')" />
+                                    @if (Model.Action == "Save")
+                                    {
+                                        <input type="button" class="btn btn btn-round btn-inverse m-2" id="reload" value="Refresh" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
                         }
                     </div>
                 </div>

@@ -12,7 +12,10 @@ namespace BanasVehicleTrackViewModel.AuditorDepartment
     {
         public string Action { get; set; }
         public string GatepassId { get; set; }
+
+        [Required(ErrorMessage = "*")]
         public string VisitDateTime { get; set; }
+        [Required(ErrorMessage = "*")]
         public string CloseDateTime { get; set; }
         public string VehicleRegNumber { get; set; }
 
@@ -28,5 +31,12 @@ namespace BanasVehicleTrackViewModel.AuditorDepartment
 
         public List<BanasDepartmentMasterRetrieve_Result> DepartmentMasterList { get; set; }
         public List<BanasVehicleMasterRtr_Result> VehicleMasterList { get; set; }
+        [Required(ErrorMessage = "*")]
+        public string ContractorId { get; set; }
+        public List<BanasContractorMasterRetrieve_Result> ContractorList { get; set; }
+        public List<BanasContractorAmountRpt_Result> BanasContractorAmountRptList { get; set; }
+        public List<BanasAdminDashboardCountRtr_Result> DashboardCounts { get; set; }
+        public List<BanasContractorTotalAmountMonthwiseRtr_Result> ContractorTotalAmountMonthwiseList { get; set; }
+
     }
 }

@@ -65,7 +65,7 @@
                 <div class="navbar-wrapper">
 
                     <div class="navbar-logo">
-                        <img src="~/Content/AdminTemplateAssets/images/logo3.png" style="width: 187px;position: fixed; left: 12px;" />
+                        <img src="~/Content/AdminTemplateAssets/images/Untitled-1_2.png" style="width: 188px; position: fixed; left: 12px; " />
                         <a class="mobile-menu" id="mobile-collapse">
                             <i class="feather icon-menu"></i>
                         </a>
@@ -130,6 +130,7 @@
         </div>
     </div>
     <script src="~/Content/AdminTemplateAssets/js/jquery-ui.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/js/jquery.inputmask.min.js"></script>
     <script src="~/Content/AdminTemplateAssets/js/popper.min.js"></script>
     <script src="~/Content/AdminTemplateAssets/js/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -199,51 +200,52 @@
         });
 
 
-       
+
     </script>
     @*<script>
-        $(".flatDatePicker").flatpickr({
+            $(".flatDatePicker").flatpickr({
 
-            dateFormat: "d-m-Y"
-        });
-        $(".flatDateTimePicker").flatpickr({
-            enableTime: true,
-            dateFormat: "d-m-Y H:i"
-        });
+                dateFormat: "d-m-Y"
+            });
+            $(".flatDateTimePicker").flatpickr({
+                enableTime: true,
+                dateFormat: "d-m-Y H:i"
+            });
 
-        $(".flatTimePicker").flatpickr({
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: "H:i",
-        });
+            $(".flatTimePicker").flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });
 
-        var today = new Date();
-        var yesterday = new Date(today);
-        yesterday.setDate(today.getDate() - 1);
-        var dd = String(yesterday.getDate()).padStart(2, '0');
-        var mm = String(yesterday.getMonth() + 1).padStart(2, '0');
-        var yyyy = yesterday.getFullYear();
-        var yesterdayString = dd + '-' + mm + '-' + yyyy;
+            var today = new Date();
+            var yesterday = new Date(today);
+            yesterday.setDate(today.getDate() - 1);
+            var dd = String(yesterday.getDate()).padStart(2, '0');
+            var mm = String(yesterday.getMonth() + 1).padStart(2, '0');
+            var yyyy = yesterday.getFullYear();
+            var yesterdayString = dd + '-' + mm + '-' + yyyy;
 
-        var endPickerInstance;
+            var endPickerInstance;
 
-        $(".LinkedDatePicker").flatpickr({
-            dateFormat: "d-m-Y",
-            maxDate: yesterdayString,
+            $(".LinkedDatePicker").flatpickr({
+                dateFormat: "d-m-Y",
+                maxDate: yesterdayString,
 
-            onChange: function (selectedDates, dateStr, instance) {
-                if (endPickerInstance) {
-                    endPickerInstance.set('minDate', dateStr);
+                onChange: function (selectedDates, dateStr, instance) {
+                    if (endPickerInstance) {
+                        endPickerInstance.set('minDate', dateStr);
+                    }
                 }
-            }
-        });
+            });
 
-        endPickerInstance = flatpickr(".LinkedDatePicker2", {
-            dateFormat: "d-m-Y"
-        });
-    </script>*@
+            endPickerInstance = flatpickr(".LinkedDatePicker2", {
+                dateFormat: "d-m-Y"
+            });
+        </script>*@
     <script>
         function ActiveDeactiveStatusChange(status, Code, Type) {
+
             $('#AjaxLoader').show();
             if (Code != null) {
                 var Value = status.checked;
@@ -307,6 +309,9 @@
         $(".numbererror").inputFilter(function (value) {
             return /^-?^\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) >= 0);
         }, "Number Only Allow");
+        $(".yearerror").inputFilter(function (value) {
+            return /^\d*(?:\.\d{1,2})?$/.test(value) && (value === "" || parseInt(value) <= 10000);
+        }, "Only Enter Year");
         $(".contacterror").inputFilter(function (value) {
             return /^\d*(?:\.\d{1,2})?$/.test(value) && (value === "" || parseInt(value) <= 10000000000);
         }, "10 Numbers Only Allow");
@@ -318,6 +323,48 @@
         $(".Rangenumberdecimal").inputFilter(function (value) { return /^\d*[.]?\d*[-]?\d*[.]?\d*$/.test(value); }, " Numbers Only Allow");
 
     </script>
+    <script>
+        $(document).ready(function () {
+            // Select the textboxes you want to convert to uppercase
+            var textboxes = $('.Capalphanumber');
+            $('input[type="text"]').addClass('text-capitalize');
+            //var inputFields = $('.form-control');
 
+            // Handle the keyup event for the selected textboxes
+            textboxes.on('keyup', function () {
+                var $this = $(this);
+                var originalValue = $this.val();
+                var uppercasedValue = originalValue.toUpperCase();
+
+                // Update the textbox value with the uppercase value
+                if (originalValue !== uppercasedValue) {
+                    $this.val(uppercasedValue);
+                }
+            });
+
+            // Handle the keyup event for the selected input fields
+            //inputFields.on('keyup', function () {
+            //    var $this = $(this);
+            //    var originalValue = $this.val();
+            //    var capitalizedValue = capitalizeFirstLetter(originalValue);
+
+            //    // Update the input field value with the capitalized value
+            //    if (originalValue !== capitalizedValue) {
+            //        $this.val(capitalizedValue);
+            //    }
+            //});
+
+            // Function to capitalize the first letter of each word
+            function capitalizeFirstLetter(str) {
+                var words = str.toLowerCase().split(' ');
+
+                for (var i = 0; i < words.length; i++) {
+                    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                }
+
+                return words.join(' ');
+            }
+        });
+    </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 
+
 namespace BanasVehicleTrack.Controllers
 {
     public class MasterController : GeneralClass
@@ -30,10 +31,10 @@ namespace BanasVehicleTrack.Controllers
                 {
                     msg = db.BanasRoleMasterInsUpd(Code, "", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "rights").FirstOrDefault();
                 }
-                else if (Type == "EmployeeMaster")
-                {
-                    msg = db.BanasEmployeeMasterInsUpd(Code, "", "", "", "", "", "", "", status, LoggedUserDetails.CompanyCode, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "active").FirstOrDefault();
-                }
+                //else if (Type == "EmployeeMaster")
+                //{
+                //    msg = db.BanasEmployeeMasterInsUpd(Code, "", "", "", "", "", "", "", status, LoggedUserDetails.CompanyCode, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "active").FirstOrDefault();
+                //}
                 else if (Type == "SecurityMaster")
                 {
                     msg = db.BanasSecurityMasterInsUpd(Code, "", "", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "rights", "", "").FirstOrDefault();
@@ -44,7 +45,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 else if (Type == "ModuleMaster")
                 {
-                    msg = db.BanasModuleMasterInsUpd(Code, "", "", "", status, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "active").FirstOrDefault();
+                    msg = db.BanasModuleMasterInsUpd(Code, "", "", "", "", status, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "active").FirstOrDefault();
                 }
                 else if (Type == "PageMaster")
                 {
@@ -60,11 +61,27 @@ namespace BanasVehicleTrack.Controllers
                 }
                 else if (Type == "VehicleMaster")
                 {
-                    msg = db.BanasVehicleMasterInsUpd(Code, "", "", "", "", "", "", "", "", "", "", "", "", "", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "Active").FirstOrDefault();
+                    msg = db.BanasVehicleMasterInsUpd(Code, "", "", "", "", "", "", "", "", "", "", "", "", "", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "", "", "", "Active").FirstOrDefault();
                 }
                 else if (Type == "VisitPurposeMaster")
                 {
                     msg = db.BanasVisitPurposeMasterInsUpd(Code, "", status, LoggedUserDetails.CompanyCode, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "Active").FirstOrDefault();
+                }
+                else if (Type == "ContractorMaster")
+                {
+                    msg = db.BanasContractorMasterInsUpd(Code, "", "", "", "", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "active").FirstOrDefault();
+                }
+                else if (Type == "CenterMaster")
+                {
+                    msg = db.BanasCenterMasterInsUpd(Code, "","", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "active").FirstOrDefault();
+                }
+                else if (Type == "UserCenterAllocation")
+                {
+                    msg = db.BanasUserCenterIntegrationInsUpd(Code, "", "", "", "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, status, "active").FirstOrDefault();
+                }
+                else if (Type == "UserDepartmentAllocation")
+                {
+                    msg = db.BanasUserDepartmentIntegrationInsUpd(Code, "", "", "", "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, status, "active").FirstOrDefault();
                 }
                 else
                 {
@@ -101,7 +118,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 if (ViewBag.ViewRight == 1)
                 {
-                    model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("all", LoggedUserDetails.CompanyCode).ToList();
+                    model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("all", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList();
                     model.Action = "Save";
                     return View(model);
                 }
@@ -134,7 +151,7 @@ namespace BanasVehicleTrack.Controllers
                 return RedirectToAction("Dashboard", "Home");
             }
         }
-        [HttpPost]
+        [HttpPost] 
         public ActionResult AddDepartmentMaster(DepartmentMasterViewModel dm)
         {
             try
@@ -186,7 +203,7 @@ namespace BanasVehicleTrack.Controllers
                 {
                     return RedirectToAction("Login", "Home");
                 }
-                var sm = db.BanasDepartmentMasterRetrieve("all", LoggedUserDetails.CompanyCode).Where(c => c.DepartmentId == id).SingleOrDefault();
+                var sm = db.BanasDepartmentMasterRetrieve("all", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).Where(c => c.DepartmentId == id).SingleOrDefault();
                 DepartmentMasterViewModel sb = new DepartmentMasterViewModel();
                 sb.DepartmentId = sm.DepartmentId.ToString();
                 sb.DepartmentCode = sm.DepartmentCode;
@@ -325,7 +342,7 @@ namespace BanasVehicleTrack.Controllers
                 return RedirectToAction("Dashboard", "Home");
             }
         }
-        #endregion
+        #endregion  
 
         #region==> Employee Master
         public ActionResult ViewEmployeeMaster()
@@ -372,8 +389,8 @@ namespace BanasVehicleTrack.Controllers
                     return RedirectToAction("Login", "Home");
                 }
                 EmployeeMasterViewModel model = new EmployeeMasterViewModel();
-                model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode).ToList();
-                model.RoleMasterList = db.BanasRoleMasterRetrieve("active", LoggedUserDetails.CompanyCode).ToList();
+                model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
+                model.RoleMasterList = db.BanasRoleMasterRetrieve("admin", LoggedUserDetails.CompanyCode).ToList();
                 model.Action = "Save";
                 return View(model);
             }
@@ -384,14 +401,25 @@ namespace BanasVehicleTrack.Controllers
             }
         }
         [HttpPost]
-        public ActionResult AddEmployeeMaster(EmployeeMasterViewModel dm)
+        public ActionResult AddEmployeeMaster(EmployeeMasterViewModel dm, HttpPostedFileBase EmployeeSignature, HttpPostedFileBase EditSignature)
         {
             try
             {
                 if (dm.Action == "Save")
                 {
+                    if (EmployeeSignature != null)
+                    {
+                        string path = Server.MapPath("~/Uploads/AuditorSign_Img/");
+                        string ImagePath = "Uploads/AuditorSign_Img/";
+                        string extension = Path.GetExtension(EmployeeSignature.FileName);
+
+                        var result = string.Concat(dm.EmployeeCode, extension);
+
+                        EmployeeSignature.SaveAs(path + Path.GetFileName(result));
+                        dm.EmployeeSignature = string.Concat(ImagePath, result);
+                    }
                     dm.Password = generalFunctions.Encrypt(dm.Password, true).ToString().Trim();
-                    string msg = db.BanasEmployeeMasterInsUpd(dm.EmployeeId, dm.EmployeeCode, dm.EmployeeName, dm.Contact, dm.Gender, dm.Password, dm.RoleId, dm.DepartmentId, dm.IsActive, LoggedUserDetails.CompanyCode, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "", "insert").FirstOrDefault();
+                    string msg = db.BanasEmployeeMasterInsUpd(dm.EmployeeId, dm.EmployeeCode, dm.EmployeeName, dm.EmployeeSignature, dm.Contact, dm.Gender, dm.Password, dm.RoleId, dm.DepartmentId, dm.IsActive, LoggedUserDetails.CompanyCode, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "", "insert").FirstOrDefault();
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))
                     {
@@ -406,8 +434,35 @@ namespace BanasVehicleTrack.Controllers
                 }
                 else
                 {
+                    if (EditSignature != null)
+                    {
+                        string oldSignaturePath = Server.MapPath("~/" + dm.EmployeeSignature);
+                        string path = Server.MapPath("~/Uploads/AuditorSign_Img/");
+                        string ImagePath = "Uploads/AuditorSign_Img/";
+                        string extension = Path.GetExtension(EditSignature.FileName);
+
+                        var result = string.Concat(dm.EmployeeCode, extension);
+                        if (System.IO.File.Exists(oldSignaturePath))
+                        {
+                            System.IO.File.Delete(oldSignaturePath);
+                        }
+                        EditSignature.SaveAs(path + Path.GetFileName(result));
+                        dm.EmployeeSignature = string.Concat(ImagePath, result);
+
+                    }
+                    if (EmployeeSignature != null)
+                    {
+                        string path = Server.MapPath("~/Uploads/AuditorSign_Img/");
+                        string ImagePath = "Uploads/AuditorSign_Img/";
+                        string extension = Path.GetExtension(EmployeeSignature.FileName);
+
+                        var result = string.Concat(dm.EmployeeCode, extension);
+
+                        EmployeeSignature.SaveAs(path + Path.GetFileName(result));
+                        dm.EmployeeSignature = string.Concat(ImagePath, result);
+                    }
                     dm.Password = generalFunctions.Encrypt(dm.Password, true).ToString().Trim();
-                    string msg = db.BanasEmployeeMasterInsUpd(dm.EmployeeId, dm.EmployeeCode, dm.EmployeeName, dm.Contact, dm.Gender, dm.Password, dm.RoleId, dm.DepartmentId, dm.IsActive, LoggedUserDetails.CompanyCode, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "update").FirstOrDefault();
+                    string msg = db.BanasEmployeeMasterInsUpd(dm.EmployeeId, dm.EmployeeCode, dm.EmployeeName, dm.EmployeeSignature, dm.Contact, dm.Gender, dm.Password, dm.RoleId, dm.DepartmentId, dm.IsActive, LoggedUserDetails.CompanyCode, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "update").FirstOrDefault();
 
 
                     ViewBag.Message = msg;
@@ -441,8 +496,8 @@ namespace BanasVehicleTrack.Controllers
                 var sm = db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "all").Where(c => c.EmployeeId == id).SingleOrDefault();
                 EmployeeMasterViewModel sb = new EmployeeMasterViewModel();
                 sb.EmployeeMasterList = db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "all").ToList();
-                sb.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode).ToList();
-                sb.RoleMasterList = db.BanasRoleMasterRetrieve("active", LoggedUserDetails.CompanyCode).ToList();
+                sb.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
+                sb.RoleMasterList = db.BanasRoleMasterRetrieve("admin", LoggedUserDetails.CompanyCode).ToList();
                 sb.EmployeeId = sm.EmployeeId.ToString();
                 sb.EmployeeCode = sm.EmployeeCode;
                 sb.EmployeeName = sm.EmployeeName;
@@ -454,6 +509,14 @@ namespace BanasVehicleTrack.Controllers
                 sb.Contact = sm.Contact;
                 sb.IsActive = sm.IsActive.ToString();
                 sb.Action = "Update";
+                if (sm.EmployeeSignature != null)
+                {
+                    string ImagePath = sm.EmployeeSignature;
+                    sb.Path = sm.EmployeeSignature;
+                    string folderPath = "Uploads/AuditorSign_Img/";
+                    sb.SignatureName = ImagePath.Substring(folderPath.Length);
+                    sb.EmployeeSignature = ImagePath;
+                }
                 ViewBag.action = "Update";
                 return View("AddEmployeeMaster", sb);
             }
@@ -511,6 +574,11 @@ namespace BanasVehicleTrack.Controllers
                     return RedirectToAction("Login", "Home");
                 }
                 VehicleMasterViewModel model = new VehicleMasterViewModel();
+                model.ContractorMasterList = db.BanasContractorMasterRetrieve("All", LoggedUserDetails.CompanyCode).ToList(); 
+                model.DepartmentList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
+                model.CenterList = (LoggedUserDetails.EmployeeCode == "Admin")
+                 ? db.BanasCenterMasterRetrieve("active").ToList() : db.BanasCenterMasterRetrieve("active").Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
+                model.DepartmentId = LoggedUserDetails.DepartmentId;
                 model.Action = "Save";
                 return View(model);
             }
@@ -527,7 +595,7 @@ namespace BanasVehicleTrack.Controllers
             {
                 if (dm.Action == "Save")
                 {
-                    string msg = db.BanasVehicleMasterInsUpd(dm.VehicleId, dm.VehicleCode, dm.VehicleRegNumber, generalFunctions.dateconvert(dm.VehicleRegDate), dm.VehicleType, dm.VehicleMake, dm.Model, dm.Status, dm.RatePerKm, generalFunctions.dateconvert(dm.RateEffectiveDate), generalFunctions.dateconvert(dm.InsuranceCommencementDate), generalFunctions.dateconvert(dm.InsuranceExpiryDate), generalFunctions.dateconvert(dm.ContractStartDate), generalFunctions.dateconvert(dm.ContractEndDate), LoggedUserDetails.CompanyCode, dm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "", "Insert").FirstOrDefault();
+                    string msg = db.BanasVehicleMasterInsUpd(dm.VehicleId, dm.VehicleCode, dm.VehicleRegNumber, generalFunctions.dateconvert(dm.VehicleRegDate), dm.VehicleType, dm.VehicleMake, dm.Model, dm.Status, dm.RatePerKm, null, generalFunctions.dateconvert(dm.InsuranceCommencementDate), generalFunctions.dateconvert(dm.InsuranceExpiryDate), generalFunctions.dateconvert(dm.ContractStartDate), generalFunctions.dateconvert(dm.ContractEndDate), LoggedUserDetails.CompanyCode, dm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "", dm.ContractorId,dm.DepartmentId,dm.CenterId, "Insert").FirstOrDefault();
 
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))
@@ -543,7 +611,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 else
                 {
-                    string msg = db.BanasVehicleMasterInsUpd(dm.VehicleId, dm.VehicleCode, dm.VehicleRegNumber, generalFunctions.dateconvert(dm.VehicleRegDate), dm.VehicleType, dm.VehicleMake, dm.Model, dm.Status, dm.RatePerKm, generalFunctions.dateconvert(dm.RateEffectiveDate), generalFunctions.dateconvert(dm.InsuranceCommencementDate), generalFunctions.dateconvert(dm.InsuranceExpiryDate), generalFunctions.dateconvert(dm.ContractStartDate), generalFunctions.dateconvert(dm.ContractEndDate), LoggedUserDetails.CompanyCode, dm.IsActive, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "Update").FirstOrDefault();
+                    string msg = db.BanasVehicleMasterInsUpd(dm.VehicleId, dm.VehicleCode, dm.VehicleRegNumber, generalFunctions.dateconvert(dm.VehicleRegDate), dm.VehicleType, dm.VehicleMake, dm.Model, dm.Status, dm.RatePerKm, null, generalFunctions.dateconvert(dm.InsuranceCommencementDate), generalFunctions.dateconvert(dm.InsuranceExpiryDate), generalFunctions.dateconvert(dm.ContractStartDate), generalFunctions.dateconvert(dm.ContractEndDate), LoggedUserDetails.CompanyCode, dm.IsActive, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, dm.ContractorId, dm.DepartmentId, dm.CenterId, "Update").FirstOrDefault();
 
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))
@@ -575,6 +643,11 @@ namespace BanasVehicleTrack.Controllers
                 }
                 var sm = db.BanasVehicleMasterRtr("All", LoggedUserDetails.CompanyCode).Where(c => c.VehicleId == id).SingleOrDefault();
                 VehicleMasterViewModel sb = new VehicleMasterViewModel();
+                sb.ContractorMasterList = db.BanasContractorMasterRetrieve("All", LoggedUserDetails.CompanyCode).ToList();
+                sb.DepartmentList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
+                sb.CenterList = (LoggedUserDetails.EmployeeCode == "Admin")
+                 ? db.BanasCenterMasterRetrieve("active").ToList() : db.BanasCenterMasterRetrieve("active").Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
+
                 sb.VehicleId = sm.VehicleId.ToString();
                 sb.VehicleCode = sm.VehicleCode;
                 sb.VehicleRegNumber = sm.VehicleRegNumber;
@@ -584,7 +657,10 @@ namespace BanasVehicleTrack.Controllers
                 sb.Model = sm.Model;
                 sb.Status = sm.Status;
                 sb.RatePerKm = sm.RatePerKm.ToString();
-                sb.RateEffectiveDate = sm.RateEffeDate.ToString();
+                sb.ContractorId = sm.ContractorId.ToString();
+                sb.CenterId = sm.CenterId.ToString();
+                sb.DepartmentId = sm.DepartmentId.ToString();
+                //sb.RateEffectiveDate = sm.RateEffeDate.ToString();
                 sb.InsuranceCommencementDate = sm.InsComDate.ToString();
                 sb.InsuranceExpiryDate = sm.InsExpDate.ToString();
                 sb.ContractStartDate = sm.ConStartDate.ToString();
@@ -599,6 +675,20 @@ namespace BanasVehicleTrack.Controllers
                 Danger(ex.Message.ToString(), true);
                 return RedirectToAction("Dashboard", "Home");
             }
+        }
+        public ActionResult SelectContCompWiseConNameJson(int ddlContractorId)
+        {
+            var Contractorlist = db.BanasContractorMasterRetrieve("All", LoggedUserDetails.CompanyCode).Where(x => x.IsActive == true && x.ContractorId == ddlContractorId).Select(c => new ContractorMasterViewModel() { ContractorCode = c.ContractorCode, ContractorName = c.ContractorName.ToString(), Contactno = c.Contactno }).ToList();
+
+            var obj = new { Contractorlist };
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult SelectDepartmentWiseCenterJson(int ddlDepartmentId)
+        {
+            var CenterList = db.BanasCenterMasterRetrieve("active").Where(x => x.DepartmentId == ddlDepartmentId).Select(c => new CenterMasterViewModel() { CenterId = c.CenterId.ToString(), CenterName = c.CenterName }).ToList();
+
+            var obj = new { CenterList };
+            return Json(obj, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
@@ -1108,6 +1198,7 @@ namespace BanasVehicleTrack.Controllers
 
                 sb.AuditorCode = sm.AuditorCode;
                 sb.Password = generalFunctions.Decrypt(sm.Password, true);
+
                 sb.IsActive = sm.IsActive.ToString();
                 sb.Action = "update";
                 ViewBag.action = "update";
@@ -1119,6 +1210,591 @@ namespace BanasVehicleTrack.Controllers
                 return RedirectToAction("Dashboard", "Home");
             }
         }
+        #endregion
+
+        #region==> Contractor Master
+        public ActionResult ViewContractorMaster()
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                ContractorMasterViewModel model = new ContractorMasterViewModel();
+                string url = generalFunctions.getCommon(Request.Url.AbsoluteUri);
+                var re = db.BanasMenuRightsRtr(LoggedUserDetails.RoleId, url).FirstOrDefault();
+                if (re != null)
+                {
+                    ViewBag.ViewRight = re.ViewRight;
+                    ViewBag.InsertRight = re.InsertRight;
+                    ViewBag.UpdateRight = re.UpdateRight;
+                    ViewBag.DeleteRight = re.DeleteRight;
+                }
+                if (ViewBag.ViewRight == 1)
+                {
+                    model.ConMasterList = db.BanasContractorMasterRetrieve("all", LoggedUserDetails.CompanyCode).ToList();
+                    model.Action = "Save";
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard", "Home");
+                }
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+
+        public ActionResult AddContractorMaster()
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                ContractorMasterViewModel model = new ContractorMasterViewModel();
+                model.Action = "Save";
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult AddContractorMaster(ContractorMasterViewModel dm)
+        {
+            try
+            {
+                if (dm.Action == "Save")
+                {
+                    string msg = db.BanasContractorMasterInsUpd(dm.ContractorId, dm.ContractorCompanyName, dm.ContractorCode, dm.ContractorName, dm.Contactno, LoggedUserDetails.CompanyCode, dm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "insert").FirstOrDefault();
+                    ViewBag.Message = msg;
+                    if (msg.Contains("successfully"))
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Success(msg, true);
+                    }
+                    else
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Danger(msg, true);
+                    }
+                }
+                else
+                {
+                    string msg = db.BanasContractorMasterInsUpd(dm.ContractorId, dm.ContractorCompanyName, dm.ContractorCode, dm.ContractorName, dm.Contactno, LoggedUserDetails.CompanyCode, dm.IsActive, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "update").FirstOrDefault();
+
+                    ViewBag.Message = msg;
+                    if (msg.Contains("successfully"))
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Success(msg, true);
+                    }
+                    else
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Danger(msg, true);
+                    }
+                }
+                return RedirectToAction("AddContractorMaster");
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        public ActionResult EditConMaster(int id)
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                var sm = db.BanasContractorMasterRetrieve("all", LoggedUserDetails.CompanyCode).Where(c => c.ContractorId == id).SingleOrDefault();
+                ContractorMasterViewModel sb = new ContractorMasterViewModel();
+                sb.ContractorId = sm.ContractorId.ToString();
+                sb.ContractorCompanyName = sm.ContractorCompanyName;
+                sb.ContractorCode = sm.ContractorCode;
+                sb.ContractorName = sm.ContractorName;
+                sb.Contactno = sm.Contactno;
+                sb.IsActive = sm.IsActive.ToString();
+                sb.Action = "update";
+                ViewBag.action = "update";
+                return View("AddContractorMaster", sb);
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        #endregion
+
+        #region==> Center Master
+        public ActionResult ViewCenterMaster()
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                CenterMasterViewModel model = new CenterMasterViewModel();
+                string url = generalFunctions.getCommon(Request.Url.AbsoluteUri);
+                var re = db.BanasMenuRightsRtr(LoggedUserDetails.RoleId, url).FirstOrDefault();
+                if (re != null)
+                {
+                    ViewBag.ViewRight = re.ViewRight;
+                    ViewBag.InsertRight = re.InsertRight;
+                    ViewBag.UpdateRight = re.UpdateRight;
+                    ViewBag.DeleteRight = re.DeleteRight;
+                }
+                if (ViewBag.ViewRight == 1)
+                {
+                    model.CenterList = db.BanasCenterMasterRetrieve("all").ToList();
+                    model.Action = "Save";
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard", "Home");
+                }
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+
+        public ActionResult AddCenterMaster()
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                CenterMasterViewModel model = new CenterMasterViewModel();
+                model.DepartmentList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList();
+                model.Action = "Save";
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult AddCenterMaster(CenterMasterViewModel cm)
+        {
+            try
+            {
+                if (cm.Action == "Save")
+                {
+                    string msg = db.BanasCenterMasterInsUpd(cm.CenterId, cm.DepartmentId, cm.CenterName, LoggedUserDetails.CompanyCode, cm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "insert").FirstOrDefault();
+                    ViewBag.Message = msg;
+                    if (msg.Contains("successfully"))
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Success(msg, true);
+                    }
+                    else
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Danger(msg, true);
+                    }
+                }
+                else
+                {
+                    string msg = db.BanasCenterMasterInsUpd(cm.CenterId, cm.DepartmentId, cm.CenterName, LoggedUserDetails.CompanyCode, cm.IsActive, "",generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "update").FirstOrDefault();
+
+                    ViewBag.Message = msg;
+                    if (msg.Contains("successfully"))
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Success(msg, true);
+                    }
+                    else
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Danger(msg, true);
+                    }
+                }
+                return RedirectToAction("AddCenterMaster");
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        public ActionResult EditCenterMaster(int id)
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                var sm = db.BanasCenterMasterRetrieve("active").Where(c => c.CenterId == id).SingleOrDefault();
+               
+                CenterMasterViewModel sb = new CenterMasterViewModel();
+                sb.DepartmentList =  db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList();
+                sb.CenterId = sm.CenterId.ToString();
+                sb.DepartmentId = sm.DepartmentId.ToString();
+                sb.CenterName = sm.CenterName;
+                sb.IsActive = sm.IsActive.ToString();
+                sb.Action = "update";
+                ViewBag.action = "update";
+                return View("AddCenterMaster", sb);
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        #endregion
+
+        #region==> User Center Allocation Master
+        public ActionResult ViewUserCenterAllocation()
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                UserCenterAllocationViewModel model = new UserCenterAllocationViewModel();
+                string url = generalFunctions.getCommon(Request.Url.AbsoluteUri);
+                var re = db.BanasMenuRightsRtr(LoggedUserDetails.RoleId, url).FirstOrDefault();
+                if (re != null)
+                {
+                    ViewBag.ViewRight = re.ViewRight;
+                    ViewBag.InsertRight = re.InsertRight;
+                    ViewBag.UpdateRight = re.UpdateRight;
+                    ViewBag.DeleteRight = re.DeleteRight;
+                }
+                if (ViewBag.ViewRight == 1)
+                {
+
+                    model.UserCenterMasterList = db.BanasUserCenterIntegrationRtr("all", "").ToList();
+                    model.Action = "Save";
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard", "Home");
+                }
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        public ActionResult AddUserCenterAllocation()
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                UserCenterAllocationViewModel model = new UserCenterAllocationViewModel();
+                model.CenterMasterList = db.BanasCenterMasterRetrieve("active").ToList();
+                model.EmployeeList = (LoggedUserDetails.EmployeeCode == "Admin")
+                ? db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active").ToList()
+                : db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active")
+                .Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId)
+                .ToList();
+                model.EmployeeList.ForEach(e =>
+                {
+                    e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
+                });
+                model.Action = "Save";
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult AddUserCenterAllocation(UserCenterAllocationViewModel dm)
+        {
+            try
+            {
+                if (dm.Action == "Save")
+                {
+                    string msg = db.BanasUserCenterIntegrationInsUpd(dm.UserCenterId.ToString(), dm.EmployeeCode, dm.CenterId.ToString(), generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "", "", dm.IsActive.ToString(), "insert").FirstOrDefault();
+                    ViewBag.Message = msg;
+                    if (msg.Contains("successfully"))
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Success(msg, true);
+                        return RedirectToAction("AddUserCenterAllocation");
+
+                    }
+                    else
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Danger(msg, true);
+                        dm.CenterMasterList = db.BanasCenterMasterRetrieve("active").ToList();
+                        dm.EmployeeList = (LoggedUserDetails.EmployeeCode == "Admin")
+                        ? db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active").ToList()
+                        : db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active")
+                        .Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId)
+                        .ToList();
+                        dm.EmployeeList.ForEach(e =>
+                        {
+                            e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
+                        });
+                        return View(dm);
+                    }
+                }
+                return View(dm);
+
+                //else
+                //{
+                //    string msg = db.BanasUserCenterIntegrationInsUpd(dm.UserCenterId.ToString(), dm.EmployeeCode, dm.CenterId.ToString(), "", "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, dm.IsActive.ToString(), "update").FirstOrDefault();
+
+                //    ViewBag.Message = msg;
+                //    if (msg.Contains("successfully"))
+                //    {
+                //        ViewBag.Message = msg.ToUpper();
+                //        Success(msg, true);
+                //    }
+                //    else
+                //    {
+                //        ViewBag.Message = msg.ToUpper();
+                //        Danger(msg, true);
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        public ActionResult SelectCenterUserDepartmentWise(string usercode)
+        {
+
+            string department = "";
+
+            if (usercode != "0")
+            {
+                if (usercode != "Admin")
+                {
+                    department = db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "active").Where(x => x.EmployeeCode == usercode).FirstOrDefault().DepartmentId.ToString();
+                }
+                var CenterList = (usercode == "Admin") ? db.BanasCenterMasterRetrieve("active").ToList() : db.BanasCenterMasterRetrieve("active").Where(x => x.DepartmentId == Convert.ToInt32(department)).ToList();
+                var obj = new { CenterList };
+                return Json(obj, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                var CenterList = db.BanasCenterMasterRetrieve("active").ToList();
+                var obj = new { CenterList };
+                return Json(obj, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+        //public ActionResult EditUserCenterAllocation(int id)
+        //{
+        //    try
+        //    {
+        //        if (!User.Identity.IsAuthenticated)
+        //        {
+        //            return RedirectToAction("Login", "Home");
+        //        }
+        //        var sm = db.BanasUserCenterIntegrationRtr("detail",id.ToString()).SingleOrDefault();
+        //        UserCenterAllocationViewModel sb = new UserCenterAllocationViewModel();
+        //        sb.UserCenterId = sm.UCInteId;
+        //        sb.CenterId = Convert.ToInt32(sm.CenterId);
+        //        sb.EmployeeCode = sm.Usercode;
+        //        sb.IsActive = sm.IsActive.ToString();
+        //        sb.CenterMasterList = db.BanasCenterMasterRetrieve("active").ToList();
+        //        sb.EmployeeList = (LoggedUserDetails.EmployeeCode == "Admin")? db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active").ToList()
+        //        : db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active")
+        //        .Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
+        //        sb.EmployeeList.ForEach(e =>
+        //        {
+        //            e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
+        //        });
+        //        sb.Action = "update";
+        //        ViewBag.action = "update";
+        //        return View("AddUserCenterAllocation", sb);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Danger(ex.Message.ToString(), true);
+        //        return RedirectToAction("Dashboard", "Home");
+        //    }
+        //}
+        #endregion
+
+        #region==> User Department Allocation Master
+        public ActionResult ViewUserDepartmentAllocation()
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                UserDepartmentAllocationViewModel model = new UserDepartmentAllocationViewModel();
+                string url = generalFunctions.getCommon(Request.Url.AbsoluteUri);
+                var re = db.BanasMenuRightsRtr(LoggedUserDetails.RoleId, url).FirstOrDefault();
+                if (re != null)
+                {
+                    ViewBag.ViewRight = re.ViewRight;
+                    ViewBag.InsertRight = re.InsertRight;
+                    ViewBag.UpdateRight = re.UpdateRight;
+                    ViewBag.DeleteRight = re.DeleteRight;
+                }
+                if (ViewBag.ViewRight == 1)
+                {
+                    model.UserDepartmentMasterList = db.BanasUserDepartmentIntegrationRtr("all", "","").ToList();
+                    model.Action = "Save";
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard", "Home");
+                }
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        public ActionResult AddUserDepartmentAllocation()
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                UserDepartmentAllocationViewModel model = new UserDepartmentAllocationViewModel();
+                model.DepartmentList = db.BanasDepartmentMasterRetrieve("allactive", LoggedUserDetails.CompanyCode,"").ToList();
+                model.EmployeeList = db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active").ToList();
+                model.EmployeeList.ForEach(e =>
+                {
+                    e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
+                });
+                model.Action = "Save";
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult AddUserDepartmentAllocation(UserDepartmentAllocationViewModel dm)
+        {
+            try
+            {
+                if (dm.Action == "Save")
+                {
+                    string msg = db.BanasUserDepartmentIntegrationInsUpd(dm.UserDepartmentId.ToString(), dm.EmployeeCode, dm.DepartmentId.ToString(), generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "", "", dm.IsActive.ToString(), "insert").FirstOrDefault();
+                    ViewBag.Message = msg;
+                    if (msg.Contains("successfully"))
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Success(msg, true);
+                        return RedirectToAction("AddUserDepartmentAllocation");
+
+                    }
+                    else
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Danger(msg, true);
+
+                        dm.DepartmentList = db.BanasDepartmentMasterRetrieve("allactive", LoggedUserDetails.CompanyCode, "").ToList();
+                        dm.EmployeeList = db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active").ToList();
+                        dm.EmployeeList.ForEach(e =>
+                        {
+                            e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
+                        });
+                        return View(dm);
+                    }
+                }
+                else
+                {
+                    string msg = db.BanasUserDepartmentIntegrationInsUpd(dm.UserDepartmentId.ToString(), dm.EmployeeCode, dm.DepartmentId.ToString(), "", "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, dm.IsActive.ToString(), "update").FirstOrDefault();
+
+                    ViewBag.Message = msg;
+                    if (msg.Contains("successfully"))
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Success(msg, true);
+                        return View(dm);
+                    }
+                    else
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Danger(msg, true);
+                        return View(dm);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+
+        //public ActionResult EditUserDepartmentAllocation(int id)
+        //{
+        //    try
+        //    {
+        //        if (!User.Identity.IsAuthenticated)
+        //        {
+        //            return RedirectToAction("Login", "Home");
+        //        }
+        //        var sm = db.BanasUserDepartmentIntegrationRtr("detail", "",id.ToString()).SingleOrDefault();
+        //        UserDepartmentAllocationViewModel sb = new UserDepartmentAllocationViewModel();
+        //        sb.UserDepartmentId = sm.UDInteId;
+        //        sb.DepartmentId = Convert.ToInt32(sm.DepartmentId);
+        //        sb.EmployeeCode = sm.Usercode;
+        //        sb.IsActive = sm.IsActive.ToString();
+        //        sb.DepartmentList = db.BanasDepartmentMasterRetrieve("allactive", LoggedUserDetails.CompanyCode, "").ToList();
+        //        sb.EmployeeList = db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active").ToList();
+        //        sb.EmployeeList.ForEach(e =>
+        //        {
+        //            e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
+        //        });
+        //        sb.Action = "update";
+        //        ViewBag.action = "update";
+        //        return View("AddUserDepartmentAllocation", sb);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Danger(ex.Message.ToString(), true);
+        //        return RedirectToAction("Dashboard", "Home");
+        //    }
+        //}
         #endregion
 
         #endregion
