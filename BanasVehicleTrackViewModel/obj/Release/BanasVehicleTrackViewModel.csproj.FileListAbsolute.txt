@@ -63,16 +63,3 @@ C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Re
 C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.csproj.CopyComplete
 C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.dll
 C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.pdb
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackViewModel.dll.config
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackViewModel.dll
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackViewModel.pdb
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackDbClasses.dll
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Release\EntityFramework.dll
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackDbClasses.pdb
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Release\BanasVehicleTrackDbClasses.dll.config
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Release\EntityFramework.xml
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.csproj.AssemblyReference.cache
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.csproj.CoreCompileInputs.cache
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.csproj.CopyComplete
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.dll
-E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\obj\Release\BanasVehicleTrackViewModel.pdb

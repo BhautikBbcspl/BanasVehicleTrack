@@ -24,7 +24,7 @@ namespace BanasVehicleTrack.Report
                 ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Report/rdlc/ViewStartGatePassReport.rdlc");
 
 
-                var re1 = db.BanasVehicleGatepassRetrieve("details", "", "", "", "", gatePassId, "").ToList();
+                var re1 = db.BanasVehicleGatepassRetrieve("details", "", "", "", "", gatePassId).ToList();
         
                 ReportDataSource datasource = new ReportDataSource("BanasVehicleTrackDataSet", re1);
 

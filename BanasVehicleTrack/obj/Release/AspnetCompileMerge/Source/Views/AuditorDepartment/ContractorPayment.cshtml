@@ -1,265 +1,0 @@
-﻿@model BanasVehicleTrackViewModel.AuditorDepartment.AuditorMgmtViewModel
-
-@{
-    ViewBag.Title = "AuditorMgmtDashboard";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<style>
-   /* .dataTables_scrollHeadInner, .table {
-        width: 100% !important;
-    }
-
-    .dataTables_wrapper .dataTables_filter {
-        float: right;
-        text-align: right;
-        position: absolute;
-        right: 70px;
-        font-weight: 400 !important;
-        font-size: 16px;
-    }
-
-
-    .dataTables_wrapper .dataTables_info {
-        clear: none;
-        right: 285px;
-        float: right;
-        margin-top: 33px !important;
-        top: -26px;
-        position: absolute;
-        padding-top: 0;
-        display: block;
-        margin-top: -5px;
-        width: fit-content;
-    }
-
-    .dataTables_wrapper div.dt-buttons {
-        position: absolute;
-        right: 15px;
-        background: #fff;
-        border: none;
-        border-radius: 4px;
-        padding: 2px 7px;
-        color: green #629e82;
-        font-family: 'FontAwesome';
-    }*/
-
-
-    /*.top {
-        display: inline-flex !important;
-    }
-    .dataTables_filter {
-        margin-left: 1146px !important;
-        margin-top: auto !important;
-    }
-    .dt-buttons {
-        margin-left: 8px !important;
-    }
-
-    .table-responsive {*/
-    /* display: inline-block; */
-    /*width: 100% !important;
-        overflow-x: auto !important;
-    }*/
-  /* .Zebra_DatePicker_Icon_Wrapper {
-        width: 100% !important;
-    }*/
-</style>
-
-<div class="page-header">
-    <div class="row align-items-end">
-        <div class="col-lg-12">
-            <div class="float-left">
-                <h3><i class="ti-control-forward ForwardIcon"> </i>Contractor Payment Report</h3>
-            </div>
-            <div class="float-right">
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class="page-wrapper">
-    <div class="card">
-        <div class="card-block">
-  
-
-            <div class="dt-responsive">
-                @using (Html.BeginForm("ContractorPayment", "AuditorDepartment", FormMethod.Post, new { id = "ContractorPaymentForm" }))
-                {
-                    @Html.AntiForgeryToken();
-
-                <div class="row">
-                    @*<div class="col-sm-3 col-lg-4 col-md-6">*@
-                    <div class="col-xl-3 col-md-6">
-                        
-                        <div class="form-group">
-                            <label class="col-form-label">Contractor</label>
-                            @Html.DropDownListFor(m => m.ContractorId, new SelectList(Model.ContractorList, "ContractorId", "ContractorName"), "Select Contractor",
-                                new { @id = "ddlContractorId", @class = "form-control form-select js-example-disabled-results" })
-                            @Html.ValidationMessageFor(m => m.ContractorId, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="form-group">
-                            <label class="col-form-label">From Date</label>
-                            @Html.TextBoxFor(m => m.VisitDateTime, new { @id = "txtFormdateTime", @class = "form-control", @autocomplete = "off" })
-                            @Html.ValidationMessageFor(m => m.VisitDateTime, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="form-group">
-                            <label class="col-form-label">To Date</label>
-                            @Html.TextBoxFor(m => m.CloseDateTime, new { @id = "txtEnddateTime", @class = "form-control", @autocomplete = "off" })
-                            @Html.ValidationMessageFor(m => m.CloseDateTime, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="form-group mt-4">
-                            <input type="submit" class="btn btn-round btn-inverse m-2" onclick="changeFormAction('ContractorPayment')" value="View" />
-                            <!-- <input type="button" class="btn btn-primary" onclick="sendAjaxRequest('Excel')" value="Export Excel" /> -->
-                            <!-- <input type="button" class="btn btn-primary" value="Export Excel" onclick="changeFormAction('ExportReport')" /> -->
-                        </div>
-                    </div>
-                </div>
-                }
-            </div>
-        </div>
-    </div>
-</div>
-
-
-@{ decimal totalDifference = 0;
-    decimal totalValue = 0;}
-<div class="page-wrapper">
-    <div class="card">
-        <div class="card-block">
-            <div class="dt-responsive">
-                <table id="contractordatatable" class="table table-striped table-hover table-bordered nowrap table-responsive1">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayName("Visit DateTime")
-                            </th>
-
-                            <th>
-                                @Html.DisplayName("Vehicle Code")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Vehicle Reg Number")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Rate/km")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Final Difference")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Final Amount")
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.BanasContractorAmountRptList)
-                        {
-                            <tr>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VisitDateTime)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VehicleCode)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VehicleRegNumber)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RatePerKm)
-
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FinalApprDifference)
-                                    @{ totalDifference += Convert.ToDecimal(item.FinalApprDifference); }
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FinalAmount)
-                                    @{ totalValue += Convert.ToDecimal(item.FinalAmount); }
-                                </td>
-                            </tr>
-                        }
-
-                    </tbody>
-                </table>
-                @if (totalDifference != 0 && totalValue != 0)
-                {
-                    <table class="table">
-                        <tr>
-                            <td>
-                                <b>Total Difference:</b>
-                            </td>
-                            <td>
-                                <b> @totalDifference</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Total Value:</b>
-                            </td>
-                            <td>
-                                <b>@totalValue</b>
-                            </td>
-                        </tr>
-                    </table>}
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    function changeFormAction(action) {
-        debugger
-        var form = document.getElementById("ContractorPaymentForm");
-        var CloseDate = $('#txtVisitdateTime').val();
-        var VisitDate = $('#txtClosedateTime').val();
-        var ContractorId = $('#ddlContractorId').val();
-
-        if (action == "ExportReport") {
-            if (CloseDate == "" || VisitDate == null || ContractorId == "") {
-                var result = "<div class='alert alert-danger background-danger'>Please Select Department and Vehicle</div>"
-                $(".msg").html(result);
-                window.setTimeout(function () {
-                    $(".alert").fadeTo(2000, 0).slideUp(2000, function () {
-                        $(this).remove();
-                    });
-                }, 2000);
-            }
-            else {
-                form.action = action;
-                form.submit();
-            }
-        }
-        else {
-            //if (CloseDate == "" || VisitDate == null || ContractorId == "") {
-            //    var result = "<div class='alert alert-danger background-danger'>Contractor , Start Date and Close Date must be selected</div>"
-            //    $(".msg").html(result);
-            //    window.setTimeout(function () {
-            //        $(".alert").fadeTo(2000, 0).slideUp(2000, function () {
-            //            $(this).remove();
-            //        });
-            //    }, 2000);
-            //    return false;
-            //} else {
-            form.action = action;
-            form.submit();
-            //}
-
-        }
-    }
-</script>
-
-
-<script>
-    $(document).ready(function () {
-        var currentDate = new Date(); // Get the current date        var formattedCurrentDate = currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();        var selectedDate = null;        $('#txtFormdateTime').Zebra_DatePicker({            format: 'd-m-Y',            direction: false,            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],            onSelect: function (date) {                selectedDate = date;            }        });        $('#txtEnddateTime').Zebra_DatePicker({            format: 'd-m-Y',            direction: false,            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],            onOpen: function () {                debugger                if (selectedDate != null) {                    var direction = [selectedDate, formattedCurrentDate];                }                $('#txtEnddateTime').data('Zebra_DatePicker').update({                    direction: direction                });            }        });        $('#Zebra_DatePicker_Icon').on('click', function () {            $('#txtEnddateTime').Zebra_DatePicker('show');            //$('#fromDate').Zebra_DatePicker('show');        });
-    });
-</script>

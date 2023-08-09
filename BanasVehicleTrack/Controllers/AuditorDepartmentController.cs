@@ -89,9 +89,9 @@ namespace BanasVehicleTrack.Controllers
                     //model.Action = "Save";
                     model.VisitDateTime = generalFunctions.dateconvert(generalFunctions.getDate());
                     model.CloseDateTime = generalFunctions.dateconvert(generalFunctions.getDate());
-                    model.visitDateTimeList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "", LoggedUserDetails.EmployeeCode).ToList();
+                    model.visitDateTimeList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "").ToList();
                     //model.GatePassIdList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "").ToList();
-                    model.BanasVehicleGatepassRetrieveList = db.BanasAuditorDepartmentDashboardRetrieve(generalFunctions.getDate(), generalFunctions.getDate(), model.DepartmentId, model.VehicleId, model.GatepassId, "all",LoggedUserDetails.EmployeeCode).ToList();
+                    model.BanasVehicleGatepassRetrieveList = db.BanasAuditorDepartmentDashboardRetrieve(generalFunctions.getDate(), generalFunctions.getDate(), model.DepartmentId, model.VehicleId, model.GatepassId, "all").ToList();
                     model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
                     model.DepartmentId = LoggedUserDetails.DepartmentId;
                     model.VehicleMasterList = (LoggedUserDetails.EmployeeCode == "Admin")
@@ -119,7 +119,7 @@ namespace BanasVehicleTrack.Controllers
                 {
                     return RedirectToAction("Login", "Home");
                 }
-                model.visitDateTimeList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "", LoggedUserDetails.EmployeeCode).ToList();
+                model.visitDateTimeList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "").ToList();
                 //model.GatePassIdList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "").ToList();
 
                 // Check if VisitDateTime is null before converting
@@ -129,7 +129,7 @@ namespace BanasVehicleTrack.Controllers
                 string closeDateTime = model.CloseDateTime != null ? generalFunctions.dateconvert(model.CloseDateTime) : null;
 
 
-                model.BanasVehicleGatepassRetrieveList = db.BanasAuditorDepartmentDashboardRetrieve(visitDateTime, closeDateTime, model.DepartmentId, model.VehicleId, model.GatepassId, "all", LoggedUserDetails.EmployeeCode).ToList();
+                model.BanasVehicleGatepassRetrieveList = db.BanasAuditorDepartmentDashboardRetrieve(visitDateTime, closeDateTime, model.DepartmentId, model.VehicleId, model.GatepassId, "all").ToList();
                 model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
                 model.VehicleMasterList = db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).ToList();
                 model.DepartmentId = LoggedUserDetails.DepartmentId;
@@ -150,7 +150,7 @@ namespace BanasVehicleTrack.Controllers
 
             string closeDateTime = CloseDateTime != "" ? generalFunctions.dateconvert(CloseDateTime) : null;
 
-            var re1 = db.BanasAuditorDepartmentDashboardRetrieve(visitDateTime, closeDateTime, string.IsNullOrEmpty(DepartmentId) ? null : DepartmentId, string.IsNullOrEmpty(VehicleId) ? null : VehicleId, string.IsNullOrEmpty(GatePassId) ? null : GatePassId, "all", LoggedUserDetails.EmployeeCode).ToList();
+            var re1 = db.BanasAuditorDepartmentDashboardRetrieve(visitDateTime, closeDateTime, string.IsNullOrEmpty(DepartmentId) ? null : DepartmentId, string.IsNullOrEmpty(VehicleId) ? null : VehicleId, string.IsNullOrEmpty(GatePassId) ? null : GatePassId, "all").ToList();
 
             //string filePath = Server.MapPath("~/Uploads/AuditorDashboardReport/AuditorDashboardReport.xlsx");
             using (XLWorkbook workbook = new XLWorkbook())
@@ -427,7 +427,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 if (ViewBag.ViewRight == 1)
                 {
-                    model.BanasVehicleGatepassRetrieveList = db.BanasAuditorFinalApproveRetrieve("NotApproved",LoggedUserDetails.EmployeeCode).ToList();
+                    model.BanasVehicleGatepassRetrieveList = db.BanasAuditorFinalApproveRetrieve("NotApproved").ToList();
                     return View(model);
                 }
                 else

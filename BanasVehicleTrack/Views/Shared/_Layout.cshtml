@@ -86,7 +86,14 @@
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="h5">@User.Identity.Name</span>
+                                        @{ string User_name = string.Empty;
+                                            HttpCookie reqCookies = Request.Cookies["EmployeeMaster"];
+                                            if (reqCookies != null)
+                                            {
+                                                User_name = reqCookies["EmployeeCode"].ToString();
+                                            }
+                                        }
+                                        <span class="h5">@User_name</span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">

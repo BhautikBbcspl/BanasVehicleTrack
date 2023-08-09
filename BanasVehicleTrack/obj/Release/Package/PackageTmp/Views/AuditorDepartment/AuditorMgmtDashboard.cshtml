@@ -391,40 +391,7 @@
 
 <script>
     $(document).ready(function () {
-
-        var currentDate = new Date(); // Get the current date
-
-        var formattedCurrentDate = currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();
-        var selectedDate = null;
-        $('#txtVisitDateTime').Zebra_DatePicker({
-            format: 'd-m-Y',
-            direction: false,
-            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],
-            onSelect: function (date) {
-                selectedDate = date;
-
-            }
-        });
-        $('#txtCloseDateTime').Zebra_DatePicker({
-            format: 'd-m-Y',
-            direction: false,
-            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],
-            onOpen: function () {
-                debugger
-                if (selectedDate != null) {
-                    var direction = [selectedDate, formattedCurrentDate];
-
-                }
-                $('#txtCloseDateTime').data('Zebra_DatePicker').update({
-                    direction: direction
-                });
-
-            }
-        });
-        $('#Zebra_DatePicker_Icon').on('click', function () {
-            $('#txtCloseDateTime').Zebra_DatePicker('show');
-            //$('#fromDate').Zebra_DatePicker('show');
-        });
+        var currentDate = new Date(); // Get the current date        var formattedCurrentDate = currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();        var selectedDate = null;        $('#txtVisitDateTime').Zebra_DatePicker({            format: 'd-m-Y',            direction: false,            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],            onSelect: function (date) {                selectedDate = date;            }        });        $('#txtCloseDateTime').Zebra_DatePicker({            format: 'd-m-Y',            direction: false,            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],            onOpen: function () {                debugger                if (selectedDate != null) {                    var direction = [selectedDate, formattedCurrentDate];                }                $('#txtCloseDateTime').data('Zebra_DatePicker').update({                    direction: direction                });            }        });        $('#Zebra_DatePicker_Icon').on('click', function () {            $('#txtCloseDateTime').Zebra_DatePicker('show');            //$('#fromDate').Zebra_DatePicker('show');        });
     });
 
 
