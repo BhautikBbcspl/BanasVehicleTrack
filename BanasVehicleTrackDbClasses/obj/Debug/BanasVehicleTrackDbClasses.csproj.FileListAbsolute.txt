@@ -82,3 +82,15 @@ Z:\BanasVehicleTracking\28-07-2023\BanasVehicleTrack\BanasVehicleTrack\BanasVehi
 Z:\BanasVehicleTracking\28-07-2023\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackDbClasses\obj\Debug\BanasVehicleTrackDbClasses.csproj.CopyComplete
 Z:\BanasVehicleTracking\28-07-2023\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackDbClasses\obj\Debug\BanasVehicleTrackDbClasses.dll
 Z:\BanasVehicleTracking\28-07-2023\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackDbClasses\obj\Debug\BanasVehicleTrackDbClasses.pdb
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\bin\Debug\BanasVehicleTrackDbClasses.dll.config
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\bin\Debug\BanasVehicleTrackDbClasses.dll
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\bin\Debug\BanasVehicleTrackDbClasses.pdb
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\bin\Debug\EntityFramework.dll
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\bin\Debug\EntityFramework.SqlServer.dll
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\bin\Debug\EntityFramework.xml
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\bin\Debug\EntityFramework.SqlServer.xml
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\obj\Debug\BanasVehicleTrackDbClasses.csproj.AssemblyReference.cache
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\obj\Debug\BanasVehicleTrackDbClasses.csproj.CoreCompileInputs.cache
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\obj\Debug\BanasVehicleTrackDbClasses.csproj.CopyComplete
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\obj\Debug\BanasVehicleTrackDbClasses.dll
+E:\final projects\banasvehicletracking\BanasVehicleTrackDbClasses\obj\Debug\BanasVehicleTrackDbClasses.pdb

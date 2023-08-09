@@ -1,0 +1,73 @@
+﻿@model BanasVehicleTrackViewModel.SecurityDepartment.SecurityVisitMgmtViewModel
+@{
+    ViewBag.Title = "Security Department Visit Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-wrapper">
+    <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="d-inline">
+                    <h3><i class="ti-control-forward ForwardIcon"> </i>Gate Pass List</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            <div class="dt-responsive ">
+                <table id="base-style" class="table table-striped table-responsive table-hover table-bordered nowrap">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayName("View Details")</th>
+                            <th>@Html.DisplayName("Gate Pass ID")</th>
+                            <th>@Html.DisplayName("Usercode")</th>
+                            <th>@Html.DisplayName("Username")</th>
+                            <th>@Html.DisplayName("Department")</th>
+                            <th>@Html.DisplayName("Center")</th>
+                            <th>@Html.DisplayName("Vehicle Number")</th>
+                            @*<th>@Html.DisplayName("Other User 1")</th>
+        <th>@Html.DisplayName("Other User 2")</th>
+        <th>@Html.DisplayName("Other User 3")</th>*@
+                            <th>@Html.DisplayName("Driver")</th>
+                            <th>@Html.DisplayName("Information Mode")</th>
+                            <th>@Html.DisplayName("Visit Date & Time")</th>
+                            <th>@Html.DisplayName("Visit Purpose")</th>
+                            <th>@Html.DisplayName("Remarks")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.GatePassList)
+                        {
+                        <tr>
+                            <td>
+                                @if (item.DepartureVerifyStatus == 1 && item.ArrivalVerifyStatus == 1)
+                                {
+                                    <button class="btn btn-disabled" type="button">View Gate Pass</button> }
+                                else
+                                {
+                                    @Html.ActionLink("View Gate Pass", "ViewSecurityGatePass", "SecurityDepartment", new { id = item.GatePassId }, new { @class = "btn btn-primary", })}
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.GatePassId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.UserCode)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DepartmentName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Center)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VehicleRegNumber)</td>
+                            @*<td>@Html.DisplayFor(modelItem => item.OtherUser1)</td>
+        <td>@Html.DisplayFor(modelItem => item.OtherUser2)</td>
+        <td>@Html.DisplayFor(modelItem => item.OtherUser3)</td>*@
+                            <td>@Html.DisplayFor(modelItem => item.Driver)</td>
+                            <td>@Html.DisplayFor(modelItem => item.InformationMode)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VisitDateTime)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VisitPurpose)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Remarks)</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

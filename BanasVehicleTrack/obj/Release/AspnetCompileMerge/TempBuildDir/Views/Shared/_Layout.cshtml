@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="#">
+    <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="author" content="#">
+    <!-- Favicon icon -->
+    <link rel="icon" src="~/Content/AdminTemplateAssets/images/favicon.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+
+    <!-- Required Bootstrap -->
+    <link href="~/Content/AdminTemplateAssets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- jquery file upload CSS -->
+    <link href="~/Content/AdminTemplateAssets/ImageUpload/css/jquery.filer.css" rel="stylesheet" />
+
+    <!--Datatable CSS-->
+    <link href="~/Content/AdminTemplateAssets/Data_Table/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminTemplateAssets/Data_Table/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminTemplateAssets/Data_Table/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+
+    <!--Select-2 CSS-->
+    <link href="~/Content/AdminTemplateAssets/css/select2.min.css" rel="stylesheet" />
+
+    <!--Date Picker CSS-->
+    <link href="~/Content/AdminTemplateAssets/css/zebra_datepicker.min.css" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link href="~/Content/AdminTemplateAssets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminTemplateAssets/css/themify-icons.css" rel="stylesheet" />
+    <link href="~/Content/AdminTemplateAssets/css/feather.css" rel="stylesheet" />
+
+    <!-- Style.css -->
+    <link href="~/Content/AdminTemplateAssets/css/style.css" rel="stylesheet" />
+    <link href="~/Content/AdminTemplateAssets/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
+   
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">*@
+    
+    <!-- Jquery Js -->
+    <script src="~/Content/AdminTemplateAssets/js/jquery.min.js"></script>
+</head>
+<body>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+
+                    <div class="navbar-logo">
+                        <img src="~/Content/AdminTemplateAssets/images/Untitled-1_2.png" style="width: 188px; position: fixed; left: 12px; " />
+                        <a class="mobile-menu" id="mobile-collapse">
+                            <i class="feather icon-menu"></i>
+                        </a>
+                        <a class="mobile-options">
+                            <i class="feather icon-more-horizontal"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <a onclick="javascript:toggleFullScreen()">
+                                    <i class="feather icon-maximize full-screen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="user-profile header-notification">
+                                <div class="dropdown-primary dropdown">
+                                    <div class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="h5">@User.Identity.Name</span>
+                                        <i class="feather icon-chevron-down"></i>
+                                    </div>
+                                    <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                        <li>
+                                            <a href="@Url.Action("ChangePassword", "Home")">
+                                                <i class="fa fa-key"></i> Change Password
+                                            </a>
+                                        </li>
+
+                                        <a href="@Url.Action("Logout", "Home")" onclick="return confirm('Are your sure you want to logout?')" title="Logout">
+                                        <li>
+                                            <i class="feather icon-log-out"></i> Logout
+                                        </li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    @Html.Action("GetMenu", "Home")
+
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            @{Html.RenderPartial("_Alerts"); }
+                            <div class="msg">
+                            </div>
+                            <div class="main-body">
+                                @RenderBody()
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/AdminTemplateAssets/js/jquery-ui.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/js/jquery.inputmask.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/js/popper.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- jquery slimscroll js -->
+    <script src="~/Content/AdminTemplateAssets/js/jquery.slimscroll.js"></script>
+
+    <!-- jquery file upload js -->
+    <script src="~/Content/AdminTemplateAssets/ImageUpload/js/jquery.filer.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/ImageUpload/js/jquery.fileuploads.init.js"></script>
+
+    <!--Datatable JS-->
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/jszip.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/pdfmake.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/vfs_fonts.js"></script>
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/buttons.print.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/buttons.html5.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/dataTables.responsive.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/responsive.bootstrap4.min.js"></script>
+
+    <!--Select-2 JS-->
+    <script src="~/Content/AdminTemplateAssets/js/select2.full.min.js"></script>
+
+    <!--Date Picker JS-->
+    <script src="~/Content/AdminTemplateAssets/js/zebra_datepicker.min.js"></script>
+
+    <script src="~/Content/AdminTemplateAssets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/js/pcoded.min.js"></script>
+
+    <!-- custom js -->
+    <script src="~/Content/AdminTemplateAssets/js/Custom.js"></script>
+    <script src="~/Content/AdminTemplateAssets/Data_Table/js/data-table-custom.js"></script>
+    <script src="~/Content/AdminTemplateAssets/js/vartical-layout.min.js"></script>
+    <script src="~/Content/AdminTemplateAssets/js/script.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @*<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>*@
+
+    <script>
+        $('.datepicker').Zebra_DatePicker({
+            format: 'd-m-Y',
+            default_position: 'below',
+        });
+        $('.datetimepicker').Zebra_DatePicker({
+            format: 'd-m-Y H:i',
+            default_position: 'below',
+        });
+        $('.timepicker').Zebra_DatePicker({
+            format: 'H:i',
+            default_position: 'below',
+        });
+
+        $('.FutureDisabledatetimepicker').Zebra_DatePicker({
+            format: 'd-m-Y H:i',
+            default_position: 'below',
+            direction: false // Apply validation function on date selection
+        });
+        $('.FutureDisabledatepicker').Zebra_DatePicker({
+            format: 'd-m-Y',
+            default_position: 'below',
+            direction: false // Apply validation function on date selection
+        });
+
+
+
+    </script>
+    @*<script>
+            $(".flatDatePicker").flatpickr({
+
+                dateFormat: "d-m-Y"
+            });
+            $(".flatDateTimePicker").flatpickr({
+                enableTime: true,
+                dateFormat: "d-m-Y H:i"
+            });
+
+            $(".flatTimePicker").flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });
+
+            var today = new Date();
+            var yesterday = new Date(today);
+            yesterday.setDate(today.getDate() - 1);
+            var dd = String(yesterday.getDate()).padStart(2, '0');
+            var mm = String(yesterday.getMonth() + 1).padStart(2, '0');
+            var yyyy = yesterday.getFullYear();
+            var yesterdayString = dd + '-' + mm + '-' + yyyy;
+
+            var endPickerInstance;
+
+            $(".LinkedDatePicker").flatpickr({
+                dateFormat: "d-m-Y",
+                maxDate: yesterdayString,
+
+                onChange: function (selectedDates, dateStr, instance) {
+                    if (endPickerInstance) {
+                        endPickerInstance.set('minDate', dateStr);
+                    }
+                }
+            });
+
+            endPickerInstance = flatpickr(".LinkedDatePicker2", {
+                dateFormat: "d-m-Y"
+            });
+        </script>*@
+    <script>
+        function ActiveDeactiveStatusChange(status, Code, Type) {
+
+            $('#AjaxLoader').show();
+            if (Code != null) {
+                var Value = status.checked;
+
+                $.ajax({
+                    url: "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" + "/Master/ChangeStatus",
+                    contentType: "application/json; charset=utf-8",
+                    data: { Code: Code, status: Value, Type: Type },
+                    dataType: "html",
+                    success: function (response) {
+                        var result = "<div class='alert alert-success background-success'>" + response + "</div>"
+                        $(".msg").html(result);
+                        window.setTimeout(function () {
+                            $(".alert").fadeTo(2000, 0).slideUp(2000, function () {
+                                $(this).remove();
+                            });
+                        }, 8000);
+                    },
+                    error: function (xhr, status, error) {
+                        var result = "<div class='alert alert-danger background-danger'>Status Not Updated</div>"
+                        $(".msg").html(result);
+                        window.setTimeout(function () {
+                            $(".alert").fadeTo(2000, 0).slideUp(2000, function () {
+                                $(this).remove();
+                            });
+                        }, 8000);
+                    }
+                });
+            }
+        }
+    </script>
+
+    <script>
+        (function ($) {
+            $.fn.inputFilter = function (callback, errMsg) {
+                return this.on("input keydown keyup mousedown mouseup select contextmenu drop focusout", function (e) {
+                    if (callback(this.value)) {
+                        // Accepted value
+                        if (["keydown", "mousedown", "focusout"].indexOf(e.type) >= 0) {
+                            $(this).removeClass("input-error");
+                            this.setCustomValidity("");
+                        }
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        // Rejected value - restore the previous one
+                        $(this).addClass("input-error");
+                        this.setCustomValidity(errMsg);
+                        this.reportValidity();
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    } else {
+                        // Rejected value - nothing to restore
+                        this.value = "";
+                    }
+                });
+            };
+        }(jQuery));
+
+        $(".numbererror").inputFilter(function (value) {
+            return /^-?^\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) >= 0);
+        }, "Number Only Allow");
+        $(".yearerror").inputFilter(function (value) {
+            return /^\d*(?:\.\d{1,2})?$/.test(value) && (value === "" || parseInt(value) <= 10000);
+        }, "Only Enter Year");
+        $(".contacterror").inputFilter(function (value) {
+            return /^\d*(?:\.\d{1,2})?$/.test(value) && (value === "" || parseInt(value) <= 10000000000);
+        }, "10 Numbers Only Allow");
+        $(".numbersymbolerror").inputFilter(function (value) { return /^-?^\d*[.,+-]?\d*$/.test(value); }, " Numbers and Symbol Only Allow");
+        $(".numberdecimal").inputFilter(function (value) { return /^-?\d*[.,]?\d*$/.test(value); }, "Decmial Numbers Only Allow");
+        $(".numberonly").inputFilter(function (value) { return /^\d*[]?\d*$/.test(value); }, " Numbers Only Allow");
+        $(".alphanumber").inputFilter(function (value) { return /^[a-zA-Z0-9-]*$/.test(value); }, "Only Alphabets and Numbers Allowed.");
+        $(".alphanum").inputFilter(function (value) { return /^[a-zA-Z0-9-,<]*$/.test(value); }, "Only Alphabets and Numbers Allowed.");
+        $(".Rangenumberdecimal").inputFilter(function (value) { return /^\d*[.]?\d*[-]?\d*[.]?\d*$/.test(value); }, " Numbers Only Allow");
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Select the textboxes you want to convert to uppercase
+            var textboxes = $('.Capalphanumber');
+            $('input[type="text"]').addClass('text-capitalize');
+            //var inputFields = $('.form-control');
+
+            // Handle the keyup event for the selected textboxes
+            textboxes.on('keyup', function () {
+                var $this = $(this);
+                var originalValue = $this.val();
+                var uppercasedValue = originalValue.toUpperCase();
+
+                // Update the textbox value with the uppercase value
+                if (originalValue !== uppercasedValue) {
+                    $this.val(uppercasedValue);
+                }
+            });
+
+            // Handle the keyup event for the selected input fields
+            //inputFields.on('keyup', function () {
+            //    var $this = $(this);
+            //    var originalValue = $this.val();
+            //    var capitalizedValue = capitalizeFirstLetter(originalValue);
+
+            //    // Update the input field value with the capitalized value
+            //    if (originalValue !== capitalizedValue) {
+            //        $this.val(capitalizedValue);
+            //    }
+            //});
+
+            // Function to capitalize the first letter of each word
+            function capitalizeFirstLetter(str) {
+                var words = str.toLowerCase().split(' ');
+
+                for (var i = 0; i < words.length; i++) {
+                    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                }
+
+                return words.join(' ');
+            }
+        });
+    </script>
+</body>
+</html>

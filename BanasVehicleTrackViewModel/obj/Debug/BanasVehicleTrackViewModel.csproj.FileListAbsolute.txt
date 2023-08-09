@@ -89,3 +89,16 @@ Z:\BanasVehicleTracking\28-07-2023\BanasVehicleTrack\BanasVehicleTrack\BanasVehi
 Z:\BanasVehicleTracking\28-07-2023\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.csproj.CopyComplete
 Z:\BanasVehicleTracking\28-07-2023\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.dll
 Z:\BanasVehicleTracking\28-07-2023\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.pdb
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackViewModel.dll.config
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackViewModel.dll
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackViewModel.pdb
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackDbClasses.dll
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Debug\EntityFramework.dll
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackDbClasses.pdb
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackDbClasses.dll.config
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\bin\Debug\EntityFramework.xml
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.csproj.AssemblyReference.cache
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.csproj.CoreCompileInputs.cache
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.csproj.CopyComplete
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.dll
+E:\final projects\banasvehicletracking\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.pdb

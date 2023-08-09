@@ -53,9 +53,11 @@
           <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
           <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
           <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="BanasAuditorFinalApproveRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="action" Type="nvarchar" Mode="In" />
+          <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="BanasAuditorFinalApproveUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
@@ -79,6 +81,8 @@
           <Parameter Name="CenterId" Type="nvarchar" Mode="In" />
           <Parameter Name="action" Type="nvarchar" Mode="In" />
           <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+          <Parameter Name="LocationName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="UserGivenLocation" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="BanasAuditorFinalOperateVisitMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
@@ -432,6 +436,7 @@
           <Parameter Name="department" Type="nvarchar" Mode="In" />
           <Parameter Name="vehicle" Type="nvarchar" Mode="In" />
           <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
+          <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="BanasVehicleMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
@@ -470,6 +475,7 @@
           <Parameter Name="department" Type="nvarchar" Mode="In" />
           <Parameter Name="Center" Type="nvarchar" Mode="In" />
           <Parameter Name="EmployeeCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="BanasVisitManagementRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="action" Type="nvarchar" Mode="In" />
@@ -479,6 +485,7 @@
           <Parameter Name="vehicle" Type="nvarchar" Mode="In" />
           <Parameter Name="Center" Type="nvarchar" Mode="In" />
           <Parameter Name="usercode" Type="nvarchar" Mode="In" />
+          <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="BanasVisitPurposeMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="VisitId" Type="nvarchar" Mode="In" />
@@ -770,6 +777,8 @@
             <Parameter Name="CenterId" Mode="In" Type="String" />
             <Parameter Name="action" Mode="In" Type="String" />
             <Parameter Name="Remarks" Mode="In" Type="String" />
+            <Parameter Name="LocationName" Mode="In" Type="String" />
+            <Parameter Name="UserGivenLocation" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="BanasAuditorFinalOperateVisitMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorFinalOperateVisitMasterRtr_Result)">
             <Parameter Name="GatePassId" Mode="In" Type="String" />
@@ -843,14 +852,6 @@
             <Parameter Name="ArrivalSecurityId" Mode="In" Type="String" />
             <Parameter Name="ArrivalSecurityRemark" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="BanasVehicleGatepassRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasVehicleGatepassRetrieve_Result)">
-            <Parameter Name="action" Mode="In" Type="String" />
-            <Parameter Name="from" Mode="In" Type="String" />
-            <Parameter Name="to" Mode="In" Type="String" />
-            <Parameter Name="department" Mode="In" Type="String" />
-            <Parameter Name="vehicle" Mode="In" Type="String" />
-            <Parameter Name="GatepassId" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="BanasAuditorOperateVisitMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorOperateVisitMasterRtr_Result)">
             <Parameter Name="GatePassId" Mode="In" Type="String" />
             <Parameter Name="action" Mode="In" Type="String" />
@@ -900,25 +901,8 @@
             <Parameter Name="action" Mode="In" Type="String" />
             <Parameter Name="UserCenterID" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="BanasVisitManagementRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVisitManagementRtr_Result)">
-            <Parameter Name="action" Mode="In" Type="String" />
-            <Parameter Name="from" Mode="In" Type="String" />
-            <Parameter Name="to" Mode="In" Type="String" />
-            <Parameter Name="department" Mode="In" Type="String" />
-            <Parameter Name="vehicle" Mode="In" Type="String" />
-            <Parameter Name="Center" Mode="In" Type="String" />
-            <Parameter Name="usercode" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="BanasCenterMasterRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasCenterMasterRetrieve_Result)">
           <Parameter Name="action" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="BanasVisitCenterReportRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVisitCenterReportRtr_Result)">
-            <Parameter Name="action" Mode="In" Type="String" />
-            <Parameter Name="from" Mode="In" Type="String" />
-            <Parameter Name="to" Mode="In" Type="String" />
-            <Parameter Name="department" Mode="In" Type="String" />
-            <Parameter Name="Center" Mode="In" Type="String" />
-            <Parameter Name="EmployeeCode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="BanasSecurityVehicleGatepassRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasSecurityVehicleGatepassRetrieve_Result)">
             <Parameter Name="action" Mode="In" Type="String" />
@@ -927,17 +911,6 @@
           <FunctionImport Name="BanasContractorMasterRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasContractorMasterRetrieve_Result)">
             <Parameter Name="action" Mode="In" Type="String" />
             <Parameter Name="companycode" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="BanasAuditorDepartmentDashboardRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorDepartmentDashboardRetrieve_Result)">
-            <Parameter Name="FromDate" Mode="In" Type="String" />
-            <Parameter Name="ToDate" Mode="In" Type="String" />
-            <Parameter Name="DepartmentId" Mode="In" Type="String" />
-            <Parameter Name="VehicleId" Mode="In" Type="String" />
-            <Parameter Name="GatepassId" Mode="In" Type="String" />
-            <Parameter Name="action" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="BanasAuditorFinalApproveRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorFinalApproveRetrieve_Result)">
-          <Parameter Name="action" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="BanasAdminDashboardCountRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasAdminDashboardCountRtr_Result)">
             <Parameter Name="action" Mode="In" Type="String" />
@@ -962,6 +935,47 @@
             <Parameter Name="action" Mode="In" Type="String" />
             <Parameter Name="UserCode" Mode="In" Type="String" />
             <Parameter Name="UserDepartmentId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVisitManagementRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVisitManagementRtr_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="from" Mode="In" Type="String" />
+            <Parameter Name="to" Mode="In" Type="String" />
+            <Parameter Name="department" Mode="In" Type="String" />
+            <Parameter Name="vehicle" Mode="In" Type="String" />
+            <Parameter Name="Center" Mode="In" Type="String" />
+            <Parameter Name="usercode" Mode="In" Type="String" />
+            <Parameter Name="loginuser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVehicleGatepassRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasVehicleGatepassRetrieve_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="from" Mode="In" Type="String" />
+            <Parameter Name="to" Mode="In" Type="String" />
+            <Parameter Name="department" Mode="In" Type="String" />
+            <Parameter Name="vehicle" Mode="In" Type="String" />
+            <Parameter Name="GatepassId" Mode="In" Type="String" />
+            <Parameter Name="loginuser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVisitCenterReportRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVisitCenterReportRtr_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="from" Mode="In" Type="String" />
+            <Parameter Name="to" Mode="In" Type="String" />
+            <Parameter Name="department" Mode="In" Type="String" />
+            <Parameter Name="Center" Mode="In" Type="String" />
+            <Parameter Name="EmployeeCode" Mode="In" Type="String" />
+            <Parameter Name="loginuser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAuditorDepartmentDashboardRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorDepartmentDashboardRetrieve_Result)">
+            <Parameter Name="FromDate" Mode="In" Type="String" />
+            <Parameter Name="ToDate" Mode="In" Type="String" />
+            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+            <Parameter Name="VehicleId" Mode="In" Type="String" />
+            <Parameter Name="GatepassId" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="loginuser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasAuditorFinalApproveRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorFinalApproveRetrieve_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="loginuser" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="EmployeeMaster">
@@ -1294,54 +1308,6 @@
           <Property Type="String" Name="udate" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="activeStatus1" Nullable="false" MaxLength="7" />
         </ComplexType>
-        <ComplexType Name="BanasVehicleGatepassRetrieve_Result">
-          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="CenterId" Nullable="false" />
-          <Property Type="String" Name="Center" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
-          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
-          <Property Type="Int32" Name="VehicleId" Nullable="true" />
-          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
-          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
-          <Property Type="Decimal" Name="TotKm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
-          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
-          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
-          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
-          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
-          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
-          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
-          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="BanasAuditorOperateVisitMasterRtr_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
@@ -1403,54 +1369,6 @@
           <Property Type="String" Name="EmployeeName" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="BanasVisitManagementRtr_Result">
-          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="EmployeeName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="Center" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="CenterId" Nullable="false" />
-          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
-          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
-          <Property Type="Int32" Name="VehicleId" Nullable="true" />
-          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
-          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
-          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
-          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
-          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
-          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
-          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
-          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
-          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
-          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
-          <Property Type="Decimal" Name="DepArrDifference" Nullable="true" Precision="18" Scale="2" />
-        </ComplexType>
         <ComplexType Name="BanasCenterMasterRetrieve_Result">
           <Property Type="Int32" Name="CenterId" Nullable="false" />
           <Property Type="Int32" Name="DepartmentId" Nullable="true" />
@@ -1465,53 +1383,6 @@
           <Property Type="String" Name="udate" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="activeStatus1" Nullable="false" MaxLength="7" />
           <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="BanasVisitCenterReportRtr_Result">
-          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="CenterName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
-          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
-          <Property Type="Int32" Name="VehicleId" Nullable="true" />
-          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
-          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
-          <Property Type="Decimal" Name="TotKm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
-          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
-          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
-          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
-          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
-          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
-          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
-          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
         </ComplexType>
         <ComplexType Name="BanasSecurityVehicleGatepassRetrieve_Result">
           <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
@@ -1574,6 +1445,218 @@
           <Property Type="String" Name="UpdateUser" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="udate" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="BanasAdminDashboardCountRtr_Result">
+          <Property Type="Int32" Name="EmployeeCount" Nullable="true" />
+          <Property Type="Int32" Name="SecurityCount" Nullable="true" />
+          <Property Type="Int32" Name="TodayGatePass" Nullable="true" />
+          <Property Type="Int32" Name="OpenGatePass" Nullable="true" />
+          <Property Type="Int32" Name="CloseGatePass" Nullable="true" />
+          <Property Type="Int32" Name="TotalGatePass" Nullable="true" />
+          <Property Type="Int32" Name="TotalVehicle" Nullable="true" />
+          <Property Type="Int32" Name="TotalContractor" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasAdminDashboardListRtr_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="CenterId" Nullable="false" />
+          <Property Type="String" Name="Center" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasUserDepartmentIntegrationRtr_Result">
+          <Property Type="Int32" Name="UDInteId" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="String" Name="Usercode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CreateDate" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UpdateDate" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="UpdateUser" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmployeeName" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasVisitManagementRtr_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmployeeName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Center" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CenterId" Nullable="false" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
+          <Property Type="Decimal" Name="DepArrDifference" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="BanasVehicleGatepassRetrieve_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="CenterId" Nullable="false" />
+          <Property Type="String" Name="Center" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="Decimal" Name="TotKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="BanasVisitCenterReportRtr_Result">
+          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="CenterName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
+          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleId" Nullable="true" />
+          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
+          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
+          <Property Type="Decimal" Name="TotKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
+          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
+          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
+          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
         </ComplexType>
         <ComplexType Name="BanasAuditorDepartmentDashboardRetrieve_Result">
           <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
@@ -1683,75 +1766,6 @@
           <Property Type="Decimal" Name="FinalApprDifference" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="FinalAmount" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="TotalDifference" Nullable="true" Precision="19" Scale="2" />
-        </ComplexType>
-        <ComplexType Name="BanasAdminDashboardCountRtr_Result">
-          <Property Type="Int32" Name="EmployeeCount" Nullable="true" />
-          <Property Type="Int32" Name="SecurityCount" Nullable="true" />
-          <Property Type="Int32" Name="TodayGatePass" Nullable="true" />
-          <Property Type="Int32" Name="OpenGatePass" Nullable="true" />
-          <Property Type="Int32" Name="CloseGatePass" Nullable="true" />
-          <Property Type="Int32" Name="TotalGatePass" Nullable="true" />
-          <Property Type="Int32" Name="TotalVehicle" Nullable="true" />
-          <Property Type="Int32" Name="TotalContractor" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="BanasAdminDashboardListRtr_Result">
-          <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="OtherUser1" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="OtherUser2" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="OtherUser3" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="InformationMode" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="CenterId" Nullable="false" />
-          <Property Type="String" Name="Center" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Driver" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="VehicleRegNumber" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="GatePassStatus" Nullable="true" />
-          <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="CloseRemark" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CloseDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="DateTime" Name="CloseDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CloseUser" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
-          <Property Type="Int32" Name="VehicleId" Nullable="true" />
-          <Property Type="Int32" Name="VisitPurposeId" Nullable="true" />
-          <Property Type="Int32" Name="VehicleDepartmentId" Nullable="true" />
-          <Property Type="String" Name="DepartureSecurityName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="DepartureSecuritySignature" Nullable="true" />
-          <Property Type="Int32" Name="DepartureSecurityId" Nullable="true" />
-          <Property Type="String" Name="DepartureSecurityRemark" Nullable="true" />
-          <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="DepartureDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="true" />
-          <Property Type="String" Name="ArrivalSecurityName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ArrivalSecuritySignature" Nullable="true" />
-          <Property Type="Int32" Name="ArrivalSecurityId" Nullable="true" />
-          <Property Type="String" Name="ArrivalSecurityRemark" Nullable="true" />
-          <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="ArrivalDateTime" Nullable="true" MaxLength="4000" />
-          <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="BanasUserDepartmentIntegrationRtr_Result">
-          <Property Type="Int32" Name="UDInteId" Nullable="false" />
-          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
-          <Property Type="String" Name="Usercode" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CreateDate" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="UpdateDate" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="UpdateUser" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="EmployeeName" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsActive" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2196,58 +2210,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="BanasCenterMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasCenterMasterInsUpd" />
           <FunctionImportMapping FunctionImportName="BanasVehicleGatepassInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleGatepassInsUpd" />
-          <FunctionImportMapping FunctionImportName="BanasVehicleGatepassRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleGatepassRetrieve">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVehicleGatepassRetrieve_Result">
-                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
-                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
-                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
-                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
-                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
-                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="CenterId" ColumnName="CenterId" />
-                <ScalarProperty Name="Center" ColumnName="Center" />
-                <ScalarProperty Name="Driver" ColumnName="Driver" />
-                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
-                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
-                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
-                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
-                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
-                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
-                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
-                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
-                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
-                <ScalarProperty Name="Difference" ColumnName="Difference" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
-                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
-                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
-                <ScalarProperty Name="TotKm" ColumnName="TotKm" />
-                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
-                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
-                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
-                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
-                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
-                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
-                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
-                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
-                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
-                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
-                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
-                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
-                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
-                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="BanasAuditorOperateVisitMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasAuditorOperateVisitMasterRtr">
             <ResultMapping>
               <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAuditorOperateVisitMasterRtr_Result">
@@ -2323,58 +2285,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="BanasVisitManagementRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVisitManagementRtr">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVisitManagementRtr_Result">
-                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
-                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
-                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
-                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
-                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
-                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Center" ColumnName="Center" />
-                <ScalarProperty Name="CenterId" ColumnName="CenterId" />
-                <ScalarProperty Name="Driver" ColumnName="Driver" />
-                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
-                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
-                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
-                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
-                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
-                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
-                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
-                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
-                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
-                <ScalarProperty Name="Difference" ColumnName="Difference" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
-                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
-                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
-                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
-                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
-                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
-                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
-                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
-                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
-                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
-                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
-                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
-                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
-                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
-                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
-                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
-                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
-                <ScalarProperty Name="DepArrDifference" ColumnName="DepArrDifference" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="BanasCenterMasterRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasCenterMasterRetrieve">
             <ResultMapping>
               <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasCenterMasterRetrieve_Result">
@@ -2391,57 +2301,6 @@
                 <ScalarProperty Name="udate" ColumnName="udate" />
                 <ScalarProperty Name="activeStatus1" ColumnName="activeStatus1" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="BanasVisitCenterReportRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVisitCenterReportRtr">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVisitCenterReportRtr_Result">
-                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
-                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
-                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
-                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
-                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
-                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="CenterName" ColumnName="CenterName" />
-                <ScalarProperty Name="Driver" ColumnName="Driver" />
-                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
-                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
-                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
-                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
-                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
-                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
-                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
-                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
-                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
-                <ScalarProperty Name="Difference" ColumnName="Difference" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
-                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
-                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
-                <ScalarProperty Name="TotKm" ColumnName="TotKm" />
-                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
-                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
-                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
-                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
-                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
-                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
-                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
-                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
-                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
-                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
-                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
-                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
-                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
-                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2512,6 +2371,243 @@
                 <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
                 <ScalarProperty Name="cdate" ColumnName="cdate" />
                 <ScalarProperty Name="udate" ColumnName="udate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasAdminDashboardCountRtr" FunctionName="banasVehicleTrackingModel.Store.BanasAdminDashboardCountRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAdminDashboardCountRtr_Result">
+                <ScalarProperty Name="EmployeeCount" ColumnName="EmployeeCount" />
+                <ScalarProperty Name="SecurityCount" ColumnName="SecurityCount" />
+                <ScalarProperty Name="TodayGatePass" ColumnName="TodayGatePass" />
+                <ScalarProperty Name="OpenGatePass" ColumnName="OpenGatePass" />
+                <ScalarProperty Name="CloseGatePass" ColumnName="CloseGatePass" />
+                <ScalarProperty Name="TotalGatePass" ColumnName="TotalGatePass" />
+                <ScalarProperty Name="TotalVehicle" ColumnName="TotalVehicle" />
+                <ScalarProperty Name="TotalContractor" ColumnName="TotalContractor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasAdminDashboardListRtr" FunctionName="banasVehicleTrackingModel.Store.BanasAdminDashboardListRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAdminDashboardListRtr_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CenterId" ColumnName="CenterId" />
+                <ScalarProperty Name="Center" ColumnName="Center" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasUserDepartmentIntegrationInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasUserDepartmentIntegrationInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasUserDepartmentIntegrationRtr" FunctionName="banasVehicleTrackingModel.Store.BanasUserDepartmentIntegrationRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasUserDepartmentIntegrationRtr_Result">
+                <ScalarProperty Name="UDInteId" ColumnName="UDInteId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="Usercode" ColumnName="Usercode" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasVisitManagementRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVisitManagementRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVisitManagementRtr_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Center" ColumnName="Center" />
+                <ScalarProperty Name="CenterId" ColumnName="CenterId" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+                <ScalarProperty Name="DepArrDifference" ColumnName="DepArrDifference" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasVehicleGatepassRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleGatepassRetrieve">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVehicleGatepassRetrieve_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CenterId" ColumnName="CenterId" />
+                <ScalarProperty Name="Center" ColumnName="Center" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="TotKm" ColumnName="TotKm" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasVisitCenterReportRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVisitCenterReportRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVisitCenterReportRtr_Result">
+                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CenterName" ColumnName="CenterName" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+                <ScalarProperty Name="Difference" ColumnName="Difference" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+                <ScalarProperty Name="TotKm" ColumnName="TotKm" />
+                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2629,88 +2725,6 @@
                 <ScalarProperty Name="FinalApprDifference" ColumnName="FinalApprDifference" />
                 <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
                 <ScalarProperty Name="TotalDifference" ColumnName="TotalDifference" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="BanasAdminDashboardCountRtr" FunctionName="banasVehicleTrackingModel.Store.BanasAdminDashboardCountRtr">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAdminDashboardCountRtr_Result">
-                <ScalarProperty Name="EmployeeCount" ColumnName="EmployeeCount" />
-                <ScalarProperty Name="SecurityCount" ColumnName="SecurityCount" />
-                <ScalarProperty Name="TodayGatePass" ColumnName="TodayGatePass" />
-                <ScalarProperty Name="OpenGatePass" ColumnName="OpenGatePass" />
-                <ScalarProperty Name="CloseGatePass" ColumnName="CloseGatePass" />
-                <ScalarProperty Name="TotalGatePass" ColumnName="TotalGatePass" />
-                <ScalarProperty Name="TotalVehicle" ColumnName="TotalVehicle" />
-                <ScalarProperty Name="TotalContractor" ColumnName="TotalContractor" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="BanasAdminDashboardListRtr" FunctionName="banasVehicleTrackingModel.Store.BanasAdminDashboardListRtr">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasAdminDashboardListRtr_Result">
-                <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
-                <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
-                <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
-                <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
-                <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
-                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="CenterId" ColumnName="CenterId" />
-                <ScalarProperty Name="Center" ColumnName="Center" />
-                <ScalarProperty Name="Driver" ColumnName="Driver" />
-                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
-                <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
-                <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
-                <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
-                <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
-                <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
-                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
-                <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
-                <ScalarProperty Name="Netkm" ColumnName="Netkm" />
-                <ScalarProperty Name="Difference" ColumnName="Difference" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
-                <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
-                <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
-                <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
-                <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
-                <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
-                <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
-                <ScalarProperty Name="StartKm" ColumnName="StartKm" />
-                <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
-                <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
-                <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
-                <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
-                <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
-                <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
-                <ScalarProperty Name="EndKm" ColumnName="EndKm" />
-                <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
-                <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="BanasUserDepartmentIntegrationInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasUserDepartmentIntegrationInsUpd" />
-          <FunctionImportMapping FunctionImportName="BanasUserDepartmentIntegrationRtr" FunctionName="banasVehicleTrackingModel.Store.BanasUserDepartmentIntegrationRtr">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasUserDepartmentIntegrationRtr_Result">
-                <ScalarProperty Name="UDInteId" ColumnName="UDInteId" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="Usercode" ColumnName="Usercode" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

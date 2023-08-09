@@ -48,9 +48,11 @@
     <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
     <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
     <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="BanasAuditorFinalApproveRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="action" Type="nvarchar" Mode="In" />
+    <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="BanasAuditorFinalApproveUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
@@ -74,6 +76,8 @@
     <Parameter Name="CenterId" Type="nvarchar" Mode="In" />
     <Parameter Name="action" Type="nvarchar" Mode="In" />
     <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="LocationName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="UserGivenLocation" Type="nvarchar(max)" Mode="In" />
   </Function>
   <Function Name="BanasAuditorFinalOperateVisitMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
@@ -427,6 +431,7 @@
     <Parameter Name="department" Type="nvarchar" Mode="In" />
     <Parameter Name="vehicle" Type="nvarchar" Mode="In" />
     <Parameter Name="GatepassId" Type="nvarchar" Mode="In" />
+    <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="BanasVehicleMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
@@ -465,6 +470,7 @@
     <Parameter Name="department" Type="nvarchar" Mode="In" />
     <Parameter Name="Center" Type="nvarchar" Mode="In" />
     <Parameter Name="EmployeeCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="BanasVisitManagementRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="action" Type="nvarchar" Mode="In" />
@@ -474,6 +480,7 @@
     <Parameter Name="vehicle" Type="nvarchar" Mode="In" />
     <Parameter Name="Center" Type="nvarchar" Mode="In" />
     <Parameter Name="usercode" Type="nvarchar" Mode="In" />
+    <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="BanasVisitPurposeMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="VisitId" Type="nvarchar" Mode="In" />
