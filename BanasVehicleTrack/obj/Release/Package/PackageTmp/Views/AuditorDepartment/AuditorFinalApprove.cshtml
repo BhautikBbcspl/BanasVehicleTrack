@@ -174,7 +174,7 @@
                     </tbody>
                 </table>
             </div>
-            <button class="float-right btn btn-round btn-inverse mt-4" onclick="ApproveDifferenceSave()">Approve Selected</button>
+            <button class="float-right btn btn-round btn-inverse mt-4" onclick="confirmok()">Approve Selected</button>
         </div>
     </div>
 </div>
@@ -221,7 +221,14 @@
         };
     }
 
-
+    function confirmok() {
+        if (confirm('Are you sure you want to Allocate?')) {
+            ApproveDifferenceSave();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     function ApproveDifferenceSave() {
         var selectedData = sel();

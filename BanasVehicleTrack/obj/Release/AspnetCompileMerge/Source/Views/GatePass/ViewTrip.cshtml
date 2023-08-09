@@ -1,0 +1,210 @@
+﻿@model BanasVehicleTrackViewModel.GatePass.ViewStartGatePassViewModel
+@{
+    ViewBag.Title = "ViewTrip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="row align-items-end">
+        <div class="col-lg-12">
+            <div class="float-left">
+                <h3><i class="ti-control-forward ForwardIcon"> </i>View Trip</h3>
+            </div>
+            <div class="float-right">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@foreach (var item in Model.BanasVehicleGatepassRetrieveList)
+{
+
+    <div class="page-body">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Basic Form Inputs card start -->
+                <div class="card">
+                    <div class="card-header">
+
+                        <div class="card-header-right">
+                            <a class="btn btn-outline-primary" href="@Url.Action("ViewGatepass", "GatePass")">
+                                <i class="fa fa-backward"></i>Back
+                            </a>
+                            <input type="button" class="btn btn-primary" onclick="sendAjaxRequest('@item.GatePassId')" target="_blank" value="Print" />
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card-block">
+                                <h4 class="sub-title">Visit Details</h4>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">GatePass Id</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.GatePassId" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Department</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.DepartmentName" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">User Code</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.UserCode" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">User Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.Username" readonly="">
+                                    </div>
+                                </div>
+                                @*<div class="form-group row">
+            <label class="col-sm-4 col-form-label">Other User 1</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" value="@item.OtherUser1" readonly="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Other User 2</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" value="@item.OtherUser2" readonly="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Other User 3</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" value="@item.OtherUser3" readonly="">
+            </div>
+        </div>*@
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Information Mode</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.InformationMode" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Visit Date & Time</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.VisitDateTime" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Visit Purpose</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.VisitPurpose" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Remarks</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.Remarks" readonly="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card-block">
+                                <h4 class="sub-title">Vehicle Details</h4>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">GatePass Status</label>
+                                    <div class="col-sm-8">
+
+                                        @if (Convert.ToInt32(item.GatePassStatus) == 1)
+                                        {
+                                            <input type="text" class="form-control bg-success" value="Open" readonly="">
+                                        }
+                                        else
+
+                                        {
+                                            <input type="text" class="form-control bg-danger" value="Close" readonly="">
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                       Center
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.Center" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Driver</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.Driver" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Vehicle Code</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.VehicleCode" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Vehicle Reg Number</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.VehicleRegNumber" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Start Odometer</label>
+                                    <div class="col-sm-8">
+                                        @*<input type="text" class="form-control" value="@item.StartOdometer" readonly="">*@
+                                        <input type="text" class="form-control" value="@Math.Round(Convert.ToDecimal(item.StartOdometer), 1)" readonly="">
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">CloseOdometer</label>
+                                    <div class="col-sm-8">
+                                        @*<input type="text" class="form-control" value="@item.CloseOdometer" readonly="">*@
+                                        <input type="text" class="form-control" value="@Math.Round(Convert.ToDecimal(item.CloseOdometer), 1)" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Close Remark</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.CloseRemark" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Close DateTime</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.CloseDateTime" readonly="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Netkm</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="@item.Netkm" readonly="">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    function sendAjaxRequest(gatePassId) {
+        debugger
+
+        var url = "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" + "/Report/ViewTripReport.aspx?gatePassId=" + gatePassId;
+            window.open(url, "_blank");
+
+    }
+</script>

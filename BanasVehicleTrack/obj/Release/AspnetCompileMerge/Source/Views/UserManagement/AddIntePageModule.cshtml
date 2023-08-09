@@ -1,0 +1,85 @@
+﻿@model BanasVehicleTrackViewModel.PageModuleViewModel
+@{
+    ViewBag.Title = "Page Module Integration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-wrapper">
+    <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-lg-12">
+                <div class="float-left">
+                    <h3><i class="ti-control-forward ForwardIcon"> </i>Page Module Integrations</h3>
+                </div>
+                <div class="float-right">
+                    <a class="btn btn-outline-primary btn-round" href="@Url.Action("ViewIntePageModule","UserManagement")">
+                        <i class="fa fa-eye mx-2"></i>View Page Module Integrations
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-block">
+                        @using (Html.BeginForm("AddIntePageModule", "UserManagement", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken();
+
+                            @Html.HiddenFor(m => m.Action)
+                            @Html.HiddenFor(m => m.InteId, new { id = "txtInteId" })
+                            <div class="form-group row">
+
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Module Name</label>
+                                    @Html.ValidationMessageFor(m => m.ModuleId, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(m => m.ModuleId, new SelectList(Model.ModulesList.OrderBy(m => m.ModuleName), "ModuleId", "ModuleName"), "Select Module",
+                                               new Dictionary<string, object>() {
+                                                   {"id","ddlModuleId"},
+                                                   { "class","form-control form-select js-example-disabled-results"}
+                                                   })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Page Name</label>
+                                    @Html.ValidationMessageFor(m => m.PageId, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(m => m.PageId, new SelectList(Model.PagesList.OrderBy(m => m.PageName), "PageId", "PageName"), "Select Page",
+                                               new Dictionary<string, object>() {
+                                                   {"id","ddlPageId"},
+                                                   { "class","form-control form-select js-example-disabled-results"}
+                                                   })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">IsActive</label><br />
+
+                                    @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(x => x.IsActive, new List<SelectListItem>
+                                   {
+                                       new SelectListItem{ Text="Enable", Value = "1",Selected=true },
+                                       new SelectListItem{ Text="Disable", Value = "0" }
+                                    }, new { @class = "form-control form-select js-example-disabled-results", @id = "IsActive" })
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="mt-4">
+                                        <input type="submit" class="btn btn-round btn-inverse m-2" id="confirmok" value="Save" onclick="return confirm('Are You sure you want to save data?')" />
+                                        @if (ViewBag.Action == "Add")
+                                        {
+                                            <input type="button" class="btn btn btn-round btn-inverse m-2" id="reload" value="Clear" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#reload').click(function () {
+        window.location.href = "/UserManagement/AddIntePageModule";
+});
+</script>

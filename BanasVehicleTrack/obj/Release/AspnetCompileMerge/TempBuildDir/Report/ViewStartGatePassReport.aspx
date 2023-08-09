@@ -1,0 +1,4 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewStartGatePassReport.aspx.cs" Inherits="BanasVehicleTrack.Report.ViewStartGatePassReport" %>
+
+
+<%@Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>  <!DOCTYPE html> <html xmlns="http://www.w3.org/1999/xhtml"><head runat="server">    <title></title></head><body>    <form id="form1" runat="server">        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>        <rsweb:ReportViewer ID="ReportViewer1" ShowExportControls="true" runat="server" SizeToReportContent="true">            <LocalReport ReportPath="Report/rdlc/creditor_report.rdlc"></LocalReport>        </rsweb:ReportViewer>    </form></body></html>

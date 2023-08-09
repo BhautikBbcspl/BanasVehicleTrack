@@ -1,0 +1,95 @@
+﻿@model BanasVehicleTrackViewModel.Master.UserDepartmentAllocationViewModel
+@{
+    ViewBag.Title = "AddUserDepartmentAllocation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .field-icon {
+        float: right;
+        margin-top: -24px;
+        position: relative;
+        right: 15px;
+        z-index: 2;
+    }
+</style>
+<div class="page-wrapper">
+    <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-lg-12">
+                <div class="float-left">
+                    <h3><i class="ti-control-forward ForwardIcon"> </i>User Department Allocation</h3>
+                </div>
+                <div class="float-right">
+                    <a class="btn btn-outline-primary btn-round" href="@Url.Action("ViewUserDepartmentAllocation","Master")">
+                        <i class="fa fa-eye mx-2"></i>View List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-block">
+                        @using (Html.BeginForm("AddUserDepartmentAllocation", "Master", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken();
+                            @Html.HiddenFor(m => m.Action)
+                            @Html.HiddenFor(m => m.UserDepartmentId)
+
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Employee</label>
+                                    @Html.ValidationMessageFor(m => m.EmployeeCode, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(m => m.EmployeeCode, new SelectList(Model.EmployeeList.OrderBy(m => m.EmployeeName), "EmployeeCode", "EmployeeName"), "Select User",
+                                                  new Dictionary<string, object>() {
+                                             {"id","ddlUserCode"},
+                                             { "class","form-control form-select js-example-disabled-results"}
+                              })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Department</label>
+                                    @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentList.OrderBy(m => m.DepartmentName), "DepartmentId", "DepartmentName"), "Select Department",
+                                                     new Dictionary<string, object>() {
+                                                {"id","ddlDepartmentId"},
+                                                { "class","form-control form-select js-example-disabled-results"}
+                                 })
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">IsActive</label>
+
+                                    @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(x => x.IsActive, new List<SelectListItem>
+                                                       {
+                                   new SelectListItem{ Text="Enable", Value = "true",Selected=true },
+                                   new SelectListItem{ Text="Disable", Value = "false" }
+                                }, new { @class = "form-control form-select js-example-disabled-results", @id = "IsActive" })
+                                </div>
+
+
+                                <div class="col-lg-3">
+                                    <div class="mt-4">
+                                        <input type="submit" class="btn btn-round btn-inverse m-2" id="confirmok" value="@Model.Action" onclick="return confirm('Are You sure you want to save data?')" />
+                                    </div>
+                                </div>
+                            </div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        debugger
+        var action = "@ViewBag.Action";
+
+        if (action === "update") {
+            $("#ddlUserCode").prop("disabled", true);
+        }
+    });
+</script>

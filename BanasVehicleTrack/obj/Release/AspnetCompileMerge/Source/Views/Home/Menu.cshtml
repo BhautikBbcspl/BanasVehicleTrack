@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BanasVehicleTrackDbClasses.BanasMenuRtr_Result>
+@{
+    Layout = "";
+}
+<nav class="pcoded-navbar">
+    <div class="pcoded-inner-navbar main-menu">
+        <ul class="pcoded-item pcoded-left-item">
+            @{
+                string User_Rolename = string.Empty;
+                HttpCookie reqCookies = Request.Cookies["EmployeeMaster"];
+                if (reqCookies != null)
+                {
+                    User_Rolename = reqCookies["RoleName"].ToString();
+
+                    if (User_Rolename == "admin" || User_Rolename == "Admin")
+                    {
+                        <li class="pcoded-trigger">
+                            <a href="~/Home/Dashboard" class="linkDashboard"><span class="pcoded-micon"> <i class='fa fa-home'></i> </span> <span class="pcoded-mtext">Dashboard</span> </a>
+                        </li>
+                    }
+                }
+                foreach (var item in Model.GroupBy(Obj => new { Obj.ModuleName }).OrderBy(group => group.FirstOrDefault().ModulePriority).Distinct().ToList())
+                {
+                    if (@item.FirstOrDefault().IsSelfURL != true)
+                    {
+                        <li class="pcoded-hasmenu">
+                            <a href="#">
+                                <span class="pcoded-micon"><i class="@item.FirstOrDefault().FaIcon"></i></span>
+                                <span class="pcoded-mtext">
+                                    @item.FirstOrDefault().ModuleName
+                                </span>
+                            </a>
+                            <ul class="pcoded-submenu">
+                                @{
+                                    foreach (var secondItem in (Model.Where(s => s.ModuleId == item.FirstOrDefault().ModuleId).ToList()))
+                                    {
+                                        <li>
+                                            <a href="~/@secondItem.PageUrl" style="display:flex">
+                                                <span class="pcoded-mtext"></span> <span> @secondItem.PageName </span>
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="~/@item.FirstOrDefault().PageUrl" style="display:flex">
+                                <span class="pcoded-micon"><i class="@item.FirstOrDefault().FaIcon"></i></span>
+                                <span class="pcoded-mtext"></span> <span> @item.FirstOrDefault().PageName</span>
+                            </a>
+                        </li>
+                    }
+                    @*if (@item.FirstOrDefault().IsSelfURL != true)
+                        {
+                            <li class="pcoded-hasmenu">
+
+                                <ul class="pcoded-submenu">
+                                    @{
+                                        foreach (var secondItem in (Model.Where(s => s.ModuleId == item.FirstOrDefault().ModuleId).ToList()))
+                                        {
+                                            <li>
+                                                <a href="~/@secondItem.PageUrl" style="display:flex">
+                                                    <span class="pcoded-mtext"></span> <span> @secondItem.PageName </span>
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                        }*@
+
+
+                }
+
+
+            }
+        </ul>
+    </div>
+</nav>
+
+
+

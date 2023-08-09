@@ -16,7 +16,6 @@ namespace BanasVehicleTrackDbClasses
         public string GatePassId { get; set; }
         public string DepartmentName { get; set; }
         public string UserCode { get; set; }
-        public string EmployeeName { get; set; }
         public string OtherUser1 { get; set; }
         public string OtherUser2 { get; set; }
         public string OtherUser3 { get; set; }
@@ -24,7 +23,7 @@ namespace BanasVehicleTrackDbClasses
         public string VisitDateTime { get; set; }
         public string VisitPurpose { get; set; }
         public string Remarks { get; set; }
-        public string CenterName { get; set; }
+        public string VehicleDepartment { get; set; }
         public string Driver { get; set; }
         public string VehicleCode { get; set; }
         public string VehicleRegNumber { get; set; }
