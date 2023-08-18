@@ -14,7 +14,7 @@ namespace BanasVehicleTrackViewModel.Master
         [Required(ErrorMessage = "*")]
         public string VehicleCode { get; set; }
         [Required(ErrorMessage = "*")]
-        [RegularExpression(@"^GJ-\d{2}-[A-Z]{2}-\d{4}$", ErrorMessage = "Invalid Gujarat Vehicle Number e.g GJ-00-AA-0000")]
+        [RegularExpression(@"^[A-Z]{2}-\d{2}-[A-Z]{1,2}-\d{4}$", ErrorMessage = "Invalid Gujarat Vehicle Number e.g AA-00-AA-0000 or e.g AA-00-A-0000")]
         public string VehicleRegNumber { get; set; }
         [Required(ErrorMessage = "*")]
         public string VehicleRegDate { get; set; }

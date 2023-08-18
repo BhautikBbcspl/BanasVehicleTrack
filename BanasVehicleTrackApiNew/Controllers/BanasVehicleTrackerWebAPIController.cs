@@ -41,9 +41,9 @@ namespace BanasVehicleTrackApiNew.Controllers
                     var response2 = Request.CreateResponse(HttpStatusCode.OK, uc);
                     response2.Content = new StringContent(JsonConvert.SerializeObject(uc), Encoding.UTF8, "application/json");
                     //return response2;
-                    if (uc.ToString()=="Is Auditor")
+                    if (uc.ToString()== "Valid User")
                     {
-                        string query3 = "{ \"LoginResult\":\"Is Auditor\"}";
+                        string query3 = "{ \"LoginResult\":\"Valid User\"}";
                         var jObject = JObject.Parse(query3);
                         var response = Request.CreateResponse(HttpStatusCode.OK);
                         response.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
@@ -51,7 +51,7 @@ namespace BanasVehicleTrackApiNew.Controllers
                     }
                     else
                     {
-                        string query3 = "{ \"LoginResult\":\"Is Not Auditor\"}";
+                        string query3 = "{ \"LoginResult\":\"Invalid User\"}";
                         var jObject = JObject.Parse(query3);
                         var response = Request.CreateResponse(HttpStatusCode.OK);
                         response.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");

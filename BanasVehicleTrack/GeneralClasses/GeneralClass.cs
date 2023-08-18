@@ -293,6 +293,7 @@ namespace BanasVehicleTrack.GeneralClasses
                     if(em.RoleId!="2")
                     {
                         em.DepartmentId = reqCookies["DepartmentId"].ToString();
+                        
                     }
                     return em;
                 }

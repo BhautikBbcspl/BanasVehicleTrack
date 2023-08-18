@@ -550,7 +550,11 @@ namespace BanasVehicleTrack.Controllers
                 }
                 if (ViewBag.ViewRight == 1)
                 {
-                    model.VehicleMasterList = db.BanasVehicleMasterRtr("All", LoggedUserDetails.CompanyCode).ToList();
+
+                    //model.VehicleMasterList = db.BanasVehicleMasterRtr("All", LoggedUserDetails.CompanyCode).Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
+                    model.VehicleMasterList = (LoggedUserDetails.DepartmentId == "admin")
+                 ? db.BanasVehicleMasterRtr("All", LoggedUserDetails.CompanyCode).ToList() : db.BanasVehicleMasterRtr("All", LoggedUserDetails.CompanyCode).Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
+                   
                     model.Action = "Save";
                     return View(model);
                 }

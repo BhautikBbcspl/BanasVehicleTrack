@@ -201,8 +201,8 @@
                                     <div class="col-sm-10">
                                         @Html.ValidationMessageFor(m => m.StartOdometer, "", new { @class = "text-danger" })
                                         @Html.TextBoxFor(m => m.StartOdometer, new Dictionary<string, object>() {
-                                                             {"id","txtStartOdometer"},
-                                                             {"class","form-control numberdecimal"},
+                                                            {"id","txtStartOdometer"},
+                                                             {"class","form-control numberonly"},
                                                                 {"autocomplete","off"},
                                                              })
                                     </div>
@@ -224,6 +224,7 @@
     </div>
 
 }
+
 <script>
     function GetOdometer(_Vehicleid) {
         if (_Vehicleid == "") {

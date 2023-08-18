@@ -746,23 +746,6 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasMenuRtr_Result>("BanasMenuRtr", roleidParameter);
         }
     
-        public virtual ObjectResult<BanasAuditorVisitGatepassRetrieve_Result> BanasAuditorVisitGatepassRetrieve(string action, string auditorCode, string gatePassId)
-        {
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            var auditorCodeParameter = auditorCode != null ?
-                new ObjectParameter("AuditorCode", auditorCode) :
-                new ObjectParameter("AuditorCode", typeof(string));
-    
-            var gatePassIdParameter = gatePassId != null ?
-                new ObjectParameter("GatePassId", gatePassId) :
-                new ObjectParameter("GatePassId", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorVisitGatepassRetrieve_Result>("BanasAuditorVisitGatepassRetrieve", actionParameter, auditorCodeParameter, gatePassIdParameter);
-        }
-    
         public virtual ObjectResult<BanasAuditorVisitGatepassRetrieve_NEW_Result> BanasAuditorVisitGatepassRetrieve_NEW(string action, string userCode, string gatePassId)
         {
             var actionParameter = action != null ?
@@ -1711,6 +1694,23 @@ namespace BanasVehicleTrackDbClasses
                 new ObjectParameter("loginuser", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorFinalApproveRetrieve_Result>("BanasAuditorFinalApproveRetrieve", actionParameter, loginuserParameter);
+        }
+    
+        public virtual ObjectResult<BanasAuditorVisitGatepassRetrieve_Result> BanasAuditorVisitGatepassRetrieve(string action, string auditorCode, string gatePassId)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var auditorCodeParameter = auditorCode != null ?
+                new ObjectParameter("AuditorCode", auditorCode) :
+                new ObjectParameter("AuditorCode", typeof(string));
+    
+            var gatePassIdParameter = gatePassId != null ?
+                new ObjectParameter("GatePassId", gatePassId) :
+                new ObjectParameter("GatePassId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorVisitGatepassRetrieve_Result>("BanasAuditorVisitGatepassRetrieve", actionParameter, auditorCodeParameter, gatePassIdParameter);
         }
     }
 }

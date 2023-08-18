@@ -118,7 +118,7 @@ namespace BanasVehicleTrackApi.Controllers
         {
             try
             {
-                string re = db.BanasAuditorVisitGatepassRetrieve("auditorGPOpen", pnd.UserCode, "").ToString();
+                string re = db.BanasAuditorVisitGatepassRetrieve(pnd.Action, pnd.UserCode, pnd.GatePassId).ToString();
                 if (re != null)
                 {
                     var PendingGatePass = db.BanasAuditorVisitGatepassRetrieve("auditorGPOpen", pnd.UserCode, "").ToList();
@@ -134,7 +134,7 @@ namespace BanasVehicleTrackApi.Controllers
                     return response;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
                 FetchErrorclass error = new FetchErrorclass

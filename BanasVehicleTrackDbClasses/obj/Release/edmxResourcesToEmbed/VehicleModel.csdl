@@ -202,11 +202,6 @@
     <FunctionImport Name="BanasMenuRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasMenuRtr_Result)">
       <Parameter Name="Roleid" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="BanasAuditorVisitGatepassRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorVisitGatepassRetrieve_Result)">
-      <Parameter Name="action" Mode="In" Type="String" />
-      <Parameter Name="AuditorCode" Mode="In" Type="String" />
-      <Parameter Name="GatePassId" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="BanasAuditorVisitGatepassRetrieve_NEW" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorVisitGatepassRetrieve_NEW_Result)">
       <Parameter Name="action" Mode="In" Type="String" />
       <Parameter Name="UserCode" Mode="In" Type="String" />
@@ -467,6 +462,11 @@
       <Parameter Name="action" Mode="In" Type="String" />
       <Parameter Name="loginuser" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="BanasAuditorVisitGatepassRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasAuditorVisitGatepassRetrieve_Result)">
+      <Parameter Name="action" Mode="In" Type="String" />
+      <Parameter Name="AuditorCode" Mode="In" Type="String" />
+      <Parameter Name="GatePassId" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="EmployeeMaster">
     <Key>
@@ -670,52 +670,6 @@
     <Property Type="String" Name="FaIcon" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="ModulePriority" Nullable="true" />
     <Property Type="Int32" Name="PagePriority" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="BanasAuditorVisitGatepassRetrieve_Result">
-    <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="UserCode" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="OtherUser1" Nullable="false" MaxLength="200" />
-    <Property Type="String" Name="OtherUser2" Nullable="false" MaxLength="200" />
-    <Property Type="String" Name="OtherUser3" Nullable="false" MaxLength="200" />
-    <Property Type="String" Name="InformationMode" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
-    <Property Type="String" Name="VisitPurpose" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Remarks" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="VehicleDepartment" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Driver" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="VehicleRegNumber" Nullable="false" MaxLength="50" />
-    <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="String" Name="CreateUser" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="GatePassStatus" Nullable="false" />
-    <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="String" Name="CloseRemark" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="CloseDateTime" Nullable="false" MaxLength="4000" />
-    <Property Type="String" Name="CloseDate" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="CloseUser" Nullable="false" MaxLength="50" />
-    <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Int32" Name="DepartmentId" Nullable="true" />
-    <Property Type="Int32" Name="VehicleId" Nullable="true" />
-    <Property Type="Int32" Name="VisitPurposeId" Nullable="false" />
-    <Property Type="Int32" Name="VehicleDepartmentId" Nullable="false" />
-    <Property Type="String" Name="DepartureSecurityName" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="DepartureSecuritySignature" Nullable="false" />
-    <Property Type="Int32" Name="DepartureSecurityId" Nullable="false" />
-    <Property Type="String" Name="DepartureSecurityRemark" Nullable="false" />
-    <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="String" Name="DepartureDateTime" Nullable="false" MaxLength="4000" />
-    <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="false" />
-    <Property Type="String" Name="ArrivalSecurityName" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="ArrivalSecuritySignature" Nullable="false" />
-    <Property Type="Int32" Name="ArrivalSecurityId" Nullable="false" />
-    <Property Type="String" Name="ArrivalSecurityRemark" Nullable="false" />
-    <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="String" Name="ArrivalDateTime" Nullable="false" MaxLength="4000" />
-    <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="false" />
-    <Property Type="String" Name="EmployeeSignature" Nullable="false" />
   </ComplexType>
   <ComplexType Name="BanasAuditorVisitGatepassRetrieve_NEW_Result">
     <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
@@ -1256,5 +1210,52 @@
     <Property Type="Decimal" Name="FinalApprDifference" Nullable="true" Precision="18" Scale="2" />
     <Property Type="Decimal" Name="FinalAmount" Nullable="true" Precision="18" Scale="2" />
     <Property Type="Decimal" Name="TotalDifference" Nullable="true" Precision="19" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="BanasAuditorVisitGatepassRetrieve_Result">
+    <Property Type="String" Name="GatePassId" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="UserCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="OtherUser1" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="OtherUser2" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="OtherUser3" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="InformationMode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="VisitDateTime" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="VisitPurpose" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Remarks" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="CenterName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Driver" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="VehicleCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="VehicleRegNumber" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="StartOdometer" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="CreateUser" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="GatePassStatus" Nullable="false" />
+    <Property Type="Decimal" Name="CloseOdometer" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="CloseRemark" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CloseDateTime" Nullable="false" MaxLength="4000" />
+    <Property Type="String" Name="CloseDate" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="CloseUser" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="Netkm" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Difference" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+    <Property Type="Int32" Name="VehicleId" Nullable="true" />
+    <Property Type="Int32" Name="VisitPurposeId" Nullable="false" />
+    <Property Type="Int32" Name="VehicleDepartmentId" Nullable="false" />
+    <Property Type="String" Name="DepartureSecurityName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="DepartureSecuritySignature" Nullable="false" />
+    <Property Type="Int32" Name="DepartureSecurityId" Nullable="false" />
+    <Property Type="String" Name="DepartureSecurityRemark" Nullable="false" />
+    <Property Type="Decimal" Name="StartKm" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="DepartureDateTime" Nullable="false" MaxLength="4000" />
+    <Property Type="Int32" Name="DepartureVerifyStatus" Nullable="false" />
+    <Property Type="String" Name="ArrivalSecurityName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ArrivalSecuritySignature" Nullable="false" />
+    <Property Type="Int32" Name="ArrivalSecurityId" Nullable="false" />
+    <Property Type="String" Name="ArrivalSecurityRemark" Nullable="false" />
+    <Property Type="Decimal" Name="EndKm" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="ArrivalDateTime" Nullable="false" MaxLength="4000" />
+    <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="false" />
+    <Property Type="String" Name="EmployeeSignature" Nullable="false" />
   </ComplexType>
 </Schema>
