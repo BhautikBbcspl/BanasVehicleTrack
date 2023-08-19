@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\BBCSPL\Desktop\Pub Banas Vehicle new</_PublishTargetUrl>
-    <History>True|2023-08-18T11:36:08.6264070Z;</History>
+    <History>True|2023-08-18T12:26:55.6395965Z;True|2023-08-18T17:39:00.2074677+05:30;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -15,10 +15,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/11/2023 11:10:29</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrack.dll">
-      <publishTime>08/18/2023 17:05:58</publishTime>
+      <publishTime>08/18/2023 17:56:54</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrack.pdb">
-      <publishTime>08/18/2023 17:05:58</publishTime>
+      <publishTime>08/18/2023 17:56:54</publishTime>
     </File>
     <File Include="bin/BanasVehicleTrackDbClasses.dll">
       <publishTime>08/16/2023 17:33:57</publishTime>
@@ -1056,7 +1056,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/11/2023 11:10:25</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/18/2023 17:05:59</publishTime>
+      <publishTime>08/18/2023 17:38:58</publishTime>
     </File>
   </ItemGroup>
 </Project>
