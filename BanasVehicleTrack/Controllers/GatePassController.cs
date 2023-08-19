@@ -182,7 +182,9 @@ namespace BanasVehicleTrack.Controllers
                 }
                 GatepassViewModel gvm = new GatepassViewModel();
                 gvm.DepartmentList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
-                gvm.VisitPurposeList = db.BanasVisitPurposeMasterRtr("active", LoggedUserDetails.CompanyCode).ToList();
+                gvm.VisitPurposeList = (LoggedUserDetails.EmployeeCode == "Admin")
+                ? db.BanasVisitPurposeMasterRtr("All", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList()
+                : db.BanasVisitPurposeMasterRtr("GetPurpose", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList(); 
                 //gvm.VehicleList = db.BanasVehicleMasterRtr("active", "BDL01").ToList();
                 gvm.VehicleList = db.BanasVehicleMasterRtr("open", LoggedUserDetails.CompanyCode).ToList();
 
@@ -278,7 +280,9 @@ namespace BanasVehicleTrack.Controllers
                 GatepassViewModel dm = new GatepassViewModel();
                 var mm = db.BanasVehicleGatepassRetrieve("details", null, null, "", "", id, LoggedUserDetails.EmployeeCode).FirstOrDefault();
                 dm.DepartmentList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
-                dm.VisitPurposeList = db.BanasVisitPurposeMasterRtr("active", LoggedUserDetails.CompanyCode).ToList();
+                dm.VisitPurposeList = (LoggedUserDetails.EmployeeCode == "Admin")
+                ? db.BanasVisitPurposeMasterRtr("All", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList()
+                : db.BanasVisitPurposeMasterRtr("GetPurpose", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList();
                 dm.VehicleList = db.BanasVehicleMasterRtr("active", LoggedUserDetails.CompanyCode).ToList();
 
                 dm.EmployeeList = (LoggedUserDetails.EmployeeCode == "Admin")

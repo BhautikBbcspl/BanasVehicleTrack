@@ -489,6 +489,7 @@
         </Function>
         <Function Name="BanasVisitPurposeMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="VisitId" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
           <Parameter Name="VisitPurpose" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="IsActive" Type="nvarchar" Mode="In" />
           <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
@@ -501,6 +502,7 @@
         <Function Name="BanasVisitPurposeMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="action" Type="nvarchar" Mode="In" />
           <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Departmentid" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="banasVehicleTrackingModelStoreContainer">
           <EntitySet Name="EmployeeMaster" EntityType="Self.EmployeeMaster" Schema="dbo" store:Type="Tables" />
@@ -594,21 +596,6 @@
           <FunctionImport Name="BanasRoleMasterRetrieve" ReturnType="Collection(banasVehicleTrackingModel.BanasRoleMasterRetrieve_Result)">
             <Parameter Name="action" Mode="In" Type="String" />
             <Parameter Name="companycode" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="BanasVisitPurposeMasterInsUpd" ReturnType="Collection(String)">
-            <Parameter Name="VisitId" Mode="In" Type="String" />
-            <Parameter Name="VisitPurpose" Mode="In" Type="String" />
-            <Parameter Name="IsActive" Mode="In" Type="String" />
-            <Parameter Name="CompanyCode" Mode="In" Type="String" />
-            <Parameter Name="CreateDate" Mode="In" Type="String" />
-            <Parameter Name="UpdateDate" Mode="In" Type="String" />
-            <Parameter Name="CreateUser" Mode="In" Type="String" />
-            <Parameter Name="UpdateUser" Mode="In" Type="String" />
-            <Parameter Name="action" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="BanasVisitPurposeMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVisitPurposeMasterRtr_Result)">
-            <Parameter Name="action" Mode="In" Type="String" />
-            <Parameter Name="CompanyCode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="BanasSecurityMasterInsUpd" ReturnType="Collection(String)">
             <Parameter Name="SecurityId" Mode="In" Type="String" />
@@ -977,6 +964,23 @@
             <Parameter Name="AuditorCode" Mode="In" Type="String" />
             <Parameter Name="GatePassId" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="BanasVisitPurposeMasterInsUpd" ReturnType="Collection(String)">
+            <Parameter Name="VisitId" Mode="In" Type="String" />
+            <Parameter Name="DepartmentId" Mode="In" Type="String" />
+            <Parameter Name="VisitPurpose" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="CreateDate" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="String" />
+            <Parameter Name="CreateUser" Mode="In" Type="String" />
+            <Parameter Name="UpdateUser" Mode="In" Type="String" />
+            <Parameter Name="action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BanasVisitPurposeMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVisitPurposeMasterRtr_Result)">
+            <Parameter Name="action" Mode="In" Type="String" />
+            <Parameter Name="CompanyCode" Mode="In" Type="String" />
+            <Parameter Name="Departmentid" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="EmployeeMaster">
           <Key>
@@ -1069,15 +1073,6 @@
           <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="udate" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="activeStatus1" Nullable="false" MaxLength="7" />
-        </ComplexType>
-        <ComplexType Name="BanasVisitPurposeMasterRtr_Result">
-          <Property Type="Int32" Name="VisitId" Nullable="false" />
-          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsActive" Nullable="true" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
         </ComplexType>
         <ComplexType Name="BanasSecurityMasterRetrieve_Result">
           <Property Type="Int32" Name="SecurityId" Nullable="false" />
@@ -1768,6 +1763,17 @@
           <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="false" />
           <Property Type="String" Name="EmployeeSignature" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="BanasVisitPurposeMasterRtr_Result">
+          <Property Type="Int32" Name="VisitId" Nullable="false" />
+          <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="departmentId" Nullable="true" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1891,20 +1897,6 @@
                 <ScalarProperty Name="cdate" ColumnName="cdate" />
                 <ScalarProperty Name="udate" ColumnName="udate" />
                 <ScalarProperty Name="activeStatus1" ColumnName="activeStatus1" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="BanasVisitPurposeMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasVisitPurposeMasterInsUpd" />
-          <FunctionImportMapping FunctionImportName="BanasVisitPurposeMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVisitPurposeMasterRtr">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVisitPurposeMasterRtr_Result">
-                <ScalarProperty Name="VisitId" ColumnName="VisitId" />
-                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="cdate" ColumnName="cdate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2727,6 +2719,22 @@
                 <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
                 <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
                 <ScalarProperty Name="EmployeeSignature" ColumnName="EmployeeSignature" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BanasVisitPurposeMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasVisitPurposeMasterInsUpd" />
+          <FunctionImportMapping FunctionImportName="BanasVisitPurposeMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVisitPurposeMasterRtr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVisitPurposeMasterRtr_Result">
+                <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+                <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

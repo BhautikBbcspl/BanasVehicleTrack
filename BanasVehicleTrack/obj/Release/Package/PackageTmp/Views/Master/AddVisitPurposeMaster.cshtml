@@ -30,43 +30,51 @@
 
                             @Html.HiddenFor(m => m.Action)
                             @Html.HiddenFor(m => m.VisitId, new { id = "txtVisitId" })
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Visit Purpose</label>
-                               
-                                        @Html.ValidationMessageFor(m => m.VisitPurpose, "", new { @class = "text-danger" })
-                                        @Html.TextBoxFor(m => m.VisitPurpose, new Dictionary<string, object>() {
-                                              {"id","txtVisitPurpose"},
-                                              {"class","form-control"},
-                                                 {"autocomplete","off"},
-                                              {"required","required"},
-                                              {"placeholder","Enter Visit Purpose"}
-                                              })
-                                 
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Department</label>
+                                @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
+                                               new Dictionary<string, object>() {
+                                                   {"id","ddlDepartmentId"},
+                                         { "class","form-control form-select js-example-disabled-results" } })
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">Visit Purpose</label>
 
-                                </div>
+                                @Html.ValidationMessageFor(m => m.VisitPurpose, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.VisitPurpose, new Dictionary<string, object>() {
+                                      {"id","txtVisitPurpose"},
+                                      {"class","form-control"},
+                                         {"autocomplete","off"},
+                                      {"required","required"},
+                                      {"placeholder","Enter Visit Purpose"}
+                                      })
 
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">IsActive</label><br />
 
-                                    @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
-                                    @Html.DropDownListFor(x => x.IsActive, new List<SelectListItem>
-                                   {
-                                       new SelectListItem{ Text="Enable", Value = "true",Selected=true },
-                                       new SelectListItem{ Text="Disable", Value = "false" }
-                                    }, new { @class = "form-control form-select js-example-disabled-results", @id = "IsActive" })
-                                </div>
+                            </div>
 
-                                <div class="col-lg-6">
-                                    <div class="mt-4">
-                                        <input type="submit" class="btn btn-round btn-inverse m-2" id="confirmok" value="@Model.Action" onclick="return confirm('Are You sure you want to save data?')" />
-                                        @if (Model.Action == "Save")
-                                        {
-                                            <input type="button" class="btn btn btn-round btn-inverse m-2" id="reload" value="Refresh" />
-                                        }
-                                    </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label">IsActive</label><br />
+
+                                @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(x => x.IsActive, new List<SelectListItem>
+                               {
+                                   new SelectListItem{ Text="Enable", Value = "true",Selected=true },
+                                   new SelectListItem{ Text="Disable", Value = "false" }
+                                }, new { @class = "form-control form-select js-example-disabled-results", @id = "IsActive" })
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="mt-4">
+                                    <input type="submit" class="btn btn-round btn-inverse m-2" id="confirmok" value="@Model.Action" onclick="return confirm('Are You sure you want to save data?')" />
+                                    @if (Model.Action == "Save")
+                                    {
+                                        <input type="button" class="btn btn btn-round btn-inverse m-2" id="reload" value="Refresh" />
+                                    }
                                 </div>
                             </div>
+                        </div>
                         }
                     </div>
                 </div>

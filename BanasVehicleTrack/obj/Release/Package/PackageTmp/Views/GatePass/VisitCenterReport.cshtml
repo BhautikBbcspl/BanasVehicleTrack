@@ -132,6 +132,7 @@
                             <th>Username</th>
                             <th>Department</th>
                             <th>Center</th>
+                            <th>Vehicle Number</th>
                             <th>Visit Date-Time</th>
                             <th>Close Date-Time</th>
                             <th>Total km</th>
@@ -158,6 +159,9 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.CenterName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VehicleRegNumber)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.VisitDateTime)
@@ -234,7 +238,7 @@
                 additionalRows += '<td>' + rowData.UserGivenLocation + '</td>';
                 additionalRows += '<td><a href="https://www.google.com/maps?q=' + rowData.Latitude + ',' + rowData.Longitude + '" target="_blank"><img style="width: 37px;" src="../Content/AdminTemplateAssets/images/loca_arrow.png" /></a></td>';
                 additionalRows += '<td>' + rowData.Odometer + '</td>';
-                additionalRows += '<td><img src="~/' + rowData.OdometerImage + '"></td>';
+                additionalRows += '<td><img src="../vehicletrackerapi/' + rowData.OdometerImage + '" width="200" height="150"></td>';
                 additionalRows += '<td>' + rowData.cdate + '</td>';
                 additionalRows += '<td>' + rowData.CreateUser + '</td>';
                 additionalRows += '</tr>';

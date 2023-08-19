@@ -121,20 +121,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="BanasVisitPurposeMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasVisitPurposeMasterInsUpd" />
-    <FunctionImportMapping FunctionImportName="BanasVisitPurposeMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVisitPurposeMasterRtr">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVisitPurposeMasterRtr_Result">
-          <ScalarProperty Name="VisitId" ColumnName="VisitId" />
-          <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
-          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-          <ScalarProperty Name="cdate" ColumnName="cdate" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="BanasSecurityMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasSecurityMasterInsUpd" />
     <FunctionImportMapping FunctionImportName="BanasSecurityMasterRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasSecurityMasterRetrieve">
       <ResultMapping>
@@ -954,6 +940,22 @@
           <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
           <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
           <ScalarProperty Name="EmployeeSignature" ColumnName="EmployeeSignature" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BanasVisitPurposeMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasVisitPurposeMasterInsUpd" />
+    <FunctionImportMapping FunctionImportName="BanasVisitPurposeMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVisitPurposeMasterRtr">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVisitPurposeMasterRtr_Result">
+          <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+          <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="cdate" ColumnName="cdate" />
+          <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

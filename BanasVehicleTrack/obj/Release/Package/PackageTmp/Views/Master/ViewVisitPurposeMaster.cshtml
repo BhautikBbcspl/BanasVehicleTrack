@@ -30,6 +30,9 @@
                                 @Html.DisplayName("Action")
                             </th>
                             <th>
+                                @Html.DisplayName("Department")
+                            </th>
+                            <th>
                                 @Html.DisplayName("Visit Purpose")
                             </th>
                             <th>
@@ -46,25 +49,28 @@
                     <tbody>
                         @foreach (var item in Model.VisitPurposeList)
                         {
-                            <tr>
-                                <td>
-                                    @if (ViewBag.UpdateRight == 1)
-                                    {
-                                        @Html.ActionLink(" ", "EditVisitPurposeMaster", new { id = item.VisitId }, new { @class = " btn editbtn fa fa-pencil-square-o", title = "Edit" })
-                                    }
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VisitPurpose)
-                                </td>
-                                <td>
-                                    <label class="toggle">
-                                        <input class="toggle-checkbox" type="checkbox" onclick='ActiveDeactiveStatusChange(this,"@item.VisitId","VisitPurposeMaster")' @(item.IsActive == true ? "checked" : "")>
-                                        <span class="toggle-switch"></span>
-                                    </label>
-                                </td>
-                                <td> @Html.DisplayFor(modelItem => item.cdate)</td>
-                                <td> @Html.DisplayFor(modelItem => item.CreateUser)</td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @if (ViewBag.UpdateRight == 1)
+                                {
+                                    @Html.ActionLink(" ", "EditVisitPurposeMaster", new { id = item.VisitId }, new { @class = " btn editbtn fa fa-pencil-square-o", title = "Edit" })
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartmentName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitPurpose)
+                            </td>
+                            <td>
+                                <label class="toggle">
+                                    <input class="toggle-checkbox" type="checkbox" onclick='ActiveDeactiveStatusChange(this,"@item.VisitId","VisitPurposeMaster")' @(item.IsActive == true ? "checked" : "")>
+                                    <span class="toggle-switch"></span>
+                                </label>
+                            </td>
+                            <td> @Html.DisplayFor(modelItem => item.cdate)</td>
+                            <td> @Html.DisplayFor(modelItem => item.CreateUser)</td>
+                        </tr>
                         }
 
                     </tbody>

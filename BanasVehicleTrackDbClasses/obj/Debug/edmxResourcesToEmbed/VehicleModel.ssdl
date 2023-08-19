@@ -484,6 +484,7 @@
   </Function>
   <Function Name="BanasVisitPurposeMasterInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="VisitId" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
     <Parameter Name="VisitPurpose" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="IsActive" Type="nvarchar" Mode="In" />
     <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
@@ -496,6 +497,7 @@
   <Function Name="BanasVisitPurposeMasterRtr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="action" Type="nvarchar" Mode="In" />
     <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Departmentid" Type="nvarchar" Mode="In" />
   </Function>
   <EntityContainer Name="banasVehicleTrackingModelStoreContainer">
     <EntitySet Name="EmployeeMaster" EntityType="Self.EmployeeMaster" Schema="dbo" store:Type="Tables" />

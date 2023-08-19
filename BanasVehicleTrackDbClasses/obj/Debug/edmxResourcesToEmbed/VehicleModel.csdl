@@ -85,21 +85,6 @@
       <Parameter Name="action" Mode="In" Type="String" />
       <Parameter Name="companycode" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="BanasVisitPurposeMasterInsUpd" ReturnType="Collection(String)">
-      <Parameter Name="VisitId" Mode="In" Type="String" />
-      <Parameter Name="VisitPurpose" Mode="In" Type="String" />
-      <Parameter Name="IsActive" Mode="In" Type="String" />
-      <Parameter Name="CompanyCode" Mode="In" Type="String" />
-      <Parameter Name="CreateDate" Mode="In" Type="String" />
-      <Parameter Name="UpdateDate" Mode="In" Type="String" />
-      <Parameter Name="CreateUser" Mode="In" Type="String" />
-      <Parameter Name="UpdateUser" Mode="In" Type="String" />
-      <Parameter Name="action" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="BanasVisitPurposeMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVisitPurposeMasterRtr_Result)">
-      <Parameter Name="action" Mode="In" Type="String" />
-      <Parameter Name="CompanyCode" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="BanasSecurityMasterInsUpd" ReturnType="Collection(String)">
       <Parameter Name="SecurityId" Mode="In" Type="String" />
       <Parameter Name="SecurityName" Mode="In" Type="String" />
@@ -467,6 +452,23 @@
       <Parameter Name="AuditorCode" Mode="In" Type="String" />
       <Parameter Name="GatePassId" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="BanasVisitPurposeMasterInsUpd" ReturnType="Collection(String)">
+      <Parameter Name="VisitId" Mode="In" Type="String" />
+      <Parameter Name="DepartmentId" Mode="In" Type="String" />
+      <Parameter Name="VisitPurpose" Mode="In" Type="String" />
+      <Parameter Name="IsActive" Mode="In" Type="String" />
+      <Parameter Name="CompanyCode" Mode="In" Type="String" />
+      <Parameter Name="CreateDate" Mode="In" Type="String" />
+      <Parameter Name="UpdateDate" Mode="In" Type="String" />
+      <Parameter Name="CreateUser" Mode="In" Type="String" />
+      <Parameter Name="UpdateUser" Mode="In" Type="String" />
+      <Parameter Name="action" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="BanasVisitPurposeMasterRtr" ReturnType="Collection(banasVehicleTrackingModel.BanasVisitPurposeMasterRtr_Result)">
+      <Parameter Name="action" Mode="In" Type="String" />
+      <Parameter Name="CompanyCode" Mode="In" Type="String" />
+      <Parameter Name="Departmentid" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="EmployeeMaster">
     <Key>
@@ -559,15 +561,6 @@
     <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
     <Property Type="String" Name="udate" Nullable="true" MaxLength="10" />
     <Property Type="String" Name="activeStatus1" Nullable="false" MaxLength="7" />
-  </ComplexType>
-  <ComplexType Name="BanasVisitPurposeMasterRtr_Result">
-    <Property Type="Int32" Name="VisitId" Nullable="false" />
-    <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="IsActive" Nullable="true" />
-    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
-    <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
   </ComplexType>
   <ComplexType Name="BanasSecurityMasterRetrieve_Result">
     <Property Type="Int32" Name="SecurityId" Nullable="false" />
@@ -1257,5 +1250,16 @@
     <Property Type="String" Name="ArrivalDateTime" Nullable="false" MaxLength="4000" />
     <Property Type="Int32" Name="ArrivalVerifyStatus" Nullable="false" />
     <Property Type="String" Name="EmployeeSignature" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="BanasVisitPurposeMasterRtr_Result">
+    <Property Type="Int32" Name="VisitId" Nullable="false" />
+    <Property Type="String" Name="VisitPurpose" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CreateUser" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="cdate" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="departmentId" Nullable="true" />
+    <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

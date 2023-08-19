@@ -20,5 +20,7 @@ namespace BanasVehicleTrackDbClasses
         public Nullable<System.DateTime> CreateDate { get; set; }
         public string CreateUser { get; set; }
         public string cdate { get; set; }
+        public Nullable<int> departmentId { get; set; }
+        public string DepartmentName { get; set; }
     }
 }

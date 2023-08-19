@@ -65,7 +65,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 else if (Type == "VisitPurposeMaster")
                 {
-                    msg = db.BanasVisitPurposeMasterInsUpd(Code, "", status, LoggedUserDetails.CompanyCode, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "Active").FirstOrDefault();
+                    msg = db.BanasVisitPurposeMasterInsUpd(Code, "", "", status, LoggedUserDetails.CompanyCode, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "Active").FirstOrDefault();
                 }
                 else if (Type == "ContractorMaster")
                 {
@@ -717,7 +717,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 if (ViewBag.ViewRight == 1)
                 {
-                    model.VisitPurposeList = db.BanasVisitPurposeMasterRtr("All", LoggedUserDetails.CompanyCode).ToList();
+                    model.VisitPurposeList = db.BanasVisitPurposeMasterRtr("All", LoggedUserDetails.CompanyCode,"").ToList();
                     model.Action = "Save";
                     return View(model);
                 }
@@ -742,6 +742,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 VisitPurposeMasterViewModel model = new VisitPurposeMasterViewModel();
                 model.Action = "Save";
+                model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("all", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList();
                 return View(model);
             }
             catch (Exception ex)
@@ -757,7 +758,7 @@ namespace BanasVehicleTrack.Controllers
             {
                 if (dm.Action == "Save")
                 {
-                    string msg = db.BanasVisitPurposeMasterInsUpd(dm.VisitId, dm.VisitPurpose, dm.IsActive, LoggedUserDetails.CompanyCode, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "", "Insert").FirstOrDefault();
+                    string msg = db.BanasVisitPurposeMasterInsUpd(dm.VisitId,dm.DepartmentId, dm.VisitPurpose, dm.IsActive, LoggedUserDetails.CompanyCode, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "", "Insert").FirstOrDefault();
 
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))
@@ -773,7 +774,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 else
                 {
-                    string msg = db.BanasVisitPurposeMasterInsUpd(dm.VisitId, dm.VisitPurpose, dm.IsActive, LoggedUserDetails.CompanyCode, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "Update").FirstOrDefault();
+                    string msg = db.BanasVisitPurposeMasterInsUpd(dm.VisitId,dm.DepartmentId, dm.VisitPurpose, dm.IsActive, LoggedUserDetails.CompanyCode, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "Update").FirstOrDefault();
 
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))
@@ -803,9 +804,11 @@ namespace BanasVehicleTrack.Controllers
                 {
                     return RedirectToAction("Login", "Home");
                 }
-                var sm = db.BanasVisitPurposeMasterRtr("All", LoggedUserDetails.CompanyCode).Where(c => c.VisitId == id).SingleOrDefault();
+                var sm = db.BanasVisitPurposeMasterRtr("All", LoggedUserDetails.CompanyCode,"").Where(c => c.VisitId == id).SingleOrDefault();
                 VisitPurposeMasterViewModel sb = new VisitPurposeMasterViewModel();
+                sb.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("all", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList();
                 sb.VisitId = sm.VisitId.ToString();
+                sb.DepartmentId = sm.departmentId.ToString();
                 sb.VisitPurpose = sm.VisitPurpose;
                 sb.IsActive = sm.IsActive.ToString();
                 sb.Action = "Update";
