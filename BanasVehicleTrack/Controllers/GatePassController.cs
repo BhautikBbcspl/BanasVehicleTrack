@@ -112,9 +112,8 @@ namespace BanasVehicleTrack.Controllers
                 ViewStartGatePassViewModel model = new ViewStartGatePassViewModel();
                 model.Action = "details";
                 model.BanasVehicleGatepassRetrieveList = db.BanasVehicleGatepassRetrieve(model.Action, "", "", "", "", id, LoggedUserDetails.EmployeeCode).ToList();
-                //model.StartOdometer = model.BanasVehicleGatepassRetrieveList.FirstOrDefault().StartOdometer.ToString();
-                var StartOdometer = model.BanasVehicleGatepassRetrieveList.FirstOrDefault().StartOdometer.ToString();
-                model.StartOdometer = decimal.Parse(StartOdometer).ToString("0");
+                model.StartOdometer = model.BanasVehicleGatepassRetrieveList.FirstOrDefault().StartOdometer.ToString();
+
                 model.GatePassId = id;
 
                 return View(model);
@@ -309,7 +308,7 @@ namespace BanasVehicleTrack.Controllers
                 dm.Remarks = mm.Remarks;
                 dm.Driver = mm.Driver;
                 dm.VehicleId = mm.VehicleId.ToString();
-                dm.StartOdometer = decimal.Parse(mm.StartOdometer.ToString()).ToString("0");
+                dm.StartOdometer = decimal.Parse(mm.StartOdometer.ToString()).ToString("#.0");
                 return View("AddGatepass", dm);
             }
             catch (Exception)
@@ -345,18 +344,9 @@ namespace BanasVehicleTrack.Controllers
             try
             {
                 string value = db.BanasFetchLastCosingOdometer(Vehicleid).SingleOrDefault().ToString();
-                if (value != "")
-                {
-                    string odometer = decimal.Parse(value).ToString("0");
-                    var obj = new { odometer };
-                    return Json(obj, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    string odometer = "";
-                    var obj = new { odometer };
-                    return Json(obj, JsonRequestBehavior.AllowGet);
-                }
+                string odometer = decimal.Parse(value).ToString("#.0");
+                var obj = new { odometer };
+                return Json(obj, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
@@ -679,7 +669,7 @@ namespace BanasVehicleTrack.Controllers
                     model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
                     model.CenterList = (LoggedUserDetails.EmployeeCode == "Admin")
                      ? db.BanasCenterMasterRetrieve("active").ToList() : db.BanasCenterMasterRetrieve("active").Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
-                    model.VisitCenterReportList = db.BanasVisitCenterReportRtr("all", generalFunctions.dateconvert(model.VisitDateTime), generalFunctions.dateconvert(model.CloseDateTime), "", "", "", LoggedUserDetails.EmployeeCode).Where(x => (Convert.ToInt32(x.GatePassStatus) == 0)).ToList();
+                    model.VisitCenterReportList = db.BanasVisitCenterReportRtr("all", model.VisitDateTime, model.CloseDateTime, "", "", "", LoggedUserDetails.EmployeeCode).Where(x => (Convert.ToInt32(x.GatePassStatus) == 0)).ToList();
                     model.AuditorOperateVisitList = db.BanasAuditorOperateVisitMasterRtr("", "all").ToList();
 
                     return View(model);
@@ -908,8 +898,7 @@ namespace BanasVehicleTrack.Controllers
 
                             if (!string.IsNullOrEmpty(item2.OdometerImage))
                             {
-                                string imagePath = Server.MapPath("~/vehicletrackerapi/" + item2.OdometerImage);
-                                //string imagePath = System.Configuration.ConfigurationManager.AppSettings["OdometerimageKey"] + item2.OdometerImage;
+                                string imagePath = Server.MapPath("~/" + item2.OdometerImage);
                                 Image image1 = null;
                                 try
                                 {

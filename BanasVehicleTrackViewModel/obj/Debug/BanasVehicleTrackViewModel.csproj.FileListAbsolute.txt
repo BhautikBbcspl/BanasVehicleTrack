@@ -115,3 +115,16 @@ Z:\Avsar Projects 2023\banasvehicletracking\BanasVehicleTrackViewModel\obj\Debug
 Z:\Avsar Projects 2023\banasvehicletracking\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.csproj.CopyComplete
 Z:\Avsar Projects 2023\banasvehicletracking\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.dll
 Z:\Avsar Projects 2023\banasvehicletracking\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.pdb
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackViewModel.dll.config
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackViewModel.dll
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackViewModel.pdb
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackDbClasses.dll
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Debug\EntityFramework.dll
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackDbClasses.pdb
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Debug\BanasVehicleTrackDbClasses.dll.config
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\bin\Debug\EntityFramework.xml
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.csproj.AssemblyReference.cache
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.csproj.CopyComplete
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.dll
+C:\Users\Dell\Downloads\BanasVehicleTrack\BanasVehicleTrack\BanasVehicleTrackViewModel\obj\Debug\BanasVehicleTrackViewModel.pdb
