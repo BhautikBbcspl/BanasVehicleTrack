@@ -274,7 +274,6 @@
     <Content Include="Content\AdminTemplateAssets\js\pcoded.min.js" />
     <Content Include="Content\AdminTemplateAssets\js\popper.min.js" />
     <Content Include="Content\AdminTemplateAssets\js\script.min.js" />
-    <Content Include="Content\AdminTemplateAssets\js\select2.full.min.js" />
     <Content Include="Content\AdminTemplateAssets\js\vartical-layout.min.js" />
     <Content Include="Content\AdminTemplateAssets\js\zebra_datepicker.min.js" />
     <Content Include="Content\AdminTemplateAssets\login_content\bootstrap.min.css" />
@@ -316,6 +315,9 @@
     <Content Include="Content\AdminTemplateAssets\login_content\js\photoswipe-ui-default.js" />
     <Content Include="Content\AdminTemplateAssets\login_content\js\photoswipe.js" />
     <Content Include="Content\AdminTemplateAssets\login_content\style.css" />
+    <Content Include="Content\AdminTemplateAssets\select2\select2-bootstrap.min.css" />
+    <Content Include="Content\AdminTemplateAssets\select2\select2.min.css" />
+    <Content Include="Content\AdminTemplateAssets\select2\select2.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

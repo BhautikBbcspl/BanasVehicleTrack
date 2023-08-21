@@ -2,7 +2,10 @@
 $(document).ready(function () {
     // Single Search Select
     $(".js-example-basic-single").select2();
-    $(".js-example-disabled-results").select2();
+
+    if ($(".js-example-disabled-results").length) {
+        $(".js-example-disabled-results").select2();
+    }
     // Multi Select
     $(".js-example-basic-multiple").select2();
 

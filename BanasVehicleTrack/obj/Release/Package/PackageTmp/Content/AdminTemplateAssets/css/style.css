@@ -29257,6 +29257,11 @@ span.value {
     vertical-align: middle;
 }
 
+.select2-container--default .select2-selection--single:focus {
+    border-color: #01a9ac;
+    box-shadow: 0 0 0 0.1rem #1dd2d5;
+}
+
 /*Customize icon set in TextBox*/
 /*.icon-input {
     position: relative;
