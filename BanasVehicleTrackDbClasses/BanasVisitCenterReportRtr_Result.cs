@@ -28,34 +28,34 @@ namespace BanasVehicleTrackDbClasses
         public string Driver { get; set; }
         public string VehicleCode { get; set; }
         public string VehicleRegNumber { get; set; }
-        public Nullable<decimal> StartOdometer { get; set; }
+        public Nullable<int> StartOdometer { get; set; }
         public string CreateUser { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<int> GatePassStatus { get; set; }
-        public Nullable<decimal> CloseOdometer { get; set; }
+        public Nullable<int> CloseOdometer { get; set; }
         public string CloseRemark { get; set; }
         public string CloseDateTime { get; set; }
         public Nullable<System.DateTime> CloseDate { get; set; }
         public string CloseUser { get; set; }
-        public Nullable<decimal> Netkm { get; set; }
-        public Nullable<decimal> Difference { get; set; }
+        public Nullable<int> Netkm { get; set; }
+        public Nullable<int> Difference { get; set; }
         public Nullable<int> DepartmentId { get; set; }
         public Nullable<int> VehicleId { get; set; }
         public Nullable<int> VisitPurposeId { get; set; }
         public Nullable<int> VehicleDepartmentId { get; set; }
-        public Nullable<decimal> TotKm { get; set; }
+        public Nullable<int> TotKm { get; set; }
         public string DepartureSecurityName { get; set; }
         public string DepartureSecuritySignature { get; set; }
         public Nullable<int> DepartureSecurityId { get; set; }
         public string DepartureSecurityRemark { get; set; }
-        public Nullable<decimal> StartKm { get; set; }
+        public Nullable<int> StartKm { get; set; }
         public string DepartureDateTime { get; set; }
         public Nullable<int> DepartureVerifyStatus { get; set; }
         public string ArrivalSecurityName { get; set; }
         public string ArrivalSecuritySignature { get; set; }
         public Nullable<int> ArrivalSecurityId { get; set; }
         public string ArrivalSecurityRemark { get; set; }
-        public Nullable<decimal> EndKm { get; set; }
+        public Nullable<int> EndKm { get; set; }
         public string ArrivalDateTime { get; set; }
         public Nullable<int> ArrivalVerifyStatus { get; set; }
     }

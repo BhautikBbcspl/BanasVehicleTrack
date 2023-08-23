@@ -16,7 +16,7 @@ namespace BanasVehicleTrackDbClasses
         public string VehicleCode { get; set; }
         public string VehicleRegNumber { get; set; }
         public Nullable<System.DateTime> VisitDateTime { get; set; }
-        public Nullable<decimal> FinalApprDifference { get; set; }
+        public Nullable<int> FinalApprDifference { get; set; }
         public Nullable<decimal> RatePerKm { get; set; }
         public Nullable<decimal> FinalAmount { get; set; }
     }

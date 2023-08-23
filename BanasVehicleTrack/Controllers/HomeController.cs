@@ -31,7 +31,7 @@ namespace BanasVehicleTrack.Controllers
                 model.EmployeeCode = LoggedUserDetails.EmployeeCode;
                 model.DashboardCounts = db.BanasAdminDashboardCountRtr("Count", model.EmployeeCode).ToList();
                 //model.DashboardList = db.BanasAdminDashboardListRtr("List").ToList();
-                model.DashboardList = db.BanasAdminDashboardListRtr("List",LoggedUserDetails.EmployeeCode).OrderByDescending(item => item.CreateDate).Take(10).ToList();
+                model.DashboardList = db.BanasAdminDashboardListRtr("List",LoggedUserDetails.EmployeeCode).ToList();
                 return View(model);
             }
         }

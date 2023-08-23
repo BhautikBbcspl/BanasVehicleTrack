@@ -132,6 +132,7 @@
     <Parameter Name="CenterId" Type="nvarchar" Mode="In" />
     <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
     <Parameter Name="Centername" Type="nvarchar" Mode="In" />
+    <Parameter Name="CenterCode" Type="nvarchar" Mode="In" />
     <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
     <Parameter Name="activestatus" Type="nvarchar" Mode="In" />
     <Parameter Name="createdate" Type="nvarchar" Mode="In" />
@@ -386,6 +387,14 @@
     <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
     <Parameter Name="UserDepartmentId" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="BanasVehicleGatepassClose" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+    <Parameter Name="CloseOdometer" Type="nvarchar" Mode="In" />
+    <Parameter Name="CloseDateTime" Type="nvarchar" Mode="In" />
+    <Parameter Name="CloseRemark" Type="nvarchar" Mode="In" />
+    <Parameter Name="CloseUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="CloseDate" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="BanasVehicleGatepassInsUpd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
     <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
@@ -423,6 +432,24 @@
     <Parameter Name="ArrivalVerifyStatus" Type="nvarchar" Mode="In" />
     <Parameter Name="ArrivalSecurityId" Type="nvarchar" Mode="In" />
     <Parameter Name="ArrivalSecurityRemark" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="BanasVehicleGatepassOpen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserCode1" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserCode2" Type="nvarchar" Mode="In" />
+    <Parameter Name="OtherUser1" Type="nvarchar" Mode="In" />
+    <Parameter Name="OtherUser2" Type="nvarchar" Mode="In" />
+    <Parameter Name="OtherUser3" Type="nvarchar" Mode="In" />
+    <Parameter Name="VisitDateTime" Type="nvarchar" Mode="In" />
+    <Parameter Name="VisitPurpose" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="Center" Type="nvarchar" Mode="In" />
+    <Parameter Name="Driver" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleRegno" Type="nvarchar" Mode="In" />
+    <Parameter Name="StartOdometer" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="BanasVehicleGatepassRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="action" Type="nvarchar" Mode="In" />
@@ -469,6 +496,7 @@
     <Parameter Name="to" Type="nvarchar" Mode="In" />
     <Parameter Name="department" Type="nvarchar" Mode="In" />
     <Parameter Name="Center" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
     <Parameter Name="EmployeeCode" Type="nvarchar" Mode="In" />
     <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
   </Function>

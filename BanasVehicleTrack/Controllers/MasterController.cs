@@ -39,10 +39,10 @@ namespace BanasVehicleTrack.Controllers
                 {
                     msg = db.BanasSecurityMasterInsUpd(Code, "", "", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "rights", "", "").FirstOrDefault();
                 }
-                else if (Type == "AuditorMaster")
-                {
-                    msg = db.BanasAuditorMasterInsUpd(Code, "", "", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "rights", "", "").FirstOrDefault();
-                }
+                //else if (Type == "AuditorMaster")
+                //{
+                //    msg = db.BanasAuditorMasterInsUpd(Code, "", "", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "rights", "", "").FirstOrDefault();
+                //}
                 else if (Type == "ModuleMaster")
                 {
                     msg = db.BanasModuleMasterInsUpd(Code, "", "", "", "", status, "", generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "active").FirstOrDefault();
@@ -73,7 +73,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 else if (Type == "CenterMaster")
                 {
-                    msg = db.BanasCenterMasterInsUpd(Code, "","", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "active").FirstOrDefault();
+                    msg = db.BanasCenterMasterInsUpd(Code, "","","", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "active").FirstOrDefault();
                 }
                 else if (Type == "UserCenterAllocation")
                 {
@@ -1058,166 +1058,166 @@ namespace BanasVehicleTrack.Controllers
         }
         #endregion
 
-        #region==> Gate Pass Auditor Master
-        public ActionResult ViewAuditorMaster()
-        {
-            try
-            {
-                if (!User.Identity.IsAuthenticated)
-                {
-                    return RedirectToAction("Login", "Home");
-                }
-                AuditorMasterViewModel model = new AuditorMasterViewModel();
-                string url = generalFunctions.getCommon(Request.Url.AbsoluteUri);
-                var re = db.BanasMenuRightsRtr(LoggedUserDetails.RoleId, url).FirstOrDefault();
-                if (re != null)
-                {
-                    ViewBag.ViewRight = re.ViewRight;
-                    ViewBag.InsertRight = re.InsertRight;
-                    ViewBag.UpdateRight = re.UpdateRight;
-                    ViewBag.DeleteRight = re.DeleteRight;
-                }
-                if (ViewBag.ViewRight == 1)
-                {
-                    model.AuditorMasterList = db.BanasAuditorMasterRetrieve("all", LoggedUserDetails.CompanyCode).ToList();
-                    model.Action = "Save";
-                    return View(model);
-                }
-                else
-                {
-                    return RedirectToAction("Dashboard", "Home");
-                }
-            }
-            catch (Exception ex)
-            {
-                Danger(ex.Message.ToString(), true);
-                return RedirectToAction("Dashboard", "Home");
-            }
-        }
-        public ActionResult AddAuditorMaster()
-        {
-            try
-            {
-                if (!User.Identity.IsAuthenticated)
-                {
-                    return RedirectToAction("Login", "Home");
-                }
-                AuditorMasterViewModel model = new AuditorMasterViewModel();
-                model.Action = "Save";
-                return View(model);
-            }
-            catch (Exception ex)
-            {
-                Danger(ex.Message.ToString(), true);
-                return RedirectToAction("Dashboard", "Home");
-            }
-        }
-        [HttpPost]
-        public ActionResult AddAuditorMaster(AuditorMasterViewModel dm, HttpPostedFileBase AuditorSignature, HttpPostedFileBase EditSignature)
-        {
-            try
-            {
-                if (dm.Action == "Save")
-                {
-                    if (AuditorSignature != null)
-                    {
-                        string path = Server.MapPath("~/Uploads/AuditorSign_Img/");
-                        string ImagePath = "Uploads/AuditorSign_Img/";
-                        string extension = Path.GetExtension(AuditorSignature.FileName);
+        //#region==> Gate Pass Auditor Master
+        //public ActionResult ViewAuditorMaster()
+        //{
+        //    try
+        //    {
+        //        if (!User.Identity.IsAuthenticated)
+        //        {
+        //            return RedirectToAction("Login", "Home");
+        //        }
+        //        AuditorMasterViewModel model = new AuditorMasterViewModel();
+        //        string url = generalFunctions.getCommon(Request.Url.AbsoluteUri);
+        //        var re = db.BanasMenuRightsRtr(LoggedUserDetails.RoleId, url).FirstOrDefault();
+        //        if (re != null)
+        //        {
+        //            ViewBag.ViewRight = re.ViewRight;
+        //            ViewBag.InsertRight = re.InsertRight;
+        //            ViewBag.UpdateRight = re.UpdateRight;
+        //            ViewBag.DeleteRight = re.DeleteRight;
+        //        }
+        //        if (ViewBag.ViewRight == 1)
+        //        {
+        //            model.AuditorMasterList = db.BanasAuditorMasterRetrieve("all", LoggedUserDetails.CompanyCode).ToList();
+        //            model.Action = "Save";
+        //            return View(model);
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Dashboard", "Home");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Danger(ex.Message.ToString(), true);
+        //        return RedirectToAction("Dashboard", "Home");
+        //    }
+        //}
+        //public ActionResult AddAuditorMaster()
+        //{
+        //    try
+        //    {
+        //        if (!User.Identity.IsAuthenticated)
+        //        {
+        //            return RedirectToAction("Login", "Home");
+        //        }
+        //        AuditorMasterViewModel model = new AuditorMasterViewModel();
+        //        model.Action = "Save";
+        //        return View(model);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Danger(ex.Message.ToString(), true);
+        //        return RedirectToAction("Dashboard", "Home");
+        //    }
+        //}
+        //[HttpPost]
+        //public ActionResult AddAuditorMaster(AuditorMasterViewModel dm, HttpPostedFileBase AuditorSignature, HttpPostedFileBase EditSignature)
+        //{
+        //    try
+        //    {
+        //        if (dm.Action == "Save")
+        //        {
+        //            if (AuditorSignature != null)
+        //            {
+        //                string path = Server.MapPath("~/Uploads/AuditorSign_Img/");
+        //                string ImagePath = "Uploads/AuditorSign_Img/";
+        //                string extension = Path.GetExtension(AuditorSignature.FileName);
 
-                        var result = string.Concat(dm.AuditorCode, extension);
+        //                var result = string.Concat(dm.AuditorCode, extension);
 
-                        AuditorSignature.SaveAs(path + Path.GetFileName(result));
-                        dm.AuditorSignature = string.Concat(ImagePath, result);
-                    }
+        //                AuditorSignature.SaveAs(path + Path.GetFileName(result));
+        //                dm.AuditorSignature = string.Concat(ImagePath, result);
+        //            }
 
-                    //int result2 = dm.IsActive.Equals("true", StringComparison.OrdinalIgnoreCase) ? 1 : 0;
+        //            //int result2 = dm.IsActive.Equals("true", StringComparison.OrdinalIgnoreCase) ? 1 : 0;
 
-                    dm.Password = generalFunctions.Encrypt(dm.Password, true).ToString().Trim();
-                    string msg = db.BanasAuditorMasterInsUpd(dm.AuditorId, dm.AuditorName, dm.AuditorSignature, LoggedUserDetails.CompanyCode, dm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "insert", dm.AuditorCode, dm.Password).FirstOrDefault();
-                    ViewBag.Message = msg;
-                    if (msg.Contains("successfully"))
-                    {
-                        ViewBag.Message = msg.ToUpper();
-                        Success(msg, true);
-                    }
-                    else
-                    {
-                        ViewBag.Message = msg.ToUpper();
-                        Danger(msg, true);
-                    }
-                }
-                else
-                {
-                    if (EditSignature != null)
-                    {
-                        string path = Server.MapPath("~/Uploads/AuditorSign_Img/");
-                        string ImagePath = "Uploads/AuditorSign_Img/";
-                        string extension = Path.GetExtension(EditSignature.FileName);
+        //            dm.Password = generalFunctions.Encrypt(dm.Password, true).ToString().Trim();
+        //            string msg = db.BanasAuditorMasterInsUpd(dm.AuditorId, dm.AuditorName, dm.AuditorSignature, LoggedUserDetails.CompanyCode, dm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "insert", dm.AuditorCode, dm.Password).FirstOrDefault();
+        //            ViewBag.Message = msg;
+        //            if (msg.Contains("successfully"))
+        //            {
+        //                ViewBag.Message = msg.ToUpper();
+        //                Success(msg, true);
+        //            }
+        //            else
+        //            {
+        //                ViewBag.Message = msg.ToUpper();
+        //                Danger(msg, true);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (EditSignature != null)
+        //            {
+        //                string path = Server.MapPath("~/Uploads/AuditorSign_Img/");
+        //                string ImagePath = "Uploads/AuditorSign_Img/";
+        //                string extension = Path.GetExtension(EditSignature.FileName);
 
-                        var result = string.Concat(dm.AuditorCode, extension);
+        //                var result = string.Concat(dm.AuditorCode, extension);
 
-                        EditSignature.SaveAs(path + Path.GetFileName(result));
-                        dm.AuditorSignature = string.Concat(ImagePath, result);
-                    }
-                    dm.Password = generalFunctions.Encrypt(dm.Password, true).ToString().Trim();
-                    string msg = db.BanasAuditorMasterInsUpd(dm.AuditorId, dm.AuditorName, dm.AuditorSignature, LoggedUserDetails.CompanyCode, dm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "update", dm.AuditorCode, dm.Password).FirstOrDefault();
+        //                EditSignature.SaveAs(path + Path.GetFileName(result));
+        //                dm.AuditorSignature = string.Concat(ImagePath, result);
+        //            }
+        //            dm.Password = generalFunctions.Encrypt(dm.Password, true).ToString().Trim();
+        //            string msg = db.BanasAuditorMasterInsUpd(dm.AuditorId, dm.AuditorName, dm.AuditorSignature, LoggedUserDetails.CompanyCode, dm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "update", dm.AuditorCode, dm.Password).FirstOrDefault();
 
-                    ViewBag.Message = msg;
-                    if (msg.Contains("successfully"))
-                    {
-                        ViewBag.Message = msg.ToUpper();
-                        Success(msg, true);
-                    }
-                    else
-                    {
-                        ViewBag.Message = msg.ToUpper();
-                        Danger(msg, true);
-                    }
-                }
-                return RedirectToAction("AddAuditorMaster");
-            }
-            catch (Exception ex)
-            {
-                Danger(ex.Message.ToString(), true);
-                return RedirectToAction("Dashboard", "Home");
-            }
-        }
-        public ActionResult EditAuditorMaster(int id)
-        {
-            try
-            {
-                if (!User.Identity.IsAuthenticated)
-                {
-                    return RedirectToAction("Login", "Home");
-                }
-                var sm = db.BanasAuditorMasterRetrieve("all", LoggedUserDetails.CompanyCode).Where(c => c.AuditorId == id).SingleOrDefault();
-                AuditorMasterViewModel sb = new AuditorMasterViewModel();
-                sb.AuditorId = sm.AuditorId.ToString();
-                sb.AuditorName = sm.AuditorName;
+        //            ViewBag.Message = msg;
+        //            if (msg.Contains("successfully"))
+        //            {
+        //                ViewBag.Message = msg.ToUpper();
+        //                Success(msg, true);
+        //            }
+        //            else
+        //            {
+        //                ViewBag.Message = msg.ToUpper();
+        //                Danger(msg, true);
+        //            }
+        //        }
+        //        return RedirectToAction("AddAuditorMaster");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Danger(ex.Message.ToString(), true);
+        //        return RedirectToAction("Dashboard", "Home");
+        //    }
+        //}
+        //public ActionResult EditAuditorMaster(int id)
+        //{
+        //    try
+        //    {
+        //        if (!User.Identity.IsAuthenticated)
+        //        {
+        //            return RedirectToAction("Login", "Home");
+        //        }
+        //        var sm = db.BanasAuditorMasterRetrieve("all", LoggedUserDetails.CompanyCode).Where(c => c.AuditorId == id).SingleOrDefault();
+        //        AuditorMasterViewModel sb = new AuditorMasterViewModel();
+        //        sb.AuditorId = sm.AuditorId.ToString();
+        //        sb.AuditorName = sm.AuditorName;
 
-                string ImagePath = sm.AuditorSignature;
-                string folderPath = "Uploads/AuditorSign_Img/";
+        //        string ImagePath = sm.AuditorSignature;
+        //        string folderPath = "Uploads/AuditorSign_Img/";
 
-                sb.SignatureName = ImagePath.Substring(folderPath.Length);
-                sb.AuditorSignature = ImagePath;
+        //        sb.SignatureName = ImagePath.Substring(folderPath.Length);
+        //        sb.AuditorSignature = ImagePath;
 
 
-                sb.AuditorCode = sm.AuditorCode;
-                sb.Password = generalFunctions.Decrypt(sm.Password, true);
+        //        sb.AuditorCode = sm.AuditorCode;
+        //        sb.Password = generalFunctions.Decrypt(sm.Password, true);
 
-                sb.IsActive = sm.IsActive.ToString();
-                sb.Action = "update";
-                ViewBag.action = "update";
-                return View("AddAuditorMaster", sb);
-            }
-            catch (Exception ex)
-            {
-                Danger(ex.Message.ToString(), true);
-                return RedirectToAction("Dashboard", "Home");
-            }
-        }
-        #endregion
+        //        sb.IsActive = sm.IsActive.ToString();
+        //        sb.Action = "update";
+        //        ViewBag.action = "update";
+        //        return View("AddAuditorMaster", sb);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Danger(ex.Message.ToString(), true);
+        //        return RedirectToAction("Dashboard", "Home");
+        //    }
+        //}
+        //#endregion
 
         #region==> Contractor Master
         public ActionResult ViewContractorMaster()
@@ -1409,7 +1409,7 @@ namespace BanasVehicleTrack.Controllers
             {
                 if (cm.Action == "Save")
                 {
-                    string msg = db.BanasCenterMasterInsUpd(cm.CenterId, cm.DepartmentId, cm.CenterName, LoggedUserDetails.CompanyCode, cm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "insert").FirstOrDefault();
+                    string msg = db.BanasCenterMasterInsUpd(cm.CenterId, cm.DepartmentId, cm.CenterName, cm.CenterCode, LoggedUserDetails.CompanyCode, cm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "insert").FirstOrDefault();
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))
                     {
@@ -1424,7 +1424,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 else
                 {
-                    string msg = db.BanasCenterMasterInsUpd(cm.CenterId, cm.DepartmentId, cm.CenterName, LoggedUserDetails.CompanyCode, cm.IsActive, "",generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "update").FirstOrDefault();
+                    string msg = db.BanasCenterMasterInsUpd(cm.CenterId, cm.DepartmentId, cm.CenterName, cm.CenterCode, LoggedUserDetails.CompanyCode, cm.IsActive, "",generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "update").FirstOrDefault();
 
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))
@@ -1461,6 +1461,7 @@ namespace BanasVehicleTrack.Controllers
                 sb.CenterId = sm.CenterId.ToString();
                 sb.DepartmentId = sm.DepartmentId.ToString();
                 sb.CenterName = sm.CenterName;
+                sb.CenterCode = sm.CenterCode;
                 sb.IsActive = sm.IsActive.ToString();
                 sb.Action = "update";
                 ViewBag.action = "update";

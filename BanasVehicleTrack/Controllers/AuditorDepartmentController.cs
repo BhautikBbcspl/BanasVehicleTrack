@@ -112,7 +112,6 @@ namespace BanasVehicleTrack.Controllers
         [HttpPost]
         public ActionResult AuditorMgmtDashboard(AuditorMgmtViewModel model)
         {
-
             try
             {
                 if (!User.Identity.IsAuthenticated)

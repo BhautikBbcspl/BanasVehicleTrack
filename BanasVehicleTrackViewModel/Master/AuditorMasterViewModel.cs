@@ -22,7 +22,7 @@ namespace BanasVehicleTrackViewModel.Master
         public string UpdateDate { get; set; }
         public string UpdateUser { get; set; }
         public string IsActive { get; set; }
-        public List<BanasAuditorMasterRetrieve_Result> AuditorMasterList { get; set; }
+        //public List<BanasAuditorMasterRetrieve_Result> AuditorMasterList { get; set; }
         public string Action { get; set; }
         [Required(ErrorMessage = "*")]
         public string AuditorCode { get; set; }

@@ -682,9 +682,10 @@ namespace BanasVehicleTrack.Controllers
                     model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
                     model.CenterList = (LoggedUserDetails.EmployeeCode == "Admin")
                      ? db.BanasCenterMasterRetrieve("active").ToList() : db.BanasCenterMasterRetrieve("active").Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
-                    model.VisitCenterReportList = db.BanasVisitCenterReportRtr("all", generalFunctions.dateconvert(model.VisitDateTime), generalFunctions.dateconvert(model.CloseDateTime), "", "", "", LoggedUserDetails.EmployeeCode).Where(x => (Convert.ToInt32(x.GatePassStatus) == 0)).ToList();
+                    model.VisitCenterReportList = db.BanasVisitCenterReportRtr("all", generalFunctions.dateconvert(model.VisitDateTime), generalFunctions.dateconvert(model.CloseDateTime), "", "", "","", LoggedUserDetails.EmployeeCode).Where(x => (Convert.ToInt32(x.GatePassStatus) == 0)).ToList();
                     model.AuditorOperateVisitList = db.BanasAuditorOperateVisitMasterRtr("", "all").ToList();
-
+                    model.VehicleMasterList = (LoggedUserDetails.EmployeeCode == "Admin")
+                ? db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).ToList() : db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).Where(c => c.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
                     return View(model);
                 }
                 else
@@ -711,7 +712,7 @@ namespace BanasVehicleTrack.Controllers
 
                 string closeDateTime = model.CloseDateTime != null ? generalFunctions.dateconvert(model.CloseDateTime) : null;
 
-                model.VisitCenterReportList = db.BanasVisitCenterReportRtr("report", visitDateTime, closeDateTime, model.DepartmentId, model.Center, model.EmployeeCode, LoggedUserDetails.EmployeeCode).Where(x => (Convert.ToInt32(x.GatePassStatus) == 0)).ToList();
+                model.VisitCenterReportList = db.BanasVisitCenterReportRtr("report", visitDateTime, closeDateTime, model.DepartmentId, model.Center, model.VehicleId,model.EmployeeCode, LoggedUserDetails.EmployeeCode).Where(x => (Convert.ToInt32(x.GatePassStatus) == 0)).ToList();
 
                 model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList();
                 model.CenterList = (LoggedUserDetails.EmployeeCode == "Admin")
@@ -726,6 +727,8 @@ namespace BanasVehicleTrack.Controllers
                 {
                     e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
                 });
+                model.VehicleMasterList = (LoggedUserDetails.EmployeeCode == "Admin")
+               ? db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).ToList() : db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).Where(c => c.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
                 model.DepartmentId = LoggedUserDetails.DepartmentId;
                 return View(model);
             }
@@ -743,14 +746,14 @@ namespace BanasVehicleTrack.Controllers
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult ExportVisitCenterReport(string DepartmentId, string Center, string EmployeeCode, string VisitDateTime, string CloseDateTime)
+        public ActionResult ExportVisitCenterReport(string DepartmentId, string Center,string VehicleId, string EmployeeCode, string VisitDateTime, string CloseDateTime)
         {
 
             string visitDateTime = VisitDateTime != "" ? generalFunctions.dateconvert(VisitDateTime) : null;
 
             string closeDateTime = CloseDateTime != "" ? generalFunctions.dateconvert(CloseDateTime) : null;
 
-            var re1 = db.BanasVisitCenterReportRtr("report", visitDateTime, closeDateTime, string.IsNullOrEmpty(DepartmentId) ? null : DepartmentId, string.IsNullOrEmpty(Center) ? null : Center, string.IsNullOrEmpty(EmployeeCode) ? null : EmployeeCode, LoggedUserDetails.EmployeeCode).Where(x => (Convert.ToInt32(x.GatePassStatus) == 0)).ToList();
+            var re1 = db.BanasVisitCenterReportRtr("report", visitDateTime, closeDateTime, string.IsNullOrEmpty(DepartmentId) ? null : DepartmentId, string.IsNullOrEmpty(Center) ? null : Center, string.IsNullOrEmpty(VehicleId) ? null : VehicleId, string.IsNullOrEmpty(EmployeeCode) ? null : EmployeeCode, LoggedUserDetails.EmployeeCode).Where(x => (Convert.ToInt32(x.GatePassStatus) == 0)).ToList();
 
             using (XLWorkbook workbook = new XLWorkbook())
             {
@@ -906,46 +909,51 @@ namespace BanasVehicleTrack.Controllers
                             worksheet.Cell("F" + rowIndex).Hyperlink = new XLHyperlink(hyperlinkUrl);
 
                             worksheet.Cell("G" + rowIndex).Value = item2.Odometer;
+
+                            string imageUrl = "http://banasvehicletracker.bluebellcspl.co.in/vehicletrackerapi/" + item2.OdometerImage;
+                            worksheet.Cell("H" + rowIndex).Value = "View Image";
+                            worksheet.Cell("H" + rowIndex).Hyperlink = new XLHyperlink(imageUrl);
+
                             worksheet.Cell("I" + rowIndex).Value = item2.CreateDate;
                             worksheet.Cell("J" + rowIndex).Value = item2.CreateUser;
 
-                            if (!string.IsNullOrEmpty(item2.OdometerImage))
-                            {
-                                string imagePath = Server.MapPath("~/vehicletrackerapi/" + item2.OdometerImage);
-                                //string imagePath = System.Configuration.ConfigurationManager.AppSettings["OdometerimageKey"] + item2.OdometerImage;
-                                Image image1 = null;
-                                try
-                                {
-                                    image1 = Image.FromFile(imagePath);
-                                }
-                                catch (FileNotFoundException)
-                                {
-                                    // Handle the case when the image file doesn't exist
-                                    Console.WriteLine("Image file not found: " + imagePath);
-                                }
+                            //if (!string.IsNullOrEmpty(item2.OdometerImage))
+                            //{
+                            //    string imagePath = Server.MapPath("~/vehicletrackerapi/" + item2.OdometerImage);
+                            //    //string imagePath = System.Configuration.ConfigurationManager.AppSettings["OdometerimageKey"] + item2.OdometerImage;
+                            //    Image image1 = null;
+                            //    try
+                            //    {
+                            //        image1 = Image.FromFile(imagePath);
+                            //    }
+                            //    catch (FileNotFoundException)
+                            //    {
+                            //        // Handle the case when the image file doesn't exist
+                            //        Console.WriteLine("Image file not found: " + imagePath);
+                            //    }
 
-                                if (image1 != null)
-                                {
-                                    // Your existing code to process the image
-                                    using (image1)
-                                    {
-                                        string tempImagePath = Path.GetTempFileName();
-                                        image1.Save(tempImagePath, System.Drawing.Imaging.ImageFormat.Png);
+                            //    if (image1 != null)
+                            //    {
+                            //        // Your existing code to process the image
+                            //        using (image1)
+                            //        {
+                            //            string tempImagePath = Path.GetTempFileName();
+                            //            image1.Save(tempImagePath, System.Drawing.Imaging.ImageFormat.Png);
 
-                                        var picture = worksheet.AddPicture(tempImagePath)
-                                            .MoveTo(worksheet.Cell("H" + rowIndex).AsRange().FirstCell().Address, 5, 5)
-                                            .WithSize(200, 55);
+                            //            var picture = worksheet.AddPicture(tempImagePath)
+                            //                .MoveTo(worksheet.Cell("H" + rowIndex).AsRange().FirstCell().Address, 5, 5)
+                            //                .WithSize(200, 55);
 
-                                        worksheet.Column("H").Width = 35;
-                                        worksheet.Row(rowIndex).Height = 45;
-                                        System.IO.File.Delete(tempImagePath);
-                                    }
-                                }
-                                else
-                                {
-                                    worksheet.Cell("H" + rowIndex).Value = "Image Not Found!!";
-                                }
-                            }
+                            //            worksheet.Column("H").Width = 35;
+                            //            worksheet.Row(rowIndex).Height = 45;
+                            //            System.IO.File.Delete(tempImagePath);
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        worksheet.Cell("H" + rowIndex).Value = "Image Not Found!!";
+                            //    }
+                            //}
                             rowIndex++;
                         }
                     }

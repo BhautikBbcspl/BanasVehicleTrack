@@ -70,9 +70,6 @@
     <Compile Include="BanasAuditorFinalOperateVisitMasterRtr_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BanasAuditorMasterRetrieve_Result.cs">
-      <DependentUpon>VehicleModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="BanasAuditorOperateVisitMasterRtr_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>

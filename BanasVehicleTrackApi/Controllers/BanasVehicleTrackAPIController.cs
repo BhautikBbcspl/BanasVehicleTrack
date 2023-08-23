@@ -174,7 +174,7 @@ namespace BanasVehicleTrackApi.Controllers
                 aov.OdometerImage = "/Uploads/OdometerImage/" + fileName;
                 //aov.OdometerImage = filePath;
 
-                string re = db.BanasAuditorOperateVisitMasterIns(aov.GatePassId, aov.Latitude, aov.Longitude, aov.Odometer, aov.OdometerImage, aov.CreateDate, aov.CreateUser,aov.CenterId, "insert", aov.Remark,aov.LocationName,aov.UserGivenLocation).FirstOrDefault();
+                string re = db.BanasAuditorOperateVisitMasterIns(aov.GatePassId, aov.Latitude, aov.Longitude, aov.Odometer, aov.OdometerImage, aov.CreateDate, aov.CreateUser, aov.CenterId, "insert", aov.Remark, aov.LocationName, aov.UserGivenLocation).FirstOrDefault();
 
                 var response = Request.CreateResponse(HttpStatusCode.OK, re);
                 return response;
@@ -221,7 +221,7 @@ namespace BanasVehicleTrackApi.Controllers
                 aov.LastOdometerImage = "/Uploads/OdometerImage/" + fileName;
                 //aov.LastOdometerImage = filePath;
 
-                string re = db.BanasAuditorFinalOperateVisitMasterIns(aov.MidwayDeparture, aov.GatePassId, aov.LastOdometer, aov.LastOdometerImage, aov.UserCode,  aov.Latitude, aov.Longitude, aov.CreateDate, aov.CreateUser,aov.CenterId, "insert", aov.Remark,aov.LocationName,aov.UserGivenLocation).FirstOrDefault();
+                string re = db.BanasAuditorFinalOperateVisitMasterIns(aov.MidwayDeparture, aov.GatePassId, aov.LastOdometer, aov.LastOdometerImage, aov.UserCode, aov.Latitude, aov.Longitude, aov.CreateDate, aov.CreateUser, aov.CenterId, "insert", aov.Remark, aov.LocationName, aov.UserGivenLocation).FirstOrDefault();
                 var response = Request.CreateResponse(HttpStatusCode.OK, re);
                 return response;
             }
@@ -433,5 +433,62 @@ namespace BanasVehicleTrackApi.Controllers
         }
         #endregion
 
+        #region==> Open Vehicle GatePass
+        [Route("api/BanasVehicleTracking/OpenVehicleGatePass")]
+        [HttpPost]
+        public HttpResponseMessage OpenVehicleGatePass(OpenVehicleGatePassViewModel pnd)
+        {
+            try
+            {
+                var OpenVehicleGatePass = db.BanasVehicleGatepassOpen(pnd.GatePassId,pnd.UserCode,pnd.UserCode1,pnd.UserCode2,pnd.OtherUser1,pnd.OtherUser2,pnd.OtherUser3,pnd.VisitDateTime,pnd.VisitPurpose, pnd.Remarks,pnd.Center,pnd.Driver,pnd.Vehicle, pnd.StartOdometer,pnd.CreateUser,pnd.CreateDate).FirstOrDefault();
+                var response2 = Request.CreateResponse(HttpStatusCode.OK, OpenVehicleGatePass);
+                return response2;
+               
+            }
+            catch (Exception ex)
+            {
+                List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
+                FetchErrorclass error = new FetchErrorclass
+                {
+                    FetchResult = Convert.ToString("Invalid"),
+                };
+                ERROR.Add(error);
+
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, ERROR);
+                return response;
+            }
+            finally
+            { db.Dispose(); }
+        }
+        #endregion
+
+        #region==> Close Vehicle GatePass
+        [Route("api/BanasVehicleTracking/CloseVehicleGatePass")]
+        [HttpPost]
+        public HttpResponseMessage CloseVehicleGatePass(CloseVehicleGatePassViewModel pnd)
+        {
+            try
+            {
+                var CloseVehicleGatePass = db.BanasVehicleGatepassClose(pnd.GatePassId,pnd.CloseOdometer,pnd.CloseDateTime,pnd.CloseRemark,pnd.CloseUser,pnd.CloseDate).FirstOrDefault();
+                var response2 = Request.CreateResponse(HttpStatusCode.OK, CloseVehicleGatePass);
+                return response2;
+
+            }
+            catch (Exception ex)
+            {
+                List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
+                FetchErrorclass error = new FetchErrorclass
+                {
+                    FetchResult = Convert.ToString("Invalid"),
+                };
+                ERROR.Add(error);
+
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, ERROR);
+                return response;
+            }
+            finally
+            { db.Dispose(); }
+        }
+        #endregion
     }
 }

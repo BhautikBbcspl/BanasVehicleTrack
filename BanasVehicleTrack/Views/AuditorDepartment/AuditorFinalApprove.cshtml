@@ -50,15 +50,32 @@
                                 @Html.DisplayName("Vehicle Reg Number")
                             </th>
                             <th>
-                                @Html.DisplayName("Trip km by Auditor")
+                                @Html.DisplayName("Trip km by User")
                             </th>
                             <th>
                                 @Html.DisplayName("Trip km by Security")
                             </th>
                             <th>
+                                @Html.DisplayName("Start km by User")
+                            </th>
+                            <th>
+                                @Html.DisplayName("End km by User")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Start km by Security")
+                            </th>
+                            <th>
+                                @Html.DisplayName("End km by Security")
+                            </th>
+                            <th>
                                 @Html.DisplayName("km Difference")
                             </th>
-
+                            <th>
+                                @Html.DisplayName("Arrival Security Name")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Arrival Security Code")
+                            </th>
 
                             @*<th>
             @Html.DisplayName("OtherUser1")
@@ -132,10 +149,27 @@
                                 <input type="checkbox" class="chk1" name="selectedDepArrDifference" data-record-type="Security" data-record-value="@item.DepArrDifference" data-record-id="@item.GatePassId" />
                                 @Html.DisplayFor(modelItem => item.DepArrDifference)
                             </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartOdometer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CloseOdometer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartKm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndKm)
+                            </td>
                             <td class="@(item.TotalDifference > 5 ? "red-background" : "")">
                                 @Html.DisplayFor(modelItem => item.TotalDifference)
                             </td>
-
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArrivalSecurityName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArrivalSecurityCode)
+                            </td>
                             @*<td>
             @Html.DisplayFor(modelItem => item.OtherUser1)
         </td>
@@ -244,7 +278,7 @@
             dataToSend.push(item);
         }
         $.ajax({
-            url: "/AuditorDepartment/ApproveDifferenceSave",
+            url: "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" +"/AuditorDepartment/ApproveDifferenceSave",
             type: "POST",
             data: { dataToSend: dataToSend },
             success: function (result) {

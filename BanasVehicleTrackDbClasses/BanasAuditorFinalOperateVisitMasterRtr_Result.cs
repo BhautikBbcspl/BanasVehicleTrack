@@ -21,8 +21,9 @@ namespace BanasVehicleTrackDbClasses
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public Nullable<int> CenterId { get; set; }
-        public string CenterCode { get; set; }
         public string CenterName { get; set; }
         public string Remarks { get; set; }
+        public string LocationName { get; set; }
+        public string UserGivenLocation { get; set; }
     }
 }

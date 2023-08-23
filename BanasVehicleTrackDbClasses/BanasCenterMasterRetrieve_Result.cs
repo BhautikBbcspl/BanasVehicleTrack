@@ -16,6 +16,7 @@ namespace BanasVehicleTrackDbClasses
         public int CenterId { get; set; }
         public Nullable<int> DepartmentId { get; set; }
         public string CenterName { get; set; }
+        public string CenterCode { get; set; }
         public string CompanyCode { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public string CreateUser { get; set; }

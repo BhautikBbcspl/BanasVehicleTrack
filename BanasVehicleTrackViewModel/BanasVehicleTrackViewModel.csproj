@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditorDepartmentApp\CloseVehicleGatePassViewModel.cs" />
+    <Compile Include="AuditorDepartmentApp\OpenVehicleGatePassViewModel.cs" />
     <Compile Include="AuditorDepartmentApp\PendingGatePass.cs" />
     <Compile Include="AuditorDepartmentApp\AuditorOperateVisitViewModel.cs" />
     <Compile Include="AuditorDepartment\AuditorFinalApproveViewModel.cs" />

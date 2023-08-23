@@ -29257,11 +29257,18 @@ span.value {
     vertical-align: middle;
 }
 
-.select2-container--default .select2-selection--single:focus {
+.btn:focus,.select2-container--default .select2-selection--single:focus {
     border-color: #01a9ac;
     box-shadow: 0 0 0 0.1rem #1dd2d5;
 }
+.newIcon {
+    font-size: 30px !important;
+    color: red !important;
+}
 
+    .newIcon:hover {
+        color: blue !important;
+    }
 /*Customize icon set in TextBox*/
 /*.icon-input {
     position: relative;

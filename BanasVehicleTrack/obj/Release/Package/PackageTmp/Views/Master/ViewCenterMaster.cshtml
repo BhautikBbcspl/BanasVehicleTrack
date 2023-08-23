@@ -37,6 +37,9 @@
                                 @Html.DisplayName("Center Name")
                             </th>
                             <th>
+                                @Html.DisplayName("Center Code")
+                            </th>
+                            <th>
                                 @Html.DisplayName("IsActive")
                             </th>
                             <th>
@@ -50,27 +53,30 @@
                     <tbody>
                         @foreach (var item in Model.CenterList)
                         {
-                            <tr>
-                                <td>
-                                    @if (ViewBag.UpdateRight == 1)
-                                    {
-                                        @Html.ActionLink(" ", "EditCenterMaster", new { id = item.CenterId }, new { @class = " btn editbtn fa fa-pencil-square-o", title = "Edit" })}
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DepartmentName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CenterName)
-                                </td>
-                                <td>
-                                    <label class="toggle">
-                                        <input class="toggle-checkbox" type="checkbox" onclick='ActiveDeactiveStatusChange(this,"@item.CenterId","CenterMaster")' @(item.IsActive == true ? "checked" : "")>
-                                        <span class="toggle-switch"></span>
-                                    </label>
-                                </td>
-                                <td> @Html.DisplayFor(modelItem => item.cdate)</td>
-                                <td> @Html.DisplayFor(modelItem => item.CreateUser)</td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @if (ViewBag.UpdateRight == 1)
+                                {
+                                    @Html.ActionLink(" ", "EditCenterMaster", new { id = item.CenterId }, new { @class = " btn editbtn fa fa-pencil-square-o", title = "Edit" })}
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartmentName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CenterName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CenterCode)
+                            </td>
+                            <td>
+                                <label class="toggle">
+                                    <input class="toggle-checkbox" type="checkbox" onclick='ActiveDeactiveStatusChange(this,"@item.CenterId","CenterMaster")' @(item.IsActive == true ? "checked" : "")>
+                                    <span class="toggle-switch"></span>
+                                </label>
+                            </td>
+                            <td> @Html.DisplayFor(modelItem => item.cdate)</td>
+                            <td> @Html.DisplayFor(modelItem => item.CreateUser)</td>
+                        </tr>
                         }
 
                     </tbody>

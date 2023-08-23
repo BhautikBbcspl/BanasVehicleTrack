@@ -63,29 +63,29 @@
                                                            })
                     </div>
                     @*@if (Model.DepartmentId == "admin")
-                    {*@
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Department</label><br />
-                            @Html.DropDownListFor(x => x.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
-                                 new Dictionary<string, object>() {
-                                     {"id","ddlDepartment"},        
-                                     {"onchange", "javascript:GetCenter(this.value)"},
-                                     { "class","form-control form-select js-example-disabled-results" } })
-                        </div>
+        {*@
+                    <div class="col-sm-3">
+                        <label class="col-form-label">Department</label><br />
+                        @Html.DropDownListFor(x => x.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
+                             new Dictionary<string, object>() {
+                                 {"id","ddlDepartment"},
+                                 {"onchange", "javascript:GetCenter(this.value)"},
+                                 { "class","form-control form-select js-example-disabled-results" } })
+                    </div>
                     @*}
-                    else
-                    {
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Department</label><br />
-                            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
-                                           new Dictionary<string, object>() {
-                                               {"id","ddlDepartmentId"},
-                                               { "class","form-control form-select js-example-disabled-results"},
-                                               {"disabled","disabled" }
-                                   })
-                            @Html.HiddenFor(m => m.DepartmentId)
-                        </div>
-                    }*@
+        else
+        {
+            <div class="col-sm-3">
+                <label class="col-form-label">Department</label><br />
+                @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
+                               new Dictionary<string, object>() {
+                                   {"id","ddlDepartmentId"},
+                                   { "class","form-control form-select js-example-disabled-results"},
+                                   {"disabled","disabled" }
+                       })
+                @Html.HiddenFor(m => m.DepartmentId)
+            </div>
+        }*@
                     <div class="col-sm-3">
                         <label class="col-form-label">Center</label><br />
                         @Html.DropDownListFor(x => x.Center, new SelectList(Model.CenterList, "CenterId", "CenterName"), "Select Center",
@@ -98,6 +98,15 @@
                         @Html.DropDownListFor(m => m.EmployeeCode, new SelectList(Model.EmployeeMasterList, "EmployeeCode", "EmployeeName"), "Select Employee",
                                     new Dictionary<string, object>() {
                                         {"id","ddlEmployeeCode"},
+                                        { "class","form-control form-select js-example-disabled-results"}
+                                        })
+
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-form-label">Vehicle Reg Number</label><br />
+                        @Html.DropDownListFor(m => m.VehicleId, new SelectList(Model.VehicleMasterList, "VehicleId", "VehicleRegNumber"), "Select Vehicle",
+                                    new Dictionary<string, object>() {
+                                        {"id","ddlVehicleId"},
                                         { "class","form-control form-select js-example-disabled-results"}
                                         })
 
@@ -224,7 +233,7 @@
             "columnDefs": [{ "orderable": false, "targets": 0 }],
             "aaSorting": [[0]]
         });
-         
+
         function format(data) {
             var additionalRows = ''
             var rowDataList = data.AuditorOperateVisitList;
@@ -236,9 +245,9 @@
                 additionalRows += '<td>' + rowData.centername + '</td>';
                 additionalRows += '<td>' + rowData.LocationName + '</td>';
                 additionalRows += '<td>' + rowData.UserGivenLocation + '</td>';
-                additionalRows += '<td><a href="https://www.google.com/maps?q=' + rowData.Latitude + ',' + rowData.Longitude + '" target="_blank"><img style="width: 37px;" src="../Content/AdminTemplateAssets/images/loca_arrow.png" /></a></td>';
+                additionalRows += '<td><a href="https://www.google.com/maps?q=' + rowData.Latitude + ',' + rowData.Longitude + '" target="_blank"><i class="fa fa-map-marker newIcon" aria-hidden="true"></i></td>';
                 additionalRows += '<td>' + rowData.Odometer + '</td>';
-                additionalRows += '<td><img src="../vehicletrackerapi/' + rowData.OdometerImage + '" width="200" height="150"></td>';
+                additionalRows += '<td>  <a href="http://banasvehicletracker.bluebellcspl.co.in/vehicletrackerapi/' + rowData.OdometerImage +'" target="_blank"><i style="width: 37px;" class="fa fa-image newIcon"></i></a></td>';
                 additionalRows += '<td>' + rowData.cdate + '</td>';
                 additionalRows += '<td>' + rowData.CreateUser + '</td>';
                 additionalRows += '</tr>';
