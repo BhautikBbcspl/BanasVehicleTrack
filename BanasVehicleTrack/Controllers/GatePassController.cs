@@ -144,7 +144,7 @@ namespace BanasVehicleTrack.Controllers
                 vsgp.CloseDate = generalFunctions.getDate();
                 vsgp.CloseUser = reqCookies["EmployeeCode"].ToString();
                 //vsgp.GatePassStatus = "0";
-                string msg = db.BanasVehicleGatepassInsUpd(vsgp.GatePassId, vsgp.DepartmentId, vsgp.UserCode, vsgp.OtherUser1, vsgp.OtherUser2, vsgp.OtherUser3, vsgp.InformationMode, vsgp.VisitDateTime, vsgp.VisitPurpose, vsgp.Remarks, vsgp.VehicleDepartment, vsgp.Driver, vsgp.VehicleId, vsgp.StartOdometer, vsgp.CloseOdometer, closeDateTime, vsgp.CloseRemark, vsgp.Netkm, vsgp.CreateUser, vsgp.CreateDate, vsgp.CloseUser, vsgp.CloseDate, vsgp.EditUser, vsgp.EditDate, vsgp.Difference, vsgp.Action, null, null, "", "", "", null, null, "", "", "").FirstOrDefault();
+                string msg = db.BanasVehicleGatepassInsUpd(vsgp.GatePassId, vsgp.DepartmentId, vsgp.UserCode, vsgp.UserCode1, vsgp.UserCode2, vsgp.OtherUser1, vsgp.OtherUser2, vsgp.OtherUser3, vsgp.InformationMode, vsgp.VisitDateTime, vsgp.VisitPurpose, vsgp.Remarks, vsgp.VehicleDepartment, vsgp.Driver, vsgp.VehicleId, vsgp.StartOdometer, vsgp.CloseOdometer, closeDateTime, vsgp.CloseRemark, vsgp.Netkm, vsgp.CreateUser, vsgp.CreateDate, vsgp.CloseUser, vsgp.CloseDate, vsgp.EditUser, vsgp.EditDate, vsgp.Difference, vsgp.Action, null, null, "", "", "", null, null, "", "", "").FirstOrDefault();
 
                 if (msg == "VehicleGatepass " + vsgp.GatePassId + " closed successfully")
                 {
@@ -202,6 +202,18 @@ namespace BanasVehicleTrack.Controllers
                 {
                     e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
                 });
+
+                gvm.OtherUserList = (LoggedUserDetails.EmployeeCode == "Admin")
+               ? db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active").ToList()
+               : db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active")
+               .Where(x => x.DepartmentId.ToString() != LoggedUserDetails.DepartmentId)
+               .ToList();
+
+                gvm.OtherUserList.ForEach(e =>
+                {
+                    e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
+                });
+
                 gvm.DepartmentId = LoggedUserDetails.DepartmentId;
                 gvm.CenterList = (LoggedUserDetails.EmployeeCode == "Admin")
           ? db.BanasCenterMasterRetrieve("active").ToList() : db.BanasCenterMasterRetrieve("active").Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
@@ -227,7 +239,7 @@ namespace BanasVehicleTrack.Controllers
                     string visittime = dm.VisitDateTime.Substring(11, 5);
                     dm.VisitDateTime = visitdate + " " + visittime;
 
-                    string msg = db.BanasVehicleGatepassInsUpd(dm.GatePassId, dm.DepartmentId, dm.UserCode, dm.OtherUser1, dm.OtherUser2, dm.OtherUser3, dm.InformationMode, dm.VisitDateTime, dm.VisitPurpose, dm.Remarks, dm.Center, dm.Driver, dm.VehicleId, dm.StartOdometer, dm.CloseOdometer, dm.CloseDateTime, dm.CloseRemark, dm.Netkm, dm.CreateUser, dm.CreateDate, dm.CloseUser, dm.CloseDate, dm.EditUser, dm.EditDate, dm.difference, "open", null, null, null, null, null, null, null, null, null, null).FirstOrDefault();
+                    string msg = db.BanasVehicleGatepassInsUpd(dm.GatePassId, dm.DepartmentId, dm.UserCode, dm.UserCode1, dm.UserCode2, dm.OtherUser1, dm.OtherUser2, dm.OtherUser3, dm.InformationMode, dm.VisitDateTime, dm.VisitPurpose, dm.Remarks, dm.Center, dm.Driver, dm.VehicleId, dm.StartOdometer, dm.CloseOdometer, dm.CloseDateTime, dm.CloseRemark, dm.Netkm, dm.CreateUser, dm.CreateDate, dm.CloseUser, dm.CloseDate, dm.EditUser, dm.EditDate, dm.difference, "open", null, null, null, null, null, null, null, null, null, null).FirstOrDefault();
 
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))
@@ -248,7 +260,7 @@ namespace BanasVehicleTrack.Controllers
                     string visitdate = generalFunctions.dateconvert(dm.VisitDateTime.Substring(0, 10));
                     string visittime = dm.VisitDateTime.Substring(11, 5);
                     dm.VisitDateTime = visitdate + " " + visittime;
-                    string msg = db.BanasVehicleGatepassInsUpd(dm.GatePassId, dm.DepartmentId, dm.UserCode, dm.OtherUser1, dm.OtherUser2, dm.OtherUser3, dm.InformationMode, dm.VisitDateTime, dm.VisitPurpose, dm.Remarks, dm.Center, dm.Driver, dm.VehicleId, dm.StartOdometer, dm.CloseOdometer, dm.CloseDateTime, dm.CloseRemark, dm.Netkm, dm.CreateUser, dm.CreateDate, dm.CloseUser, dm.CloseDate, dm.EditUser, dm.EditDate, dm.difference, "edit", null, null, null, null, null, null, null, null, null, null).FirstOrDefault();
+                    string msg = db.BanasVehicleGatepassInsUpd(dm.GatePassId, dm.DepartmentId, dm.UserCode, dm.UserCode1, dm.UserCode2, dm.OtherUser1, dm.OtherUser2, dm.OtherUser3, dm.InformationMode, dm.VisitDateTime, dm.VisitPurpose, dm.Remarks, dm.Center, dm.Driver, dm.VehicleId, dm.StartOdometer, dm.CloseOdometer, dm.CloseDateTime, dm.CloseRemark, dm.Netkm, dm.CreateUser, dm.CreateDate, dm.CloseUser, dm.CloseDate, dm.EditUser, dm.EditDate, dm.difference, "edit", null, null, null, null, null, null, null, null, null, null).FirstOrDefault();
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))
                     {
@@ -295,6 +307,18 @@ namespace BanasVehicleTrack.Controllers
                 {
                     e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
                 });
+
+                dm.OtherUserList = (LoggedUserDetails.EmployeeCode == "Admin")
+              ? db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active").ToList()
+              : db.BanasEmployeeMasterRtr(LoggedUserDetails.CompanyCode, "Active")
+              .Where(x => x.DepartmentId.ToString() != LoggedUserDetails.DepartmentId)
+              .ToList();
+
+                dm.OtherUserList.ForEach(e =>
+                {
+                    e.EmployeeName = $"{e.EmployeeCode} - {e.EmployeeName}";
+                });
+
                 dm.CenterList = (LoggedUserDetails.EmployeeCode == "Admin")
           ? db.BanasCenterMasterRetrieve("active").ToList() : db.BanasCenterMasterRetrieve("active").Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
 
@@ -303,6 +327,8 @@ namespace BanasVehicleTrack.Controllers
                 dm.DepartmentId = LoggedUserDetails.DepartmentId;
                 dm.Center = mm.CenterId.ToString();
                 dm.UserCode = mm.UserCode;
+                dm.UserCode1 = mm.UserCode1;
+                dm.UserCode2 = mm.UserCode2;
                 dm.OtherUser1 = mm.OtherUser1;
                 dm.OtherUser2 = mm.OtherUser2;
                 dm.OtherUser3 = mm.OtherUser3;

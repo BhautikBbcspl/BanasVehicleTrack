@@ -399,6 +399,8 @@
     <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
     <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
     <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserCode1" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserCode2" Type="nvarchar" Mode="In" />
     <Parameter Name="OtherUser1" Type="nvarchar" Mode="In" />
     <Parameter Name="OtherUser2" Type="nvarchar" Mode="In" />
     <Parameter Name="OtherUser3" Type="nvarchar" Mode="In" />

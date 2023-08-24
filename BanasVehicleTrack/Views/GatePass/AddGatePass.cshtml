@@ -51,8 +51,8 @@
                                 @Html.HiddenFor(m => m.GatePassId)
                                 <div class="form-group row">
 
-                                    <label class="col-sm-2 col-form-label">Department</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-3 col-form-label">Department</label>
+                                    <div class="col-sm-9">
                                         @Html.ValidationMessageFor(m => m.DepartmentId, "", new { @class = "text-danger" })
                                         @Html.DropDownListFor(x => x.DepartmentId, new SelectList(Model.DepartmentList, "DepartmentId", "DepartmentName"), "Select Department",
                                              new Dictionary<string, object>() {
@@ -75,8 +75,8 @@
                                         </div>
                                     </div>*@
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">User</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-3 col-form-label">Primary Doctor</label>
+                                    <div class="col-sm-9">
                                         @Html.ValidationMessageFor(m => m.UserCode, "", new { @class = "text-danger" })
                                         @Html.DropDownListFor(x => x.UserCode, new SelectList(Model.EmployeeList, "EmployeeCode", "EmployeeName"), "Select User",
                                              new Dictionary<string, object>() {
@@ -85,77 +85,102 @@
                                              {"tabindex","1"}})
                                     </div>
                                 </div>
-                                @*<div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Other User 1</label>
-                                        <div class="col-sm-10">
-                                            @Html.TextBoxFor(m => m.OtherUser1, new Dictionary<string, object>() {
-                                                      {"id","txtOtherUser1"},
-                                                      {"class","form-control"},
-                                                         {"autocomplete","off"},
-                                                      })
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Other User 2</label>
-                                        <div class="col-sm-10">
-                                            @Html.TextBoxFor(m => m.OtherUser2, new Dictionary<string, object>() {
-                                                           {"id","txtOtherUser2"},
-                                                           {"class","form-control"},
-                                                              {"autocomplete","off"},
-                                                           })
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Other User 3</label>
-                                        <div class="col-sm-10">
-                                            @Html.TextBoxFor(m => m.OtherUser3, new Dictionary<string, object>() {
-                                                          {"id","txtOtherUser3"},
-                                                          {"class","form-control"},
-                                                             {"autocomplete","off"},
-                                                          })
-                                        </div>
-                                    </div>*@
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Information Mode</label>
-                                    <div class="col-sm-10">
-                                        @Html.DropDownListFor(x => x.InformationMode, new List<SelectListItem>
-                                       {
-                                           new SelectListItem{ Text="Telephonic", Value = "Telephonic",Selected=true },
-                                           new SelectListItem{ Text="Personal", Value = "Personal" }
-                                        }, new { @class = "form-control form-select js-example-disabled-results", @id = "InformationMode" ,tabindex="3"})
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Visit Date & Time</label>
-                                    <div class="col-sm-10">
-                                        @Html.ValidationMessageFor(m => m.VisitDateTime, "", new { @class = "text-danger" })
-                                        @Html.TextBoxFor(m => m.VisitDateTime, new Dictionary<string, object>() {
-                                                             {"id","txtVisitDateTime"},
-                                                             {"class","form-control FutureDisabledatetimepicker"},
-                                                                {"autocomplete","off"},
-                                                                  {"tabindex","4"}
-                                                             })
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Visit Purpose</label>
-                                    <div class="col-sm-10">
-                                        @Html.ValidationMessageFor(m => m.VisitPurpose, "", new { @class = "text-danger" })
-                                        @Html.DropDownListFor(x => x.VisitPurpose, new SelectList(Model.VisitPurposeList, "VisitId", "VisitPurpose"), "Select Visit Purpose",
+                                    <label class="col-sm-3 col-form-label">Secondary Doctor One</label>
+                                    <div class="col-sm-9">
+                                        @Html.ValidationMessageFor(m => m.UserCode1, "", new { @class = "text-danger" })
+                                        @Html.DropDownListFor(x => x.UserCode1, new SelectList(Model.EmployeeList, "EmployeeCode", "EmployeeName"), "Select User",
                                              new Dictionary<string, object>() {
-                                                 {"id","ddlVisitPurpose"},
+                                                 {"id","ddlEmployee1"},
+                                                 { "class","form-control form-select js-example-disabled-results" },
+                                             {"tabindex","2"}})
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Secondary Doctor Two</label>
+                                    <div class="col-sm-9">
+                                        @Html.ValidationMessageFor(m => m.UserCode2, "", new { @class = "text-danger" })
+                                        @Html.DropDownListFor(x => x.UserCode2, new SelectList(Model.EmployeeList, "EmployeeCode", "EmployeeName"), "Select User",
+                                             new Dictionary<string, object>() {
+                                                 {"id","ddlEmployee2"},
+                                                 { "class","form-control form-select js-example-disabled-results" },
+                                             {"tabindex","3"}})
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Other User One</label>
+                                    <div class="col-sm-9">
+                                        @Html.ValidationMessageFor(m => m.OtherUser1, "", new { @class = "text-danger" })
+                                        @Html.DropDownListFor(x => x.OtherUser1, new SelectList(Model.OtherUserList, "EmployeeCode", "EmployeeName"), "Select User",
+                                             new Dictionary<string, object>() {
+                                                 {"id","txtOtherUser1"},
+                                                 { "class","form-control form-select js-example-disabled-results" },
+                                             {"tabindex","4"}})
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Other User Two</label>
+                                    <div class="col-sm-9">
+                                        @Html.ValidationMessageFor(m => m.OtherUser2, "", new { @class = "text-danger" })
+                                        @Html.DropDownListFor(x => x.OtherUser2, new SelectList(Model.OtherUserList, "EmployeeCode", "EmployeeName"), "Select User",
+                                             new Dictionary<string, object>() {
+                                                 {"id","txtOtherUser2"},
                                                  { "class","form-control form-select js-example-disabled-results" },
                                              {"tabindex","5"}})
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Remarks</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-3 col-form-label">Other User 3</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.OtherUser3, new Dictionary<string, object>() {
+                                                      {"id","txtOtherUser3"},
+                                                      {"class","form-control"},
+                                                         {"autocomplete","off"},
+                                                          {"tabindex","6"}
+                                                      })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Information Mode</label>
+                                    <div class="col-sm-9">
+                                        @Html.DropDownListFor(x => x.InformationMode, new List<SelectListItem>
+                                       {
+                                           new SelectListItem{ Text="Telephonic", Value = "Telephonic",Selected=true },
+                                           new SelectListItem{ Text="Personal", Value = "Personal" }
+                                        }, new { @class = "form-control form-select js-example-disabled-results", @id = "InformationMode", tabindex = "7" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Visit Date & Time</label>
+                                    <div class="col-sm-9">
+                                        @Html.ValidationMessageFor(m => m.VisitDateTime, "", new { @class = "text-danger" })
+                                        @Html.TextBoxFor(m => m.VisitDateTime, new Dictionary<string, object>() {
+                                                             {"id","txtVisitDateTime"},
+                                                             {"class","form-control FutureDisabledatetimepicker"},
+                                                                {"autocomplete","off"},
+                                                                  {"tabindex","8"}
+                                                             })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Visit Purpose</label>
+                                    <div class="col-sm-9">
+                                        @Html.ValidationMessageFor(m => m.VisitPurpose, "", new { @class = "text-danger" })
+                                        @Html.DropDownListFor(x => x.VisitPurpose, new SelectList(Model.VisitPurposeList, "VisitId", "VisitPurpose"), "Select Visit Purpose",
+                                             new Dictionary<string, object>() {
+                                                 {"id","ddlVisitPurpose"},
+                                                 { "class","form-control form-select js-example-disabled-results" },
+                                             {"tabindex","9"}})
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Remarks</label>
+                                    <div class="col-sm-9">
                                         @Html.TextBoxFor(m => m.Remarks, new Dictionary<string, object>() {
                                                             {"id","txtRemarks"},
                                                             {"class","form-control"},
                                                                {"autocomplete","off"},
-                                                               {"tabindex","6"}
+                                                               {"tabindex","10"}
                                                             })
                                     </div>
                                 </div>
@@ -166,22 +191,22 @@
                                 <h4 class="sub-title">Vehicle Details</h4>
 
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">
+                                    <label class="col-sm-3 col-form-label">
                                         Center
                                     </label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-9">
                                         @Html.ValidationMessageFor(m => m.Center, "", new { @class = "text-danger" })
                                         @Html.DropDownListFor(x => x.Center, new SelectList(Model.CenterList, "CenterId", "CenterName"), "Select Center",
                                              new Dictionary<string, object>() {
                                                  {"id","ddlCenter"},
                                                  {"onchange", "javascript:GetVehicle(this.value)"},
                                                  { "class","form-control form-select js-example-disabled-results" },
-                                                               {"tabindex","7"} })
+                                                               {"tabindex","11"} })
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Vehicle Number</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-3 col-form-label">Vehicle Number</label>
+                                    <div class="col-sm-9">
                                         @if (Model.action == "Add")
                                         {
                                             @Html.ValidationMessageFor(m => m.VehicleId, "", new { @class = "text-danger" })
@@ -190,38 +215,39 @@
                                                      {"id","ddlVehicle"},
                                                      { "class","form-control form-select js-example-disabled-results" },
                                                  { "onchange", "javascript:GetOdometer(this.value)" },
-                                                               {"tabindex","8"}})
+                                                               {"tabindex","12"}})
                                         }
                                         else
                                         {
                                             @Html.ValidationMessageFor(m => m.VehicleId, "", new { @class = "text-danger" })
+                                            @Html.HiddenFor(m => m.VehicleId)
                                             @Html.DropDownListFor(x => x.VehicleId, new SelectList(Model.VehicleList, "VehicleId", "VehicleRegNumber"), "Select Vehicle",
                                                       new Dictionary<string, object>() {
                                                      {"id","ddlVehicle"},
                                                      { "class","form-control form-select js-example-disabled-results" },
                                                  { "onchange", "javascript:GetOdometer(this.value)" },
                                                                     {"disabled","disabled"},
-                                                               {"tabindex","8"}})
+                                                               {"tabindex","12"}})
                                         }
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Driver</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-3 col-form-label">Driver</label>
+                                    <div class="col-sm-9">
                                         @Html.ValidationMessageFor(m => m.Driver, "", new { @class = "text-danger" })
                                         @Html.TextBoxFor(m => m.Driver, new Dictionary<string, object>() {
                                                              {"id","txtDriver"},
                                                              {"class","form-control "},
                                                                 {"autocomplete","off"},
-                                                               {"tabindex","9"}
+                                                               {"tabindex","13"}
                                                              })
                                     </div>
                                 </div>
 
 
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Start Odometer</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-3 col-form-label">Start Odometer</label>
+                                    <div class="col-sm-9">
                                         @if (Model.action == "Add")
                                         {
                                             @Html.ValidationMessageFor(m => m.StartOdometer, "", new { @class = "text-danger" })
@@ -229,7 +255,7 @@
                                                                 {"id","txtStartOdometer"},
                                                                  {"class","form-control numberonly"},
                                                                     {"autocomplete","off"},
-                                                               {"tabindex","10"}
+                                                               {"tabindex","14"}
                                                                  })
                                         }
                                         else
@@ -240,7 +266,7 @@
                                                                  {"class","form-control numberonly"},
                                                                     {"autocomplete","off"},
                                                                     {"readonly","readonly"},
-                                                               {"tabindex","10"}
+                                                               {"tabindex","14"}
                                                                  })
                                         }
                                     </div>
@@ -252,7 +278,7 @@
 
                     <div class="form-group row">
                         <div class="col-sm-10">
-                            <input type="submit" class="btn btn-round btn-inverse m-2" tabindex="11" id="confirmok" value="Save" onclick="return confirm('Are You sure you want to save data?')" />
+                            <input type="submit" class="btn btn-round btn-inverse m-2" tabindex="15" id="confirmok" value="Save" onclick="return confirm('Are You sure you want to save data?')" />
                         </div>
                     </div>
                 </div>

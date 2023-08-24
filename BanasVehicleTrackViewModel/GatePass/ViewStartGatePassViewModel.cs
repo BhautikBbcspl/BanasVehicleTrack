@@ -12,6 +12,8 @@ namespace BanasVehicleTrackViewModel.GatePass
     {
         public string GatePassId { get; set; }
         public string UserCode { get; set; }
+        public string UserCode1 { get; set; }
+        public string UserCode2 { get; set; }
         public string OtherUser1 { get; set; }
         public string OtherUser2 { get; set; }
         public string OtherUser3 { get; set; }

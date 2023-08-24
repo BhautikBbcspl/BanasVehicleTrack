@@ -122,7 +122,7 @@ namespace BanasVehicleTrack.Controllers
                 {
                     DateTime DepartureDateTime = DateTime.ParseExact(dm.DepartureDateTime, "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture);
 
-                    string msg = db.BanasVehicleGatepassInsUpd(dm.GatePassId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "DepartureInsert", DepartureDateTime, dm.StartKm, dm.DepartureVerifyStatus ? "1" : "0", dm.DepartureSecurityId, dm.DepartureSecurityRemark, null, null, "", "", "").FirstOrDefault();
+                    string msg = db.BanasVehicleGatepassInsUpd(dm.GatePassId, "", "", "", "","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "DepartureInsert", DepartureDateTime, dm.StartKm, dm.DepartureVerifyStatus ? "1" : "0", dm.DepartureSecurityId, dm.DepartureSecurityRemark, null, null, "", "", "").FirstOrDefault();
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))
                     {
@@ -139,7 +139,7 @@ namespace BanasVehicleTrack.Controllers
                 {
                     DateTime ArrivalDateTime = DateTime.ParseExact(dm.ArrivalDateTime, "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture);
 
-                    string msg = db.BanasVehicleGatepassInsUpd(dm.GatePassId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "ArrivalInsert", null, null, "", "", "", ArrivalDateTime, dm.EndKm, dm.ArrivalVerifyStatus ? "1" : "0", dm.ArrivalSecurityId, dm.ArrivalSecurityRemark).FirstOrDefault();
+                    string msg = db.BanasVehicleGatepassInsUpd(dm.GatePassId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "ArrivalInsert", null, null, "", "", "", ArrivalDateTime, dm.EndKm, dm.ArrivalVerifyStatus ? "1" : "0", dm.ArrivalSecurityId, dm.ArrivalSecurityRemark).FirstOrDefault();
 
                     ViewBag.Message = msg;
                     if (msg.Contains("successfully"))

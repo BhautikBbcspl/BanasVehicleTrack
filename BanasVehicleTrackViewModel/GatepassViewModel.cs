@@ -15,9 +15,9 @@ namespace BanasVehicleTrackViewModel
         public string DepartmentId { get; set; }
         [Required(ErrorMessage = "*")]
         public string UserCode { get; set; }
-        [StringLength(200, ErrorMessage = "The OtherUser1 cannot exceed 200 characters.")]
+        public string UserCode1 { get; set; }
+        public string UserCode2 { get; set; }
         public string OtherUser1 { get; set; }
-        [StringLength(200, ErrorMessage = "The OtherUser2 cannot exceed 200 characters.")]
         public string OtherUser2 { get; set; }
         [StringLength(200, ErrorMessage = "The OtherUser3 cannot exceed 200 characters.")]
         public string OtherUser3 { get; set; }
@@ -53,6 +53,7 @@ namespace BanasVehicleTrackViewModel
         public List<BanasCenterMasterRetrieve_Result> CenterList { get; set; }
         public List<BanasDepartmentMasterRetrieve_Result> DepartmentList { get; set; }
         public List<BanasEmployeeMasterRtr_Result> EmployeeList { get; set; }
+        public List<BanasEmployeeMasterRtr_Result> OtherUserList { get; set; }
         public List<BanasVisitPurposeMasterRtr_Result> VisitPurposeList { get; set; }
         public List<BanasVehicleMasterRtr_Result> VehicleList { get; set; }
         public List<BanasEmployeeMasterRtr_Result> AuditorList { get; set; }

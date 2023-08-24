@@ -235,23 +235,25 @@
         });
 
         function format(data) {
-            var additionalRows = ''
-            var rowDataList = data.AuditorOperateVisitList;
-
-            // Loop through the list of objects in 'data'
-            rowDataList.forEach(function (rowData) {
-                additionalRows += '<tr>';
-                additionalRows += '<td>' + rowData.GatePassId + '</td>';
-                additionalRows += '<td>' + rowData.centername + '</td>';
-                additionalRows += '<td>' + rowData.LocationName + '</td>';
-                additionalRows += '<td>' + rowData.UserGivenLocation + '</td>';
-                additionalRows += '<td><a href="https://www.google.com/maps?q=' + rowData.Latitude + ',' + rowData.Longitude + '" target="_blank"><i class="fa fa-map-marker newIcon" aria-hidden="true"></i></td>';
-                additionalRows += '<td>' + rowData.Odometer + '</td>';
-                additionalRows += '<td>  <a href="http://banasvehicletracker.bluebellcspl.co.in/vehicletrackerapi/' + rowData.OdometerImage +'" target="_blank"><i style="width: 37px;" class="fa fa-image newIcon"></i></a></td>';
-                additionalRows += '<td>' + rowData.cdate + '</td>';
-                additionalRows += '<td>' + rowData.CreateUser + '</td>';
-                additionalRows += '</tr>';
-            });
+            var additionalRows = '';
+            if (data.AuditorOperateVisitList.length != 0) {
+                // Loop through the list of objects in 'data'
+                data.AuditorOperateVisitList.forEach(function (rowData) {
+                    additionalRows += '<tr>';
+                    additionalRows += '<td>' + rowData.GatePassId + '</td>';
+                    additionalRows += '<td>' + rowData.centername + '</td>';
+                    additionalRows += '<td>' + rowData.LocationName + '</td>';
+                    additionalRows += '<td>' + rowData.UserGivenLocation + '</td>';
+                    additionalRows += '<td><a href="https://www.google.com/maps?q=' + rowData.Latitude + ',' + rowData.Longitude + '" target="_blank"><i class="fa fa-map-marker newIcon" aria-hidden="true"></i></td>';
+                    additionalRows += '<td>' + rowData.Odometer + '</td>';
+                    additionalRows += '<td><a href="http://banasvehicletracker.bluebellcspl.co.in/vehicletrackerapi/' + rowData.OdometerImage + '" target="_blank"><i style="width: 37px;" class="fa fa-image newIcon"></i></a></td>';
+                    additionalRows += '<td>' + rowData.cdate + '</td>';
+                    additionalRows += '<td>' + rowData.CreateUser + '</td>';
+                    additionalRows += '</tr>';
+                });
+            } else {
+                additionalRows = '<tr><td colspan="9" class="text-center">No data found</td></tr>';
+            }
             var tableHtml = '<table class="table table-hover table-bordered nowrap">' +
                 '<thead>' +
                 '<tr>' +
@@ -270,6 +272,7 @@
                 '</tbody></table>';
 
             return tableHtml;
+           
         }
         $('#Mybase-style tbody').on('click', '.toggle-button', function () {
             var tr = $(this).closest('tr');
