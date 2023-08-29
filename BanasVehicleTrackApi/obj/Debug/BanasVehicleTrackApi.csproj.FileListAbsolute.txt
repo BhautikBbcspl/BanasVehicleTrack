@@ -758,3 +758,5 @@ Z:\Avsar Projects 2023\banasvehicletracking\BanasVehicleTrackApi\obj\Debug\Banas
 Z:\Avsar Projects 2023\banasvehicletracking\BanasVehicleTrackApi\obj\Debug\BanasVehicleTrackApi.csproj.CopyComplete
 Z:\Avsar Projects 2023\banasvehicletracking\BanasVehicleTrackApi\obj\Debug\BanasVehicleTrackApi.dll
 Z:\Avsar Projects 2023\banasvehicletracking\BanasVehicleTrackApi\obj\Debug\BanasVehicleTrackApi.pdb
+C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackApi\bin\log4net.dll
+C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackApi\bin\log4net.xml

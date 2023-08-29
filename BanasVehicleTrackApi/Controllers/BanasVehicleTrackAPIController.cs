@@ -22,6 +22,7 @@ namespace BanasVehicleTrackApi.Controllers
     public class BanasVehicleTrackAPIController : ApiController
     {
         banasVehicleTrackingEntities db = new banasVehicleTrackingEntities();
+        log4net.ILog logger = log4net.LogManager.GetLogger(typeof(BanasVehicleTrackAPIController));
 
         #region==> Login
         [Route("api/BanasVehicleTracking/LoginRtr")]
@@ -442,30 +443,36 @@ namespace BanasVehicleTrackApi.Controllers
             {
                 var OpenVehicleGatePass = db.BanasVehicleGatepassOpen(pnd.GatePassId,pnd.UserCode,pnd.OtherUser1,pnd.OtherUser2,pnd.OtherUser3,pnd.VisitDateTime,pnd.VisitPurpose, pnd.Remarks,pnd.Center,pnd.Driver,pnd.Vehicle, pnd.StartOdometer,pnd.CreateUser,pnd.CreateDate).FirstOrDefault();
 
-                if (OpenVehicleGatePass != null)
+                if (OpenVehicleGatePass.Contains("successfully"))
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, new
                     {
                         responsecode = HttpStatusCode.OK,
                         message = OpenVehicleGatePass
                     });
+
+                    logger.Info("API Name : { OpenVehicleGatePass }, Received JSON: " + JsonConvert.SerializeObject(pnd) + ", API Response : {" + JsonConvert.SerializeObject(OpenVehicleGatePass) +"}");
+
                     return response;
                 }
                 else
                 {
-                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    var response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                     {
-                        responsecode = HttpStatusCode.OK,
-                        message = "Check Parameters (Invalid Json)"
+                        responsecode = HttpStatusCode.InternalServerError,
+                        message = OpenVehicleGatePass
                     });
+
+                    logger.Warn("API Name : { OpenVehicleGatePass }, Received JSON: " + JsonConvert.SerializeObject(pnd) + ", API Response : {" + JsonConvert.SerializeObject(OpenVehicleGatePass) + "}");
+
                     return response;
                 }
             }
             catch (Exception ex)
             {
-                var response = Request.CreateResponse(HttpStatusCode.BadRequest, new
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                 {
-                    responsecode = HttpStatusCode.BadRequest,
+                    responsecode = HttpStatusCode.InternalServerError,
                     message = ex.ToString()
                 });
                 return response;
@@ -484,30 +491,36 @@ namespace BanasVehicleTrackApi.Controllers
             {
                 var CloseVehicleGatePass = db.BanasVehicleGatepassClose(pnd.GatePassId,pnd.CloseOdometer,pnd.CloseDateTime,pnd.CloseRemark,pnd.CloseUser,pnd.CloseDate).FirstOrDefault();
 
-                if (CloseVehicleGatePass != null)
+                if (CloseVehicleGatePass.Contains("successfully"))
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, new
                     {
                         responsecode = HttpStatusCode.OK,
                         message = CloseVehicleGatePass
                     });
+
+                    logger.Info("API Name : { CloseVehicleGatePass }, Received JSON: " + JsonConvert.SerializeObject(pnd) + ", API Response : {" + JsonConvert.SerializeObject(CloseVehicleGatePass) + "}");
+
                     return response;
                 }
                 else
                 {
-                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    var response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                     {
-                        responsecode = HttpStatusCode.OK,
-                        message = "Check Parameters (Invalid Json)"
+                        responsecode = HttpStatusCode.InternalServerError,
+                        message = CloseVehicleGatePass
                     });
+
+                    logger.Warn("API Name : { CloseVehicleGatePass }, Received JSON: " + JsonConvert.SerializeObject(pnd) + ", API Response : {" + JsonConvert.SerializeObject(CloseVehicleGatePass) + "}");
+
                     return response;
                 }
             }
             catch (Exception ex)
             {
-                var response = Request.CreateResponse(HttpStatusCode.BadRequest, new
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                 {
-                    responsecode = HttpStatusCode.BadRequest,
+                    responsecode = HttpStatusCode.InternalServerError,
                     message = ex.ToString()
                 });
                 return response;
@@ -525,30 +538,34 @@ namespace BanasVehicleTrackApi.Controllers
             try
             {
                 var CancelVehicleGatePass = db.BanasVehicleGatepassCancel(pnd.GatePassId,pnd.GatePassStatus, pnd.UpdateUser, pnd.UpdateDate).FirstOrDefault();
-                if(CancelVehicleGatePass != null)
+                if (CancelVehicleGatePass.Contains("successfully"))
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, new
                     {
                         responsecode = HttpStatusCode.OK,
                         message = CancelVehicleGatePass
                     });
+
+                    logger.Info("API Name : { CancelVehicleGatePass }, Received JSON: " + JsonConvert.SerializeObject(pnd) + ", API Response : {" + JsonConvert.SerializeObject(CancelVehicleGatePass) + "}");
+
                     return response;
                 }
                 else
                 {
-                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    var response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                     {
-                        responsecode = HttpStatusCode.OK,
-                        message = "Check Parameters (Invalid Json)"
+                        responsecode = HttpStatusCode.InternalServerError,
+                        message = CancelVehicleGatePass
                     });
+                    logger.Warn("API Name : { CancelVehicleGatePass }, Received JSON: " + JsonConvert.SerializeObject(pnd) + ", API Response : {" + JsonConvert.SerializeObject(CancelVehicleGatePass) + "}");
                     return response;
                 }
             }
             catch (Exception ex)
             {
-                var response = Request.CreateResponse(HttpStatusCode.BadRequest, new
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                 {
-                    responsecode = HttpStatusCode.BadRequest,
+                    responsecode = HttpStatusCode.InternalServerError,
                     message = ex.ToString()
                 });
                 return response;
@@ -567,30 +584,33 @@ namespace BanasVehicleTrackApi.Controllers
             {
                 var EditVehicleGatePass = db.BanasVehicleGatepassInsUpd(pnd.GatePassId, "", "", "", "", "", "", "", "", "", "", "", "", pnd.StartOdometer,"", "", "","", pnd.UpdateUser, pnd.UpdateDate, "", "", "", "","", pnd.Action, null, null, "", "", "", null, null, "", "", "").FirstOrDefault();
 
-                if (EditVehicleGatePass != null)
+                if (EditVehicleGatePass.Contains("successfully"))
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, new
                     {
                         responsecode = HttpStatusCode.OK,
                         message = EditVehicleGatePass
                     });
+
+                    logger.Info("API Name : { EditVehicleGatePass }, Received JSON: " + JsonConvert.SerializeObject(pnd) + ", API Response : {" + JsonConvert.SerializeObject(EditVehicleGatePass) + "}");
                     return response;
                 }
                 else
                 {
-                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    var response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                     {
-                        responsecode = HttpStatusCode.OK,
-                        message = "Check Parameters (Invalid Json)"
+                        responsecode = HttpStatusCode.InternalServerError,
+                        message = EditVehicleGatePass
                     });
+                    logger.Warn("API Name : { EditVehicleGatePass }, Received JSON: " + JsonConvert.SerializeObject(pnd) + ", API Response : {" + JsonConvert.SerializeObject(EditVehicleGatePass) + "}");
                     return response;
                 }
             }
             catch (Exception ex)
             {
-                var response = Request.CreateResponse(HttpStatusCode.BadRequest, new
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                 {
-                    responsecode = HttpStatusCode.BadRequest,
+                    responsecode = HttpStatusCode.InternalServerError,
                     message = ex.ToString()
                 });
                 return response;
@@ -609,30 +629,35 @@ namespace BanasVehicleTrackApi.Controllers
             {
                 var EditPreviousVehicleGatePass = db.BanasVehicleGatepassInsUpd(pnd.GatePassId,"","","","","","","","","","","","",pnd.StartOdometer,pnd.CloseOdometer,"", "",pnd.NetKM,pnd.UpdateUser,pnd.UpdateDate,"","","","",pnd.Difference,pnd.Action,null,null,"","","",null,null,"","","").FirstOrDefault();
 
-                if (EditPreviousVehicleGatePass != null)
+                if (EditPreviousVehicleGatePass.Contains("successfully"))
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, new
                     {
                         responsecode = HttpStatusCode.OK,
                         message = EditPreviousVehicleGatePass
                     });
+
+                    logger.Info("API Name : { EditPreviousVehicleGatePass }, Received JSON: " + JsonConvert.SerializeObject(pnd) + ", API Response : {" + JsonConvert.SerializeObject(EditPreviousVehicleGatePass) + "}");
+
                     return response;
                 }
                 else
                 {
-                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    var response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                     {
-                        responsecode = HttpStatusCode.OK,
-                        message = "Check Parameters (Invalid Json)"
+                        responsecode = HttpStatusCode.InternalServerError,
+                        message = EditPreviousVehicleGatePass
                     });
+                    logger.Warn("API Name : { EditPreviousVehicleGatePass }, Received JSON: " + JsonConvert.SerializeObject(pnd) + ", API Response : {" + JsonConvert.SerializeObject(EditPreviousVehicleGatePass) + "}");
+
                     return response;
                 }
             }
             catch (Exception ex)
             {
-                var response = Request.CreateResponse(HttpStatusCode.BadRequest, new
+                var response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                 {
-                    responsecode = HttpStatusCode.BadRequest,
+                    responsecode = HttpStatusCode.InternalServerError,
                     message = ex.ToString()
                 });
                 return response;

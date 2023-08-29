@@ -378,3 +378,5 @@ C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackApi\obj\Release\
 C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackApi\obj\Release\BanasVehicleTrackApi.csproj.CopyComplete
 C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackApi\obj\Release\BanasVehicleTrackApi.dll
 C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackApi\obj\Release\BanasVehicleTrackApi.pdb
+C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackApi\bin\log4net.dll
+C:\Users\BBCSPL\source\repos\BanasVehicleTrack\BanasVehicleTrackApi\bin\log4net.xml
