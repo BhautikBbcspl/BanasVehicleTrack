@@ -506,7 +506,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="BanasVehicleGatepassOpen" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleGatepassOpen" />
     <FunctionImportMapping FunctionImportName="BanasVehicleMasterInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleMasterInsUpd" />
     <FunctionImportMapping FunctionImportName="BanasVehicleMasterRtr" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleMasterRtr">
       <ResultMapping>
@@ -841,7 +840,61 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BanasSecurityVehicleGatepassRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasSecurityVehicleGatepassRetrieve">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasSecurityVehicleGatepassRetrieve_Result">
+          <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
+          <ScalarProperty Name="OtherUsername1" ColumnName="OtherUsername1" />
+          <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
+          <ScalarProperty Name="OtherUsername2" ColumnName="OtherUsername2" />
+          <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
+          <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
+          <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
+          <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="CenterId" ColumnName="CenterId" />
+          <ScalarProperty Name="Center" ColumnName="Center" />
+          <ScalarProperty Name="Driver" ColumnName="Driver" />
+          <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+          <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+          <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
+          <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
+          <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
+          <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
+          <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+          <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
+          <ScalarProperty Name="Netkm" ColumnName="Netkm" />
+          <ScalarProperty Name="Difference" ColumnName="Difference" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
+          <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
+          <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
+          <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
+          <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
+          <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
+          <ScalarProperty Name="StartKm" ColumnName="StartKm" />
+          <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
+          <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
+          <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
+          <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
+          <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
+          <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
+          <ScalarProperty Name="EndKm" ColumnName="EndKm" />
+          <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
+          <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="BanasVehicleGatepassInsUpd" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleGatepassInsUpd" />
+    <FunctionImportMapping FunctionImportName="BanasVehicleGatepassOpen" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleGatepassOpen" />
     <FunctionImportMapping FunctionImportName="BanasVehicleGatepassRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleGatepassRetrieve">
       <ResultMapping>
         <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasVehicleGatepassRetrieve_Result">
@@ -849,10 +902,6 @@
           <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
           <ScalarProperty Name="UserCode" ColumnName="UserCode" />
           <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="UserCode1" ColumnName="UserCode1" />
-          <ScalarProperty Name="Username1" ColumnName="Username1" />
-          <ScalarProperty Name="UserCode2" ColumnName="UserCode2" />
-          <ScalarProperty Name="Username2" ColumnName="Username2" />
           <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
           <ScalarProperty Name="OtherUsername1" ColumnName="OtherUsername1" />
           <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
@@ -900,62 +949,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="BanasSecurityVehicleGatepassRetrieve" FunctionName="banasVehicleTrackingModel.Store.BanasSecurityVehicleGatepassRetrieve">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="banasVehicleTrackingModel.BanasSecurityVehicleGatepassRetrieve_Result">
-          <ScalarProperty Name="GatePassId" ColumnName="GatePassId" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="UserCode1" ColumnName="UserCode1" />
-          <ScalarProperty Name="Username1" ColumnName="Username1" />
-          <ScalarProperty Name="UserCode2" ColumnName="UserCode2" />
-          <ScalarProperty Name="Username2" ColumnName="Username2" />
-          <ScalarProperty Name="OtherUser1" ColumnName="OtherUser1" />
-          <ScalarProperty Name="OtherUsername1" ColumnName="OtherUsername1" />
-          <ScalarProperty Name="OtherUser2" ColumnName="OtherUser2" />
-          <ScalarProperty Name="OtherUsername2" ColumnName="OtherUsername2" />
-          <ScalarProperty Name="OtherUser3" ColumnName="OtherUser3" />
-          <ScalarProperty Name="InformationMode" ColumnName="InformationMode" />
-          <ScalarProperty Name="VisitDateTime" ColumnName="VisitDateTime" />
-          <ScalarProperty Name="VisitPurpose" ColumnName="VisitPurpose" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="CenterId" ColumnName="CenterId" />
-          <ScalarProperty Name="Center" ColumnName="Center" />
-          <ScalarProperty Name="Driver" ColumnName="Driver" />
-          <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
-          <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
-          <ScalarProperty Name="StartOdometer" ColumnName="StartOdometer" />
-          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="GatePassStatus" ColumnName="GatePassStatus" />
-          <ScalarProperty Name="CloseOdometer" ColumnName="CloseOdometer" />
-          <ScalarProperty Name="CloseRemark" ColumnName="CloseRemark" />
-          <ScalarProperty Name="CloseDateTime" ColumnName="CloseDateTime" />
-          <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
-          <ScalarProperty Name="CloseUser" ColumnName="CloseUser" />
-          <ScalarProperty Name="Netkm" ColumnName="Netkm" />
-          <ScalarProperty Name="Difference" ColumnName="Difference" />
-          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
-          <ScalarProperty Name="VisitPurposeId" ColumnName="VisitPurposeId" />
-          <ScalarProperty Name="VehicleDepartmentId" ColumnName="VehicleDepartmentId" />
-          <ScalarProperty Name="DepartureSecurityName" ColumnName="DepartureSecurityName" />
-          <ScalarProperty Name="DepartureSecuritySignature" ColumnName="DepartureSecuritySignature" />
-          <ScalarProperty Name="DepartureSecurityId" ColumnName="DepartureSecurityId" />
-          <ScalarProperty Name="DepartureSecurityRemark" ColumnName="DepartureSecurityRemark" />
-          <ScalarProperty Name="StartKm" ColumnName="StartKm" />
-          <ScalarProperty Name="DepartureDateTime" ColumnName="DepartureDateTime" />
-          <ScalarProperty Name="DepartureVerifyStatus" ColumnName="DepartureVerifyStatus" />
-          <ScalarProperty Name="ArrivalSecurityName" ColumnName="ArrivalSecurityName" />
-          <ScalarProperty Name="ArrivalSecuritySignature" ColumnName="ArrivalSecuritySignature" />
-          <ScalarProperty Name="ArrivalSecurityId" ColumnName="ArrivalSecurityId" />
-          <ScalarProperty Name="ArrivalSecurityRemark" ColumnName="ArrivalSecurityRemark" />
-          <ScalarProperty Name="EndKm" ColumnName="EndKm" />
-          <ScalarProperty Name="ArrivalDateTime" ColumnName="ArrivalDateTime" />
-          <ScalarProperty Name="ArrivalVerifyStatus" ColumnName="ArrivalVerifyStatus" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BanasVehicleGatepassCancel" FunctionName="banasVehicleTrackingModel.Store.BanasVehicleGatepassCancel" />
   </EntityContainerMapping>
 </Mapping>

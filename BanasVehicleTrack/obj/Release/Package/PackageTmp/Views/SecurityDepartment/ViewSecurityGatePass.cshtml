@@ -49,23 +49,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Primary Doctor Name</label>
+                                    <label class="col-sm-4 col-form-label">Primary User</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" value="@item.UserCode   @item.Username" readonly="">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Secondary Doctor One</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="@item.UserCode1   @item.Username1" readonly="">
+                                @*<div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Secondary Doctor One</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" value="@item.UserCode1   @item.Username1" readonly="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Secondary Doctor Two</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="@item.UserCode2   @item.Username2" readonly="">
-                                    </div>
-                                </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Secondary Doctor Two</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" value="@item.UserCode2   @item.Username2" readonly="">
+                                        </div>
+                                    </div>*@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Other User One</label>
                                     <div class="col-sm-8">
@@ -79,7 +79,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Other User 3</label>
+                                    <label class="col-sm-4 col-form-label">Other User Three</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" value="@item.OtherUser3" readonly="">
                                     </div>
@@ -153,17 +153,17 @@
                                     </div>
                                 </div>
                                 @*<div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Start Odometer</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="@decimal.Parse(item.StartOdometer.ToString()).ToString("0.0")" readonly="">
+                                        <label class="col-sm-4 col-form-label">Start Odometer</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" value="@decimal.Parse(item.StartOdometer.ToString()).ToString("0.0")" readonly="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">CloseOdometer</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="@item.CloseOdometer" readonly="">
-                                    </div>
-                                </div>*@
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">CloseOdometer</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" value="@item.CloseOdometer" readonly="">
+                                        </div>
+                                    </div>*@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Close Remark</label>
                                     <div class="col-sm-8">
@@ -178,11 +178,11 @@
                                 </div>
 
                                 @*<div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Netkm</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="@item.Netkm" readonly="">
-                                    </div>
-                                </div>*@
+                                        <label class="col-sm-4 col-form-label">Netkm</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" value="@item.Netkm" readonly="">
+                                        </div>
+                                    </div>*@
 
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Start KM @Html.ValidationMessageFor(m => m.StartKm, "", new { @class = "text-danger" })</label>
-                                     
+
                                             <div class="col-sm-8">
                                                 @Html.TextBoxFor(m => m.StartKm, new Dictionary<string, object>() {
                                              {"id","txtStartKm"},
@@ -264,7 +264,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Verify Status</label>
                                             <div class="col-sm-8">
-                                                @Html.CheckBoxFor(m => m.DepartureVerifyStatus,new { @class="chk"})
+                                                @Html.CheckBoxFor(m => m.DepartureVerifyStatus, new { @class = "chk" })
                                             </div>
                                         </div>
                                         <div class="form-group row">

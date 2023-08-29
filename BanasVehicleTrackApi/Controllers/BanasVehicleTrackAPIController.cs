@@ -440,21 +440,34 @@ namespace BanasVehicleTrackApi.Controllers
         {
             try
             {
-                var OpenVehicleGatePass = db.BanasVehicleGatepassOpen(pnd.GatePassId,pnd.UserCode,pnd.UserCode1,pnd.UserCode2,pnd.OtherUser1,pnd.OtherUser2,pnd.OtherUser3,pnd.VisitDateTime,pnd.VisitPurpose, pnd.Remarks,pnd.Center,pnd.Driver,pnd.Vehicle, pnd.StartOdometer,pnd.CreateUser,pnd.CreateDate).FirstOrDefault();
-                var response2 = Request.CreateResponse(HttpStatusCode.OK, OpenVehicleGatePass);
-                return response2;
-               
+                var OpenVehicleGatePass = db.BanasVehicleGatepassOpen(pnd.GatePassId,pnd.UserCode,pnd.OtherUser1,pnd.OtherUser2,pnd.OtherUser3,pnd.VisitDateTime,pnd.VisitPurpose, pnd.Remarks,pnd.Center,pnd.Driver,pnd.Vehicle, pnd.StartOdometer,pnd.CreateUser,pnd.CreateDate).FirstOrDefault();
+
+                if (OpenVehicleGatePass != null)
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        responsecode = HttpStatusCode.OK,
+                        message = OpenVehicleGatePass
+                    });
+                    return response;
+                }
+                else
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        responsecode = HttpStatusCode.OK,
+                        message = "Check Parameters (Invalid Json)"
+                    });
+                    return response;
+                }
             }
             catch (Exception ex)
             {
-                List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
-                FetchErrorclass error = new FetchErrorclass
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, new
                 {
-                    FetchResult = Convert.ToString("Invalid"),
-                };
-                ERROR.Add(error);
-
-                var response = Request.CreateResponse(HttpStatusCode.BadRequest, ERROR);
+                    responsecode = HttpStatusCode.BadRequest,
+                    message = ex.ToString()
+                });
                 return response;
             }
             finally
@@ -470,25 +483,164 @@ namespace BanasVehicleTrackApi.Controllers
             try
             {
                 var CloseVehicleGatePass = db.BanasVehicleGatepassClose(pnd.GatePassId,pnd.CloseOdometer,pnd.CloseDateTime,pnd.CloseRemark,pnd.CloseUser,pnd.CloseDate).FirstOrDefault();
-                var response2 = Request.CreateResponse(HttpStatusCode.OK, CloseVehicleGatePass);
-                return response2;
 
+                if (CloseVehicleGatePass != null)
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        responsecode = HttpStatusCode.OK,
+                        message = CloseVehicleGatePass
+                    });
+                    return response;
+                }
+                else
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        responsecode = HttpStatusCode.OK,
+                        message = "Check Parameters (Invalid Json)"
+                    });
+                    return response;
+                }
             }
             catch (Exception ex)
             {
-                List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
-                FetchErrorclass error = new FetchErrorclass
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, new
                 {
-                    FetchResult = Convert.ToString("Invalid"),
-                };
-                ERROR.Add(error);
-
-                var response = Request.CreateResponse(HttpStatusCode.BadRequest, ERROR);
+                    responsecode = HttpStatusCode.BadRequest,
+                    message = ex.ToString()
+                });
                 return response;
             }
             finally
             { db.Dispose(); }
         }
         #endregion
+
+        #region==> Cancel Vehicle GatePass
+        [Route("api/BanasVehicleTracking/CancelVehicleGatePass")]
+        [HttpPost]
+        public HttpResponseMessage CancelVehicleGatePass(CancelVehicleGatePassViewModel pnd)
+        {
+            try
+            {
+                var CancelVehicleGatePass = db.BanasVehicleGatepassCancel(pnd.GatePassId,pnd.GatePassStatus, pnd.UpdateUser, pnd.UpdateDate).FirstOrDefault();
+                if(CancelVehicleGatePass != null)
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        responsecode = HttpStatusCode.OK,
+                        message = CancelVehicleGatePass
+                    });
+                    return response;
+                }
+                else
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        responsecode = HttpStatusCode.OK,
+                        message = "Check Parameters (Invalid Json)"
+                    });
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, new
+                {
+                    responsecode = HttpStatusCode.BadRequest,
+                    message = ex.ToString()
+                });
+                return response;
+            }
+            finally
+            { db.Dispose(); }
+        }
+        #endregion
+
+        #region==> Edit Vehicle GatePass
+        [Route("api/BanasVehicleTracking/EditVehicleGatePass")]
+        [HttpPost]
+        public HttpResponseMessage EditVehicleGatePass(EditGatepassViewModel pnd)
+        {
+            try
+            {
+                var EditVehicleGatePass = db.BanasVehicleGatepassInsUpd(pnd.GatePassId, "", "", "", "", "", "", "", "", "", "", "", "", pnd.StartOdometer,"", "", "","", pnd.UpdateUser, pnd.UpdateDate, "", "", "", "","", pnd.Action, null, null, "", "", "", null, null, "", "", "").FirstOrDefault();
+
+                if (EditVehicleGatePass != null)
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        responsecode = HttpStatusCode.OK,
+                        message = EditVehicleGatePass
+                    });
+                    return response;
+                }
+                else
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        responsecode = HttpStatusCode.OK,
+                        message = "Check Parameters (Invalid Json)"
+                    });
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, new
+                {
+                    responsecode = HttpStatusCode.BadRequest,
+                    message = ex.ToString()
+                });
+                return response;
+            }
+            finally
+            { db.Dispose(); }
+        }
+        #endregion
+
+        #region==> Edit Previous Vehicle GatePass
+        [Route("api/BanasVehicleTracking/EditPreviousVehicleGatePass")]
+        [HttpPost]
+        public HttpResponseMessage EditPreviousVehicleGatePass(EditGatepassViewModel pnd)
+        {
+            try
+            {
+                var EditPreviousVehicleGatePass = db.BanasVehicleGatepassInsUpd(pnd.GatePassId,"","","","","","","","","","","","",pnd.StartOdometer,pnd.CloseOdometer,"", "",pnd.NetKM,pnd.UpdateUser,pnd.UpdateDate,"","","","",pnd.Difference,pnd.Action,null,null,"","","",null,null,"","","").FirstOrDefault();
+
+                if (EditPreviousVehicleGatePass != null)
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        responsecode = HttpStatusCode.OK,
+                        message = EditPreviousVehicleGatePass
+                    });
+                    return response;
+                }
+                else
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        responsecode = HttpStatusCode.OK,
+                        message = "Check Parameters (Invalid Json)"
+                    });
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, new
+                {
+                    responsecode = HttpStatusCode.BadRequest,
+                    message = ex.ToString()
+                });
+                return response;
+            }
+            finally
+            { db.Dispose(); }
+        }
+        #endregion
+
     }
 }

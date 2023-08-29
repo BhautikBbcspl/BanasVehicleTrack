@@ -1224,75 +1224,6 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasUserDepartmentIntegrationRtr_Result>("BanasUserDepartmentIntegrationRtr", actionParameter, userCodeParameter, userDepartmentIdParameter);
         }
     
-        public virtual ObjectResult<string> BanasVehicleGatepassOpen(string gatePassId, string userCode, string userCode1, string userCode2, string otherUser1, string otherUser2, string otherUser3, string visitDateTime, string visitPurpose, string remarks, string center, string driver, string vehicleRegno, string startOdometer, string createUser, string createDate)
-        {
-            var gatePassIdParameter = gatePassId != null ?
-                new ObjectParameter("GatePassId", gatePassId) :
-                new ObjectParameter("GatePassId", typeof(string));
-    
-            var userCodeParameter = userCode != null ?
-                new ObjectParameter("UserCode", userCode) :
-                new ObjectParameter("UserCode", typeof(string));
-    
-            var userCode1Parameter = userCode1 != null ?
-                new ObjectParameter("UserCode1", userCode1) :
-                new ObjectParameter("UserCode1", typeof(string));
-    
-            var userCode2Parameter = userCode2 != null ?
-                new ObjectParameter("UserCode2", userCode2) :
-                new ObjectParameter("UserCode2", typeof(string));
-    
-            var otherUser1Parameter = otherUser1 != null ?
-                new ObjectParameter("OtherUser1", otherUser1) :
-                new ObjectParameter("OtherUser1", typeof(string));
-    
-            var otherUser2Parameter = otherUser2 != null ?
-                new ObjectParameter("OtherUser2", otherUser2) :
-                new ObjectParameter("OtherUser2", typeof(string));
-    
-            var otherUser3Parameter = otherUser3 != null ?
-                new ObjectParameter("OtherUser3", otherUser3) :
-                new ObjectParameter("OtherUser3", typeof(string));
-    
-            var visitDateTimeParameter = visitDateTime != null ?
-                new ObjectParameter("VisitDateTime", visitDateTime) :
-                new ObjectParameter("VisitDateTime", typeof(string));
-    
-            var visitPurposeParameter = visitPurpose != null ?
-                new ObjectParameter("VisitPurpose", visitPurpose) :
-                new ObjectParameter("VisitPurpose", typeof(string));
-    
-            var remarksParameter = remarks != null ?
-                new ObjectParameter("Remarks", remarks) :
-                new ObjectParameter("Remarks", typeof(string));
-    
-            var centerParameter = center != null ?
-                new ObjectParameter("Center", center) :
-                new ObjectParameter("Center", typeof(string));
-    
-            var driverParameter = driver != null ?
-                new ObjectParameter("Driver", driver) :
-                new ObjectParameter("Driver", typeof(string));
-    
-            var vehicleRegnoParameter = vehicleRegno != null ?
-                new ObjectParameter("VehicleRegno", vehicleRegno) :
-                new ObjectParameter("VehicleRegno", typeof(string));
-    
-            var startOdometerParameter = startOdometer != null ?
-                new ObjectParameter("StartOdometer", startOdometer) :
-                new ObjectParameter("StartOdometer", typeof(string));
-    
-            var createUserParameter = createUser != null ?
-                new ObjectParameter("CreateUser", createUser) :
-                new ObjectParameter("CreateUser", typeof(string));
-    
-            var createDateParameter = createDate != null ?
-                new ObjectParameter("CreateDate", createDate) :
-                new ObjectParameter("CreateDate", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasVehicleGatepassOpen", gatePassIdParameter, userCodeParameter, userCode1Parameter, userCode2Parameter, otherUser1Parameter, otherUser2Parameter, otherUser3Parameter, visitDateTimeParameter, visitPurposeParameter, remarksParameter, centerParameter, driverParameter, vehicleRegnoParameter, startOdometerParameter, createUserParameter, createDateParameter);
-        }
-    
         public virtual ObjectResult<string> BanasVehicleMasterInsUpd(string vehicleId, string vehicleCode, string vehicleRegNumber, string vehicleRegDate, string vehicleType, string vehicleMake, string model, string status, string ratePerKm, string rateEffectiveDate, string insuranceCommencementDate, string insuranceExpiryDate, string contractStartDate, string contractEndDate, string companyCode, string isActive, string createDate, string updatedate, string createUser, string updateUser, string contractorId, string departmentId, string centerId, string action)
         {
             var vehicleIdParameter = vehicleId != null ?
@@ -1632,7 +1563,20 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorFinalApproveRetrieve_Result>("BanasAuditorFinalApproveRetrieve", actionParameter, loginuserParameter);
         }
     
-        public virtual ObjectResult<string> BanasVehicleGatepassInsUpd(string gatePassId, string departmentId, string userCode, string userCode1, string userCode2, string otherUser1, string otherUser2, string otherUser3, string informationMode, string visitDateTime, string visitPurpose, string remarks, string center, string driver, string vehicleId, string startOdometer, string closeOdometer, string closeDateTime, string closeRemark, string netkm, string createUser, string createDate, string closeUser, string closeDate, string editUser, string editDate, string difference, string action, Nullable<System.DateTime> departureDateTime, Nullable<decimal> startKm, string departureVerifyStatus, string departureSecurityId, string departureSecurityRemark, Nullable<System.DateTime> arrivalDateTime, Nullable<decimal> endKm, string arrivalVerifyStatus, string arrivalSecurityId, string arrivalSecurityRemark)
+        public virtual ObjectResult<BanasSecurityVehicleGatepassRetrieve_Result> BanasSecurityVehicleGatepassRetrieve(string action, string gatepassId)
+        {
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var gatepassIdParameter = gatepassId != null ?
+                new ObjectParameter("GatepassId", gatepassId) :
+                new ObjectParameter("GatepassId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasSecurityVehicleGatepassRetrieve_Result>("BanasSecurityVehicleGatepassRetrieve", actionParameter, gatepassIdParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasVehicleGatepassInsUpd(string gatePassId, string departmentId, string userCode, string otherUser1, string otherUser2, string otherUser3, string informationMode, string visitDateTime, string visitPurpose, string remarks, string center, string driver, string vehicleId, string startOdometer, string closeOdometer, string closeDateTime, string closeRemark, string netkm, string createUser, string createDate, string closeUser, string closeDate, string editUser, string editDate, string difference, string action, Nullable<System.DateTime> departureDateTime, Nullable<decimal> startKm, string departureVerifyStatus, string departureSecurityId, string departureSecurityRemark, Nullable<System.DateTime> arrivalDateTime, Nullable<decimal> endKm, string arrivalVerifyStatus, string arrivalSecurityId, string arrivalSecurityRemark)
         {
             var gatePassIdParameter = gatePassId != null ?
                 new ObjectParameter("GatePassId", gatePassId) :
@@ -1645,14 +1589,6 @@ namespace BanasVehicleTrackDbClasses
             var userCodeParameter = userCode != null ?
                 new ObjectParameter("UserCode", userCode) :
                 new ObjectParameter("UserCode", typeof(string));
-    
-            var userCode1Parameter = userCode1 != null ?
-                new ObjectParameter("UserCode1", userCode1) :
-                new ObjectParameter("UserCode1", typeof(string));
-    
-            var userCode2Parameter = userCode2 != null ?
-                new ObjectParameter("UserCode2", userCode2) :
-                new ObjectParameter("UserCode2", typeof(string));
     
             var otherUser1Parameter = otherUser1 != null ?
                 new ObjectParameter("OtherUser1", otherUser1) :
@@ -1786,7 +1722,68 @@ namespace BanasVehicleTrackDbClasses
                 new ObjectParameter("ArrivalSecurityRemark", arrivalSecurityRemark) :
                 new ObjectParameter("ArrivalSecurityRemark", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasVehicleGatepassInsUpd", gatePassIdParameter, departmentIdParameter, userCodeParameter, userCode1Parameter, userCode2Parameter, otherUser1Parameter, otherUser2Parameter, otherUser3Parameter, informationModeParameter, visitDateTimeParameter, visitPurposeParameter, remarksParameter, centerParameter, driverParameter, vehicleIdParameter, startOdometerParameter, closeOdometerParameter, closeDateTimeParameter, closeRemarkParameter, netkmParameter, createUserParameter, createDateParameter, closeUserParameter, closeDateParameter, editUserParameter, editDateParameter, differenceParameter, actionParameter, departureDateTimeParameter, startKmParameter, departureVerifyStatusParameter, departureSecurityIdParameter, departureSecurityRemarkParameter, arrivalDateTimeParameter, endKmParameter, arrivalVerifyStatusParameter, arrivalSecurityIdParameter, arrivalSecurityRemarkParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasVehicleGatepassInsUpd", gatePassIdParameter, departmentIdParameter, userCodeParameter, otherUser1Parameter, otherUser2Parameter, otherUser3Parameter, informationModeParameter, visitDateTimeParameter, visitPurposeParameter, remarksParameter, centerParameter, driverParameter, vehicleIdParameter, startOdometerParameter, closeOdometerParameter, closeDateTimeParameter, closeRemarkParameter, netkmParameter, createUserParameter, createDateParameter, closeUserParameter, closeDateParameter, editUserParameter, editDateParameter, differenceParameter, actionParameter, departureDateTimeParameter, startKmParameter, departureVerifyStatusParameter, departureSecurityIdParameter, departureSecurityRemarkParameter, arrivalDateTimeParameter, endKmParameter, arrivalVerifyStatusParameter, arrivalSecurityIdParameter, arrivalSecurityRemarkParameter);
+        }
+    
+        public virtual ObjectResult<string> BanasVehicleGatepassOpen(string gatePassId, string userCode, string otherUser1, string otherUser2, string otherUser3, string visitDateTime, string visitPurpose, string remarks, string center, string driver, string vehicleRegno, string startOdometer, string createUser, string createDate)
+        {
+            var gatePassIdParameter = gatePassId != null ?
+                new ObjectParameter("GatePassId", gatePassId) :
+                new ObjectParameter("GatePassId", typeof(string));
+    
+            var userCodeParameter = userCode != null ?
+                new ObjectParameter("UserCode", userCode) :
+                new ObjectParameter("UserCode", typeof(string));
+    
+            var otherUser1Parameter = otherUser1 != null ?
+                new ObjectParameter("OtherUser1", otherUser1) :
+                new ObjectParameter("OtherUser1", typeof(string));
+    
+            var otherUser2Parameter = otherUser2 != null ?
+                new ObjectParameter("OtherUser2", otherUser2) :
+                new ObjectParameter("OtherUser2", typeof(string));
+    
+            var otherUser3Parameter = otherUser3 != null ?
+                new ObjectParameter("OtherUser3", otherUser3) :
+                new ObjectParameter("OtherUser3", typeof(string));
+    
+            var visitDateTimeParameter = visitDateTime != null ?
+                new ObjectParameter("VisitDateTime", visitDateTime) :
+                new ObjectParameter("VisitDateTime", typeof(string));
+    
+            var visitPurposeParameter = visitPurpose != null ?
+                new ObjectParameter("VisitPurpose", visitPurpose) :
+                new ObjectParameter("VisitPurpose", typeof(string));
+    
+            var remarksParameter = remarks != null ?
+                new ObjectParameter("Remarks", remarks) :
+                new ObjectParameter("Remarks", typeof(string));
+    
+            var centerParameter = center != null ?
+                new ObjectParameter("Center", center) :
+                new ObjectParameter("Center", typeof(string));
+    
+            var driverParameter = driver != null ?
+                new ObjectParameter("Driver", driver) :
+                new ObjectParameter("Driver", typeof(string));
+    
+            var vehicleRegnoParameter = vehicleRegno != null ?
+                new ObjectParameter("VehicleRegno", vehicleRegno) :
+                new ObjectParameter("VehicleRegno", typeof(string));
+    
+            var startOdometerParameter = startOdometer != null ?
+                new ObjectParameter("StartOdometer", startOdometer) :
+                new ObjectParameter("StartOdometer", typeof(string));
+    
+            var createUserParameter = createUser != null ?
+                new ObjectParameter("CreateUser", createUser) :
+                new ObjectParameter("CreateUser", typeof(string));
+    
+            var createDateParameter = createDate != null ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasVehicleGatepassOpen", gatePassIdParameter, userCodeParameter, otherUser1Parameter, otherUser2Parameter, otherUser3Parameter, visitDateTimeParameter, visitPurposeParameter, remarksParameter, centerParameter, driverParameter, vehicleRegnoParameter, startOdometerParameter, createUserParameter, createDateParameter);
         }
     
         public virtual ObjectResult<BanasVehicleGatepassRetrieve_Result> BanasVehicleGatepassRetrieve(string action, string from, string to, string department, string vehicle, string gatepassId, string loginuser)
@@ -1822,17 +1819,25 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasVehicleGatepassRetrieve_Result>("BanasVehicleGatepassRetrieve", actionParameter, fromParameter, toParameter, departmentParameter, vehicleParameter, gatepassIdParameter, loginuserParameter);
         }
     
-        public virtual ObjectResult<BanasSecurityVehicleGatepassRetrieve_Result> BanasSecurityVehicleGatepassRetrieve(string action, string gatepassId)
+        public virtual ObjectResult<string> BanasVehicleGatepassCancel(string gatePassId, string status, string updateUser, string updateDate)
         {
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
+            var gatePassIdParameter = gatePassId != null ?
+                new ObjectParameter("GatePassId", gatePassId) :
+                new ObjectParameter("GatePassId", typeof(string));
     
-            var gatepassIdParameter = gatepassId != null ?
-                new ObjectParameter("GatepassId", gatepassId) :
-                new ObjectParameter("GatepassId", typeof(string));
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasSecurityVehicleGatepassRetrieve_Result>("BanasSecurityVehicleGatepassRetrieve", actionParameter, gatepassIdParameter);
+            var updateUserParameter = updateUser != null ?
+                new ObjectParameter("UpdateUser", updateUser) :
+                new ObjectParameter("UpdateUser", typeof(string));
+    
+            var updateDateParameter = updateDate != null ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BanasVehicleGatepassCancel", gatePassIdParameter, statusParameter, updateUserParameter, updateDateParameter);
         }
     }
 }

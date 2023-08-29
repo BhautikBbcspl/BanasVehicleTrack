@@ -75,7 +75,7 @@
                                         </div>
                                     </div>*@
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Primary Doctor</label>
+                                    <label class="col-sm-3 col-form-label">Primary User</label>
                                     <div class="col-sm-9">
                                         @Html.ValidationMessageFor(m => m.UserCode, "", new { @class = "text-danger" })
                                         @Html.DropDownListFor(x => x.UserCode, new SelectList(Model.EmployeeList, "EmployeeCode", "EmployeeName"), "Select User",
@@ -85,28 +85,7 @@
                                              {"tabindex","1"}})
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Secondary Doctor One</label>
-                                    <div class="col-sm-9">
-                                        @Html.ValidationMessageFor(m => m.UserCode1, "", new { @class = "text-danger" })
-                                        @Html.DropDownListFor(x => x.UserCode1, new SelectList(Model.EmployeeList, "EmployeeCode", "EmployeeName"), "Select User",
-                                             new Dictionary<string, object>() {
-                                                 {"id","ddlEmployee1"},
-                                                 { "class","form-control form-select js-example-disabled-results" },
-                                             {"tabindex","2"}})
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Secondary Doctor Two</label>
-                                    <div class="col-sm-9">
-                                        @Html.ValidationMessageFor(m => m.UserCode2, "", new { @class = "text-danger" })
-                                        @Html.DropDownListFor(x => x.UserCode2, new SelectList(Model.EmployeeList, "EmployeeCode", "EmployeeName"), "Select User",
-                                             new Dictionary<string, object>() {
-                                                 {"id","ddlEmployee2"},
-                                                 { "class","form-control form-select js-example-disabled-results" },
-                                             {"tabindex","3"}})
-                                    </div>
-                                </div>
+                               
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Other User One</label>
                                     <div class="col-sm-9">
@@ -130,7 +109,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Other User 3</label>
+                                    <label class="col-sm-3 col-form-label">Other User Three</label>
                                     <div class="col-sm-9">
                                         @Html.TextBoxFor(m => m.OtherUser3, new Dictionary<string, object>() {
                                                       {"id","txtOtherUser3"},

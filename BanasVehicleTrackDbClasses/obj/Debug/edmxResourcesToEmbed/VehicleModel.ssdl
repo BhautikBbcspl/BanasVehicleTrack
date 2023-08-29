@@ -387,6 +387,12 @@
     <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
     <Parameter Name="UserDepartmentId" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="BanasVehicleGatepassCancel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateDate" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="BanasVehicleGatepassClose" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
     <Parameter Name="CloseOdometer" Type="nvarchar" Mode="In" />
@@ -399,8 +405,6 @@
     <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
     <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
     <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
-    <Parameter Name="UserCode1" Type="nvarchar" Mode="In" />
-    <Parameter Name="UserCode2" Type="nvarchar" Mode="In" />
     <Parameter Name="OtherUser1" Type="nvarchar" Mode="In" />
     <Parameter Name="OtherUser2" Type="nvarchar" Mode="In" />
     <Parameter Name="OtherUser3" Type="nvarchar" Mode="In" />
@@ -438,8 +442,6 @@
   <Function Name="BanasVehicleGatepassOpen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="GatePassId" Type="nvarchar" Mode="In" />
     <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
-    <Parameter Name="UserCode1" Type="nvarchar" Mode="In" />
-    <Parameter Name="UserCode2" Type="nvarchar" Mode="In" />
     <Parameter Name="OtherUser1" Type="nvarchar" Mode="In" />
     <Parameter Name="OtherUser2" Type="nvarchar" Mode="In" />
     <Parameter Name="OtherUser3" Type="nvarchar" Mode="In" />

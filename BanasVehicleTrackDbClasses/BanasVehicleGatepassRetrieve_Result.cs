@@ -17,10 +17,6 @@ namespace BanasVehicleTrackDbClasses
         public string DepartmentName { get; set; }
         public string UserCode { get; set; }
         public string Username { get; set; }
-        public string UserCode1 { get; set; }
-        public string Username1 { get; set; }
-        public string UserCode2 { get; set; }
-        public string Username2 { get; set; }
         public string OtherUser1 { get; set; }
         public string OtherUsername1 { get; set; }
         public string OtherUser2 { get; set; }
