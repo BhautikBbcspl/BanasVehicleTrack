@@ -138,7 +138,9 @@
                             <th>Action</th>
                             <th>Gatepass ID</th>
                             <th>Usercode</th>
-                            <th>Username</th>
+                            <th>Other-User 1</th>
+                            <th>Other-User 2</th>
+                            <th>Other-User 3</th>
                             <th>Department</th>
                             <th>Center</th>
                             <th>Vehicle Number</th>
@@ -157,12 +159,10 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.GatePassId)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UserCode)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Username)
-                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.UserCode)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OtherUser1)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OtherUser2)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OtherUser3)</td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.DepartmentName)
                             </td>
@@ -241,7 +241,11 @@
                 data.AuditorOperateVisitList.forEach(function (rowData) {
                     additionalRows += '<tr>';
                     additionalRows += '<td>' + rowData.GatePassId + '</td>';
-                    additionalRows += '<td>' + rowData.centername + '</td>';
+                    if (rowData.centerid == "0") {
+                        additionalRows += '<td>' + rowData.ShopName + '</td>'; // Set Shopname
+                    } else {
+                        additionalRows += '<td>' + rowData.centername + '</td>'; // Set centername
+                    }
                     additionalRows += '<td>' + rowData.LocationName + '</td>';
                     additionalRows += '<td>' + rowData.UserGivenLocation + '</td>';
                     additionalRows += '<td><a href="https://www.google.com/maps?q=' + rowData.Latitude + ',' + rowData.Longitude + '" target="_blank"><i class="fa fa-map-marker newIcon" aria-hidden="true"></i></td>';
@@ -254,12 +258,19 @@
             } else {
                 additionalRows = '<tr><td colspan="9" class="text-center">No data found</td></tr>';
             }
+
             var tableHtml = '<table class="table table-hover table-bordered nowrap">' +
                 '<thead>' +
                 '<tr>' +
-                '<th>Gatepass ID</th>' +
-                '<th>Centername</th>' +
-                '<th>Google Location</th>' +
+                '<th>Gatepass ID</th>';
+
+            if (data.AuditorOperateVisitList.length != 0 && data.AuditorOperateVisitList[0].centerid == "0") {
+                tableHtml += '<th>Shopname</th>';
+            } else {
+                tableHtml += '<th>Centername</th>';
+            }
+
+            tableHtml += '<th>Google Location</th>' +
                 '<th>User Location</th>' +
                 '<th>Location Map</th>' +
                 '<th>Odometer</th>' +
@@ -311,7 +322,7 @@
 </script>
 
 <script>
-        function GetCenter(_DepartmentId) {
+    function GetCenter(_DepartmentId) {
         $("#ddlCenter option").remove();
         if (_DepartmentId == "") {
             _DepartmentId = 0;

@@ -29,6 +29,7 @@ namespace BanasVehicleTrack.Controllers
                 }
                 DashboardViewModel model = new DashboardViewModel();
                 model.EmployeeCode = LoggedUserDetails.EmployeeCode;
+                model.DepartmentId = LoggedUserDetails.DepartmentId;
                 model.DashboardCounts = db.BanasAdminDashboardCountRtr("Count", model.EmployeeCode).ToList();
                 //model.DashboardList = db.BanasAdminDashboardListRtr("List").ToList();
                 model.DashboardList = db.BanasAdminDashboardListRtr("List",LoggedUserDetails.EmployeeCode).ToList();

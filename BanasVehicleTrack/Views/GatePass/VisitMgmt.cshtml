@@ -111,12 +111,10 @@
                             <th>
                                 @Html.DisplayName("Gatepass ID")
                             </th>
-                            <th>
-                                @Html.DisplayName("User Code")
-                            </th>
-                            <th>
-                                @Html.DisplayName("User Name")
-                            </th>
+                            <th>@Html.DisplayName("Usercode")</th>
+                            <th>@Html.DisplayName("Other-User 1")</th>
+                            <th>@Html.DisplayName("Other-User 2")</th>
+                            <th>@Html.DisplayName("Other-User 3")</th>
                             <th>
                                 @Html.DisplayName("Department")
                             </th>
@@ -127,14 +125,14 @@
                                 @Html.DisplayName("Vehicle Number")
                             </th>
                             @*<th>
-                                    @Html.DisplayName("OtherUser1")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("OtherUser2")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("OtherUser3")
-                                </th>*@
+            @Html.DisplayName("OtherUser1")
+        </th>
+        <th>
+            @Html.DisplayName("OtherUser2")
+        </th>
+        <th>
+            @Html.DisplayName("OtherUser3")
+        </th>*@
                             <th>
                                 @Html.DisplayName("Information Mode")
                             </th>
@@ -189,86 +187,84 @@
                     <tbody>
                         @foreach (var item in Model.BanasVisitManagementRtr_Results)
                         {
-                            <tr>
+                        <tr>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.GatePassId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.UserCode)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EmployeeName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DepartmentName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Center)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VehicleRegNumber)
-                                </td>
-                                @*<td>
-                                        @Html.DisplayFor(modelItem => item.OtherUser1)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OtherUser2)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OtherUser3)
-                                    </td>*@
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.InformationMode)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VisitPurpose)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Remarks)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Driver)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VisitDateTime)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CloseDateTime)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.StartOdometer)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CloseOdometer)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Difference)
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GatePassId)
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.UserCode)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OtherUser1)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OtherUser2)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OtherUser3)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartmentName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Center)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VehicleRegNumber)
+                            </td>
+                            @*<td>
+            @Html.DisplayFor(modelItem => item.OtherUser1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherUser2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherUser3)
+        </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InformationMode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitPurpose)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Remarks)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Driver)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VisitDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CloseDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartOdometer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CloseOdometer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Difference)
+                            </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DepartureSecurityName)
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DepartureDateTime)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ArrivalSecurityName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ArrivalDateTime)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.StartKm)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EndKm)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DepArrDifference)
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartureSecurityName)
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartureDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArrivalSecurityName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArrivalDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartKm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndKm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepArrDifference)
+                            </td>
 
 
-                            </tr>
+                        </tr>
                         }
 
                     </tbody>

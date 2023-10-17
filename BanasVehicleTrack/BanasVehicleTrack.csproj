@@ -439,6 +439,8 @@
     <Content Include="Views\Master\ViewUserCenterAllocation.cshtml" />
     <Content Include="Views\Master\ViewUserDepartmentAllocation.cshtml" />
     <Content Include="Views\Master\AddUserDepartmentAllocation.cshtml" />
+    <Content Include="Views\Master\ViewShopMaster.cshtml" />
+    <Content Include="Views\Master\AddShopMaster.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

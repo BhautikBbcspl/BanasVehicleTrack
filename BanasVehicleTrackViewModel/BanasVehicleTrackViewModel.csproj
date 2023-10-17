@@ -72,6 +72,7 @@
     <Compile Include="Master\EmployeeMasterViewModel.cs" />
     <Compile Include="Master\SecurityMasterViewModel.cs" />
     <Compile Include="Master\RoleMasterViewModel.cs" />
+    <Compile Include="Master\ShopMasterViewModel.cs" />
     <Compile Include="Master\UserCenterAllocationViewModel.cs" />
     <Compile Include="Master\UserDepartmentAllocationViewModel.cs" />
     <Compile Include="Master\VehicleMasterViewModel.cs" />

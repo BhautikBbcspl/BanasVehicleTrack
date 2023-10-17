@@ -129,7 +129,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="@Url.Action("ViewGatePass", "GatePass", new { filterValue = 1 })"  target = "_blank"> <p class="text-white m-b-0"><i class="fa fa-external-link text-white f-14 m-r-10"></i>Click here</p></a>
+                            <a href="@Url.Action("ViewGatePass", "GatePass", new { filterValue = "Open" })"  target = "_blank"> <p class="text-white m-b-0"><i class="fa fa-external-link text-white f-14 m-r-10"></i>Click here</p></a>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,17 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="@Url.Action("ViewGatePass", "GatePass", new { filterValue = 0 })"  target = "_blank"> <p class="text-white m-b-0"><i class="fa fa-external-link text-white f-14 m-r-10"></i>Click here</p></a>
+                            @*<a href="@Url.Action("ViewGatePass", "GatePass", new { filterValue = "Close" })"  target = "_blank"> <p class="text-white m-b-0"><i class="fa fa-external-link text-white f-14 m-r-10"></i>Click here</p></a>*@
+                            @if (item.CloseGatePass == 0)
+                            {
+                            <p class="text-white m-b-0">No Data Found</p>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ViewGatePass", "GatePass", new { filterValue = "Close" })" target="_blank">
+                                    <p class="text-white m-b-0"><i class="fa fa-external-link text-white f-14 m-r-10"></i>Click here</p>
+                                </a>
+                            }
                         </div>
                     </div>
                 </div>
@@ -169,14 +179,16 @@
 
                     <div class="card-block">
                         <div class="table-responsive">
-                            <table class="table table-hover  table-borderless">
+                            <table class="table table-hover table-borderless">
                                 <thead>
                                     <tr>
                                         <th>Sr No</th>
                                         <th>GatePass Status</th>
                                         <th>GatePass Id</th>
                                         <th>Usercode</th>
-                                        <th>Username</th>
+                                        <th>Other-User 1</th>
+                                        <th>Other-User 2</th>
+                                        <th>Other-User 3</th>
                                         <th>Visit Date Time</th>
                                         <th>Close Date Time</th>
                                         <th>Start Odometer</th>
@@ -206,7 +218,9 @@
                                             </td>
                                             <td class="text-c-blue">@item.GatePassId</td>
                                             <td>@item.UserCode</td>
-                                            <td>@item.Username</td>
+                                            <td>@item.OtherUser1</td>
+                                            <td>@item.OtherUser2</td>
+                                            <td>@item.OtherUser3</td>
                                             <td>@item.VisitDateTime</td>
                                             <td>@item.CloseDateTime</td>
                                             <td>@item.StartOdometer</td>

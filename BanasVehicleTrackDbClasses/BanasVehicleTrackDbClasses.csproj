@@ -136,6 +136,9 @@
     <Compile Include="BanasSecurityVehicleGatepassRetrieve_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BanasShopMasterRetrieve_Result.cs">
+      <DependentUpon>VehicleModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BanasUserCenterIntegrationRtr_Result.cs">
       <DependentUpon>VehicleModel.tt</DependentUpon>
     </Compile>

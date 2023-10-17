@@ -11,6 +11,7 @@ namespace BanasVehicleTrackViewModel
     public class DashboardViewModel
     {
         public string EmployeeCode { get; set; }
+        public string DepartmentId { get; set; }
         public List<BanasAdminDashboardCountRtr_Result> DashboardCounts { get; set; }
         public List<BanasAdminDashboardListRtr_Result> DashboardList { get; set; }
     }

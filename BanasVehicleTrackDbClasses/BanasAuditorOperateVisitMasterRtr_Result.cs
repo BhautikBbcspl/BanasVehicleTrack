@@ -21,8 +21,10 @@ namespace BanasVehicleTrackDbClasses
         public string OdometerImage { get; set; }
         public string CreateDate { get; set; }
         public string CreateUser { get; set; }
-        public Nullable<int> centerid { get; set; }
+        public int centerid { get; set; }
         public string centername { get; set; }
+        public int ShopId { get; set; }
+        public string ShopName { get; set; }
         public string cdate { get; set; }
         public string Remarks { get; set; }
         public string LocationName { get; set; }

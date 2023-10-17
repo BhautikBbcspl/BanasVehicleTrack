@@ -30,8 +30,10 @@
                             <th>@Html.DisplayName("Vehicle Number")</th>
                             <th>@Html.DisplayName("Gate Pass ID")</th>
                             <th>@Html.DisplayName("Gatepass Status")</th>
-                            <th>@Html.DisplayName("User Code")</th>
-                            <th>@Html.DisplayName("User Name")</th>
+                            <th>@Html.DisplayName("Usercode")</th>
+                            <th>@Html.DisplayName("Other-User 1")</th>
+                            <th>@Html.DisplayName("Other-User 2")</th>
+                            <th>@Html.DisplayName("Other-User 3")</th>
                             <th>@Html.DisplayName("Department")</th>
                             <th>@Html.DisplayName("Center")</th>
                             <th>@Html.DisplayName("Visit Purpose")</th>
@@ -67,7 +69,9 @@
 
                                 </td>
                                 <td>@Html.DisplayFor(modelItem => item.UserCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                                <td>@Html.DisplayFor(modelItem => item.OtherUser1)</td>
+                                <td>@Html.DisplayFor(modelItem => item.OtherUser2)</td>
+                                <td>@Html.DisplayFor(modelItem => item.OtherUser3)</td>
                                 <td>@Html.DisplayFor(modelItem => item.DepartmentName)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Center)</td>
                                 <td>@Html.DisplayFor(modelItem => item.VisitPurpose)</td>

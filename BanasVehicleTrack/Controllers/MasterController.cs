@@ -83,6 +83,10 @@ namespace BanasVehicleTrack.Controllers
                 {
                     msg = db.BanasUserDepartmentIntegrationInsUpd(Code, "", "", "", "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, status, "active").FirstOrDefault();
                 }
+                else if (Type == "ShopMaster")
+                {
+                    msg = db.BanasShopMasterInsUpd(Code, "", "", "","", LoggedUserDetails.CompanyCode, status, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "active").FirstOrDefault();
+                }
                 else
                 {
                     msg = "Did not have method";
@@ -1803,6 +1807,136 @@ namespace BanasVehicleTrack.Controllers
         //        return RedirectToAction("Dashboard", "Home");
         //    }
         //}
+        #endregion
+
+        #region==> Shop Master
+        public ActionResult ViewShopMaster()
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                ShopMasterViewModel model = new ShopMasterViewModel();
+                string url = generalFunctions.getCommon(Request.Url.AbsoluteUri);
+                var re = db.BanasMenuRightsRtr(LoggedUserDetails.RoleId, url).FirstOrDefault();
+                if (re != null)
+                {
+                    ViewBag.ViewRight = re.ViewRight;
+                    ViewBag.InsertRight = re.InsertRight;
+                    ViewBag.UpdateRight = re.UpdateRight;
+                    ViewBag.DeleteRight = re.DeleteRight;
+                }
+                if (ViewBag.ViewRight == 1)
+                {
+                    model.ShopList = db.BanasShopMasterRetrieve("all").ToList();
+                    model.Action = "Save";
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard", "Home");
+                }
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+
+        public ActionResult AddShopMaster()
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                ShopMasterViewModel model = new ShopMasterViewModel();
+                model.DepartmentList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList();
+                model.Action = "Save";
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult AddShopMaster(ShopMasterViewModel cm)
+        {
+            try
+            {
+                if (cm.Action == "Save")
+                {
+                    string msg = db.BanasShopMasterInsUpd(cm.ShopMasterId, cm.DepartmentId, cm.ShopName, cm.ShopCode, cm.ShopContactNo, LoggedUserDetails.CompanyCode, cm.IsActive, generalFunctions.getTimeZoneDatetimedb(), "", User.Identity.Name, "insert").FirstOrDefault();
+                    ViewBag.Message = msg;
+                    if (msg.Contains("successfully"))
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Success(msg, true);
+                    }
+                    else
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Danger(msg, true);
+                    }
+                }
+                else
+                {
+                    string msg = db.BanasShopMasterInsUpd(cm.ShopMasterId, cm.DepartmentId, cm.ShopName, cm.ShopCode, cm.ShopContactNo, LoggedUserDetails.CompanyCode, cm.IsActive, "", generalFunctions.getTimeZoneDatetimedb(), User.Identity.Name, "update").FirstOrDefault();
+
+                    ViewBag.Message = msg;
+                    if (msg.Contains("successfully"))
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Success(msg, true);
+                    }
+                    else
+                    {
+                        ViewBag.Message = msg.ToUpper();
+                        Danger(msg, true);
+                    }
+                }
+                return RedirectToAction("AddShopMaster");
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        public ActionResult EditShopMaster(int id)
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                var sm = db.BanasShopMasterRetrieve("active").Where(c => c.ShopMasterId == id).SingleOrDefault();
+
+                ShopMasterViewModel sb = new ShopMasterViewModel();
+                sb.DepartmentList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.DepartmentId).ToList();
+                sb.ShopMasterId = sm.ShopMasterId.ToString();
+                sb.DepartmentId = sm.DepartmentId.ToString();
+                sb.ShopName = sm.ShopName;
+                sb.ShopCode = sm.ShopCode;
+                sb.ShopContactNo = sm.ShopContactNo;
+                sb.IsActive = sm.IsActive.ToString();
+                sb.Action = "update";
+                ViewBag.action = "update";
+                return View("AddShopMaster", sb);
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
         #endregion
 
         #endregion

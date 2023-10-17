@@ -153,7 +153,7 @@ namespace BanasVehicleTrackApiNew.Controllers
                 aov.OdometerImage = "/Uploads/OdometerImage/" + fileName;
                 //aov.OdometerImage = filePath;
 
-                string re = db.BanasAuditorOperateVisitMasterIns(aov.GatePassId, aov.Latitude, aov.Longitude, aov.Odometer, aov.OdometerImage, aov.CreateDate, aov.CreateUser, aov.CenterId,"insert",aov.Remark,aov.LocationName, aov.UserGivenLocation).FirstOrDefault();
+                string re = db.BanasAuditorOperateVisitMasterIns(aov.GatePassId, aov.Latitude, aov.Longitude, aov.Odometer, aov.OdometerImage, aov.CreateDate, aov.CreateUser, aov.CenterId, aov.ShopId, "insert",aov.Remark,aov.LocationName, aov.UserGivenLocation).FirstOrDefault();
 
                 var response = Request.CreateResponse(HttpStatusCode.OK, re);
                 return response;

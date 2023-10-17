@@ -40,14 +40,17 @@ namespace BanasVehicleTrack.Controllers
             }
             if (ViewBag.ViewRight == 1)
             {
-                if (filterValue != null)
+                if (filterValue == "Close")
                 {
-                    var re1 = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "", LoggedUserDetails.EmployeeCode).Where(x => x.GatePassStatus == Convert.ToInt32(filterValue));
+                    var re1 = (LoggedUserDetails.EmployeeCode == "Admin")
+                ? db.BanasVehicleGatepassRetrieve("closeall", "", "", "", "", "", LoggedUserDetails.EmployeeCode).ToList() : db.BanasVehicleGatepassRetrieve("closeall", "", "", "admin", "", "", LoggedUserDetails.EmployeeCode).ToList();
+
                     return View(re1);
                 }
                 else
                 {
-                    var re1 = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "", LoggedUserDetails.EmployeeCode);
+                    var re1 = (LoggedUserDetails.EmployeeCode == "Admin")
+                  ? db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "", LoggedUserDetails.EmployeeCode).ToList() : db.BanasVehicleGatepassRetrieve("all", "", "", "admin", "", "", LoggedUserDetails.EmployeeCode).ToList();
                     return View(re1);
                 }
             }
@@ -901,7 +904,15 @@ namespace BanasVehicleTrack.Controllers
 
                         // Add child table header row
                         worksheet.Cell("B" + rowIndex).Value = "Gatepass ID";
-                        worksheet.Cell("C" + rowIndex).Value = "Centername";
+
+                        if(re2[0].centerid == 0)
+                        {
+                            worksheet.Cell("C" + rowIndex).Value = "Shopname";
+                        }
+                        else
+                        {
+                            worksheet.Cell("C" + rowIndex).Value = "Centername";
+                        }
                         worksheet.Cell("D" + rowIndex).Value = "Google Location";
                         worksheet.Cell("E" + rowIndex).Value = "User Location";
                         worksheet.Cell("F" + rowIndex).Value = "Location";
@@ -925,7 +936,14 @@ namespace BanasVehicleTrack.Controllers
                         foreach (var item2 in re2)
                         {
                             worksheet.Cell("B" + rowIndex).Value = item2.GatePassId;
-                            worksheet.Cell("C" + rowIndex).Value = item2.centername;
+                            if (item2.centerid == 0)
+                            {
+                                worksheet.Cell("C" + rowIndex).Value = item2.ShopName; 
+                            }
+                            else
+                            {
+                                worksheet.Cell("C" + rowIndex).Value = item2.centername; 
+                            }
                             worksheet.Cell("D" + rowIndex).Value = item2.LocationName;
                             worksheet.Cell("E" + rowIndex).Value = item2.UserGivenLocation;
                             string hyperlinkUrl = "https://www.google.com/maps?q=" + item2.Latitude + "," + item2.Longitude;

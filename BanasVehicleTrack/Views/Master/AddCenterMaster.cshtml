@@ -38,7 +38,6 @@
                                 @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentList, "DepartmentId", "DepartmentName"), "Select Department",
                                                new Dictionary<string, object>() {
                                                    {"id","ddlDepartmentId"},
-                                         {"onchange", "javascript:GetCenter(this.value)"},
                                          { "class","form-control form-select js-example-disabled-results" } })
                             </div>
 

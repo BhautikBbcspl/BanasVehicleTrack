@@ -34,6 +34,7 @@ namespace BanasVehicleTrackViewModel.AuditorDepartmentApp
         public string CreateUser { get; set; }
         public string GatePassStatus { get; set; }
         public string CenterId { get; set; }
+        public string ShopId { get; set; }
         public string Action { get; set; }
         public string Remark { get; set; }
         public string LocationName { get; set; }

@@ -109,6 +109,7 @@
     <Parameter Name="CreateDate" Type="nvarchar" Mode="In" />
     <Parameter Name="CreateUser" Type="nvarchar" Mode="In" />
     <Parameter Name="CenterId" Type="nvarchar" Mode="In" />
+    <Parameter Name="ShopId" Type="nvarchar" Mode="In" />
     <Parameter Name="action" Type="nvarchar" Mode="In" />
     <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
     <Parameter Name="LocationName" Type="nvarchar(max)" Mode="In" />

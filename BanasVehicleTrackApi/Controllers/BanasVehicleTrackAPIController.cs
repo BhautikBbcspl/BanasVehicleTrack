@@ -175,7 +175,7 @@ namespace BanasVehicleTrackApi.Controllers
                 aov.OdometerImage = "/Uploads/OdometerImage/" + fileName;
                 //aov.OdometerImage = filePath;
 
-                string re = db.BanasAuditorOperateVisitMasterIns(aov.GatePassId, aov.Latitude, aov.Longitude, aov.Odometer, aov.OdometerImage, aov.CreateDate, aov.CreateUser, aov.CenterId, "insert", aov.Remark, aov.LocationName, aov.UserGivenLocation).FirstOrDefault();
+                string re = db.BanasAuditorOperateVisitMasterIns(aov.GatePassId, aov.Latitude, aov.Longitude, aov.Odometer, aov.OdometerImage, aov.CreateDate, aov.CreateUser, aov.CenterId,aov.ShopId,"insert", aov.Remark, aov.LocationName, aov.UserGivenLocation).FirstOrDefault();
 
                 var response = Request.CreateResponse(HttpStatusCode.OK, re);
                 return response;
@@ -660,6 +660,48 @@ namespace BanasVehicleTrackApi.Controllers
                     responsecode = HttpStatusCode.InternalServerError,
                     message = ex.ToString()
                 });
+                return response;
+            }
+            finally
+            { db.Dispose(); }
+        }
+        #endregion
+
+        #region ==> Retrive Shops
+
+        [Route("api/BanasVehicleTracking/RetrieveShops")]
+        [HttpPost]
+        public HttpResponseMessage RetrieveShops(ShopMasterViewModel aov)
+        {
+            try
+            {
+
+                string re = db.BanasShopMasterRetrieve(aov.Action).ToString();
+                if (re != null)
+                {
+                    var CenterList = db.BanasShopMasterRetrieve(aov.Action).ToList();
+                    var response2 = Request.CreateResponse(HttpStatusCode.OK, CenterList);
+                    return response2;
+                }
+                else
+                {   
+                    string query3 = "{ \"Result\":\"Invalid\"}";
+                    var jObject = JObject.Parse(query3);
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
+                    response.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                List<FetchErrorclass> ERROR = new List<FetchErrorclass>();
+                FetchErrorclass error = new FetchErrorclass
+                {
+                    FetchResult = Convert.ToString("Invalid"),
+                };
+                ERROR.Add(error);
+
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, ERROR);
                 return response;
             }
             finally
