@@ -21,6 +21,67 @@
 
     </div>
 </div>
+
+<div class="page-wrapper">
+    <div class="card">
+        <div class="card-block">
+            <div class="dt-responsive">
+                @using (Html.BeginForm("AuditorFinalApprove", "AuditorDepartment", FormMethod.Post, new { id = "AuditorDashboardForm" }))
+                {
+                    @Html.AntiForgeryToken();
+
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            <label class="col-form-label">From Date</label><br />
+                            @Html.TextBoxFor(m => m.VisitDateTime, new Dictionary<string, object>() {
+                                                               {"id","txtVisitDateTime"},
+                                                               {"class","form-control datepicker"},
+                                                                  {"autocomplete","off"},
+                                                               })
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="col-form-label">To Date</label><br />
+                            @Html.TextBoxFor(m => m.CloseDateTime, new Dictionary<string, object>() {
+                                                               {"id","txtCloseDateTime"},
+                                                               {"class","form-control datepicker"},
+                                                                  {"autocomplete","off"},
+                                                               })
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label class="col-form-label">Department</label><br />
+                            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
+                                        new Dictionary<string, object>() {
+                                            {"id","ddlDepartmentId"},
+                                            {"onchange", "javascript:GetVehicle(this.value)"},
+                                            { "class","form-control form-select js-example-disabled-results"}
+                                            })
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label class="col-form-label">Vehicle Reg Number</label><br />
+                            @Html.DropDownListFor(m => m.VehicleId, new SelectList(Model.VehicleMasterList, "VehicleId", "VehicleRegNumber"), "Select Vehicle",
+                                        new Dictionary<string, object>() {
+                                            {"id","ddlVehicleId"},
+                                            { "class","form-control form-select js-example-disabled-results"}
+                                            })
+
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="mt-4">
+                                <input type="submit" class="btn btn-round btn-inverse m-2" value="View" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="page-wrapper">
     <div class="card">
         <div class="card-block">
@@ -78,14 +139,14 @@
                             </th>
 
                             @*<th>
-            @Html.DisplayName("OtherUser1")
-        </th>
-        <th>
-            @Html.DisplayName("OtherUser2")
-        </th>
-        <th>
-            @Html.DisplayName("OtherUser3")
-        </th>*@
+                                    @Html.DisplayName("OtherUser1")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("OtherUser2")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("OtherUser3")
+                                </th>*@
                             <th>
                                 @Html.DisplayName("Information Mode")
                             </th>
@@ -112,97 +173,97 @@
                     <tbody>
                         @foreach (var item in Model.BanasVehicleGatepassRetrieveList)
                         {
-                        <tr>
-                            <td>
-                                @if (item.GatePassStatus == 1)
-                                {
-                                    <label class="text-success">Open</label>
-                                }
-                                else
-                                {
-                                    <label class="text-danger">Close</label>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.GatePassId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UserCode)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Username)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DepartmentName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Center)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.VehicleRegNumber)
-                            </td>
-                            <td>
-                                <input type="checkbox" class="chk1" name="selectedDifference" data-record-type="GatePass" data-record-value="@item.Difference" data-record-id="@item.GatePassId" />
-                                @Html.DisplayFor(modelItem => item.Difference)
-                            </td>
-                            <td>
-                                <input type="checkbox" class="chk1" name="selectedDepArrDifference" data-record-type="Security" data-record-value="@item.DepArrDifference" data-record-id="@item.GatePassId" />
-                                @Html.DisplayFor(modelItem => item.DepArrDifference)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StartOdometer)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CloseOdometer)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StartKm)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EndKm)
-                            </td>
-                            <td class="@(item.TotalDifference > 5 ? "red-background" : "")">
-                                @Html.DisplayFor(modelItem => item.TotalDifference)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ArrivalSecurityName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ArrivalSecurityCode)
-                            </td>
-                            @*<td>
-            @Html.DisplayFor(modelItem => item.OtherUser1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OtherUser2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OtherUser3)
-        </td>*@
-                            <td>
-                                @Html.DisplayFor(modelItem => item.InformationMode)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.VisitDateTime)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.VisitPurpose)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Remarks)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Driver)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.VehicleCode)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RatePerKm)
+                            <tr>
+                                <td>
+                                    @if (item.GatePassStatus == 1)
+                                    {
+                                        <label class="text-success">Open</label>
+                                    }
+                                    else
+                                    {
+                                        <label class="text-danger">Close</label>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GatePassId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Username)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Center)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleRegNumber)
+                                </td>
+                                <td>
+                                    <input type="checkbox" class="chk1" name="selectedDifference" data-record-type="GatePass" data-record-value="@item.Difference" data-record-id="@item.GatePassId" />
+                                    @Html.DisplayFor(modelItem => item.Difference)
+                                </td>
+                                <td>
+                                    <input type="checkbox" class="chk1" name="selectedDepArrDifference" data-record-type="Security" data-record-value="@item.DepArrDifference" data-record-id="@item.GatePassId" />
+                                    @Html.DisplayFor(modelItem => item.DepArrDifference)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StartOdometer)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CloseOdometer)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StartKm)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EndKm)
+                                </td>
+                                <td class="@(item.TotalDifference > 5 ? "red-background" : "")">
+                                    @Html.DisplayFor(modelItem => item.TotalDifference)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ArrivalSecurityName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ArrivalSecurityCode)
+                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.OtherUser1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OtherUser2)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OtherUser3)
+                                    </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InformationMode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VisitDateTime)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VisitPurpose)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Remarks)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Driver)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RatePerKm)
 
-                            </td>
+                                </td>
 
-                        </tr>
+                            </tr>
                         }
 
                     </tbody>
@@ -215,13 +276,90 @@
 
 <script>
     $(document).ready(function () {
-        $('.chk1').on('change', function () {
-            if ($(this).is(':checked')) {
-                // Uncheck other checkboxes in the same row
-                $(this).closest('tr').find('.chk1').not(this).prop('checked', false);
+        var currentDate = new Date(); // Get the current date
+
+        var formattedCurrentDate = currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();
+        var selectedDate = null;
+        $('#txtVisitDateTime').Zebra_DatePicker({
+            format: 'd-m-Y',
+            direction: false,
+            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],
+            onSelect: function (date) {
+                selectedDate = date;
+
             }
         });
+        $('#txtCloseDateTime').Zebra_DatePicker({
+            format: 'd-m-Y',
+            direction: false,
+            disabled_dates: ['*+' + currentDate.getMonth() + 'm+1d-*'],
+            onOpen: function () {
+                debugger
+                if (selectedDate != null) {
+                    var direction = [selectedDate, formattedCurrentDate];
+
+                }
+                $('#txtCloseDateTime').data('Zebra_DatePicker').update({
+                    direction: direction
+                });
+
+            }
+        });
+        $('#Zebra_DatePicker_Icon').on('click', function () {
+            $('#txtCloseDateTime').Zebra_DatePicker('show');
+            //$('#fromDate').Zebra_DatePicker('show');
+        });
     });
+
+
+    $('.chk1').on('change', function () {
+        if ($(this).is(':checked')) {
+            // Uncheck other checkboxes in the same row
+            $(this).closest('tr').find('.chk1').not(this).prop('checked', false);
+        }
+    });
+
+       function GetVehicle(_DepartmentId) {
+        $("#ddlVehicleId option").remove();
+        if (_DepartmentId == "") {
+            _DepartmentId = 0;
+        }
+        if (_DepartmentId != 0 ) {
+            var url = "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" + "/AuditorDepartment/SelectDepartmentWiseVehicleJson";
+
+            $.ajax({
+                url: url,
+                data: { ddlDepartment: _DepartmentId  } ,
+                cache: false,
+                type: "POST",
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    debugger
+                    var page = "<select id='ddlVehicleId'>";
+                    page = page + '<option value="">Select Vehicle</option>';
+                    for (var i = 0; i < data.VehicleList.length; i++) {
+                        page = page + '<option value=' + data.VehicleList[i].VehicleId + '>' + data.VehicleList[i].VehicleRegNumber + '</option>';
+                    }
+                    page = page + '</select>';
+                    $('#ddlVehicleId').html(page);
+                },
+                error: function (reponse) {
+                    var page = "<select id='ddlVehicleId'>";
+                    page = page + '<option value="">Select Vehicle</option>';
+                    page = page + '</select>';
+                    $('#ddlVehicleId').html(page);
+                }
+            });
+        }
+        else {
+            var page = "<select id='ddlVehicleId'>";
+            page = page + '<option value="">Select Vehicle</option>';
+            page = page + '</select>';
+            $('#ddlVehicleId').html(page);
+        }
+    }
+
     function sel() {
         var selectedIds = [];
         var selectedValues = [];

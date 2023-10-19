@@ -709,7 +709,9 @@ namespace BanasVehicleTrack.Controllers
                     model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
                     model.CenterList = (LoggedUserDetails.EmployeeCode == "Admin")
                      ? db.BanasCenterMasterRetrieve("active").ToList() : db.BanasCenterMasterRetrieve("active").Where(x => x.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
+
                     model.VisitCenterReportList = db.BanasVisitCenterReportRtr("all", generalFunctions.dateconvert(model.VisitDateTime), generalFunctions.dateconvert(model.CloseDateTime), "", "", "","", LoggedUserDetails.EmployeeCode).Where(x => (Convert.ToInt32(x.GatePassStatus) == 0)).ToList();
+
                     model.AuditorOperateVisitList = db.BanasAuditorOperateVisitMasterRtr("", "all").ToList();
                     model.VehicleMasterList = (LoggedUserDetails.EmployeeCode == "Admin")
                 ? db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).ToList() : db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).Where(c => c.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();

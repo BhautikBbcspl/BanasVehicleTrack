@@ -16,6 +16,7 @@ namespace BanasVehicleTrackViewModel.SecurityDepartment
         public string DepartureDateTime { get; set; }
         [Required(ErrorMessage = "*")]
         public decimal StartKm { get; set; }
+        public bool DepartureVerifySTS { get; set; }
         public bool DepartureVerifyStatus { get; set; }
         public string DepartureSecurityId { get; set; }
         public string DepartureSecurityRemark { get; set; }
@@ -23,6 +24,7 @@ namespace BanasVehicleTrackViewModel.SecurityDepartment
         public string ArrivalDateTime { get; set; }
         [Required(ErrorMessage = "*")]
         public decimal EndKm { get; set; }
+        public bool ArrivalVerifySTS { get; set; }
         public bool ArrivalVerifyStatus { get; set; }
         public string ArrivalSecurityId { get; set; }
         public string ArrivalSecurityRemark { get; set; }

@@ -190,7 +190,7 @@
 
                     <div class="row">
                         @*@if (Model.DepartureVerifyStatus == null && Model.ArrivalVerifyStatus == null || Model.DepartureVerifyStatus == "" && Model.ArrivalVerifyStatus == "")*@
-                        @if (Model.DepartureVerifyStatus == false && Model.ArrivalVerifyStatus == false)
+                        @if (Model.DepartureVerifySTS == false && Model.ArrivalVerifySTS == false)
                         {
 
                             <div class="col-md-6">
@@ -199,9 +199,12 @@
                                     {
                                         @Html.AntiForgeryToken();
 
-                                        @*@Html.HiddenFor(m => m.DepartureVerifyStatus)*@
+                                        @Html.HiddenFor(m => m.DepartureVerifySTS, new { @Value = true })
+                                        @Html.HiddenFor(m => m.DepartureVerifyStatus, new { @Value = true })
                                         @Html.HiddenFor(m => m.ArrivalVerifyStatus)
                                         @Html.HiddenFor(m => m.GatePassId)
+                                        @Html.HiddenFor(m => m.DepartureSecurityId)
+                                        @Html.HiddenFor(m => m.DepartureSecurityId)
                                         <h4 class="sub-title">Departure Details</h4>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">
@@ -238,7 +241,8 @@
                                                 @Html.DropDownListFor(m => m.DepartureSecurityId, new SelectList(Model.SecurityMasterList.OrderBy(m => m.SecurityName), "SecurityId", "SecurityName"), "Select Security",
                                              new Dictionary<string, object>() {
                                                         {"id","ddlDepartureSecurityId"},
-                                                        { "class","form-control form-select js-example-disabled-results"}
+                                                        { "class","form-control form-select js-example-disabled-results"},
+                                                      { "disabled","disabled"}
                                                  })
                                             </div>
                                         </div>
@@ -264,7 +268,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Verify Status</label>
                                             <div class="col-sm-8">
-                                                @Html.CheckBoxFor(m => m.DepartureVerifyStatus, new { @class = "chk" })
+                                                @Html.CheckBoxFor(m => m.DepartureVerifyStatus, new { @class = "chk",@disabled= "disabled" })
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -278,14 +282,14 @@
 
                         }
                         //else if (Model.DepartureVerifyStatus == "1" && Model.ArrivalVerifyStatus == null || Model.DepartureVerifyStatus == "1" && Model.ArrivalVerifyStatus == "")
-                        else if (Model.DepartureVerifyStatus == true && Model.ArrivalVerifyStatus == false)
+                        else if (Model.DepartureVerifySTS == true && Model.ArrivalVerifySTS == false)
                         {
                             <!--Dep ReadOnly-->
                             <div class="col-md-6">
                                 <div class="card-block">
 
-                                    @*@Html.HiddenFor(m => m.DepartureVerifyStatus)*@
-                                    @*@Html.HiddenFor(m => m.ArrivalVerifyStatus)*@
+                                    @Html.HiddenFor(m => m.DepartureVerifySTS, new { @Value = true })
+                                    @Html.HiddenFor(m => m.ArrivalVerifySTS, new { @Value = true })
                                     @Html.HiddenFor(m => m.GatePassId)
                                     <h4 class="sub-title">Departure Details</h4>
                                     <div class="form-group row">
@@ -344,9 +348,14 @@
                                     {
                                         @Html.AntiForgeryToken();
 
-                                        @Html.HiddenFor(m => m.DepartureVerifyStatus)
-                                        @*@Html.HiddenFor(m => m.ArrivalVerifyStatus)*@
+                                        @Html.HiddenFor(m => m.DepartureVerifySTS, new { @Value = true })
+                                        @Html.HiddenFor(m => m.ArrivalVerifySTS, new { @Value = true })
+                                        @Html.HiddenFor(m => m.DepartureVerifyStatus, new { @Value = true })
+                                        @Html.HiddenFor(m => m.ArrivalVerifyStatus, new { @Value = true })
                                         @Html.HiddenFor(m => m.GatePassId)
+                                        @Html.HiddenFor(m => m.DepartureSecurityId)
+                                        @Html.HiddenFor(m => m.ArrivalSecurityId)
+
                                         <h4 class="sub-title">Arrival Details</h4>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">
@@ -385,7 +394,8 @@
                                                 @Html.DropDownListFor(m => m.ArrivalSecurityId, new SelectList(Model.SecurityMasterList.OrderBy(m => m.SecurityName), "SecurityId", "SecurityName"), "Select Security",
                                         new Dictionary<string, object>() {
                                                       {"id","ddlArrivalSecurityId"},
-                                                      { "class","form-control form-select js-example-disabled-results"}
+                                                      { "class","form-control form-select js-example-disabled-results"},
+                                                      { "disabled","disabled"}
                                             })
                                             </div>
                                         </div>
@@ -411,7 +421,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Verify Status</label>
                                             <div class="col-sm-8">
-                                                @Html.CheckBoxFor(m => m.ArrivalVerifyStatus, new { @class = "chk" })
+                                                @Html.CheckBoxFor(m => m.ArrivalVerifyStatus, new { @class = "chk", @disabled = "disabled" })
                                             </div>
                                         </div>
                                         <div class="form-group row float-right">
@@ -433,7 +443,19 @@
 </div>
 
 <script>
-     $(document).ready(function() {
+    $(document).ready(function () {
+        //Current datetime set to datepicker
+        var currentDateTime = new Date();
+        var formattedDate = currentDateTime.toLocaleString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        }).replace(/\//g, '-'); 
+
+        $('#txtDepartureDateTime, #txtArrivalDateTime').val(formattedDate.replace(',', ''));
+
         $('#ddlArrivalSecurityId').change(function() {
             var selectedSecurityId = $(this).val(); // Get the selected security ID
 

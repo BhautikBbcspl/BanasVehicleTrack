@@ -102,9 +102,16 @@ namespace BanasVehicleTrack.Controllers
                 model.GatePassId = id;
                 model.GatePassList = db.BanasSecurityVehicleGatepassRetrieve(model.Action, id).ToList();
 
-                model.DepartureVerifyStatus = Convert.ToBoolean(model.GatePassList.FirstOrDefault().DepartureVerifyStatus);
-                model.ArrivalVerifyStatus = Convert.ToBoolean(model.GatePassList.FirstOrDefault().ArrivalVerifyStatus);
-                model.SecurityMasterList = db.BanasSecurityMasterRetrieve("active", LoggedUserDetails.CompanyCode).ToList();
+                model.DepartureVerifySTS = Convert.ToBoolean(model.GatePassList.FirstOrDefault().DepartureVerifyStatus);
+                model.ArrivalVerifySTS = Convert.ToBoolean(model.GatePassList.FirstOrDefault().ArrivalVerifyStatus);
+
+                model.DepartureVerifyStatus = true;
+                model.ArrivalVerifyStatus = true;
+
+                model.SecurityMasterList = db.BanasSecurityMasterRetrieve("active", LoggedUserDetails.CompanyCode).Where(x=>x.SecurityCode==LoggedUserDetails.EmployeeCode).ToList();
+                model.DepartureSecurityId = model.SecurityMasterList.FirstOrDefault().SecurityId.ToString();
+                model.ArrivalSecurityId = model.SecurityMasterList.FirstOrDefault().SecurityId.ToString();
+
                 return View(model);
             }
             catch (Exception ex)
@@ -118,7 +125,7 @@ namespace BanasVehicleTrack.Controllers
         {
             try
             {
-                if (dm.DepartureVerifyStatus == true && dm.ArrivalVerifyStatus == false)
+                if (dm.DepartureVerifySTS == true && dm.ArrivalVerifySTS == false)
                 {
                     DateTime DepartureDateTime = DateTime.ParseExact(dm.DepartureDateTime, "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture);
 
@@ -135,7 +142,7 @@ namespace BanasVehicleTrack.Controllers
                         Danger(msg, true);
                     }
                 }
-                else if (dm.DepartureVerifyStatus == true && dm.ArrivalVerifyStatus == true)
+                else if (dm.DepartureVerifySTS == true && dm.ArrivalVerifySTS == true)
                 {
                     DateTime ArrivalDateTime = DateTime.ParseExact(dm.ArrivalDateTime, "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture);
 

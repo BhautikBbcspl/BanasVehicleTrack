@@ -50,11 +50,12 @@
                         <div class="col-sm-3">
                             <label class="col-form-label">Department</label><br />
                             @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentMasterList, "DepartmentId", "DepartmentName"), "Select Department",
-                                        new Dictionary<string, object>() {
-                                            {"id","ddlDepartmentId"},
-                                            { "class","form-control form-select js-example-disabled-results"},
-                                        { "required","required"},
-                                            })
+                                new Dictionary<string, object>() {
+                                    {"id","ddlDepartmentId"},
+                                    {"onchange", "javascript:GetVehicle(this.value)"},
+                                    { "class","form-control form-select js-example-disabled-results"},
+                                    { "required","required"},
+                                    })
 
                         </div>
                         @*}
@@ -290,6 +291,46 @@
         else {
             form.action = action;
             form.submit();
+        }
+    }
+    function GetVehicle(_DepartmentId) {
+        $("#ddlVehicleId option").remove();
+        if (_DepartmentId == "") {
+            _DepartmentId = 0;
+        }
+        if (_DepartmentId != 0 ) {
+            var url = "@System.Configuration.ConfigurationManager.AppSettings["myKey"]" + "/AuditorDepartment/SelectDepartmentWiseVehicleJson";
+
+            $.ajax({
+                url: url,
+                data: { ddlDepartment: _DepartmentId  } ,
+                cache: false,
+                type: "POST",
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    debugger
+                    var page = "<select id='ddlVehicleId'>";
+                    page = page + '<option value="">Select Vehicle</option>';
+                    for (var i = 0; i < data.VehicleList.length; i++) {
+                        page = page + '<option value=' + data.VehicleList[i].VehicleId + '>' + data.VehicleList[i].VehicleRegNumber + '</option>';
+                    }
+                    page = page + '</select>';
+                    $('#ddlVehicleId').html(page);
+                },
+                error: function (reponse) {
+                    var page = "<select id='ddlVehicleId'>";
+                    page = page + '<option value="">Select Vehicle</option>';
+                    page = page + '</select>';
+                    $('#ddlVehicleId').html(page);
+                }
+            });
+        }
+        else {
+            var page = "<select id='ddlVehicleId'>";
+            page = page + '<option value="">Select Vehicle</option>';
+            page = page + '</select>';
+            $('#ddlVehicleId').html(page);
         }
     }
 </script>

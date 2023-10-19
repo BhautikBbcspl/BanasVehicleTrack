@@ -51,6 +51,10 @@
     <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="BanasAuditorFinalApproveRetrieve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FromDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="ToDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartmentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="VehicleId" Type="nvarchar" Mode="In" />
     <Parameter Name="action" Type="nvarchar" Mode="In" />
     <Parameter Name="loginuser" Type="nvarchar" Mode="In" />
   </Function>

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ClosedXML.Excel.Drawings;
+using BanasVehicleTrackViewModel.Master;
 
 namespace BanasVehicleTrack.Controllers
 {
@@ -45,7 +46,7 @@ namespace BanasVehicleTrack.Controllers
                     string CurrentYear = DateTime.Now.Year.ToString();
                     string CurrentMonth = DateTime.Now.Month.ToString();
 
-                    model.DashboardCounts = db.BanasAdminDashboardCountRtr("Count",LoggedUserDetails.DepartmentId).ToList(); 
+                    model.DashboardCounts = db.BanasAdminDashboardCountRtr("Count", LoggedUserDetails.EmployeeCode).ToList();
                     model.ContractorTotalAmountMonthwiseList = db.BanasContractorTotalAmountMonthwiseRtr(CurrentMonth, CurrentYear, "List").ToList();
                     //model.visitDateTimeList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "").ToList();
                     //model.GatePassIdList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "").ToList();
@@ -91,11 +92,11 @@ namespace BanasVehicleTrack.Controllers
                     model.CloseDateTime = generalFunctions.dateconvert(generalFunctions.getDate());
                     model.visitDateTimeList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "", LoggedUserDetails.EmployeeCode).ToList();
                     //model.GatePassIdList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "").ToList();
-                    model.BanasVehicleGatepassRetrieveList = db.BanasAuditorDepartmentDashboardRetrieve(generalFunctions.getDate(), generalFunctions.getDate(), model.DepartmentId, model.VehicleId, model.GatepassId, "all",LoggedUserDetails.EmployeeCode).ToList();
+                    model.BanasVehicleGatepassRetrieveList = db.BanasAuditorDepartmentDashboardRetrieve(generalFunctions.getDate(), generalFunctions.getDate(), model.DepartmentId, model.VehicleId, model.GatepassId, "all", LoggedUserDetails.EmployeeCode).ToList();
                     model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
                     model.DepartmentId = LoggedUserDetails.DepartmentId;
                     model.VehicleMasterList = (LoggedUserDetails.EmployeeCode == "Admin")
-                 ? db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).ToList() : db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).Where(c=>c.DepartmentId.ToString()==LoggedUserDetails.DepartmentId).ToList();
+                 ? db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).ToList() : db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).Where(c => c.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
                     return View(model);
                 }
                 else
@@ -119,7 +120,6 @@ namespace BanasVehicleTrack.Controllers
                     return RedirectToAction("Login", "Home");
                 }
                 model.visitDateTimeList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "", LoggedUserDetails.EmployeeCode).ToList();
-                //model.GatePassIdList = db.BanasVehicleGatepassRetrieve("all", "", "", "", "", "").ToList();
 
                 // Check if VisitDateTime is null before converting
                 string visitDateTime = model.VisitDateTime != null ? generalFunctions.dateconvert(model.VisitDateTime) : null;
@@ -130,7 +130,10 @@ namespace BanasVehicleTrack.Controllers
 
                 model.BanasVehicleGatepassRetrieveList = db.BanasAuditorDepartmentDashboardRetrieve(visitDateTime, closeDateTime, model.DepartmentId, model.VehicleId, model.GatepassId, "all", LoggedUserDetails.EmployeeCode).ToList();
                 model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
-                model.VehicleMasterList = db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).ToList();
+
+                model.VehicleMasterList = (LoggedUserDetails.EmployeeCode == "Admin")
+                    ? db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).ToList() : db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).Where(c => c.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
+
                 model.DepartmentId = LoggedUserDetails.DepartmentId;
                 return View(model);
             }
@@ -140,6 +143,13 @@ namespace BanasVehicleTrack.Controllers
                 return RedirectToAction("Dashboard", "Home");
             }
 
+        }
+        public ActionResult SelectDepartmentWiseVehicleJson(int ddlDepartment)
+        {
+            var VehicleList = db.BanasVehicleMasterRtr("open", LoggedUserDetails.CompanyCode).Where(x => x.DepartmentId == ddlDepartment).Select(c => new VehicleMasterViewModel() { VehicleId = c.VehicleId.ToString(), VehicleRegNumber = c.VehicleRegNumber }).ToList();
+
+            var obj = new { VehicleList };
+            return Json(obj, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult ExportReport(string DepartmentId, string VehicleId, string VisitDateTime, string CloseDateTime, string GatePassId)
@@ -426,13 +436,52 @@ namespace BanasVehicleTrack.Controllers
                 }
                 if (ViewBag.ViewRight == 1)
                 {
-                    model.BanasVehicleGatepassRetrieveList = db.BanasAuditorFinalApproveRetrieve("NotApproved",LoggedUserDetails.EmployeeCode).ToList();
+                    model.VisitDateTime = generalFunctions.dateconvert(generalFunctions.getDate());
+                    model.CloseDateTime = generalFunctions.dateconvert(generalFunctions.getDate());
+
+                    model.BanasVehicleGatepassRetrieveList = db.BanasAuditorFinalApproveRetrieve(generalFunctions.getDate(), generalFunctions.getDate(), model.DepartmentId, model.VehicleId, "NotApproved", LoggedUserDetails.EmployeeCode).ToList();
+
+                    model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
+                    model.DepartmentId = LoggedUserDetails.DepartmentId;
+                    model.VehicleMasterList = (LoggedUserDetails.EmployeeCode == "Admin")
+                 ? db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).ToList() : db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).Where(c => c.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
+
                     return View(model);
                 }
                 else
                 {
                     return RedirectToAction("Dashboard", "Home");
                 }
+            }
+            catch (Exception ex)
+            {
+                Danger(ex.Message.ToString(), true);
+                return RedirectToAction("Dashboard", "Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult AuditorFinalApprove(AuditorFinalApproveViewModel model)
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                string visitDateTime = model.VisitDateTime != null ? generalFunctions.dateconvert(model.VisitDateTime) : null;
+
+                // Check if CloseDateTime is null before converting
+                string closeDateTime = model.CloseDateTime != null ? generalFunctions.dateconvert(model.CloseDateTime) : null;
+
+                model.BanasVehicleGatepassRetrieveList = db.BanasAuditorFinalApproveRetrieve(visitDateTime, closeDateTime, model.DepartmentId, model.VehicleId, "NotApproved", LoggedUserDetails.EmployeeCode).ToList();
+
+                model.DepartmentMasterList = db.BanasDepartmentMasterRetrieve("active", LoggedUserDetails.CompanyCode, LoggedUserDetails.EmployeeCode).ToList();
+                model.DepartmentId = LoggedUserDetails.DepartmentId;
+                model.VehicleMasterList = (LoggedUserDetails.EmployeeCode == "Admin")
+                ? db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).ToList() : db.BanasVehicleMasterRtr("Active", LoggedUserDetails.CompanyCode).Where(c => c.DepartmentId.ToString() == LoggedUserDetails.DepartmentId).ToList();
+
+                return View(model);
+
             }
             catch (Exception ex)
             {

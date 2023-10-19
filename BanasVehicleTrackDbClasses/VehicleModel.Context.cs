@@ -1275,19 +1275,6 @@ namespace BanasVehicleTrackDbClasses
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorVisitGatepassRetrieve_NEW_Result>("BanasAuditorVisitGatepassRetrieve_NEW", actionParameter, userCodeParameter, gatePassIdParameter);
         }
     
-        public virtual ObjectResult<BanasAuditorFinalApproveRetrieve_Result> BanasAuditorFinalApproveRetrieve(string action, string loginuser)
-        {
-            var actionParameter = action != null ?
-                new ObjectParameter("action", action) :
-                new ObjectParameter("action", typeof(string));
-    
-            var loginuserParameter = loginuser != null ?
-                new ObjectParameter("loginuser", loginuser) :
-                new ObjectParameter("loginuser", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorFinalApproveRetrieve_Result>("BanasAuditorFinalApproveRetrieve", actionParameter, loginuserParameter);
-        }
-    
         public virtual ObjectResult<BanasSecurityVehicleGatepassRetrieve_Result> BanasSecurityVehicleGatepassRetrieve(string action, string gatepassId)
         {
             var actionParameter = action != null ?
@@ -1900,6 +1887,35 @@ namespace BanasVehicleTrackDbClasses
                 new ObjectParameter("loginuser", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasVehicleGatepassRetrieve_Result>("BanasVehicleGatepassRetrieve", actionParameter, fromParameter, toParameter, departmentParameter, vehicleParameter, gatepassIdParameter, loginuserParameter);
+        }
+    
+        public virtual ObjectResult<BanasAuditorFinalApproveRetrieve_Result> BanasAuditorFinalApproveRetrieve(string fromDate, string toDate, string departmentId, string vehicleId, string action, string loginuser)
+        {
+            var fromDateParameter = fromDate != null ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(string));
+    
+            var toDateParameter = toDate != null ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(string));
+    
+            var departmentIdParameter = departmentId != null ?
+                new ObjectParameter("DepartmentId", departmentId) :
+                new ObjectParameter("DepartmentId", typeof(string));
+    
+            var vehicleIdParameter = vehicleId != null ?
+                new ObjectParameter("VehicleId", vehicleId) :
+                new ObjectParameter("VehicleId", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("action", action) :
+                new ObjectParameter("action", typeof(string));
+    
+            var loginuserParameter = loginuser != null ?
+                new ObjectParameter("loginuser", loginuser) :
+                new ObjectParameter("loginuser", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BanasAuditorFinalApproveRetrieve_Result>("BanasAuditorFinalApproveRetrieve", fromDateParameter, toDateParameter, departmentIdParameter, vehicleIdParameter, actionParameter, loginuserParameter);
         }
     }
 }
